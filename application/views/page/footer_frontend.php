@@ -2,7 +2,7 @@
     <footer class="w3l-footer-16">
         <div class="w3l-footer-16-main">
             <div class="container">
-                <div class="row footer-p">
+                <!-- <div class="row footer-p">
                     <div class="col-lg-8 mt-lg-0 mt-4 pr-lg-5">
                         <div class="row footer-grids pt-4">
                             <div class="col-sm-4 col-6 column">
@@ -43,7 +43,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="below-section mt-5 text-center">
                     <p class="copy-text">&copy; <?php echo date('Y') ?> IPDN - All rights reserved.
                     </p>
