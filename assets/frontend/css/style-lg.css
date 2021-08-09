@@ -1,0 +1,44 @@
+body, html, section
+{
+   background-image: url(../images/banner.png);
+}
+
+.container
+{
+    border: 0px solid black;
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+.title-big
+{
+    margin-bottom: 20px;
+}
+
+
+.bg-doger
+{
+    background-color: dodgerblue;
+}
+
+.bg-putih
+{
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title-header
+{
+    font-size: 65px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+
+footer
+{
+    border-top: 1px solid gainsboro;
+    padding: 30px;
+}
