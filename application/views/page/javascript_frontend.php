@@ -1,9 +1,13 @@
     <!-- Javascript -->
     
     <!-- Move Top Button -->
-    <button onclick="topFunction()" id="movetop" title="Go to top">
-        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
-    </button>
+    <?php if(empty($beranda) && empty($tentang)){
+        echo"
+            <button onclick=\"topFunction()\" id=\"movetop\" title=\"Go to top\">
+                <span class=\"fas fa-level-up-alt\" aria-hidden=\"true\"></span>
+            </button>
+        ";
+    } ?>
     
     <script>
         window.onscroll = function () {
@@ -30,7 +34,7 @@
         const typedTextSpan = document.querySelector(".typed-text");
         const cursorSpan = document.querySelector(".cursor");
 
-        const textArray = ["Smart Campus Database"];
+        const textArray = ["Selamat Datang"];
         const typingDelay = 300;
         const erasingDelay = 10;
         const newTextDelay = 100; // Delay between current and next text
