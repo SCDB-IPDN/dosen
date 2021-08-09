@@ -58,17 +58,18 @@
 
     <footer>
         <center>
-            &copy; SCDB IPDN 2021 - All Right Reserved
+            <span>&copy; SCDB IPDN 2021 - All Right Reserved</span>
         </center>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            offset: 20, // offset (in px) from the original trigger point
+            offset: 100, // offset (in px) from the original trigger point
             delay: 1000, // values from 0 to 3000, with step 50ms
-            duration: 400, // values from 0 to 3000, with step 50ms
+            duration: 700, // values from 0 to 3000, with step 50ms
         });
+
     </script>
 </body>
 </html>
