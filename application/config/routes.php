@@ -27,10 +27,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | There are three reserved routes:
 |
-|	$route['default_controller'] = 'welcome';
+|	$route['default_controller'] = 'presensi';
 |
 | This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
+| URI contains no data. In the above example, the "presensi" class
 | would be loaded.
 |
 |	$route['404_override'] = 'errors/page_missing';
@@ -50,8 +50,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Login';
-$route['home'] = 'beranda';
+$route['beranda'] = 'Beranda';
+$route['tentang'] = 'Beranda/tentang';
+
 $route['ceklogin'] = 'login/cek_login';
 $route['logout'] = 'login/logout';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['/'] = 'presensi/index';
+$route['insert'] = 'presensi/insert';
+$route['fetch'] = 'presensi/fetch';
+$route['delete'] = 'presensi/delete';
+$route['edit'] = 'presensi/edit';
+$route['update'] = 'presensi/update';
