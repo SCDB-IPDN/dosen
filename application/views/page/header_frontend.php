@@ -38,20 +38,20 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
                         <li class="nav-item <?php echo empty($beranda) ? '' : $beranda ?>">
-                            <a class="nav-link" href="<?php echo base_url('frontend_beranda'); ?>">
+                            <a class="nav-link" href="<?php echo base_url('beranda'); ?>">
                                 <i class="fa fa-home" aria-hidden="true"></i>
                                 Beranda
                             </a>
                         </li>
                         <li class="nav-item <?php echo empty($tentang) ? '' : $tentang ?>">
-                            <a class="nav-link" href="<?php echo base_url('frontend_tentang'); ?>">
+                            <a class="nav-link" href="<?php echo base_url('tentang'); ?>">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 Tentang
                             </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="">
-                                Akun
+                                Username
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

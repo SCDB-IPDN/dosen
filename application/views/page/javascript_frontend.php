@@ -1,79 +1,52 @@
     <!-- Javascript -->
     
-    <!-- Move Top Button -->
-    <?php if(empty($beranda) && empty($tentang)){
-        echo"
-            <button onclick=\"topFunction()\" id=\"movetop\" title=\"Go to top\">
-                <span class=\"fas fa-level-up-alt\" aria-hidden=\"true\"></span>
-            </button>
-        ";
-    } ?>
-    
-    <script>
-        window.onscroll = function () {
-            scrollFunction()
-        };
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.getElementById("movetop").style.display = "block";
-            } else {
-                document.getElementById("movetop").style.display = "none";
-            }
-        }
-
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-    </script>
-    <!-- //Move Top Button -->
-    
     <!-- typig-text-->
-    <script>
-        const typedTextSpan = document.querySelector(".typed-text");
-        const cursorSpan = document.querySelector(".cursor");
+    <?php if(!empty($beranda)) { ?>
+        <script>
+            const typedTextSpan = document.querySelector(".typed-text");
+            const cursorSpan = document.querySelector(".cursor");
 
-        const textArray = ["Selamat Datang"];
-        const typingDelay = 300;
-        const erasingDelay = 10;
-        const newTextDelay = 100; // Delay between current and next text
-        let textArrayIndex = 0;
-        let charIndex = 0;
+            // const textArray = ["Selamat Datang"];
+            const typingDelay = 150;
+            const erasingDelay = 10;
+            const newTextDelay = 100; // Delay between current and next text
+            let textArrayIndex = 0;
+            let charIndex = 0;
 
-        function type() {
-            if (charIndex < textArray[textArrayIndex].length) {
-                if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, typingDelay);
-            } else {
-                cursorSpan.classList.remove("typing");
-                setTimeout(erase, newTextDelay);
-            }
-        }
-
-        function erase() {
-            if (charIndex > 0) {
-                // add class 'typing' if there's none
-                if (!cursorSpan.classList.contains("typing")) {
-                    cursorSpan.classList.add("typing");
+            function type() {
+                if (charIndex < textArray[textArrayIndex].length) {
+                    if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, typingDelay);
+                } else {
+                    cursorSpan.classList.remove("typing");
+                    setTimeout(erase, newTextDelay);
                 }
-                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, 0);
-                charIndex--;
-                setTimeout(erase, erasingDelay);
-            } else {
-                cursorSpan.classList.remove("typing");
-                textArrayIndex++;
-                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-                setTimeout(type, typingDelay);
             }
-        }
 
-        document.addEventListener("DOMContentLoaded", function () { // On DOM Load initiate the effect
-            if (textArray.length) setTimeout(type, newTextDelay + 250);
-        });
-    </script>
+            function erase() {
+                if (charIndex > 0) {
+                    // add class 'typing' if there's none
+                    if (!cursorSpan.classList.contains("typing")) {
+                        cursorSpan.classList.add("typing");
+                    }
+                    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, 0);
+                    charIndex--;
+                    setTimeout(erase, erasingDelay);
+                } else {
+                    cursorSpan.classList.remove("typing");
+                    textArrayIndex++;
+                    if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                    setTimeout(type, typingDelay);
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function () { // On DOM Load initiate the effect
+                if (textArray.length) setTimeout(type, newTextDelay + 250);
+            });
+        </script>
+    <?php } ?>
     <!-- //typig-text-->
     
     <!-- theme switch js (light and dark)-->
