@@ -30,7 +30,7 @@
             <div class="mx-auto pt-lg-4 pt-md-5 pt-4" style="max-width:1000px; margin-top:30px">
                 <div class="row contact-block">
                     <div class="col-md-5 contact-right mt-md-0 mt-4 bg-putih" data-aos="fade-left">
-                        <form action="https://sendmail.w3layouts.com/submitForm" method="post" class="signin-form">
+                        <form action="<?= base_url('/ceklogin') ?>" method="post" class="signin-form">
                             <h3 class="title-big">Login Ruang Dosen</h3>
 
                             <div class="input-grids">

@@ -7,6 +7,9 @@
             <div class="container pt-5 pb-md-4">
                 <div class="row align-items-center">
                     <div class="col-md-6 pt-md-0 pt-4">
+                        <font size='7'>
+                            <a href="<?= base_url('logout') ?>">LOGOUT</a>
+                        </font>
                         <h3 class="mb-lg-4 mb-3 title"><span class="cursor typed-text"></span></h3>
                         <p>
                             Institut Pemerintahan Dalam Negeri <br>
