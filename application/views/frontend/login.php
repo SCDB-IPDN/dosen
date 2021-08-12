@@ -24,7 +24,7 @@
     <section class="w3l-contact py-5" id="contact">
         <div class="container">
             <center>
-                <h1 class="title-header" data-aos="fade-down">RUANG DOSEN</h1>
+                <h1 class="title-header" data-aos="fade-down">PRESENSI</h1>
                 <hr>
             </center>
             <div class="mx-auto pt-lg-4 pt-md-5 pt-4" style="max-width:1000px; margin-top:30px">

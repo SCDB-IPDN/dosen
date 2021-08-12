@@ -1,4 +1,4 @@
-    <!-- Banner -->
+    <!-- Beranda -->
     <section id="home" class="w3l-banner py-5">
         <div class="banner-image">
 
@@ -34,4 +34,4 @@
             </div>
         </div>
     </section>
-    <!-- //Banner -->
+    <!-- //Beranda -->

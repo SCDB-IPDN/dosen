@@ -56,11 +56,12 @@ $route['tentang'] = 'Beranda/tentang';
 $route['ceklogin'] = 'login/cek_login';
 $route['logout'] = 'login/logout';
 
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
 $route['/'] = 'presensi/index';
 $route['insert'] = 'presensi/insert';
 $route['fetch'] = 'presensi/fetch';
 $route['delete'] = 'presensi/delete';
 $route['edit'] = 'presensi/edit';
 $route['update'] = 'presensi/update';
+
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
