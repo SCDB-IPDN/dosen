@@ -23,7 +23,7 @@
                 <h1>
                     <a class="navbar-brand" href="">
                         <!-- <i class="fab fa-accusoft icon-color mr-1"></i>Set<span>up</span> -->
-                        <img src="http://scdb.ipdn.ac.id/assets/zfmode/img/logo2.png" height="50" width="150" alt="" srcset="">
+                        <img src="assets/frontend/images/IPDN.png" height="50" width="50" alt="" srcset="">
                         <!-- Smart <span>Campus</span> -->
                     </a>
                 </h1>
@@ -37,45 +37,34 @@
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="">Beranda <span class="sr-only">(current)</span></a>
+                        <li class="nav-item <?php echo empty($beranda) ? '' : $beranda ?>">
+                            <a class="nav-link" href="<?php echo base_url('frontend_beranda'); ?>">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                Beranda
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Subtansi Komputasi</a>
+                        <li class="nav-item <?php echo empty($tentang) ? '' : $tentang ?>">
+                            <a class="nav-link" href="<?php echo base_url('frontend_tentang'); ?>">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                Tentang
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Tentang</a>
-                        </li>
-
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Support By <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            <a class="nav-link" href="">
+                                Akun
+                                <i class="fa fa-user" aria-hidden="true"></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">IPDN</a>
-                                <a class="dropdown-item" href="#">KEMENDAGRI</a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                                    Logout
+                                </a>
                             </div>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Kontak</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Login</a>
-                        </li>
-
-                        <!-- Search Button -->
-                        <!-- <div class="search-right ml-lg-3">
-                            <form action="#search" method="GET" class="search-box position-relative">
-                                <input type="search" placeholder="Search" name="search" required="required"
-                                    autofocus="" class="search-popup">
-                                <button type="submit" class="btn search-btn"><i class="fa fa-search"
-                                        aria-hidden="true"></i></button>
-                            </form>
-                        </div> -->
-                        <!-- //Search Button -->
-                    </ul>
                 </div>
                         
                 <!-- toggle switch for light and dark theme -->
