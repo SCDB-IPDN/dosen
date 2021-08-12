@@ -5,87 +5,71 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>SCBD IPDN</title>
+    <title>DOSEN IPDN</title>
     <link href="https://upload.wikimedia.org/wikipedia/commons/5/56/Lambang_IPDN.png" rel="icon">
     <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/frontend/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/frontend/css/style-starter.css">
+    <link rel="stylesheet" href="assets/frontend/css/style-lg.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<style>
-</style>
+
 
 <body>
+
+
     <!-- Login -->
     <section class="w3l-contact py-5" id="contact">
-        <div class="container py-lg-5 py-md-4 py-2">
-            <div class="text-center mb-sm-5 mb-4">
-                <h3 class="title-big">Login</h3>
-            </div>
-            <div class="mx-auto pt-lg-4 pt-md-5 pt-4" style="max-width:1000px">
+        <div class="container">
+            <center>
+                <h1 class="title-header" data-aos="fade-down">RUANG DOSEN</h1>
+                <hr>
+            </center>
+            <div class="mx-auto pt-lg-4 pt-md-5 pt-4" style="max-width:1000px; margin-top:30px">
                 <div class="row contact-block">
-                    <div class="col-md-5 contact-left">
-                        <h3 class="font-weight-bold mb-md-5 mb-4">Contact Details</h3>
-                        <div class="cont-details">
-                            <div class="d-flex contact-grid">
-                                <div class="cont-left text-center mr-3">
-                                    <span class="fa fa-globe icon-color"></span>
-                                </div>
-                                <div class="cont-right">
-                                    <h6>Company Address</h6>
-                                    <p>10001, 5th Avenue, 12202 street, USA.</p>
-                                </div>
-                            </div>
-                            <div class="d-flex contact-grid mt-4 pt-lg-2">
-                                <div class="cont-left text-center mr-3">
-                                    <span class="fa fa-phone icon-color"></span>
-                                </div>
-                                <div class="cont-right">
-                                    <h6>Call Us</h6>
-                                    <p><a href="tel:+1(21) 234 4567">+1(21) 112 7368</a></p>
-                                </div>
-                            </div>
-                            <div class="d-flex contact-grid mt-4 pt-lg-2">
-                                <div class="cont-left text-center mr-3">
-                                    <span class="fa fa-envelope-open icon-color"></span>
-                                </div>
-                                <div class="cont-right">
-                                    <h6>Email Us</h6>
-                                    <p><a href="mailto:example@mail.com" class="mail">example@mail.com</a></p>
-                                </div>
-                            </div>
-                            <div class="d-flex contact-grid mt-4 pt-lg-2">
-                                <div class="cont-left text-center mr-3">
-                                    <span class="fa fa-headphones icon-color"></span>
-                                </div>
-                                <div class="cont-right">
-                                    <h6>Customer Support</h6>
-                                    <p><a href="mailto:info@support.com" class="mail">info@support.com</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7 contact-right mt-md-0 mt-4">
-                        <form action="https://sendmail.w3layouts.com/submitForm" method="post" class="signin-form">
+                    <div class="col-md-5 contact-right mt-md-0 mt-4 bg-putih" data-aos="fade-left">
+                        <form action="<?= base_url('/ceklogin') ?>" method="post" class="signin-form">
+                            <h3 class="title-big">Login Ruang Dosen</h3>
+
                             <div class="input-grids">
-                                <input type="text" name="w3lName" id="w3lName" placeholder="Your Name*"
-                                    class="contact-input" required="" />
-                                <input type="email" name="w3lSender" id="w3lSender" placeholder="Your Email*"
-                                    class="contact-input" required="" />
-                                <input type="text" name="w3lSubect" id="w3lSubect" placeholder="Subject*"
-                                    class="contact-input" required="" />
-                                <input type="text" name="w3lWebsite" id="w3lWebsite" placeholder="Website URL*"
-                                    class="contact-input" required="" />
+                                <input type="text" name="username" id="w3lName" placeholder="Username*" class="contact-input inputan" required="" />
+                                <input type="password" name="password" id="w3lSender" placeholder="Password*" class="contact-input inputan" required="" />
                             </div>
-                            <div class="form-input">
-                                <textarea name="w3lMessage" id="w3lMessage" placeholder="Type your message here*"
-                                    required=""></textarea>
+                            <button type="submit" class="btn button-style bg-doger">LOGIN</button>
+
+                            <div style="margin: 20px 0; text-align:right;">
+                                <img style="display: block;" src="assets/frontend/images/smart-ipdn.png" width="40%">
                             </div>
-                            <button class="btn button-style">Send Message</button>
                         </form>
                     </div>
+                    <div class="col-md-7">
+                        <img data-aos="fade-right" src="assets/frontend/images/5584-2.png" width="100%">
+                    </div>
+                    
                 </div>
             </div>
         </div>
+
+        
     </section>
     <!-- //Login -->
+
+    <footer>
+        <center>
+            <span>&copy; SCDB IPDN 2021 - All Right Reserved</span>
+        </center>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 100, // offset (in px) from the original trigger point
+            delay: 1000, // values from 0 to 3000, with step 50ms
+            duration: 700, // values from 0 to 3000, with step 50ms
+        });
+
+    </script>
+</body>
+</html>

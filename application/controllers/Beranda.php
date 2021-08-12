@@ -4,31 +4,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Beranda extends CI_Controller {
 
 	function __construct(){
-		parent::__construct();		
+		parent::__construct();	
 		// if($this->session->userdata('status') != "login"){
 		// 	redirect(base_url(""));
 		// }
+		$this->load->model('Beranda_model');
+    $this->LoginModel->cekSession();
 	}
 
 	public function index()
 	{
         $data = array(
-            'beranda' => 'active'
+			'desc'		=> $this->Beranda_model->get_desc(),
+            'beranda'	=> 'active'
         );
 
 		$this->load->view('page/header_frontend', $data);
-		$this->load->view('frontend/beranda');
+		$this->load->view('frontend/beranda', $data);
 		$this->load->view('page/javascript_frontend');
 	}
 
 	public function tentang()
 	{
         $data = array(
-            'tentang' => 'active'
+			'desc'		=> $this->Beranda_model->get_desc(),
+            'tentang'	=> 'active'
         );
 
 		$this->load->view('page/header_frontend', $data);
-		$this->load->view('frontend/tentang');
+		$this->load->view('frontend/tentang', $data);
 		$this->load->view('page/javascript_frontend');
 	}
 }
