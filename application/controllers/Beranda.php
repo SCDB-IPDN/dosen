@@ -5,11 +5,13 @@ class Beranda extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();	
-		// if($this->session->userdata('status') != "login"){
-		// 	redirect(base_url(""));
-		// }
+
+		$this->load->library('session');
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url());
+		}
+		
 		$this->load->model('Beranda_model');
-    $this->LoginModel->cekSession();
 	}
 
 	public function index()
