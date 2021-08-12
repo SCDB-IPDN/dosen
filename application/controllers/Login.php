@@ -6,8 +6,11 @@ class Login extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('LoginModel');
+		
 		$this->load->library('session');
+		$this->load->library('form_validation');
+
+		$this->load->model('LoginModel');
 	}
 
 	public function index()
@@ -17,44 +20,34 @@ class Login extends CI_Controller {
 
 	public function cek_login()
 	{
-		$this->load->library('form_validation');
-
-		$usernama = $this->input->post('username');
-		$ktsandi  = md5($this->input->post('password'));
+		$username	= $this->input->post('username');
+		$password	= md5($this->input->post('password'));
 		
 		$where = array(
-			'username'=> $usernama,
-			'password'=> $ktsandi
+			'username'=> $username,
+			'password'=> $password
 		);
-		
 		$cek = $this->LoginModel->cekLogin("user", $where);
 
-		if ($cek>0) 
-		{
+		if ($cek > 0) {
+			$data = $this->LoginModel->get_user($where);
 			$dataSession = array(
-				'nama' => $usernama,
-				'status' => "login" 
+				'username'	=> $data[0]->username,
+				'password'	=> $data[0]->password,
+				'role'		=> $data[0]->password,
+				'status'	=> "login" 
 			);
-
 			$this->session->set_userdata($dataSession);
-			
-			redirect(base_url("home"));
-
-			//echo "$cek";
-		} 
-		else 
-		{
-			echo
-			"
-			<script>
-				alert('Username dan Password anda salah');
-				window.location='Login';
-			</script>
+			redirect(base_url("beranda"));
+		} else {
+			echo "
+				<script>
+					alert('Username dan Password anda salah');
+					window.location='Login';
+				</script>
 			";
-
 			//redirect("Login");
 		}
-		
 	}
 
 	function logout()
