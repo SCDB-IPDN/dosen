@@ -52,6 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Login';
 $route['beranda'] = 'Beranda';
 $route['tentang'] = 'Beranda/tentang';
+
+$route['ceklogin'] = 'login/cek_login';
+$route['logout'] = 'login/logout';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['/'] = 'presensi/index';

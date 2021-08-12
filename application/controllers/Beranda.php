@@ -9,6 +9,7 @@ class Beranda extends CI_Controller {
 		// 	redirect(base_url(""));
 		// }
 		$this->load->model('Beranda_model');
+    $this->LoginModel->cekSession();
 	}
 
 	public function index()

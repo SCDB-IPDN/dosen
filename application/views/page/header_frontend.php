@@ -1,21 +1,4 @@
-<!doctype html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>SCBD IPDN</title>
-    <link href="https://upload.wikimedia.org/wikipedia/commons/5/56/Lambang_IPDN.png" rel="icon">
-    <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/frontend/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/frontend/css/style-starter.css">
-</head>
-
-<style>
-</style>
-
-<body>
     <!-- Header-->
     <header id="site-header" class="fixed-top">
         <div class="container">
