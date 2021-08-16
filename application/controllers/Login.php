@@ -43,7 +43,7 @@ class Login extends CI_Controller {
 		} else {
 			echo "
 				<script>
-					alert('Username dan Password anda salah');
+					alert('$cek');
 					window.location='Login';
 				</script>
 			";
