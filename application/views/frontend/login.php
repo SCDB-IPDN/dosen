@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>DOSEN IPDN</title>
+    <title>PRESENSI IPDN</title>
     <link href="https://upload.wikimedia.org/wikipedia/commons/5/56/Lambang_IPDN.png" rel="icon">
     <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/frontend/css/fontawesome-all.min.css">
@@ -15,11 +15,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-
-
 <body>
-
-
     <!-- Login -->
     <section class="w3l-contact py-5" id="contact">
         <div class="container">
@@ -47,12 +43,9 @@
                     <div class="col-md-7">
                         <img data-aos="fade-right" src="assets/frontend/images/5584-2.png" width="100%">
                     </div>
-                    
                 </div>
             </div>
         </div>
-
-        
     </section>
     <!-- //Login -->
 

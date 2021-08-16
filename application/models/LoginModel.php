@@ -13,7 +13,7 @@ class LoginModel extends CI_Model
     public function get_user($kriteria) {
         $get_desc = $this->db
                     ->select('*')
-                    ->from('user')
+                    ->from('tbl_login')
                     ->where($kriteria)
                     ->get();
         if($get_desc->num_rows() > 0) {

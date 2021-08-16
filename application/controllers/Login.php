@@ -27,14 +27,15 @@ class Login extends CI_Controller {
 			'username'=> $username,
 			'password'=> $password
 		);
-		$cek = $this->LoginModel->cekLogin("user", $where);
+		$cek = $this->LoginModel->cekLogin("tbl_login", $where);
 
 		if ($cek > 0) {
 			$data = $this->LoginModel->get_user($where);
 			$dataSession = array(
 				'username'	=> $data[0]->username,
 				'password'	=> $data[0]->password,
-				'role'		=> $data[0]->password,
+				'image_url'	=> $data[0]->image_url,
+				'role'		=> $data[0]->role,
 				'status'	=> "login" 
 			);
 			$this->session->set_userdata($dataSession);
