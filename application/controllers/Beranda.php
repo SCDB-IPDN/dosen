@@ -35,6 +35,19 @@ class Beranda extends CI_Controller {
 
 		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/tentang', $data);
+		$this->load->view('page/footer_frontend');
+		$this->load->view('page/javascript_frontend');
+	}
+
+	function profile($username)
+	{
+        $data = array(
+			'get_profile'	=> $this->Beranda_model->get_profile(base64_decode($username)),
+            'profile'		=> 'active'
+        );
+
+		$this->load->view('page/header_frontend', $data);
+		$this->load->view('frontend/profile', $data);
 		$this->load->view('page/javascript_frontend');
 	}
 }

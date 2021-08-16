@@ -7,8 +7,8 @@
     <title>SCBD IPDN</title>
     <link href="https://upload.wikimedia.org/wikipedia/commons/5/56/Lambang_IPDN.png" rel="icon">
     <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/frontend/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/frontend/css/style-starter.css">
+    <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/fontawesome-all.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/style-starter.css'); ?>">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
                 <h1>
                     <a class="navbar-brand" href="">
                         <!-- <i class="fab fa-accusoft icon-color mr-1"></i>Set<span>up</span> -->
-                        <img src="assets/frontend/images/IPDN.png" height="50" width="50" alt="" srcset="">
+                        <img src="<?php echo base_url('assets/frontend/images/IPDN.png'); ?>" height="50" width="50" alt="" srcset="">
                         <!-- Smart <span>Campus</span> -->
                     </a>
                 </h1>
@@ -47,16 +47,16 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="">
+                            <a class="nav-link <?php echo empty($profile) ? '' : $profile ?>" href="<?php echo base_url('profile/'.base64_encode($this->session->userdata('username'))); ?>">
                                 <?= $this->session->userdata('username'); ?>
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="<?php echo base_url('profile/'.base64_encode($this->session->userdata('username'))); ?>">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="login/logout">
+                                <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
                                     <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                                     Logout
                                 </a>

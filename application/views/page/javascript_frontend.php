@@ -48,7 +48,7 @@
     <!-- //typig-text-->
     
     <!-- theme switch js (light and dark)-->
-    <script src="assets/frontend/js/theme-change.js"></script>
+    <script src="<?php echo base_url('assets/frontend/js/theme-change.js'); ?>"></script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -87,7 +87,7 @@
     <!-- //theme switch js (light and dark)-->
 
     <!-- Banner Animated Background -->
-    <script src="assets/frontend/js/jquery-3.3.1.min.js"></script>
+    <script src="<?php echo base_url('assets/frontend/js/jquery-3.3.1.min.js'); ?>"></script>
     <script>
         var lFollowX = 0,
             lFollowY = 0,
@@ -120,7 +120,7 @@
     <!-- //Banner Animated Background -->
 
     <!-- Slider Career-->
-    <script src="assets/frontend/js/owl.carousel.js"></script>
+    <script src="<?php echo base_url('assets/frontend/js/owl.carousel.js'); ?>"></script>
     <script>
         $(document).ready(function () {
             $("#owl-demo2").owlCarousel({
@@ -192,7 +192,7 @@
         });
     </script>
 
-    <script src="assets/frontend/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url('assets/frontend/js/bootstrap.min.js'); ?>"></script>
     <!-- //Javascript -->
 </body>
 
