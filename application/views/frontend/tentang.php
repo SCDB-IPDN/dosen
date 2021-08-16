@@ -20,12 +20,12 @@
                     </p>
                 </div>
                 <div class="col-lg-6 left-wthree-img mt-lg-0 mt-5">
-                    <img src="assets/frontend/images/10586.png" alt="" class="img-fluid radius-image">
+                    <img src="<?php echo base_url('assets/frontend/images/10586.png'); ?>" alt="" class="img-fluid radius-image">
                 </div>
             </div>
             <div class="row mt-5 pt-5">
                 <div class="col-lg-6 left-wthree-img mt-lg-0 mt-5 order-lg-first order-last">
-                    <img src="assets/frontend/images/service2.png" alt="" class="img-fluid radius-image">
+                    <img src="<?php echo base_url('assets/frontend/images/service2.png'); ?>" alt="" class="img-fluid radius-image">
                 </div>
                 <div class="col-lg-6 about-right-faq align-self pl-lg-5 order-lg-last order-first">
                     <p class="mt-3">
