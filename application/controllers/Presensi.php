@@ -17,7 +17,9 @@ class Presensi extends CI_Controller
 
 	public function index()
 	{
+		$this->load->view('page/header_frontend');
 		$this->load->view('frontend/presensi');
+
 	}
 
 	public function insert()
