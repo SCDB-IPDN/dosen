@@ -3,11 +3,7 @@
     class Beranda_model extends CI_Model {
         
 	    public function __construct() {
-            // if($this->session->userdata('status') != "login"){
-            // 	redirect(base_url(""));
-            // }
             $this->load->database();
-            $this->load->library('session');
         }
 
         public function get_desc() {
@@ -20,6 +16,33 @@
             } else {
                 return false;
             }
+        }
+
+        public function get_profile($username) {
+            $get_user = $this->db->query("SELECT
+                            -- tbl_login.username,
+                            -- tbl_login.PASSWORD,
+                            tbl_dosen_pddikti.nama 
+                        FROM
+                            tbl_login
+                            JOIN tbl_dosen_pddikti ON tbl_login.username = tbl_dosen_pddikti.nip 
+                        WHERE
+                            tbl_login.username = '$username' UNION
+                        SELECT
+                            tbl_pns.nama_lengkap AS nama 
+                        FROM
+                            tbl_login
+                            JOIN tbl_pns ON tbl_login.username = tbl_pns.nip 
+                        WHERE
+                            tbl_login.username = '$username' UNION
+                        SELECT
+                            tbl_thl.nama 
+                        FROM
+                            tbl_login
+                            JOIN tbl_thl ON tbl_login.username = tbl_thl.username 
+                        WHERE
+                            tbl_login.username = '$username'")->result();
+            return $get_user;
         }
     }
 ?>

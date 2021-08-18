@@ -1,56 +1,54 @@
     <!-- Javascript -->
     
     <!-- typig-text-->
-    <?php if(!empty($beranda)) { ?>
-        <script>
-            const typedTextSpan = document.querySelector(".typed-text");
-            const cursorSpan = document.querySelector(".cursor");
+    <!-- <script>
+        const typedTextSpan = document.querySelector(".typed-text");
+        const cursorSpan = document.querySelector(".cursor");
 
-            // const textArray = ["Selamat Datang"];
-            const typingDelay = 150;
-            const erasingDelay = 10;
-            const newTextDelay = 100; // Delay between current and next text
-            let textArrayIndex = 0;
-            let charIndex = 0;
+        const textArray = ["Selamat Datang"];
+        const typingDelay = 150;
+        const erasingDelay = 10;
+        const newTextDelay = 100; // Delay between current and next text
+        let textArrayIndex = 0;
+        let charIndex = 0;
 
-            function type() {
-                if (charIndex < textArray[textArrayIndex].length) {
-                    if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-                    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(type, typingDelay);
-                } else {
-                    cursorSpan.classList.remove("typing");
-                    setTimeout(erase, newTextDelay);
-                }
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                cursorSpan.classList.remove("typing");
+                setTimeout(erase, newTextDelay);
             }
+        }
 
-            function erase() {
-                if (charIndex > 0) {
-                    // add class 'typing' if there's none
-                    if (!cursorSpan.classList.contains("typing")) {
-                        cursorSpan.classList.add("typing");
-                    }
-                    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, 0);
-                    charIndex--;
-                    setTimeout(erase, erasingDelay);
-                } else {
-                    cursorSpan.classList.remove("typing");
-                    textArrayIndex++;
-                    if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-                    setTimeout(type, typingDelay);
+        function erase() {
+            if (charIndex > 0) {
+                // add class 'typing' if there's none
+                if (!cursorSpan.classList.contains("typing")) {
+                    cursorSpan.classList.add("typing");
                 }
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, 0);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } else {
+                cursorSpan.classList.remove("typing");
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                setTimeout(type, typingDelay);
             }
+        }
 
-            document.addEventListener("DOMContentLoaded", function () { // On DOM Load initiate the effect
-                if (textArray.length) setTimeout(type, newTextDelay + 250);
-            });
-        </script>
-    <?php } ?>
+        document.addEventListener("DOMContentLoaded", function () { // On DOM Load initiate the effect
+            if (textArray.length) setTimeout(type, newTextDelay + 250);
+        });
+    </script> -->
     <!-- //typig-text-->
     
     <!-- theme switch js (light and dark)-->
-    <script src="assets/frontend/js/theme-change.js"></script>
+    <script src="<?php echo base_url('assets/frontend/js/theme-change.js'); ?>"></script>
     <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
@@ -89,7 +87,7 @@
     <!-- //theme switch js (light and dark)-->
 
     <!-- Banner Animated Background -->
-    <script src="assets/frontend/js/jquery-3.3.1.min.js"></script>
+    <script src="<?php echo base_url('assets/frontend/js/jquery-3.3.1.min.js'); ?>"></script>
     <script>
         var lFollowX = 0,
             lFollowY = 0,
@@ -122,7 +120,7 @@
     <!-- //Banner Animated Background -->
 
     <!-- Slider Career-->
-    <script src="assets/frontend/js/owl.carousel.js"></script>
+    <script src="<?php echo base_url('assets/frontend/js/owl.carousel.js'); ?>"></script>
     <script>
         $(document).ready(function () {
             $("#owl-demo2").owlCarousel({
@@ -194,7 +192,7 @@
         });
     </script>
 
-    <script src="assets/frontend/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url('assets/frontend/js/bootstrap.min.js'); ?>"></script>
     <!-- //Javascript -->
     
 </body>

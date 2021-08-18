@@ -1,4 +1,4 @@
-    <!-- Banner -->
+    <!-- Beranda -->
     <section id="home" class="w3l-banner py-5">
         <div class="banner-image">
 
@@ -20,18 +20,22 @@
                                     echo "";
                                 }
                             ?>
-                            <br><br>Klik tombol dibawah untuk melakukan absen
+                            <br><br>Klik tombol dibawah untuk melakukan presensi
                         </p>
                         <div class="mt-md-5 mt-4 mb-lg-0 mb-4">
-                            <a class="btn button-style" href="" role="button">Presensi Kehadiran</a>
-                            <a class="btn button-style" href="" role="button">Monitoring Pembelajaran</a>
+                            <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29){ ?>
+                                <a class="btn button-style" href="<?php echo base_url('presensi'); ?>" role="button">Presensi Kehadiran</a>
+                                <a class="btn button-style" href="" role="button">Monitoring Pembelajaran</a>
+                            <?php } else { ?>
+                                <a class="btn button-style" href="<?php echo base_url('presensi'); ?>" role="button">Presensi Kehadiran</a>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="col-md-6 mt-md-0 mt-4">
-                        <img class="img-fluid" src="assets/frontend/images/20945183.png" alt=" ">
+                        <img class="img-fluid" src="<?php echo base_url('assets/frontend/images/20945183.png'); ?>" alt=" ">
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- //Banner -->
+    <!-- //Beranda -->
