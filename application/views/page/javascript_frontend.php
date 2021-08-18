@@ -196,6 +196,7 @@
 
     <script src="assets/frontend/js/bootstrap.min.js"></script>
     <!-- //Javascript -->
+    
 </body>
 
 </html>
