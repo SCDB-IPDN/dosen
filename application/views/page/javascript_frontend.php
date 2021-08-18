@@ -194,6 +194,7 @@
 
     <script src="<?php echo base_url('assets/frontend/js/bootstrap.min.js'); ?>"></script>
     <!-- //Javascript -->
+    
 </body>
 
 </html>

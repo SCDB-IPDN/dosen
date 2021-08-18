@@ -17,7 +17,10 @@ class Presensi extends CI_Controller
 
 	public function index()
 	{
+		$this->load->view('page/header_frontend');
 		$this->load->view('frontend/presensi');
+		
+
 	}
 
 	public function insert()
@@ -29,7 +32,7 @@ class Presensi extends CI_Controller
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
 				$ajax_data = $this->input->post();
-				if ($this->crud_model->insert_entry($ajax_data)) {
+				if ($this->presensi_model->insert_entry($ajax_data)) {
 					$data = array('responce' => 'success', 'message' => 'Record added Successfully');
 				} else {
 					$data = array('responce' => 'error', 'message' => 'Failed to add record');
@@ -93,21 +96,41 @@ class Presensi extends CI_Controller
 
 	public function update()
 	{
+		
 		if ($this->input->is_ajax_request()) {
-			$this->form_validation->set_rules('edit_name', 'Name', 'required');
-			$this->form_validation->set_rules('edit_email', 'Email', 'required|valid_email');
+
+			// $config['upload_path']="./upload";
+        	// $config['allowed_types']='gif|jpg|png';
+        	// $this->load->library('upload',$config);
+
+		      	$this->form_validation->set_rules('edit_media', 'Media', 'required');
+		 	   $this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
-				$data['id'] = $this->input->post('edit_record_id');
-				$data['name'] = $this->input->post('edit_name');
-				$data['email'] = $this->input->post('edit_email');
+
+				// if($this->upload->do_upload("file")){
+				// 	$data1 = array('upload_data' => $this->upload->data());
+				// 	$data = array(
+				// 	'id_plot' => $this->input->post('edit_id'),
+				// 	'media_pembelajaran' => $this->input->post('edit_media'),
+				// 	'keterangan' => $this->input->post('edit_keterangan'),
+				// 	'waktu_upload' => $this->input->post('edit_waktu'),
+				// 	'upload' => $data1['upload_data']['file_name']
+				// 	);  
+					
+
+				$data['id_plot'] = $this->input->post('edit_id');
+				$data['media_pembelajaran'] = $this->input->post('edit_media');
+				$data['keterangan'] = $this->input->post('edit_keterangan');
+				$data['waktu_upload'] = $this->input->post('edit_waktu');
 
 				if ($this->presensi_model->update_entry($data)) {
 					$data = array('responce' => 'success', 'message' => 'Record update Successfully');
-				} else {
+					} else {
 					$data = array('responce' => 'error', 'message' => 'Failed to update record');
-				}
+					}
+				// }
 			}
 
 			echo json_encode($data);

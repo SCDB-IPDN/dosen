@@ -107,45 +107,62 @@
             <form action="" method="post" id="edit_form">
               <input type="hidden" id="edit_id" name="edit_id" value="">
               <div class="form-group">
-                <label for="">NIP</label>
-                <input type="text" id="edit_nip" class="form-control">
-              </div>
-              <div class="form-group">
                 <label for="">Nama</label>
-                <input type="text" id="edit_nama" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="">Matakuliah</label>
-                <input type="text" id="edit_matkul" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="">Tanggal</label>
-                <input type="date" id="edit_tanggal" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="">Jam</label>
-                <input type="time" id="edit_jam" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="">Kelas</label>
-                <input type="text" id="edit_kelas" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="">Semester</label>
-                <input type="text" id="edit_semester" class="form-control">
+                <input type="text" id="edit_nama" class="form-control" disabled>
               </div>
               <div class="form-group">
                 <label for="">Fakultas</label>
-                <input type="text" id="edit_fakultas" class="form-control">
+                <input type="text" id="edit_fakultas" class="form-control" disabled>
               </div>
               <div class="form-group">
                 <label for="">Prodi</label>
-                <input type="text" id="edit_prodi" class="form-control">
+                <input type="text" id="edit_prodi" class="form-control" disabled>
               </div>
               <div class="form-group">
-                <label for="">SKS</label>
-                <input type="text" id="edit_sks" class="form-control">
+                <label for="">Kelas</label>
+                <input type="text" id="edit_kelas" class="form-control" disabled>
               </div>
+              <div class="form-group">
+                <label for="">Matakuliah</label>
+                <input type="text" id="edit_matkul" class="form-control" disabled>
+              </div>
+              <div class="form-group">
+                <label for="">Tanggal</label>
+                <input type="date" id="edit_tanggal" class="form-control" disabled>
+              </div>
+              <div class="form-group">
+                <label for="">Jam</label>
+                <input type="time" id="edit_jam" class="form-control" disabled>
+              </div>
+              <!-- <div class="form-group">
+                <label for="">Media Pembelajaran</label>
+                <input type="text" id="edit_media" class="form-control">
+              </div> -->
+              <div class="form-group">
+                <select name="edit_media" id="edit_media" class="form-control">
+                  <option value="">--Pilih Media--</option>
+                  <option value="Zoom">Zoom</option>
+                  <option value="Google">Google Meet</option>
+                  <option value="bla">bla</option>
+                  <option value="blabla">blabla</option>
+                </select>
+              </div>
+                <div class="form-group">
+                <label for="">Upload Bukti</label>
+                <input type="file" id="edit_upload" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="">Keterangan</label>
+                <input type="text" id="edit_keterangan" class="form-control">
+              </div>
+              <!-- <div class="form-group">
+                <label for="">Waktu Upload</label>
+                <input type="time" id="edit_waktu" class="form-control">
+              </div> -->
+
+            
+             
+            
             </form>
           </div>
           <div class="modal-footer">
@@ -273,7 +290,7 @@
 
       }
 
-      fetch();
+          fetch();
 
       // Delete Record
 
@@ -372,6 +389,10 @@
                 $("#edit_fakultas").val(data.post.nama_fakultas);
                 $("#edit_prodi").val(data.post.nama_prodi);
                 $("#edit_sks").val(data.post.sks);
+                $("#edit_media").val(data.post.media_pembelajaran);
+                $("#edit_upload").val(data.post.upload);
+                $("#edit_keterangan").val(data.post.keterangan);
+                // $("#edit_waktu").val(data.post.waktu_upload);
               }else{
                 toastr["error"](data.message);
               }
@@ -380,26 +401,44 @@
 
       });
 
-      // Update Record
-
+          // Update Record
+      function adjust(v){
+      if(v>9){
+      return v.toString();
+      }else{
+      return '0'+v.toString();
+      }
+      }
       $(document).on("click", "#update", function(e){
         e.preventDefault();
+        var today = new Date();
+        var date = today.getFullYear()+'-'+adjust(today.getMonth()+1)+'-'+adjust(today.getDate());
+        var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
 
-        var edit_record_id = $("#edit_record_id").val();
-        var edit_name = $("#edit_name").val();
-        var edit_email = $("#edit_email").val();
+        var edit_id = $("#edit_id").val();
+        var edit_media = $("#edit_media").val();
+        // var edit_upload = $("#edit_upload").val();
+        var edit_keterangan = $("#edit_keterangan").val();
+        var edit_waktu = `${date}T${time}`;
 
-        if (edit_record_id == "" || edit_name == "" || edit_email == "") {
-          alert("Both field is required");
+        // var data = new FormData(this);
+        // data.append('edit_id', edit_id);
+        // data.append('edit_media', edit_media);
+        // data.append('edit_keterangan', edit_keterangan);
+        // data.append('edit_waktu', edit_waktu);
+
+        if (edit_id == "" || edit_media == "" || edit_keterangan == "" )  {
+          alert("All field is required");
         }else{
           $.ajax({
             url: "<?php echo base_url(); ?>update",
             type: "post",
             dataType: "json",
             data: {
-              edit_record_id: edit_record_id,
-              edit_name: edit_name,
-              edit_email: edit_email
+              edit_id: edit_id,
+              edit_media: edit_media,
+              edit_keterangan: edit_keterangan,
+              edit_waktu: edit_waktu
             },
             success: function(data){
               if (data.responce == "success") {
