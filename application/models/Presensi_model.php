@@ -2,12 +2,25 @@
 
 	class Presensi_model extends CI_Model {
 
-        public function get_entries()
+        public function get_entries($username)
         {
-                $query = $this->db->get('tbl_plot_dosen');
-                // if (count( $query->result() ) > 0) {
-                	return $query->result();
-                // }
+            if($username == 'admin'){
+                $get_data   = $this->db
+                            ->select('*')
+                            ->from('tbl_plot_dosen')
+                            ->get();
+            }else{
+                $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("nip", $username)
+                ->get();
+            }
+            if($get_data->num_rows() > 0) {
+                return $get_data->result();
+            } else {
+                return false;
+            }
         }
 
         public function insert_entry($data)
