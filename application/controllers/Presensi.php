@@ -103,8 +103,8 @@ class Presensi extends CI_Controller
         	// $config['allowed_types']='gif|jpg|png';
         	// $this->load->library('upload',$config);
 
-			$this->form_validation->set_rules('edit_media', 'Media', 'required');
-			$this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
+		      	$this->form_validation->set_rules('edit_media', 'Media', 'required');
+		 	   $this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {

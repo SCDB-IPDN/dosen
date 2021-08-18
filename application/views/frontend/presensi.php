@@ -290,7 +290,7 @@
 
       }
 
-      fetch();
+          fetch();
 
       // Delete Record
 
@@ -401,7 +401,7 @@
 
       });
 
-      // Update Record
+          // Update Record
       function adjust(v){
       if(v>9){
       return v.toString();

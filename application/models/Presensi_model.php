@@ -17,7 +17,7 @@
 
         public function delete_entry($id){
         	return $this->db->delete('tbl_plot_dosen', array('id_plot' => $id));
-        }
+           }
 
         public function edit_entry($id){
         	$this->db->select("*");
