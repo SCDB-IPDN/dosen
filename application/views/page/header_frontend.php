@@ -9,6 +9,16 @@
     <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/fontawesome-all.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/style-starter.css'); ?>">
+    
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <!-- Toastr -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css"/>
+
 </head>
 
 <body>
@@ -52,6 +62,23 @@
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29){ ?>
+                                    <a class="dropdown-item" href="<?php echo base_url(''); ?>">
+                                        <i class="fa fa-file-import" aria-hidden="true"></i>
+                                        Presensi Kehadiran
+                                    </a>
+                                    <a class="dropdown-item" href="<?php echo base_url('monitoring'); ?>">
+                                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                                        Monitoring Pembelajaran
+                                    </a>
+                                <?php } elseif($this->session->userdata('role') == 23) { ?>
+                                    <a class="dropdown-item" href="<?php echo base_url(''); ?>">
+                                        <i class="fa fa-file-import" aria-hidden="true"></i>
+                                        Presensi Kehadiran
+                                    </a>
+                                <?php } ?>
+
+                                <hr>
                                 <a class="dropdown-item" href="<?php echo base_url('profile/'.base64_encode($this->session->userdata('username'))); ?>">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     Profile

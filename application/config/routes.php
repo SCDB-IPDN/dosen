@@ -57,9 +57,9 @@ $route['profile/(:any)'] = 'Beranda/profile/$1';
 $route['ceklogin'] = 'login/cek_login';
 $route['logout'] = 'login/logout';
 
-$route['presensi'] = 'presensi/index';
+$route['monitoring'] = 'Presensi';
 $route['insert'] = 'presensi/insert';
-$route['fetch'] = 'presensi/fetch';
+$route['fetch/(:any)'] = 'Presensi/fetch/$1';
 $route['delete'] = 'presensi/delete';
 $route['edit'] = 'presensi/edit';
 $route['update'] = 'presensi/update';

@@ -17,10 +17,11 @@ class Presensi extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('page/header_frontend');
+        $data = array(
+            'profile'	=> 'active'
+        );
+		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/presensi');
-		
-
 	}
 
 	public function insert()
@@ -45,7 +46,7 @@ class Presensi extends CI_Controller
 		}
 	}
 
-	public function fetch()
+	public function fetch($username)
 	{
 		if ($this->input->is_ajax_request()) {
 			// if ($posts = $this->crud_model->get_entries()) {
@@ -53,7 +54,11 @@ class Presensi extends CI_Controller
 			// }else{
 			// 	$data = array('responce' => 'error', 'message' => 'Failed to fetch data');
 			// }
-			$posts = $this->presensi_model->get_entries();
+			if($this->session->userdata('role') == 1){
+				$posts = $this->presensi_model->get_entries('admin');
+			}else{
+				$posts = $this->presensi_model->get_entries(base64_decode($username));
+			}
 			$data = array('responce' => 'success', 'posts' => $posts);
 			echo json_encode($data);
 		} else {
