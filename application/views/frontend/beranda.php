@@ -1,8 +1,11 @@
     <!-- Beranda -->
     <section id="home" class="w3l-banner py-5">
-        <div class="banner-image">
+        <!-- <div class="banner-image">
+        </div> -->
 
-        </div>
+        <div id="particles-js"></div> 
+        <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
+
         <div class="banner-content">
             <div class="container pt-5 pb-md-4">
                 <div class="row align-items-center">
