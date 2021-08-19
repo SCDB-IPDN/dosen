@@ -139,6 +139,7 @@
                 <input type="text" id="edit_media" class="form-control">
               </div> -->
               <div class="form-group">
+              <label for="">Media Belajar</label>
                 <select name="edit_media" id="edit_media" class="form-control">
                   <option value="">--Pilih Media--</option>
                   <option value="Zoom">Zoom</option>
@@ -147,10 +148,19 @@
                   <option value="blabla">blabla</option>
                 </select>
               </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                 <label for="">Upload Bukti</label>
                 <input type="file" id="edit_upload" class="form-control">
-              </div>
+                </div> -->
+              <!-- Image -->
+              
+                <label for="">Upload File</label>
+                  <div class="custom-file">
+												<input type="file" class="custom-file-input" id="edit_img">
+												<label class="custom-file-label" for="customFile">Pilih Gambar!</label>
+									</div>
+              
+
               <div class="form-group">
                 <label for="">Keterangan</label>
                 <input type="text" id="edit_keterangan" class="form-control">
@@ -172,6 +182,8 @@
         </div>
       </div>
     </div>
+
+    <input type="hidden" value="<?php echo base_url(); ?>" id="base_url">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -199,8 +211,36 @@
     <!-- Sweet Alert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
+
+    
     <!-- Add Records -->
     <script>
+
+      /* --------------------------------- Baseurl -------------------------------- */
+      var base_url = $("#base_url").val();
+
+      /* -------------------- Bootstrap Custom File Input Label ------------------- */
+
+      $(".custom-file-input").on("change", function() {
+       let fileName = $(this).val().split("\\").pop();
+       let label = $(this).siblings(".custom-file-label");
+
+        if (label.data("default-title") === undefined) {
+        label.data("default-title", label.html());
+        }
+
+        if (fileName === "") {
+        label.removeClass("selected").html(label.data("default-title"));
+        } else {
+        label.addClass("selected").html(fileName);
+          }
+        });
+
+
+/* -------------------------------------------------------------------------- */
+/*                               Insert Records                               */
+/* -------------------------------------------------------------------------- */
+
       $(document).on("click", "#add", function(e){
         e.preventDefault();
 
@@ -237,6 +277,9 @@
 
       });
 
+/* -------------------------------------------------------------------------- */
+/*                                Fetch Records                               */
+/* -------------------------------------------------------------------------- */
       // Fetch Records
 
       function fetch(){
@@ -292,6 +335,9 @@
 
           fetch();
 
+/* -------------------------------------------------------------------------- */
+/*                                Delete Records                               */
+/* -------------------------------------------------------------------------- */
       // Delete Record
 
       $(document).on("click", "#del", function(e){
@@ -361,6 +407,7 @@
 
       });
 
+/* ---------------------------- Edit Record Modal --------------------------- */
       // Edit Record
 
       $(document).on("click", "#edit", function(e){
@@ -390,7 +437,9 @@
                 $("#edit_prodi").val(data.post.nama_prodi);
                 $("#edit_sks").val(data.post.sks);
                 $("#edit_media").val(data.post.media_pembelajaran);
-                $("#edit_upload").val(data.post.upload);
+                $("#show_img").html(`
+                    <img src="${base_url}assets/uploads/${data.post.upload}" width="150" height="150" class="rounded img-thumbnail">
+                `);
                 $("#edit_keterangan").val(data.post.keterangan);
                 // $("#edit_waktu").val(data.post.waktu_upload);
               }else{
@@ -400,6 +449,10 @@
         });
 
       });
+
+/* -------------------------------------------------------------------------- */
+/*                               Update Records                               */
+/* -------------------------------------------------------------------------- */
 
           // Update Record
       function adjust(v){
@@ -417,29 +470,31 @@
 
         var edit_id = $("#edit_id").val();
         var edit_media = $("#edit_media").val();
-        // var edit_upload = $("#edit_upload").val();
         var edit_keterangan = $("#edit_keterangan").val();
         var edit_waktu = `${date}T${time}`;
-
-        // var data = new FormData(this);
-        // data.append('edit_id', edit_id);
-        // data.append('edit_media', edit_media);
-        // data.append('edit_keterangan', edit_keterangan);
-        // data.append('edit_waktu', edit_waktu);
+        var edit_img = $("#edit_img")[0].files[0];
 
         if (edit_id == "" || edit_media == "" || edit_keterangan == "" )  {
           alert("All field is required");
         }else{
+          var fd = new FormData();
+
+          fd.append("edit_id", edit_id);
+          fd.append("edit_media", edit_media);
+          fd.append("edit_keterangan", edit_keterangan);
+          fd.append("edit_waktu", edit_waktu);
+          if ($("#edit_img")[0].files.length > 0) {
+            fd.append("edit_img", edit_img);
+          }
+
           $.ajax({
             url: "<?php echo base_url(); ?>update",
             type: "post",
             dataType: "json",
-            data: {
-              edit_id: edit_id,
-              edit_media: edit_media,
-              edit_keterangan: edit_keterangan,
-              edit_waktu: edit_waktu
-            },
+            data: fd,
+            processData: false,
+            contentType: false,
+  
             success: function(data){
               if (data.responce == "success") {
                 $('#records').DataTable().destroy();

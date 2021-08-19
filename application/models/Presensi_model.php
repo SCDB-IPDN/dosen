@@ -19,6 +19,17 @@
         	return $this->db->delete('tbl_plot_dosen', array('id_plot' => $id));
            }
 
+        public function single_entry($id)
+        {
+        $this->db->select('*');
+        $this->db->from('tbl_plot_dosen');
+        $this->db->where('id_plot', $id);
+        $query = $this->db->get();
+        if (count($query->result()) > 0) {
+            return $query->row();
+            }
+         }
+
         public function edit_entry($id){
         	$this->db->select("*");
         	$this->db->from("tbl_plot_dosen");
@@ -29,9 +40,9 @@
         	}
         }
 
-        public function update_entry($data)
+        public function update_entry($id,$data)
         {
-            return $this->db->update('tbl_plot_dosen', $data, array('id_plot' => $data['id_plot']));
+            return $this->db->update('tbl_plot_dosen', $data, array('id_plot' => $id));
         }
 
 }
