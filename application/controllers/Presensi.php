@@ -9,7 +9,6 @@ class Presensi extends CI_Controller
 		parent::__construct();
 
 		$this->load->helper(array('form', 'url'));
-
 		$this->load->library('form_validation');
 
 		$this->load->model('presensi_model');
@@ -17,9 +16,9 @@ class Presensi extends CI_Controller
 
 	public function index()
 	{
-        $data = array(
-            'profile'	=> 'active'
-        );
+		$data = array(
+			'profile'	=> 'active'
+		);
 		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/presensi');
 	}
@@ -39,7 +38,6 @@ class Presensi extends CI_Controller
 					$data = array('responce' => 'error', 'message' => 'Failed to add record');
 				}
 			}
-
 			echo json_encode($data);
 		} else {
 			echo "No direct script access allowed";
@@ -54,9 +52,9 @@ class Presensi extends CI_Controller
 			// }else{
 			// 	$data = array('responce' => 'error', 'message' => 'Failed to fetch data');
 			// }
-			if($this->session->userdata('role') == 1){
+			if ($this->session->userdata('role') == 1) {
 				$posts = $this->presensi_model->get_entries('admin');
-			}else{
+			} else {
 				$posts = $this->presensi_model->get_entries(base64_decode($username));
 			}
 			$data = array('responce' => 'success', 'posts' => $posts);
@@ -101,19 +99,17 @@ class Presensi extends CI_Controller
 
 	public function update()
 	{
-		
 		if ($this->input->is_ajax_request()) {
-
 			$this->form_validation->set_rules('edit_media', 'Media', 'required');
-		 	$this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
-			
-			 if ($this->form_validation->run() == FALSE) {
+			$this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
+
+			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
 				if (isset($_FILES["edit_img"]["name"])) {
 					$config['upload_path'] = APPPATH . '../assets/upload/';
 					$config['allowed_types'] = 'gif|jpg|png';
-					$config['max_size']     = '1000';
+					$config['max_size']     = '99999';
 					// $config['max_width'] = '1024';
 					// $config['max_height'] = '768';
 					$this->load->library('upload', $config);
@@ -134,11 +130,11 @@ class Presensi extends CI_Controller
 				$ajax_data['keterangan'] = $this->input->post('edit_keterangan');
 				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu');
 
-				if ($this->presensi_model->update_entry($id,$ajax_data)) {
+				if ($this->presensi_model->update_entry($id, $ajax_data)) {
 					$data = array('responce' => 'success', 'message' => 'Record update Successfully');
-					} else {
+				} else {
 					$data = array('responce' => 'error', 'message' => 'Failed to update record');
-					}
+				}
 				// }
 			}
 
