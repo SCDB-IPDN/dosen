@@ -123,6 +123,7 @@
                 <input type="text" id="edit_media" class="form-control">
               </div> -->
               <div class="form-group">
+              <label for="">Media Belajar</label>
                 <select name="edit_media" id="edit_media" class="form-control">
                   <option value="">--Pilih Media--</option>
                   <option value="Zoom">Zoom</option>
@@ -131,10 +132,19 @@
                   <option value="blabla">blabla</option>
                 </select>
               </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                 <label for="">Upload Bukti</label>
                 <input type="file" id="edit_upload" class="form-control">
-              </div>
+                </div> -->
+              <!-- Image -->
+              
+                <label for="">Upload File</label>
+                  <div class="custom-file">
+												<input type="file" class="custom-file-input" id="edit_img">
+												<label class="custom-file-label" for="customFile">Pilih Gambar!</label>
+									</div>
+              
+
               <div class="form-group">
                 <label for="">Keterangan</label>
                 <input type="text" id="edit_keterangan" class="form-control">
@@ -154,19 +164,106 @@
     </div>
   </section>
 
-  <?php $this->load->view('page/js_datatable_frontend'); ?>
-  
-  <!-- Add Records -->
-  <script>
-    $(document).on("click", "#add", function(e){
-      e.preventDefault();
+    <input type="hidden" value="<?php echo base_url(); ?>" id="base_url">
 
-      var name = $("#name").val();
-      var email = $("#email").val();
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- Toastr -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-      if (name == "" || email == "") {
-        alert("Both field is required");
-      }else{
+    <!-- Sweet Alert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+    
+    <!-- Add Records -->
+    <script>
+
+      /* --------------------------------- Baseurl -------------------------------- */
+      var base_url = $("#base_url").val();
+
+      /* -------------------- Bootstrap Custom File Input Label ------------------- */
+
+      $(".custom-file-input").on("change", function() {
+       let fileName = $(this).val().split("\\").pop();
+       let label = $(this).siblings(".custom-file-label");
+
+        if (label.data("default-title") === undefined) {
+        label.data("default-title", label.html());
+        }
+
+        if (fileName === "") {
+        label.removeClass("selected").html(label.data("default-title"));
+        } else {
+        label.addClass("selected").html(fileName);
+          }
+        });
+
+
+/* -------------------------------------------------------------------------- */
+/*                               Insert Records                               */
+/* -------------------------------------------------------------------------- */
+
+      $(document).on("click", "#add", function(e){
+        e.preventDefault();
+
+        var name = $("#name").val();
+        var email = $("#email").val();
+
+        if (name == "" || email == "") {
+          alert("Both field is required");
+        }else{
+          $.ajax({
+            url: "<?php echo base_url(); ?>insert",
+            type: "post",
+            dataType: "json",
+            data: {
+              name: name,
+              email: email
+            },
+            success: function(data){
+              if (data.responce == "success") {
+                $('#records').DataTable().destroy();
+                fetch();
+                $('#exampleModal').modal('hide');
+                toastr["success"](data.message);
+              }else{
+                toastr["error"](data.message);
+              }
+
+            }
+          });
+
+          $("#form")[0].reset();
+
+        }
+
+      });
+
+/* -------------------------------------------------------------------------- */
+/*                                Fetch Records                               */
+/* -------------------------------------------------------------------------- */
+      // Fetch Records
+
+      function fetch(){
         $.ajax({
           url: "<?php echo base_url(); ?>insert",
           type: "post",
@@ -245,58 +342,60 @@
               toastr["error"](data.message);
             }
 
-        }
-      });
-    }
+          fetch();
 
-    fetch();
+/* -------------------------------------------------------------------------- */
+/*                                Delete Records                               */
+/* -------------------------------------------------------------------------- */
+      // Delete Record
 
-    // Delete Record
-    $(document).on("click", "#del", function(e){
-      e.preventDefault();
-      var del_id = $(this).attr("value");
+      $(document).on("click", "#del", function(e){
+        e.preventDefault();
 
-      const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger mr-2'
-        },
-        buttonsStyling: false
-      })
+        var del_id = $(this).attr("value");
 
-      swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.value) {
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger mr-2'
+          },
+          buttonsStyling: false
+        })
 
-            $.ajax({
-              url: "<?php echo base_url(); ?>delete",
-              type: "post",
-              dataType: "json",
-              data: {
-                del_id: del_id
-              },
-              success: function(data){
-                if (data.responce == "success") {
-                    $('#records').DataTable().destroy();
-                    fetch();
-                    swalWithBootstrapButtons.fire(
-                      'Deleted!',
-                      'Your file has been deleted.',
-                      'success'
-                    );
-                }else{
-                    swalWithBootstrapButtons.fire(
-                      'Cancelled',
-                      'Your imaginary file is safe :)',
-                      'error'
-                    );
+        swalWithBootstrapButtons.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, delete it!',
+          cancelButtonText: 'No, cancel!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.value) {
+
+              $.ajax({
+                url: "<?php echo base_url(); ?>delete",
+                type: "post",
+                dataType: "json",
+                data: {
+                  del_id: del_id
+                },
+                success: function(data){
+                  if (data.responce == "success") {
+                      $('#records').DataTable().destroy();
+                      fetch();
+                      swalWithBootstrapButtons.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      );
+                  }else{
+                      swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                      );
+                  }
                 }
 
               }
@@ -351,36 +450,14 @@
       });
     });
 
-    // Update Record
-    function adjust(v){
-      if(v>9){
-        return v.toString();
-      }else{
-        return '0'+v.toString();
-      }
-    }
+/* ---------------------------- Edit Record Modal --------------------------- */
+      // Edit Record
 
-    $(document).on("click", "#update", function(e){
-      e.preventDefault();
-      var today = new Date();
-      var date = today.getFullYear()+'-'+adjust(today.getMonth()+1)+'-'+adjust(today.getDate());
-      var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
+      $(document).on("click", "#edit", function(e){
+        e.preventDefault();
 
-      var edit_id = $("#edit_id").val();
-      var edit_media = $("#edit_media").val();
-      // var edit_upload = $("#edit_upload").val();
-      var edit_keterangan = $("#edit_keterangan").val();
-      var edit_waktu = `${date}T${time}`;
+        var edit_id = $(this).attr("value");
 
-      // var data = new FormData(this);
-      // data.append('edit_id', edit_id);
-      // data.append('edit_media', edit_media);
-      // data.append('edit_keterangan', edit_keterangan);
-      // data.append('edit_waktu', edit_waktu);
-
-      if (edit_id == "" || edit_media == "" || edit_keterangan == "" )  {
-        alert("All field is required");
-      }else{
         $.ajax({
           url: "<?php echo base_url(); ?>update",
           type: "post",
@@ -393,15 +470,92 @@
           },
           success: function(data){
             if (data.responce == "success") {
-              $('#records').DataTable().destroy();
-              fetch();
-              $('#edit_modal').modal('hide');
-              toastr["success"](data.message);
-            }else{
-              toastr["error"](data.message);
-            }
+                $('#edit_modal').modal('show');
+                $("#edit_id").val(data.post.id_plot);
+                $("#edit_nip").val(data.post.nip);
+                $("#edit_nama").val(data.post.nama);
+                $("#edit_matkul").val(data.post.nama_matkul);
+                $("#edit_tanggal").val(data.post.tanggal);
+                $("#edit_jam").val(data.post.jam);
+                $("#edit_kelas").val(data.post.kelas);
+                $("#edit_semester").val(data.post.semester);
+                $("#edit_fakultas").val(data.post.nama_fakultas);
+                $("#edit_prodi").val(data.post.nama_prodi);
+                $("#edit_sks").val(data.post.sks);
+                $("#edit_media").val(data.post.media_pembelajaran);
+                $("#show_img").html(`
+                    <img src="${base_url}assets/uploads/${data.post.upload}" width="150" height="150" class="rounded img-thumbnail">
+                `);
+                $("#edit_keterangan").val(data.post.keterangan);
+                // $("#edit_waktu").val(data.post.waktu_upload);
+              }else{
+                toastr["error"](data.message);
+              }
           }
         });
+
+      });
+
+/* -------------------------------------------------------------------------- */
+/*                               Update Records                               */
+/* -------------------------------------------------------------------------- */
+
+          // Update Record
+      function adjust(v){
+      if(v>9){
+      return v.toString();
+      }else{
+      return '0'+v.toString();
       }
-    });
-  </script>
+      }
+      $(document).on("click", "#update", function(e){
+        e.preventDefault();
+        var today = new Date();
+        var date = today.getFullYear()+'-'+adjust(today.getMonth()+1)+'-'+adjust(today.getDate());
+        var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
+
+        var edit_id = $("#edit_id").val();
+        var edit_media = $("#edit_media").val();
+        var edit_keterangan = $("#edit_keterangan").val();
+        var edit_waktu = `${date}T${time}`;
+        var edit_img = $("#edit_img")[0].files[0];
+
+        if (edit_id == "" || edit_media == "" || edit_keterangan == "" )  {
+          alert("All field is required");
+        }else{
+          var fd = new FormData();
+
+          fd.append("edit_id", edit_id);
+          fd.append("edit_media", edit_media);
+          fd.append("edit_keterangan", edit_keterangan);
+          fd.append("edit_waktu", edit_waktu);
+          if ($("#edit_img")[0].files.length > 0) {
+            fd.append("edit_img", edit_img);
+          }
+
+          $.ajax({
+            url: "<?php echo base_url(); ?>update",
+            type: "post",
+            dataType: "json",
+            data: fd,
+            processData: false,
+            contentType: false,
+  
+            success: function(data){
+              if (data.responce == "success") {
+                $('#records').DataTable().destroy();
+                fetch();
+                $('#edit_modal').modal('hide');
+                toastr["success"](data.message);
+              }else{
+                toastr["error"](data.message);
+              }
+            }
+          });
+
+        }
+
+      });
+    </script>
+  </body>
+</html>
