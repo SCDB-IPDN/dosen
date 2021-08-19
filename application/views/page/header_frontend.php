@@ -9,6 +9,8 @@
     <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/fontawesome-all.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/style-starter.css'); ?>">
+    <!-- Particle -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/particle.css'); ?>">
     
     <!-- Bootstrap CSS -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
@@ -30,7 +32,7 @@
                 <h1>
                     <a class="navbar-brand" href="">
                         <!-- <i class="fab fa-accusoft icon-color mr-1"></i>Set<span>up</span> -->
-                        <img src="<?php echo base_url('assets/frontend/images/IPDN.png'); ?>" height="50" width="50" alt="" srcset="">
+                        <img src="<?php echo base_url('assets/frontend/images/smart-ipdn.png'); ?>" height="50" width="150" alt="" srcset="">
                         <!-- Smart <span>Campus</span> -->
                     </a>
                 </h1>
@@ -92,7 +94,7 @@
                 </div>
                         
                 <!-- toggle switch for light and dark theme -->
-                <div class="cont-ser-position">
+                <!-- <div class="cont-ser-position">
                     <nav class="navigation">
                         <div class="theme-switch-wrapper">
                             <label class="theme-switch" for="checkbox">
@@ -104,7 +106,7 @@
                             </label>
                         </div>
                     </nav>
-                </div>
+                </div> -->
                 <!-- //toggle switch for light and dark theme -->
 
             </nav>

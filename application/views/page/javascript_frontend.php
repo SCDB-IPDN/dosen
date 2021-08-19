@@ -1,5 +1,7 @@
     <!-- Javascript -->
     
+    <!-- Particle -->
+    <script src="<?php echo base_url('assets/frontend/js/particle.js'); ?>"></script>
     <!-- typig-text-->
     <!-- <script>
         const typedTextSpan = document.querySelector(".typed-text");
@@ -48,8 +50,8 @@
     <!-- //typig-text-->
     
     <!-- theme switch js (light and dark)-->
-    <script src="<?php echo base_url('assets/frontend/js/theme-change.js'); ?>"></script>
-    <script>
+    <!-- <script src="<?php echo base_url('assets/frontend/js/theme-change.js'); ?>"></script> -->
+    <!-- <script>
         function autoType(elementClass, typingSpeed) {
             var thhis = $(elementClass);
             thhis.css({
@@ -83,7 +85,7 @@
         //     // The second paramter is the speed between each letter is typed.   
         //     autoType(".type-js", 200);
         // });
-    </script>
+    </script> -->
     <!-- //theme switch js (light and dark)-->
 
     <!-- Banner Animated Background -->
