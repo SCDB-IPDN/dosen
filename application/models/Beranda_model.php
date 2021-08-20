@@ -22,6 +22,7 @@
             $get_user = $this->db->query("SELECT
                             -- tbl_login.username,
                             -- tbl_login.PASSWORD,
+                            tbl_login.image_url,
                             tbl_dosen_pddikti.nama 
                         FROM
                             tbl_login
@@ -29,6 +30,7 @@
                         WHERE
                             tbl_login.username = '$username' UNION
                         SELECT
+                            tbl_login.image_url,
                             tbl_pns.nama_lengkap AS nama 
                         FROM
                             tbl_login
@@ -36,6 +38,7 @@
                         WHERE
                             tbl_login.username = '$username' UNION
                         SELECT
+                            tbl_login.image_url,
                             tbl_thl.nama 
                         FROM
                             tbl_login
