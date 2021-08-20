@@ -27,7 +27,7 @@
                 <div class="row contact-block">
                     <div class="col-md-5 contact-right mt-md-0 mt-4 bg-putih" data-aos="fade-left">
                         <form action="<?= base_url('/ceklogin') ?>" method="post" class="signin-form">
-                            <h3 class="title-big">Login Ruang Dosen</h3>
+                            <h3 class="title-big">Login</h3>
 
                             <div class="input-grids">
                                 <input type="text" name="username" id="w3lName" placeholder="Username*" class="contact-input inputan" required="" />
