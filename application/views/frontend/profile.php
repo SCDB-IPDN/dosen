@@ -8,13 +8,13 @@
 
         <div class="container py-lg-5 py-md-3">
             <div class="row">
-                <div class="card mb-3">
+                <div class="card mb-3 shadow rounded" style="border-radius: 3rem !important;">
                     <div class="row no-gutters">
                         <div class="col-md-4 my-1">
                             <?php if (count($get_profile) > 0 && !empty($get_profile[0]->image_url)) { ?>
-                                <img src="<?php echo base_url('') . $get_profile[0]->image_url ?>" class="card-img">
+                                <img src="<?php echo base_url('') . $get_profile[0]->image_url ?>" class="card-img rounded" style="border-radius: 3rem !important;">
                             <?php } else { ?>
-                                <img src="<?php echo base_url('assets/frontend/images/image-not-found-scaled-1150x647.png'); ?>" class="card-img">
+                                <img src="<?php echo base_url('assets/frontend/images/image-not-found-scaled-1150x647.png'); ?>" class="card-img rounded" style="border-radius: 3rem !important;">
                             <?php } ?>
                         </div>
                         <div class="col-md-8">
