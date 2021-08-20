@@ -1,22 +1,22 @@
-<section id="home" class="w3l-banner py-5">
+<section id="home" class="w3l-banner">
   <div class="banner-image">
   </div>
-  <div class="container">
-    <div class="row">
+  <div class="container mt-5">
+    <!-- <div class="row">
       <div class="col-md-12 mt-5">
         <h1 class="text-center title-big">
           Monitoring Pembelajaran
         </h1>
         <hr style="background-color: black; color: black; height: 1px;">
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 mt-2">
+    </div> -->
+    <div class="row mt-5">
+      <div class="col-md-12 mt-5">
         <!-- Add Records Modal -->
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModal">
+        <!-- <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModal">
           Add Records
-        </button>
+        </button> -->
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -50,10 +50,10 @@
         </div>
       </div>
     </div>
-    <div class="row card shadow mt-3">
-      <div class="col-md-12 mt-4">
-        <div class="table-responsive-xl">
-          <table class="table table-hover" id="records">
+    <div class="row card shadow mt-3" style="background-color: #F4F6F9; border-radius: 3rem !important;">
+      <div class="col-md-12 my-5">
+        <div class="table-responsive-xl mx-2">
+          <table class="table table-hover table-xl" id="records">
             <thead>
               <tr>
                 <th>ID</th>
@@ -67,6 +67,8 @@
                 <th>Fakultas</th>
                 <th>Prodi</th>
                 <th>SKS</th>
+                <th>Gambar</th>
+                <th></th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -138,7 +140,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="">Keterangan</label>
+              <label for="">Link Media Pembelajaran</label>
               <input type="text" id="edit_keterangan" class="form-control">
             </div>
             <!-- <div class="form-group">
@@ -273,15 +275,35 @@
                 "data": "sks"
               },
               {
+                "data": "upload",
+                render: function(data, type, row, meta) {
+                  var a = `
+                                <img src="${base_url}/assets/upload/${row.upload}" width="300" height="200" class="img-thumbnail"/>
+                            `;
+                  return a;
+                },
+              },
+              {
+                "data":"keterangan",
+                render: function(data, type, row, meta) {
+                    var a = `
+                                <a href="${row.keterangan}" target="_blank">Link Mengajar</a>
+                              `;
+                
+                  return a;
+                }
+              },
+              {
                 "render": function(data, type, row, meta) {
                   <?php if ($this->session->userdata('role') == 1) { ?>
                     var a = `
-                                <a href="#" value="${row.id_plot}" id="del" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
+                                <a href="#" value="${row.id_plot}" id="del" class="btn btn-lg btn-danger"><i class="fas fa-trash"></i></a>
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-lg btn-success"><i class="fas fa-file-upload"></i></a>
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-lg btn-info"><i class="fas fa-expand-arrows-alt"></i></a>
                               `;
                   <?php } elseif ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
                     var a = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-file-upload"></i></a>
                               `;
                   <?php } ?>
                   return a;

@@ -30,7 +30,7 @@
 
     <!-- Header-->
     <?php if (!empty($this->session->userdata('username'))) { ?>
-        <header id="site-header" class="fixed-top">
+        <header id="site-header" class="fixed-top shadow" style="background-color: #0F79ED; border-bottom-right-radius: 3rem !important; border-bottom-left-radius: 3rem !important;">
             <div class="container">
                 <nav class="navbar navbar-expand-lg stroke px-0">
                     <h1>
