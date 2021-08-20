@@ -60,4 +60,38 @@ class Presensi_model extends CI_Model
     {
         return $this->db->update('tbl_plot_dosen', $data, array('id_plot' => $id));
     }
+
+    public function get_absen($username)
+    {
+        if ($username == 'admin') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('absensi')
+                ->where("tgl", date('Y-m-d'))
+                ->get();
+        } else {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('absensi')
+                ->where("username", $username)
+                ->where("tgl", date('Y-m-d'))
+                ->get();
+        }
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function insert_entry_absen($data)
+    {
+        return $this->db->insert('absensi', $data);
+    }
+
+    public function update_entry_absen($username, $data_update)
+    {
+        return $this->db->update('absensi', $data_update, array('username' => $username,'tgl' => date('Y-m-d')));
+    }
+    
 }

@@ -1,45 +1,55 @@
     <!-- Profile -->
     <section id="home" class="w3l-banner py-5">
-        <div class="banner-image"></div>
+        <div class="banner-image">
+        </div>
+
+        <div id="particles-js"></div>
+        <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
         <div class="container py-lg-5 py-md-3">
-            <div class="row pl-lg-5">
-                <div class="col-lg-6 about-right-faq align-self pr-lg-5">
-                    <!-- <h3 class="title-big">Profile</h3> -->
-                    <div class="mx-auto" style="max-width:1000px">
-                        <div class="row contact-block">
-                            <div class="col-md-12 contact">
-                                <div class="cont-details">
-                                    <div class="card shadow d-flex contact-grid">
-                                        <div class="cont-right my-2 mx-2">
-                                            <h6>NIK / NIP</h6>
-                                            <p><?= count($get_profile) == 0 ? '-' : $this->session->userdata('username'); ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="card shadow d-flex contact-grid mt-4 pt-lg-2">
-                                        <div class="cont-right my-2 mx-2">
-                                            <h6>Nama Pengguna</h6>
-                                            <p><?= count($get_profile) == 0 ? '-' : $get_profile[0]->nama; ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="card shadow d-flex contact-grid mt-4 pt-lg-2">
-                                        <div class="cont-right my-2 mx-2">
-                                            <h6>Username</h6>
-                                            <p><?= $this->session->userdata('username'); ?></p>
-                                        </div>
-                                    </div>
-                                    <div class="card shadow d-flex contact-grid mt-4 pt-lg-2">
-                                        <div class="cont-right my-2 mx-2">
-                                            <h6>Password</h6>
-                                            <p><?= $this->session->userdata('password'); ?></p>
-                                        </div>
+            <div class="row">
+                <div class="card mb-3 shadow rounded" style="border-radius: 3rem !important;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 my-1">
+                            <?php if (count($get_profile) > 0 && !empty($get_profile[0]->image_url)) { ?>
+                                <img src="<?php echo base_url('') . $get_profile[0]->image_url ?>" class="card-img rounded" style="border-radius: 3rem !important;">
+                            <?php } else { ?>
+                                <img src="<?php echo base_url('assets/frontend/images/image-not-found-scaled-1150x647.png'); ?>" class="card-img rounded" style="border-radius: 3rem !important;">
+                            <?php } ?>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="title-big">Profile</h3>
+                                <hr>
+
+                                <div class="d-flex contact-grid mt-4 pt-lg-2">
+                                    <div class="cont-right">
+                                        <h5>NIK / NIP:</h5>
+                                        <p><?= count($get_profile) == 0 ? '-' : $this->session->userdata('username'); ?></p>
                                     </div>
                                 </div>
+                                <div class="d-flex contact-grid mt-4 pt-lg-2">
+                                    <div class="cont-right">
+                                        <h5>Nama Pengguna:</h5>
+                                        <p><?= count($get_profile) == 0 ? '-' : $get_profile[0]->nama; ?></p>
+                                    </div>
+                                </div>
+                                <div class="d-flex contact-grid mt-4 pt-lg-2">
+                                    <div class="cont-right">
+                                        <h5>Username:</h5>
+                                        <p><?= $this->session->userdata('username'); ?></p>
+                                    </div>
+                                </div>
+                                <div class="d-flex contact-grid mt-4 pt-lg-2">
+                                    <div class="cont-right">
+                                        <h5>Password:</h5>
+                                        <p><?= $this->session->userdata('password'); ?></p>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 left-wthree-img mt-lg-0 mt-5">
-                    <img src="<?php echo base_url('assets/frontend/images/21207.png'); ?>" alt="" class="img-fluid radius-image">
                 </div>
             </div>
         </div>

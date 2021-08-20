@@ -11,93 +11,92 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/style-starter.css'); ?>">
     <!-- Particle -->
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/particle.css'); ?>">
-    
+
     <!-- Bootstrap CSS -->
-    <?php if($this->uri->segment(1) == 'monitoring') { ?>
+    <?php if ($this->uri->segment(1) == 'monitoring' || $this->uri->segment(1) == 'absen') { ?>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <?php } ?>
 
     <!-- Toastr -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.bootstrap4.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" />
 
 </head>
 
 <body>
 
     <!-- Header-->
-    <header id="site-header" class="fixed-top shadow" style="background-color: #0F79ED; border-bottom-right-radius: 3rem !important; border-bottom-left-radius: 3rem !important;">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg stroke px-0">
-                <h1>
-                    <a class="navbar-brand" href="">
-                        <!-- <i class="fab fa-accusoft icon-color mr-1"></i>Set<span>up</span> -->
-                        <img src="<?php echo base_url('assets/frontend/images/smart-ipdn.png'); ?>" height="50" width="150" alt="" srcset="">
-                        <!-- Smart <span>Campus</span> -->
-                    </a>
-                </h1>
+    <?php if (!empty($this->session->userdata('username'))) { ?>
+        <header id="site-header" class="fixed-top shadow" style="background-color: #0F79ED; border-bottom-right-radius: 3rem !important; border-bottom-left-radius: 3rem !important;">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg stroke px-0">
+                    <h1>
+                        <a class="navbar-brand" href="">
+                            <!-- <i class="fab fa-accusoft icon-color mr-1"></i>Set<span>up</span> -->
+                            <img src="<?php echo base_url('assets/frontend/images/smart-ipdn.png'); ?>" height="50" width="150" alt="" srcset="">
+                            <!-- Smart <span>Campus</span> -->
+                        </a>
+                    </h1>
 
-                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-                </button>
+                    <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                        <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </button>
 
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav ml-lg-auto">
-                        <li class="nav-item <?php echo empty($beranda) ? '' : $beranda ?>">
-                            <a class="nav-link" href="<?php echo base_url('beranda'); ?>">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                Beranda
-                            </a>
-                        </li>
-                        <li class="nav-item <?php echo empty($tentang) ? '' : $tentang ?>">
-                            <a class="nav-link" href="<?php echo base_url('tentang'); ?>">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                Tentang
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link <?php echo empty($profile) ? '' : $profile ?>" href="<?php echo base_url('profile/'.base64_encode($this->session->userdata('username'))); ?>">
-                                <?= $this->session->userdata('username'); ?>
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29){ ?>
-                                    <a class="dropdown-item" href="<?php echo base_url(''); ?>">
-                                        <i class="fa fa-file-import" aria-hidden="true"></i>
-                                        Presensi Kehadiran
-                                    </a>
-                                    <a class="dropdown-item" href="<?php echo base_url('monitoring'); ?>">
-                                        <i class="fa fa-desktop" aria-hidden="true"></i>
-                                        Monitoring Pembelajaran
-                                    </a>
-                                <?php } elseif($this->session->userdata('role') == 23) { ?>
-                                    <a class="dropdown-item" href="<?php echo base_url(''); ?>">
-                                        <i class="fa fa-file-import" aria-hidden="true"></i>
-                                        Presensi Kehadiran
-                                    </a>
-                                <?php } ?>
-
-                                <hr>
-                                <a class="dropdown-item" href="<?php echo base_url('profile/'.base64_encode($this->session->userdata('username'))); ?>">
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav ml-lg-auto">
+                            <li class="nav-item <?php echo empty($beranda) ? '' : $beranda ?>">
+                                <a class="nav-link" href="<?php echo base_url('beranda'); ?>">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    Beranda
+                                </a>
+                            </li>
+                            <li class="nav-item <?php echo empty($tentang) ? '' : $tentang ?>">
+                                <a class="nav-link" href="<?php echo base_url('tentang'); ?>">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                    Tentang
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link <?php echo empty($profile) ? '' : $profile ?>" href="<?php echo base_url('profile/' . base64_encode($this->session->userdata('username'))); ?>">
+                                    <?= $this->session->userdata('username'); ?>
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                    Profile
                                 </a>
-                                <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
-                                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-                </div>
-                        
-                <!-- toggle switch for light and dark theme -->
-                <!-- <div class="cont-ser-position">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <?php if ($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('absen'); ?>">
+                                            <i class="fa fa-file-import" aria-hidden="true"></i>
+                                            Presensi Kehadiran
+                                        </a>
+                                        <a class="dropdown-item" href="<?php echo base_url('monitoring'); ?>">
+                                            <i class="fa fa-desktop" aria-hidden="true"></i>
+                                            Monitoring Pembelajaran
+                                        </a>
+                                    <?php } elseif ($this->session->userdata('role') == 23) { ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('absen'); ?>">
+                                            <i class="fa fa-file-import" aria-hidden="true"></i>
+                                            Presensi Kehadiran
+                                        </a>
+                                    <?php } ?>
+
+                                    <hr>
+                                    <a class="dropdown-item" href="<?php echo base_url('profile/' . base64_encode($this->session->userdata('username'))); ?>">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item" href="<?php echo base_url('login/logout'); ?>">
+                                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+                    </div>
+
+                    <!-- toggle switch for light and dark theme -->
+                    <!-- <div class="cont-ser-position">
                     <nav class="navigation">
                         <div class="theme-switch-wrapper">
                             <label class="theme-switch" for="checkbox">
@@ -110,9 +109,10 @@
                         </div>
                     </nav>
                 </div> -->
-                <!-- //toggle switch for light and dark theme -->
+                    <!-- //toggle switch for light and dark theme -->
 
-            </nav>
-        </div>
-    </header>
+                </nav>
+            </div>
+        </header>
+    <?php } ?>
     <!-- //Header-->

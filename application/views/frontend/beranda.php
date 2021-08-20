@@ -28,11 +28,11 @@
                             </p>
                         </div>
                         <div class="mt-md-5 mt-4 mb-lg-0 mb-4">
-                            <?php if ($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
-                                <a class="btn button-style" href="<?php echo base_url(''); ?>" role="button">Presensi Kehadiran</a>
+                            <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29){ ?>
+                                <a class="btn button-style" href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
                                 <a class="btn button-style" href="<?php echo base_url('monitoring'); ?>" role="button">Monitoring Pembelajaran</a>
-                            <?php } elseif ($this->session->userdata('role') == 23) { ?>
-                                <a class="btn button-style" href="<?php echo base_url(''); ?>" role="button">Presensi Kehadiran</a>
+                            <?php } elseif($this->session->userdata('role') == 23) { ?>
+                                <a class="btn button-style" href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
                             <?php } ?>
                         </div>
                     </div>
