@@ -2,33 +2,33 @@
     <section id="home" class="w3l-banner py-5">
         <div class="banner-image"></div>
         <div class="container py-lg-5 py-md-3">
-            <div class="row">
+            <div class="row pl-lg-5">
                 <div class="col-lg-6 about-right-faq align-self pr-lg-5">
-                    <h3 class="title-big">Profile</h3>
-                    <div class="mx-auto pt-lg-4 pt-md-5 pt-4" style="max-width:1000px">
+                    <!-- <h3 class="title-big">Profile</h3> -->
+                    <div class="mx-auto" style="max-width:1000px">
                         <div class="row contact-block">
-                            <div class="col-md-6 contact">
+                            <div class="col-md-12 contact">
                                 <div class="cont-details">
-                                    <div class="d-flex contact-grid">
-                                        <div class="cont-right">
+                                    <div class="card shadow d-flex contact-grid">
+                                        <div class="cont-right my-2 mx-2">
                                             <h6>NIK / NIP</h6>
                                             <p><?= count($get_profile) == 0 ? '-' : $this->session->userdata('username'); ?></p>
                                         </div>
                                     </div>
-                                    <div class="d-flex contact-grid mt-4 pt-lg-2">
-                                        <div class="cont-right">
+                                    <div class="card shadow d-flex contact-grid mt-4 pt-lg-2">
+                                        <div class="cont-right my-2 mx-2">
                                             <h6>Nama Pengguna</h6>
                                             <p><?= count($get_profile) == 0 ? '-' : $get_profile[0]->nama; ?></p>
                                         </div>
                                     </div>
-                                    <div class="d-flex contact-grid mt-4 pt-lg-2">
-                                        <div class="cont-right">
+                                    <div class="card shadow d-flex contact-grid mt-4 pt-lg-2">
+                                        <div class="cont-right my-2 mx-2">
                                             <h6>Username</h6>
                                             <p><?= $this->session->userdata('username'); ?></p>
                                         </div>
                                     </div>
-                                    <div class="d-flex contact-grid mt-4 pt-lg-2">
-                                        <div class="cont-right">
+                                    <div class="card shadow d-flex contact-grid mt-4 pt-lg-2">
+                                        <div class="cont-right my-2 mx-2">
                                             <h6>Password</h6>
                                             <p><?= $this->session->userdata('password'); ?></p>
                                         </div>

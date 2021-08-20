@@ -3,33 +3,35 @@
         <div class="banner-image">
         </div>
 
-        <div id="particles-js"></div> 
-        <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
+        <div id="particles-js"></div>
+        <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
         <div class="banner-content">
             <div class="container pt-5 pb-md-4">
                 <div class="row align-items-center">
                     <div class="col-md-6 pt-md-0 pt-4">
-                        <h3 class="mb-lg-4 mb-3 title">Selamat Datang</h3>
-                        <p align="justify">
-                            <?php 
-                                if(!empty($desc)) {
+                        <div class="card shadow rounded" style="border-radius: 3rem !important;">
+                            <h3 class="mb-lg-4 mb-3 mt-3 mx-3 title">Selamat Datang</h3>
+                            <p align="justify" class="mx-3 my-3">
+                                <?php
+                                if (!empty($desc)) {
                                     foreach ($desc as $row) {
-                                        if($row->id_desc == 2) {
+                                        if ($row->id_desc == 2) {
                                             echo "&emsp; $row->desc";
                                         }
                                     }
                                 } else {
                                     echo "";
                                 }
-                            ?>
-                            <br><br>Klik tombol dibawah untuk melakukan presensi
-                        </p>
+                                ?>
+                                <br><br>Klik tombol dibawah untuk melakukan presensi
+                            </p>
+                        </div>
                         <div class="mt-md-5 mt-4 mb-lg-0 mb-4">
-                            <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29){ ?>
+                            <?php if ($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
                                 <a class="btn button-style" href="<?php echo base_url(''); ?>" role="button">Presensi Kehadiran</a>
                                 <a class="btn button-style" href="<?php echo base_url('monitoring'); ?>" role="button">Monitoring Pembelajaran</a>
-                            <?php } elseif($this->session->userdata('role') == 23) { ?>
+                            <?php } elseif ($this->session->userdata('role') == 23) { ?>
                                 <a class="btn button-style" href="<?php echo base_url(''); ?>" role="button">Presensi Kehadiran</a>
                             <?php } ?>
                         </div>
