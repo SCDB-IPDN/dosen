@@ -58,11 +58,17 @@ $route['ceklogin'] = 'login/cek_login';
 $route['logout'] = 'login/logout';
 
 $route['monitoring'] = 'Presensi';
-$route['insert'] = 'presensi/insert';
+$route['insert'] = 'Presensi/insert';
 $route['fetch/(:any)'] = 'Presensi/fetch/$1';
-$route['delete'] = 'presensi/delete';
-$route['edit'] = 'presensi/edit';
-$route['update'] = 'presensi/update';
+$route['delete'] = 'Presensi/delete';
+$route['edit'] = 'Presensi/edit';
+$route['update'] = 'Presensi/update';
+
+$route['absen'] = 'Presensi/absen';
+$route['fetch_absen/(:any)'] = 'Presensi/fetch_absen/$1';
+$route['lokasi'] = 'Presensi/lokasi';
+$route['insert_absen'] = 'Presensi/insert_absen';
+$route['absen_pulang/(:any)'] = 'Presensi/absen_pulang/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
