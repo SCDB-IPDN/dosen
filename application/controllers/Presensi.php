@@ -11,7 +11,13 @@ class Presensi extends CI_Controller
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 
+		$this->load->library('session');
+		if($this->session->userdata('status') != "login"){
+			redirect(base_url());
+		}
+		
 		$this->load->model('presensi_model');
+		$this->load->model('Beranda_model');
 	}
 
 	public function index()
@@ -142,5 +148,68 @@ class Presensi extends CI_Controller
 		} else {
 			echo "No direct script access allowed";
 		}
+	}
+
+	public function absen()
+	{
+		if ($this->session->userdata('role') == 1) {
+			$posts = $this->presensi_model->get_absen('admin');
+		} else {
+			$posts = $this->presensi_model->get_absen($this->session->userdata('username'));
+		}
+
+		$data = array(
+			'get_profile'	=> $this->Beranda_model->get_profile($this->session->userdata('username')),
+			'get_validate'	=> $posts,
+			'profile'		=> 'active'
+		);
+		$this->load->view('page/header_frontend', $data);
+		$this->load->view('frontend/absen');
+	}
+
+	public function fetch_absen($username)
+	{
+		if ($this->input->is_ajax_request()) {
+			if ($this->session->userdata('role') == 1) {
+				$posts = $this->presensi_model->get_absen('admin');
+			} else {
+				$posts = $this->presensi_model->get_absen(base64_decode($username));
+			}
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+
+	public function insert_absen()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('tgl', 'Tanggal', 'required');
+			$this->form_validation->set_rules('waktu', 'Waktu', 'required');
+			$this->form_validation->set_rules('via', 'Via', 'required');
+			$this->form_validation->set_rules('kondisi', 'Kondisi', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$ajax_data = $this->input->post();
+				if ($this->presensi_model->insert_entry_absen($ajax_data)) {
+					$data = array('responce' => 'success', 'message' => 'Record added Successfully');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Failed to add record');
+				}
+			}
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+
+	public function absen_pulang($username)
+	{
+		$data_update['waktu_pulang'] = date("H:i:s");
+		$data_update['status'] = "Pulang";
+		$this->presensi_model->update_entry_absen(base64_decode($username), $data_update);
+		redirect(base_url("absen"));
 	}
 }
