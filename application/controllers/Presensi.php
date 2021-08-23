@@ -159,9 +159,12 @@ class Presensi extends CI_Controller
 		}
 
 		$data = array(
-			'get_profile'	=> $this->Beranda_model->get_profile($this->session->userdata('username')),
-			'get_validate'	=> $posts,
-			'profile'		=> 'active'
+			'get_profile'				=> $this->Beranda_model->get_profile($this->session->userdata('username')),
+			'get_absen_chart'			=> $this->presensi_model->get_absen_chart(),
+			'get_absen_masuk_chart'		=> $this->presensi_model->get_absen_masuk_chart(),
+			'get_absen_keluar_chart'	=> $this->presensi_model->get_absen_keluar_chart(),
+			'get_validate'				=> $posts,
+			'profile'					=> 'active'
 		);
 		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/absen');

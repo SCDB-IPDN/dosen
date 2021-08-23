@@ -91,7 +91,80 @@ class Presensi_model extends CI_Model
 
     public function update_entry_absen($username, $data_update)
     {
-        return $this->db->update('absensi', $data_update, array('username' => $username,'tgl' => date('Y-m-d')));
+        return $this->db->update('absensi', $data_update, array('username' => $username, 'tgl' => date('Y-m-d')));
     }
-    
+
+    public function get_absen_chart()
+    {
+        $get_data   = $this->db
+            ->select('
+                    count( id_absen ) AS jumlah_hadir,
+                CASE
+                        WHEN jns_user = 22 THEN
+                        \'Dosen\' 
+                        WHEN jns_user = 23 THEN
+                        \'PNS\' 
+                        WHEN jns_user = 29 THEN
+                        \'PNS dan DOSEN\' ELSE \'\' 
+                    END AS role ')
+            ->from('absensi')
+            ->where("tgl", date('Y-m-d'))
+            ->group_by("jns_user")
+            ->get();
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_absen_masuk_chart()
+    {
+        $get_data   = $this->db
+            ->select('
+                    count( id_absen ) AS jumlah_hadir,
+                CASE
+                        WHEN jns_user = 22 THEN
+                        \'Dosen\' 
+                        WHEN jns_user = 23 THEN
+                        \'PNS\' 
+                        WHEN jns_user = 29 THEN
+                        \'PNS dan DOSEN\' ELSE \'\' 
+                    END AS role ')
+            ->from('absensi')
+            ->where("tgl", date('Y-m-d'))
+            ->where("status", "Masuk")
+            ->group_by("jns_user")
+            ->get();
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_absen_keluar_chart()
+    {
+        $get_data   = $this->db
+            ->select('
+                    count( id_absen ) AS jumlah_hadir,
+                CASE
+                        WHEN jns_user = 22 THEN
+                        \'Dosen\' 
+                        WHEN jns_user = 23 THEN
+                        \'PNS\' 
+                        WHEN jns_user = 29 THEN
+                        \'PNS dan DOSEN\' ELSE \'\' 
+                    END AS role ')
+            ->from('absensi')
+            ->where("tgl", date('Y-m-d'))
+            ->where("status", "Keluar")
+            ->group_by("jns_user")
+            ->get();
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
 }
