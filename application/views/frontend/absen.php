@@ -77,43 +77,70 @@
             </div>
         </div>
 
-        <div class="row card shadow mt-2">
-            <div class="col-md-12 mt-2 mb-2">
-
-                <!-- <div class="panel-heading-btn">
-                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                </div> -->
-                
-                <a href="javascript:;" class="float-md-right btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Dashboard</a>
-                <div id="demo" class="collapse in">
-                    <canvas id="myChart"></canvas>
+        <div class="row card shadow mt-3">
+            <div class="row ">
+                <div class="col-sm-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <canvas id="absenpulang"></canvas>
+                        </div>
+                    </div>
                 </div>
-
+                <div class="col-sm-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <canvas id="absenmasuk"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <?php
+        if ($get_absen_pulang_chart != false && !empty($get_absen_pulang_chart)) {
+            $count_pulang = 0;
+            foreach ($get_absen_pulang_chart as $data) {
+                $count_pulang += $data->jumlah_hadir;
+            }
+        } else {
+            $count_pulang = 0;
+        }
+        if ($get_absen_masuk_chart != false && !empty($get_absen_masuk_chart)) {
+            $count_masuk = 0;
+            foreach ($get_absen_masuk_chart as $data) {
+                $count_masuk += $data->jumlah_hadir;
+            }
+        } else {
+            $count_masuk = 0;
+        }
+        ?>
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
         <script>
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
+            // ABSEN PULANG
+            var ctx = document.getElementById('absenpulang').getContext('2d');
+            var absenpulang = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: [
-                        <?php if (count($get_absen_chart) > 0) {
-                            foreach ($get_absen_chart as $data) { ?> "<?= $data->role ?>",
+                        <?php if ($get_absen_pulang_chart != false && !empty($get_absen_pulang_chart)) {
+                            foreach ($get_absen_pulang_chart as $data) { ?> "<?= $data->role ?>",
                         <?php }
+                        } else {
+                            echo "Data Tidak Ditemukan";
                         } ?>
                     ],
                     datasets: [{
-                        label: 'Daftar Kehadiran Perhari Ini',
+                        label: 'Total Presensi',
                         fill: false,
                         data: [
-                            <?php if (count($get_absen_chart) > 0) {
-                                foreach ($get_absen_chart as $data) { ?>
+                            <?php if ($get_absen_pulang_chart != false && !empty($get_absen_pulang_chart)) {
+                                foreach ($get_absen_pulang_chart as $data) { ?>
                                     <?= $data->jumlah_hadir ?>,
                             <?php }
+                            } else {
+                                echo "0";
                             } ?>
                         ],
                         backgroundColor: [
@@ -132,10 +159,16 @@
                             'rgba(153, 102, 255, 1)',
                             'rgba(255, 159, 64, 1)'
                         ],
-                        borderWidth: 1
+                        borderWidth: 1,
+                        datalables: {
+                            color: 'blue',
+                            anchor: 'end',
+                            align: 'top'
+                        }
                     }]
                 },
 
+                plugins: [ChartDataLabels],
                 options: {
                     plugins: {
                         legend: {
@@ -143,7 +176,86 @@
                         },
                         title: {
                             display: true,
-                            text: 'Daftar Kehadiran Perhari Ini',
+                            text: 'Rekapitulasi Presensi Perhari (Masuk & Pulang): <?= $count_pulang ?>',
+
+                            font: {
+                                size: 20
+                            },
+                            color: 'blue',
+                            padding: {
+                                top: 10,
+                                bottom: 30
+                            }
+                        }
+                    },
+                    indexAxis: 'y',
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // ABSEN MASUK
+            var ctx = document.getElementById('absenmasuk').getContext('2d');
+            var absenmasuk = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        <?php if ($get_absen_masuk_chart != false && !empty($get_absen_masuk_chart)) {
+                            foreach ($get_absen_masuk_chart as $data) { ?> "<?= $data->role ?>",
+                        <?php }
+                        } else {
+                            echo "Data Tidak Ditemukan";
+                        } ?>
+                    ],
+                    datasets: [{
+                        label: 'Total Presensi',
+                        fill: false,
+                        data: [
+                            <?php if ($get_absen_masuk_chart != false && !empty($get_absen_masuk_chart)) {
+                                foreach ($get_absen_masuk_chart as $data) { ?>
+                                    <?= $data->jumlah_hadir ?>,
+                            <?php }
+                            } else {
+                                echo "0";
+                            } ?>
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1,
+                        datalables: {
+                            color: 'blue',
+                            anchor: 'end',
+                            align: 'top'
+                        }
+                    }]
+                },
+
+                plugins: [ChartDataLabels],
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Rekapitulasi Presensi Perhari (Hanya Masuk): <?= $count_masuk ?>',
 
                             font: {
                                 size: 20

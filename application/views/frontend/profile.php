@@ -7,12 +7,12 @@
         <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
         <div class="container py-lg-5 py-md-3">
-            <div class="row">
+            <!-- <div class="row"> -->
                 <div class="card mb-3 shadow rounded" style="border-radius: 3rem !important;">
                     <div class="row no-gutters">
                         <div class="col-md-4 my-1">
                             <?php if (count($get_profile) > 0 && !empty($get_profile[0]->image_url)) { ?>
-                                <img src="<?php echo base_url('') . $get_profile[0]->image_url ?>" class="card-img rounded" style="border-radius: 3rem !important;">
+                                <img src="<?php echo base_url('') . $get_profile[0]->image_url ?>" onerror="this.onerror=null;this.src='<?php echo base_url('assets/frontend/images/image-not-found-scaled-1150x647.png'); ?>'" class="card-img rounded" style="border-radius: 3rem !important;">
                             <?php } else { ?>
                                 <img src="<?php echo base_url('assets/frontend/images/image-not-found-scaled-1150x647.png'); ?>" class="card-img rounded" style="border-radius: 3rem !important;">
                             <?php } ?>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
     </section>
     <!-- //Profile -->

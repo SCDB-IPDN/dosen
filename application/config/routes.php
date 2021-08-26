@@ -70,5 +70,7 @@ $route['lokasi'] = 'Presensi/lokasi';
 $route['insert_absen'] = 'Presensi/insert_absen';
 $route['absen_pulang/(:any)'] = 'Presensi/absen_pulang/$1';
 
+$route['dashboard'] = 'Dashboard';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
