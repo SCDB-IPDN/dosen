@@ -12,10 +12,10 @@ class Presensi extends CI_Controller
 		$this->load->library('form_validation');
 
 		$this->load->library('session');
-		if($this->session->userdata('status') != "login"){
+		if ($this->session->userdata('status') != "login") {
 			redirect(base_url());
 		}
-		
+
 		$this->load->model('presensi_model');
 		$this->load->model('Beranda_model');
 	}
@@ -23,6 +23,11 @@ class Presensi extends CI_Controller
 	public function index()
 	{
 		$data = array(
+			'get_profile'				=> $this->Beranda_model->get_profile($this->session->userdata('username')),
+			'get_current_prodi'			=> $this->presensi_model->get_count_monitoring_prodi(),
+			'get_current_dosen'			=> $this->presensi_model->get_count_monitoring_dosen(),
+			'get_count_status_monitoring'	=> $this->presensi_model->get_count_status_monitoring(),
+			'get_count_sudah_upload'	=> $this->presensi_model->get_count_sudah_upload(),
 			'profile'	=> 'active'
 		);
 		$this->load->view('page/header_frontend', $data);
@@ -103,11 +108,38 @@ class Presensi extends CI_Controller
 		}
 	}
 
+
+
 	public function update()
+	{
+
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$id = $this->input->post('edit_id');
+				$ajax_data['keterangan'] = $this->input->post('edit_keterangan');
+				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu');
+
+				if ($this->presensi_model->update_entry($id, $ajax_data)) {
+					$data = array('responce' => 'success', 'message' => 'Record update Successfully');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Failed to update record');
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+
+	public function update2()
 	{
 		if ($this->input->is_ajax_request()) {
 			$this->form_validation->set_rules('edit_media', 'Media', 'required');
-			$this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
+			// $this->form_validation->set_rules('edit_img', 'Gambar', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
@@ -133,7 +165,6 @@ class Presensi extends CI_Controller
 
 				$id = $this->input->post('edit_id');
 				$ajax_data['media_pembelajaran'] = $this->input->post('edit_media');
-				$ajax_data['keterangan'] = $this->input->post('edit_keterangan');
 				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu');
 
 				if ($this->presensi_model->update_entry($id, $ajax_data)) {

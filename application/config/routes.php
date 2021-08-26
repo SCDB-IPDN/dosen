@@ -63,6 +63,8 @@ $route['fetch/(:any)'] = 'Presensi/fetch/$1';
 $route['delete'] = 'Presensi/delete';
 $route['edit'] = 'Presensi/edit';
 $route['update'] = 'Presensi/update';
+$route['update2'] = 'Presensi/update2';
+
 
 $route['absen'] = 'Presensi/absen';
 $route['fetch_absen/(:any)'] = 'Presensi/fetch_absen/$1';
