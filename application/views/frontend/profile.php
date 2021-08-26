@@ -4,11 +4,11 @@
         </div>
 
         <div id="particles-js"></div>
-        <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+        <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
 
-        <div class="container py-lg-5 py-md-3">
-            <!-- <div class="row"> -->
-                <div class="card mb-3 shadow rounded" style="border-radius: 3rem !important;">
+        <div class="banner-content">
+            <div class="container pt-5 pb-md-4">
+                <div class="card mb-3 mt-3 shadow rounded" style="border-radius: 3rem !important;">
                     <div class="row no-gutters">
                         <div class="col-md-4 my-1">
                             <?php if (count($get_profile) > 0 && !empty($get_profile[0]->image_url)) { ?>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-            <!-- </div> -->
+            </div>
         </div>
     </section>
     <!-- //Profile -->
