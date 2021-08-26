@@ -1,7 +1,11 @@
 <section id="home" class="w3l-banner py-5">
     <div class="banner-image">
     </div>
-    <div class="container">
+
+    <div id="particles-js"></div>
+    <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
+
+    <div class="container pt-5 pb-md-4">
         <div class="row">
             <div class="col-md-12 mt-5">
                 <h1 class="text-center title-big">
