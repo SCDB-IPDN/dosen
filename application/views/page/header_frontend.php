@@ -54,6 +54,12 @@
                                     Beranda
                                 </a>
                             </li>
+                            <li class="nav-item <?php echo empty($dashboard) ? '' : $dashboard ?>">
+                                <a class="nav-link" href="<?php echo base_url('dashboard'); ?>">
+                                    <i class="far fa-chart-bar" aria-hidden="true"></i>
+                                    Dashboard
+                                </a>
+                            </li>
                             <li class="nav-item <?php echo empty($tentang) ? '' : $tentang ?>">
                                 <a class="nav-link" href="<?php echo base_url('tentang'); ?>">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -61,7 +67,7 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link <?php echo empty($profile) ? '' : $profile ?>" href="<?php echo base_url('profile/' . base64_encode($this->session->userdata('username'))); ?>">
+                                <a class="nav-link <?php echo empty($profile) ? '' : $profile ?>" href="#">
                                     <?= $this->session->userdata('username'); ?>
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                 </a>
