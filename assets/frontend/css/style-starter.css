@@ -12140,7 +12140,7 @@ button.search-btn:hover {
     float: left;
     text-align: center;
     width: 100%;
-    background: var(--bg-color);
+    /* background: var(--bg-color); */
     padding: 20px;
     margin-top: 16px;
     box-shadow: 0 6px 19px rgba(0, 0, 0, 0.05);
