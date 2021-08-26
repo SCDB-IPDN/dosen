@@ -1,6 +1,13 @@
+<style>
+  .disabledxxx {
+    pointer-events: none;
+    cursor: default;
+  }
+</style>
+
 <section id="home" class="w3l-banner">
-  <div class="banner-image">
-  </div>
+  <!-- <div class="banner-image">
+  </div> -->
   <div class="container mt-5">
     <!-- <div class="row">
       <div class="col-md-12 mt-5">
@@ -50,13 +57,276 @@
         </div>
       </div>
     </div>
-    <div class="row card shadow mt-3" style="background-color: #F4F6F9; border-radius: 3rem !important;">
+
+    <div class="row mt-3">
+      <div class="col-md-4">
+        <div class="card shadow" style="border-radius: 1rem !important;">
+          <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Per Prodi</a>
+          </div>
+          <div id="demo" class="card-body collapse in">
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow" style="border-radius: 1rem !important;">
+          <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Per Dosen</a>
+          </div>
+          <div id="demo2" class="card-body collapse in">
+            <!-- <strong>
+              <a class="bg-warning text-light" style="border-radius: 0.2rem !important;"> Belum Upload : <?php if (count($get_count_belum_upload) > 0) {
+                                                                                                            foreach ($get_count_belum_upload as $data) { ?>
+                    <?= $data->TotalMonitoring ?>
+                <?php }
+                                                                                                          } ?> </a>
+              <br>
+              <a class="bg-success text-light" style="border-radius: 0.2rem !important;"> Sudah Upload : <?php if (count($get_count_sudah_upload) > 0) {
+                                                                                                            foreach ($get_count_sudah_upload as $data) { ?>
+                    <?= $data->TotalMonitoring ?>
+                <?php }
+                                                                                                          } ?> </a>
+            </strong> -->
+            <canvas id="myChart2"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow" style="border-radius: 1rem !important;">
+          <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo3"><i class="fa fa-expand"></i> Status Monitoring Pembelajaran</a>
+          </div>
+          <div id="demo3" class="card-body collapse in">
+            <canvas id="myChart3"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            <?php if (count($get_current_prodi) > 0) {
+              foreach ($get_current_prodi as $data) { ?> "<?= $data->id_prodi ?>",
+            <?php }
+            } ?>
+          ],
+          datasets: [{
+            label: '',
+            fill: true,
+            data: [
+              <?php if (count($get_current_prodi) > 0) {
+                foreach ($get_current_prodi as $data) { ?>
+                  <?= $data->TotalMonitoring ?>,
+              <?php }
+              } ?>
+            ],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 2
+          }]
+        },
+
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+            // title: {
+            //   display: true,
+            //   text: '',
+
+            //   font: {
+            //     size: 20
+            //   },
+            //   color: 'blue',
+            //   padding: {
+            //     top: 10,
+            //     bottom: 30
+            //   }
+            // }
+          },
+          indexAxis: 'x',
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+    <script>
+      var ctx = document.getElementById('myChart2').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: [
+            <?php if (count($get_current_dosen) > 0) {
+              foreach ($get_current_dosen as $data) { ?> "<?= $data->nama ?>",
+            <?php }
+            } ?>
+          ],
+          datasets: [{
+            label: '',
+            fill: true,
+            data: [
+              <?php if (count($get_current_dosen) > 0) {
+                foreach ($get_current_dosen as $data) { ?>
+                  <?= $data->TotalMonitoring ?>,
+              <?php }
+              } ?>
+            ],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 2
+          }]
+        },
+
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+            // title: {
+            //   display: true,
+            //   text: '',
+
+            //   font: {
+            //     size: 20
+            //   },
+            //   color: 'blue',
+            //   padding: {
+            //     top: 10,
+            //     bottom: 30
+            //   }
+            // }
+          },
+          indexAxis: 'y',
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+    <script>
+      var ctx = document.getElementById('myChart3').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [
+            <?php if (count($get_count_status_monitoring) > 0) {
+              foreach ($get_count_status_monitoring as $data) { ?> "<?= $data->StatusMonitoring ?>",
+            <?php }
+            } ?>
+          ],
+          datasets: [{
+            label: '',
+            fill: true,
+            data: [
+              <?php if (count($get_count_status_monitoring) > 0) {
+                foreach ($get_count_status_monitoring as $data) { ?>
+                  <?= $data->TotalMonitoring ?>,
+              <?php }
+              } ?>
+            ],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 2
+          }]
+        },
+
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            },
+            // title: {
+            //   display: true,
+            //   text: '',
+
+            //   font: {
+            //     size: 20
+            //   },
+            //   color: 'blue',
+            //   padding: {
+            //     top: 10,
+            //     bottom: 30
+            //   }
+            // }
+          },
+          indexAxis: 'y',
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+
+    <!-- <div class="row">
+      <div class="col-md-3 card shadow">asd</div>
+      <div class="col-md-3 card shadow">asd</div>
+      <div class="col-md-3 card shadow">asd</div>
+      <div class="col-md-3 card shadow">asd</div>
+    </div> -->
+    <div class="row card shadow mt-3" style="border-radius: 2rem !important;">
       <div class="col-md-12 my-5">
         <div class="table-responsive-xl mx-2">
           <table class="table table-hover table-xl" id="records">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>No</th>
+                <th></th>
                 <th>NIP</th>
                 <th>Nama</th>
                 <th>Matakuliah</th>
@@ -69,7 +339,7 @@
                 <th>SKS</th>
                 <th>Gambar</th>
                 <th></th>
-                <th>Action</th>
+
               </tr>
             </thead>
           </table>
@@ -78,21 +348,26 @@
     </div>
   </div>
 
-  <!-- Edit Record Modal -->
+  <!-- Mulai Pembelajaran Modal -->
   <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Record Modal</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Mulai Pembelajaran</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
+          <!-- <div class="row text-center">
+            <div class="col-md-12 my-3">
+              <div id="show_img"></div>
+            </div>
+          </div> -->
           <!-- Edit Record Form -->
           <form action="" method="post" id="edit_form">
             <input type="hidden" id="edit_id" name="edit_id" value="">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="">Nama</label>
               <input type="text" id="edit_nama" class="form-control" disabled>
             </div>
@@ -119,7 +394,91 @@
             <div class="form-group">
               <label for="">Jam</label>
               <input type="time" id="edit_jam" class="form-control" disabled>
+            </div> -->
+            <!-- <div class="form-group">
+                <label for="">Media Pembelajaran</label>
+                <input type="text" id="edit_media" class="form-control">
+              </div> -->
+            <!-- <div class="form-group">
+              <label for="">Media Belajar</label>
+              <select name="edit_media" id="edit_media" class="form-control">
+                <option value="">--Pilih Media--</option>
+                <option value="Zoom">Zoom</option>
+                <option value="Google">Google Meet</option>
+              </select>
             </div>
+            <div class="form-group">
+              <label for="">Upload Bukti</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="edit_img">
+                <label class="custom-file-label" for="customFile">Pilih Gambar!</label>
+              </div>
+            </div> -->
+            <div class="form-group">
+              <label for="">Link Media Pembelajaran</label>
+              <input type="text" id="edit_keterangan" class="form-control">
+            </div>
+            <!-- <div class="form-group">
+                <label for="">Waktu Upload</label>
+                <input type="time" id="edit_waktu" class="form-control">
+              </div> -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="update">Mulai Pembelajaran</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Akhiri Pembelajaran Modal -->
+  <div class="modal fade" id="edit_modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Akhiri Pembelajaran</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <div class="row text-center">
+            <div class="col-md-12 my-3">
+              <div id="show_img"></div>
+            </div>
+          </div> -->
+          <!-- Edit Record Form -->
+          <form action="" method="post" id="edit_form2">
+            <input type="hidden" id="edit_id2" name="edit_id2" value="">
+            <!-- <div class="form-group">
+              <label for="">Nama</label>
+              <input type="text" id="edit_nama" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+              <label for="">Fakultas</label>
+              <input type="text" id="edit_fakultas" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+              <label for="">Prodi</label>
+              <input type="text" id="edit_prodi" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+              <label for="">Kelas</label>
+              <input type="text" id="edit_kelas" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+              <label for="">Matakuliah</label>
+              <input type="text" id="edit_matkul" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+              <label for="">Tanggal</label>
+              <input type="date" id="edit_tanggal" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+              <label for="">Jam</label>
+              <input type="time" id="edit_jam" class="form-control" disabled>
+            </div> -->
             <!-- <div class="form-group">
                 <label for="">Media Pembelajaran</label>
                 <input type="text" id="edit_media" class="form-control">
@@ -139,10 +498,10 @@
                 <label class="custom-file-label" for="customFile">Pilih Gambar!</label>
               </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="">Link Media Pembelajaran</label>
               <input type="text" id="edit_keterangan" class="form-control">
-            </div>
+            </div> -->
             <!-- <div class="form-group">
                 <label for="">Waktu Upload</label>
                 <input type="time" id="edit_waktu" class="form-control">
@@ -151,11 +510,28 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="update">Update</button>
+          <button type="button" class="btn btn-primary" id="update2">Mulai Pembelajaran</button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Zoom Modal -->
+  <div class="modal fade" id="zoom_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <input type="hidden" id="zoom_id" name="edit_id" value="">
+          <div class="row text-center">
+            <div class="col-md-12 my-2">
+              <div id="show_img2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <input type="hidden" value="<?php echo base_url(); ?>" id="base_url">
@@ -245,6 +621,54 @@
                 }
               },
               {
+                "render": function(data, type, row, meta) {
+
+                  <?php if ($this->session->userdata('role') == 1) { ?>
+
+                    if (`${row.keterangan}` == 'null' && `${row.upload}` == 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-light btn-disabled disabledxxx mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else if (`${row.keterangan}` != 'null' && `${row.upload}` == 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-primary mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else if (`${row.keterangan}` == 'null' && `${row.upload}` != 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      
+                               `;
+                    }
+                  <?php } elseif ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
+                    if (`${row.keterangan}` == 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-warning mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-warning btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      
+                               `;
+                    }
+                  <?php } ?>
+                  return ax;
+                }
+              },
+              {
                 "data": "nip"
               },
               {
@@ -277,38 +701,35 @@
               {
                 "data": "upload",
                 render: function(data, type, row, meta) {
-                  var a = `
-                                <img src="${base_url}/assets/upload/${row.upload}" width="300" height="200" class="img-thumbnail"/>
+
+                  if (`${row.upload}` != 'null') {
+                    var a = `
+                                <img src="${base_url}/assets/upload/${row.upload}" width="300" height="200" class="img-thumbnail" id="zoom" value="${row.id_plot}"/>
                             `;
+
+                  } else {
+                    var a = ` Segera upload bukti pembelajaran daring!`;
+                  }
+                 
                   return a;
                 },
-              },
-              {
-                "data":"keterangan",
+              }, {
+                "data": "keterangan",
                 render: function(data, type, row, meta) {
+                  if (`${row.keterangan}` != 'null') {
                     var a = `
                                 <a href="${row.keterangan}" target="_blank">Link Mengajar</a>
                               `;
-                
-                  return a;
-                }
-              },
-              {
-                "render": function(data, type, row, meta) {
-                  <?php if ($this->session->userdata('role') == 1) { ?>
-                    var a = `
-                                <a href="#" value="${row.id_plot}" id="del" class="btn btn-lg btn-danger"><i class="fas fa-trash"></i></a>
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-lg btn-success"><i class="fas fa-file-upload"></i></a>
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-lg btn-info"><i class="fas fa-expand-arrows-alt"></i></a>
-                              `;
-                  <?php } elseif ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
-                    var a = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-file-upload"></i></a>
-                              `;
-                  <?php } ?>
+
+                  } else {
+                    var a = `Belum menyisipkan link`;
+                  }
+                 
+
                   return a;
                 }
               }
+
             ]
           });
         } else {
@@ -330,7 +751,7 @@
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger mr-2'
+        cancelButton: 'btn btn-outline-danger mr-2'
       },
       buttonsStyling: false
     })
@@ -385,7 +806,7 @@
     });
   });
 
-  /* ---------------------------- Edit Record Modal --------------------------- */
+  /* ---------------------------- Mulai Pemebelajaran Modal --------------------------- */
   $(document).on("click", "#edit", function(e) {
     e.preventDefault();
     var edit_id = $(this).attr("value");
@@ -401,20 +822,20 @@
         if (data.responce == "success") {
           $('#edit_modal').modal('show');
           $("#edit_id").val(data.post.id_plot);
-          $("#edit_nip").val(data.post.nip);
-          $("#edit_nama").val(data.post.nama);
-          $("#edit_matkul").val(data.post.nama_matkul);
-          $("#edit_tanggal").val(data.post.tanggal);
-          $("#edit_jam").val(data.post.jam);
-          $("#edit_kelas").val(data.post.kelas);
-          $("#edit_semester").val(data.post.semester);
-          $("#edit_fakultas").val(data.post.nama_fakultas);
-          $("#edit_prodi").val(data.post.nama_prodi);
-          $("#edit_sks").val(data.post.sks);
-          $("#edit_media").val(data.post.media_pembelajaran);
-          $("#show_img").html(`
-                    <img src="${base_url}assets/uploads/${data.post.upload}" width="150" height="150" class="rounded img-thumbnail">
-                `);
+          // $("#edit_nip").val(data.post.nip);
+          // $("#edit_nama").val(data.post.nama);
+          // $("#edit_matkul").val(data.post.nama_matkul);
+          // $("#edit_tanggal").val(data.post.tanggal);
+          // $("#edit_jam").val(data.post.jam);
+          // $("#edit_kelas").val(data.post.kelas);
+          // $("#edit_semester").val(data.post.semester);
+          // $("#edit_fakultas").val(data.post.nama_fakultas);
+          // $("#edit_prodi").val(data.post.nama_prodi);
+          // $("#edit_sks").val(data.post.sks);
+          // $("#edit_media").val(data.post.media_pembelajaran);
+          // $("#show_img").html(`
+          //           <img src="${base_url}assets/upload/${data.post.upload}" width="300" height="250" class="rounded img-thumbnail">
+          //       `);
           $("#edit_keterangan").val(data.post.keterangan);
           // $("#edit_waktu").val(data.post.waktu_upload);
         } else {
@@ -424,9 +845,72 @@
     });
   });
 
-  /* -------------------------------------------------------------------------- */
-  /*                               Update Records                               */
-  /* -------------------------------------------------------------------------- */
+  /* ---------------------------- Akhiri Pembelajaran Modal --------------------------- */
+  $(document).on("click", "#edit2", function(e) {
+    e.preventDefault();
+    var edit_id = $(this).attr("value");
+
+    $.ajax({
+      url: "<?php echo base_url(); ?>edit",
+      type: "post",
+      dataType: "json",
+      data: {
+        edit_id: edit_id
+      },
+      success: function(data) {
+        if (data.responce == "success") {
+          $('#edit_modal2').modal('show');
+          $("#edit_id2").val(data.post.id_plot);
+          // $("#edit_nip").val(data.post.nip);
+          // $("#edit_nama").val(data.post.nama);
+          // $("#edit_matkul").val(data.post.nama_matkul);
+          // $("#edit_tanggal").val(data.post.tanggal);
+          // $("#edit_jam").val(data.post.jam);
+          // $("#edit_kelas").val(data.post.kelas);
+          // $("#edit_semester").val(data.post.semester);
+          // $("#edit_fakultas").val(data.post.nama_fakultas);
+          // $("#edit_prodi").val(data.post.nama_prodi);
+          // $("#edit_sks").val(data.post.sks);
+          $("#edit_media").val(data.post.media_pembelajaran);
+          $("#show_img").html(`
+                    <img src="${base_url}assets/upload/${data.post.upload}" width="300" height="250" class="rounded img-thumbnail">
+                `);
+          // $("#edit_keterangan").val(data.post.keterangan);
+          // $("#edit_waktu").val(data.post.waktu_upload);
+        } else {
+          toastr["error"](data.message);
+        }
+      }
+    });
+  });
+
+  /* ---------------------------- Zoom Image --------------------------- */
+  $(document).on("click", "#zoom", function(e) {
+    e.preventDefault();
+    var zoom_id = $(this).attr("value");
+
+    $.ajax({
+      url: "<?php echo base_url(); ?>edit",
+      type: "post",
+      dataType: "json",
+      data: {
+        edit_id: zoom_id
+      },
+      success: function(data) {
+        if (data.responce == "success") {
+          $('#zoom_modal').modal('show');
+          $("#zoom_id").val(data.post.id_plot);
+          $("#show_img2").html(`
+                    <img src="${base_url}assets/upload/${data.post.upload}" width="100%" height="100%" class="rounded img-thumbnail">
+                `);
+        } else {
+          toastr["error"](data.message);
+        }
+      }
+    });
+  });
+
+
   function adjust(v) {
     if (v > 9) {
       return v.toString();
@@ -435,6 +919,10 @@
     }
   }
 
+  /* -------------------------------------------------------------------------- */
+  /*                     Update Mulai Pembelajaran Records                      */
+  /* -------------------------------------------------------------------------- */
+
   $(document).on("click", "#update", function(e) {
     e.preventDefault();
     var today = new Date();
@@ -442,24 +930,18 @@
     var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
 
     var edit_id = $("#edit_id").val();
-    var edit_media = $("#edit_media").val();
     var edit_keterangan = $("#edit_keterangan").val();
     var edit_waktu = `${date}T${time}`;
 
-    var edit_img = $("#edit_img")[0].files[0];
 
-    if (edit_id == "" || edit_media == "" || edit_keterangan == "") {
+    if (edit_keterangan == "") {
       alert("All field is required");
     } else {
       var fd = new FormData();
 
       fd.append("edit_id", edit_id);
-      fd.append("edit_media", edit_media);
       fd.append("edit_keterangan", edit_keterangan);
       fd.append("edit_waktu", edit_waktu);
-      if ($("#edit_img")[0].files.length > 0) {
-        fd.append("edit_img", edit_img);
-      }
       $.ajax({
         url: "<?php echo base_url(); ?>update",
         type: "post",
@@ -472,6 +954,55 @@
             $('#records').DataTable().destroy();
             fetch();
             $('#edit_modal').modal('hide');
+            toastr["success"](data.message);
+          } else {
+            toastr["error"](data.message);
+          }
+        }
+      });
+    }
+  });
+
+  /* -------------------------------------------------------------------------- */
+  /*                     Update Akhiri Pembelajaran Records                      */
+  /* -------------------------------------------------------------------------- */
+  $(document).on("click", "#update2", function(e) {
+    e.preventDefault();
+    var today = new Date();
+    var date = today.getFullYear() + '-' + adjust(today.getMonth() + 1) + '-' + adjust(today.getDate());
+    var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
+
+    var edit_id = $("#edit_id2").val();
+    var edit_media = $("#edit_media").val();
+    // var edit_keterangan = $("#edit_keterangan").val();
+    var edit_waktu = `${date}T${time}`;
+
+    var edit_img = $("#edit_img")[0].files[0];
+
+    if (edit_id == "" || edit_media == "") {
+      alert("All field is required");
+    } else {
+      var fd = new FormData();
+
+      fd.append("edit_id", edit_id);
+      fd.append("edit_media", edit_media);
+      // fd.append("edit_keterangan", edit_keterangan);
+      fd.append("edit_waktu", edit_waktu);
+      if ($("#edit_img")[0].files.length > 0) {
+        fd.append("edit_img", edit_img);
+      }
+      $.ajax({
+        url: "<?php echo base_url(); ?>update2",
+        type: "post",
+        dataType: "json",
+        data: fd,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+          if (data.responce == "success") {
+            $('#records').DataTable().destroy();
+            fetch();
+            $('#edit_modal2').modal('hide');
             toastr["success"](data.message);
           } else {
             toastr["error"](data.message);
