@@ -75,6 +75,16 @@ class Presensi extends CI_Controller
 		}
 	}
 
+	public function fetch_detail_monitoring()
+	{
+		if ($this->input->is_ajax_request()) {
+				$posts = $this->presensi_model->get_detail_monitoring();
+
+				$data = array('responce' => 'success', 'posts' => $posts);
+				echo json_encode($data);
+		}
+	}
+
 	public function delete()
 	{
 		if ($this->input->is_ajax_request()) {

@@ -62,6 +62,7 @@ $route['insert'] = 'Presensi/insert';
 $route['fetch/(:any)'] = 'Presensi/fetch/$1';
 $route['delete'] = 'Presensi/delete';
 $route['edit'] = 'Presensi/edit';
+$route['fetchstatus'] = 'Presensi/fetch_detail_monitoring';
 $route['update'] = 'Presensi/update';
 $route['update2'] = 'Presensi/update2';
 

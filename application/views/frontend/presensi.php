@@ -58,25 +58,62 @@
       </div>
     </div>
 
-    <?php if ($this->session->userdata('role') == 1) { ?>
-    <div class="row mt-3">
-      <div class="col-md-4 mt-2">
-        <div class="card shadow" style="border-radius: 1rem !important;">
-          <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Per Prodi</a>
-          </div>
-          <div id="demo" class="card-body collapse show">
-            <canvas id="myChart"></canvas>
+    <!-- detail modal -->
+    <div class="container">
+      <div class="col-md-12">
+        <!-- Modal -->
+        <div class="modal fade" id="detail_modal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-primary">
+                <h5 class="modal-title text-light" id="detailModalLabel">Status Monitoring Pembelajaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="col-md-12">
+                  <div class="table-responsive-xl mx-2">
+                    <table class="table table-hover table-xl" id="detail_monitoring">
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Dosen</th>
+                          <th>Matakuliah</th>
+                          <th>Prodi</th>
+                          <th>Status</th>
+                          <th>Jumlah</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4 mt-2">
-        <div class="card shadow" style="border-radius: 1rem !important;">
-          <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Per Dosen</a>
+    </div>
+
+    <?php if ($this->session->userdata('role') == 1) { ?>
+      <div class="row mt-3">
+        <div class="col-md-4 mt-2">
+          <div class="card shadow" style="border-radius: 1rem !important;">
+            <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+              <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Per Prodi</a>
+            </div>
+            <div id="demo" class="card-body collapse show">
+              <canvas id="myChart"></canvas>
+            </div>
           </div>
-          <div id="demo2" class="card-body collapse show">
-            <!-- <strong>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="card shadow" style="border-radius: 1rem !important;">
+            <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+              <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Per Dosen</a>
+            </div>
+            <div id="demo2" class="card-body collapse show">
+              <!-- <strong>
               <a class="bg-warning text-light" style="border-radius: 0.2rem !important;"> Belum Upload : <?php if (count($get_count_belum_upload) > 0) {
                                                                                                             foreach ($get_count_belum_upload as $data) { ?>
                     <?= $data->TotalMonitoring ?>
@@ -89,21 +126,22 @@
                 <?php }
                                                                                                           } ?> </a>
             </strong> -->
-            <canvas id="myChart2"></canvas>
+              <canvas id="myChart2"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-2">
+          <div class="card shadow" style="border-radius: 1rem !important;">
+            <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+              <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo3"><i class="fa fa-expand"></i> Status Monitoring Pembelajaran</a>
+            </div>
+            <div id="demo3" class="card-body collapse show">
+              <canvas id="myChart3"></canvas>
+              <button type="button" class="btn btn-outline-info btn-sm btn-block mt-2" data-toggle="modal" data-target="#detail_modal">Tampilkan Detail</button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4 mt-2">
-        <div class="card shadow" style="border-radius: 1rem !important;">
-          <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo3"><i class="fa fa-expand"></i> Status Monitoring Pembelajaran</a>
-          </div>
-          <div id="demo3" class="card-body collapse show">
-            <canvas id="myChart3"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
     <?php } ?>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -349,6 +387,7 @@
       </div>
     </div>
   </div>
+  <!-- end of container -->
 
   <!-- Mulai Pembelajaran Modal -->
   <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -369,61 +408,11 @@
           <!-- Edit Record Form -->
           <form action="" method="post" id="edit_form">
             <input type="hidden" id="edit_id" name="edit_id" value="">
-            <!-- <div class="form-group">
-              <label for="">Nama</label>
-              <input type="text" id="edit_nama" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Fakultas</label>
-              <input type="text" id="edit_fakultas" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Prodi</label>
-              <input type="text" id="edit_prodi" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Kelas</label>
-              <input type="text" id="edit_kelas" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Matakuliah</label>
-              <input type="text" id="edit_matkul" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Tanggal</label>
-              <input type="date" id="edit_tanggal" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Jam</label>
-              <input type="time" id="edit_jam" class="form-control" disabled>
-            </div> -->
-            <!-- <div class="form-group">
-                <label for="">Media Pembelajaran</label>
-                <input type="text" id="edit_media" class="form-control">
-              </div> -->
-            <!-- <div class="form-group">
-              <label for="">Media Belajar</label>
-              <select name="edit_media" id="edit_media" class="form-control">
-                <option value="">--Pilih Media--</option>
-                <option value="Zoom">Zoom</option>
-                <option value="Google">Google Meet</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="">Upload Bukti</label>
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="edit_img">
-                <label class="custom-file-label" for="customFile">Pilih Gambar!</label>
-              </div>
-            </div> -->
+           
             <div class="form-group">
               <label for="">Link Media Pembelajaran</label>
               <input type="text" id="edit_keterangan" class="form-control">
             </div>
-            <!-- <div class="form-group">
-                <label for="">Waktu Upload</label>
-                <input type="time" id="edit_waktu" class="form-control">
-              </div> -->
           </form>
         </div>
         <div class="modal-footer">
@@ -453,38 +442,6 @@
           <!-- Edit Record Form -->
           <form action="" method="post" id="edit_form2">
             <input type="hidden" id="edit_id2" name="edit_id2" value="">
-            <!-- <div class="form-group">
-              <label for="">Nama</label>
-              <input type="text" id="edit_nama" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Fakultas</label>
-              <input type="text" id="edit_fakultas" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Prodi</label>
-              <input type="text" id="edit_prodi" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Kelas</label>
-              <input type="text" id="edit_kelas" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Matakuliah</label>
-              <input type="text" id="edit_matkul" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Tanggal</label>
-              <input type="date" id="edit_tanggal" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="">Jam</label>
-              <input type="time" id="edit_jam" class="form-control" disabled>
-            </div> -->
-            <!-- <div class="form-group">
-                <label for="">Media Pembelajaran</label>
-                <input type="text" id="edit_media" class="form-control">
-              </div> -->
             <div class="form-group">
               <label for="">Media Belajar</label>
               <select name="edit_media" id="edit_media" class="form-control">
@@ -500,14 +457,6 @@
                 <label class="custom-file-label" for="customFile">Pilih Gambar!</label>
               </div>
             </div>
-            <!-- <div class="form-group">
-              <label for="">Link Media Pembelajaran</label>
-              <input type="text" id="edit_keterangan" class="form-control">
-            </div> -->
-            <!-- <div class="form-group">
-                <label for="">Waktu Upload</label>
-                <input type="time" id="edit_waktu" class="form-control">
-              </div> -->
           </form>
         </div>
         <div class="modal-footer">
@@ -562,39 +511,39 @@
   /* -------------------------------------------------------------------------- */
   /*                               Insert Records                               */
   /* -------------------------------------------------------------------------- */
-  $(document).on("click", "#add", function(e) {
-    e.preventDefault();
+  // $(document).on("click", "#add", function(e) {
+  //   e.preventDefault();
 
-    var name = $("#name").val();
-    var email = $("#email").val();
+  //   var name = $("#name").val();
+  //   var email = $("#email").val();
 
-    if (name == "" || email == "") {
-      alert("Both field is required");
-    } else {
-      $.ajax({
-        url: "<?php echo base_url(); ?>insert",
-        type: "post",
-        dataType: "json",
-        data: {
-          name: name,
-          email: email
-        },
-        success: function(data) {
-          if (data.responce == "success") {
-            $('#records').DataTable().destroy();
-            fetch();
-            $('#exampleModal').modal('hide');
-            toastr["success"](data.message);
-          } else {
-            toastr["error"](data.message);
-          }
+  //   if (name == "" || email == "") {
+  //     alert("Both field is required");
+  //   } else {
+  //     $.ajax({
+  //       url: "<?php echo base_url(); ?>insert",
+  //       type: "post",
+  //       dataType: "json",
+  //       data: {
+  //         name: name,
+  //         email: email
+  //       },
+  //       success: function(data) {
+  //         if (data.responce == "success") {
+  //           $('#records').DataTable().destroy();
+  //           fetch();
+  //           $('#exampleModal').modal('hide');
+  //           toastr["success"](data.message);
+  //         } else {
+  //           toastr["error"](data.message);
+  //         }
 
-        }
-      });
+  //       }
+  //     });
 
-      $("#form")[0].reset();
-    }
-  });
+  //     $("#form")[0].reset();
+  //   }
+  // });
 
   /* -------------------------------------------------------------------------- */
   /*                                Fetch Records                               */
@@ -612,7 +561,7 @@
             "data": data.posts,
             "responsive": true,
             dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
-              "<'row'<'col-sm-12'tr>>" +
+              "<'row'<'col-sm-12 col-md-1'tr>>" +
               "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
             buttons: [
               'copy', 'excel', 'pdf'
@@ -712,7 +661,7 @@
                   } else {
                     var a = ` Segera upload bukti pembelajaran daring!`;
                   }
-                 
+
                   return a;
                 },
               }, {
@@ -726,7 +675,7 @@
                   } else {
                     var a = `Belum menyisipkan link`;
                   }
-                 
+
 
                   return a;
                 }
@@ -742,6 +691,59 @@
     });
   }
   fetch();
+
+  /* -------------------------------------------------------------------------- */
+  /*                       Fetch Status Monitoring Records                      */
+  /* -------------------------------------------------------------------------- */
+  function fetchStatusMonitoring() {
+    $.ajax({
+      url: "<?php echo base_url(); ?>fetchstatus",
+      type: "post",
+      dataType: "json",
+      success: function(data) {
+        if (data.responce == "success") {
+
+          var i = "1";
+          $('#detail_monitoring').DataTable({
+            "data": data.posts,
+            "responsive": true,
+            dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+              "<'row'<'col-sm-12'tr>>" +
+              "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [
+              'copy', 'excel', 'pdf'
+            ],
+            "columns": [{
+                "render": function() {
+                  return a = i++;
+                }
+              },
+              {
+                "data": "nama"
+              },
+              {
+                "data": "nama_matkul"
+              },
+              {
+                "data": "id_prodi"
+              },
+              {
+                "data": "StatusMonitoring"
+              },
+              {
+                "data": "TotalMonitoring"
+              }
+
+            ]
+          });
+        } else {
+          toastr["error"](data.message);
+        }
+
+      }
+    });
+  }
+  fetchStatusMonitoring();
 
   /* -------------------------------------------------------------------------- */
   /*                                Delete Records                               */
