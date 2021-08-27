@@ -58,13 +58,14 @@
       </div>
     </div>
 
+    <?php if ($this->session->userdata('role') == 1) { ?>
     <div class="row mt-3">
       <div class="col-md-4 mt-2">
         <div class="card shadow" style="border-radius: 1rem !important;">
           <div class="card-header bg-primary" style="border-radius: 1rem !important;">
             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Per Prodi</a>
           </div>
-          <div id="demo" class="card-body collapse in">
+          <div id="demo" class="card-body collapse show">
             <canvas id="myChart"></canvas>
           </div>
         </div>
@@ -74,7 +75,7 @@
           <div class="card-header bg-primary" style="border-radius: 1rem !important;">
             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Per Dosen</a>
           </div>
-          <div id="demo2" class="card-body collapse in">
+          <div id="demo2" class="card-body collapse show">
             <!-- <strong>
               <a class="bg-warning text-light" style="border-radius: 0.2rem !important;"> Belum Upload : <?php if (count($get_count_belum_upload) > 0) {
                                                                                                             foreach ($get_count_belum_upload as $data) { ?>
@@ -97,12 +98,13 @@
           <div class="card-header bg-primary" style="border-radius: 1rem !important;">
             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo3"><i class="fa fa-expand"></i> Status Monitoring Pembelajaran</a>
           </div>
-          <div id="demo3" class="card-body collapse in">
+          <div id="demo3" class="card-body collapse show">
             <canvas id="myChart3"></canvas>
           </div>
         </div>
       </div>
     </div>
+    <?php } ?>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
