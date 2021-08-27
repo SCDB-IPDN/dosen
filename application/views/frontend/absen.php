@@ -11,21 +11,24 @@
                 <h1 class="text-center title-big">
                     Presensi Kehadiran
                 </h1>
-                <hr style="background-color: black; color: black; height: 1px;">
+                <hr style="background-color: primary; color: primary; height: 1px;">
             </div>
         </div>
 
-        <div class="row card shadow mt-3">
-            <div class="mb-3">
+        <div class="row card shadow mt-1 mx-0">
+            <div class="card-header bg-primary">
+                <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#profil"><i class="fa fa-expand"></i> Profil</a>
+            </div>
+            <div id="profil" class="collapse show">
                 <div class="row no-gutters">
-                    <div class="col-md-4">
+                    <div class="col-md-4 ml-1 mt-1">
                         <?php if (count($get_profile) > 0 && !empty($get_profile[0]->image_url)) { ?>
                             <img src="<?php echo base_url('') . $get_profile[0]->image_url ?>" onerror="this.onerror=null;this.src='<?php echo base_url('assets/frontend/images/image-not-found-scaled-1150x647.png'); ?>'" class="card-img">
                         <?php } else { ?>
                             <img src="<?php echo base_url('assets/frontend/images/image-not-found-scaled-1150x647.png'); ?>" class="card-img">
                         <?php } ?>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                         <div class="card-body">
                             <h5 class="card-title">Profile</h5>
 
@@ -81,24 +84,31 @@
             </div>
         </div>
 
-        <div class="row card shadow mt-3">
-            <div class="row ">
-                <div class="col-sm-6">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <canvas id="absenpulang_xxx"></canvas>
-                        </div>
+        <!-- <div class="row card shadow mt-3"> -->
+        <div class="row">
+            <div class="col-sm-6 my-1 mt-3">
+                <div class="card shadow">
+                    <div class="card-header bg-primary">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Absen Pulang</a>
+                    </div>
+                    <div id="demo" class="card-body collapse show">
+                        <canvas id="absenpulang_xxx"></canvas>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="card shadow">
-                        <div class="card-body">
-                            <canvas id="absenmasuk_xxx"></canvas>
-                        </div>
+            </div>
+            <div class="col-sm-6 my-1 mt-3">
+                <div class="card shadow">
+                    <div class="card-header bg-primary">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Absen Masuk</a>
+                    </div>
+                    <div id="demo2" class="card-body">
+                        <canvas id="absenmasuk_xxx"></canvas>
+
                     </div>
                 </div>
             </div>
         </div>
+        <!-- </div> -->
 
         <?php
         if ($get_absen_pulang_chart != false && !empty($get_absen_pulang_chart)) {
@@ -281,7 +291,7 @@
             });
         </script>
 
-        <div class="row card shadow mt-3">
+        <div class="row card shadow mt-3 mx-0">
             <div class="col-md-12 mt-4 mb-2">
                 <div class="table-responsive-xl">
                     <table class="table table-hover" id="records">

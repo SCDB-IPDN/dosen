@@ -5,7 +5,7 @@
   }
 </style>
 
-<section id="home" class="w3l-banner">
+<section id="home" class="w3l-banner mt-4">
   <!-- <div class="banner-image">
   </div> -->
   <div class="container mt-5">
@@ -58,23 +58,24 @@
       </div>
     </div>
 
+    <?php if ($this->session->userdata('role') == 1) { ?>
     <div class="row mt-3">
-      <div class="col-md-4">
+      <div class="col-md-4 mt-2">
         <div class="card shadow" style="border-radius: 1rem !important;">
           <div class="card-header bg-primary" style="border-radius: 1rem !important;">
             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Per Prodi</a>
           </div>
-          <div id="demo" class="card-body collapse in">
+          <div id="demo" class="card-body collapse show">
             <canvas id="myChart"></canvas>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 mt-2">
         <div class="card shadow" style="border-radius: 1rem !important;">
           <div class="card-header bg-primary" style="border-radius: 1rem !important;">
             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Per Dosen</a>
           </div>
-          <div id="demo2" class="card-body collapse in">
+          <div id="demo2" class="card-body collapse show">
             <!-- <strong>
               <a class="bg-warning text-light" style="border-radius: 0.2rem !important;"> Belum Upload : <?php if (count($get_count_belum_upload) > 0) {
                                                                                                             foreach ($get_count_belum_upload as $data) { ?>
@@ -92,17 +93,18 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 mt-2">
         <div class="card shadow" style="border-radius: 1rem !important;">
           <div class="card-header bg-primary" style="border-radius: 1rem !important;">
             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo3"><i class="fa fa-expand"></i> Status Monitoring Pembelajaran</a>
           </div>
-          <div id="demo3" class="card-body collapse in">
+          <div id="demo3" class="card-body collapse show">
             <canvas id="myChart3"></canvas>
           </div>
         </div>
       </div>
     </div>
+    <?php } ?>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -319,7 +321,7 @@
       <div class="col-md-3 card shadow">asd</div>
       <div class="col-md-3 card shadow">asd</div>
     </div> -->
-    <div class="row card shadow mt-3" style="border-radius: 2rem !important;">
+    <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
       <div class="col-md-12 my-5">
         <div class="table-responsive-xl mx-2">
           <table class="table table-hover table-xl" id="records">
@@ -627,25 +629,25 @@
 
                     if (`${row.keterangan}` == 'null' && `${row.upload}` == 'null') {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
                                 <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-light btn-disabled disabledxxx mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       `;
 
                     } else if (`${row.keterangan}` != 'null' && `${row.upload}` == 'null') {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
                                 <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-primary mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       `;
 
                     } else if (`${row.keterangan}` == 'null' && `${row.upload}` != 'null') {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
                                 <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       `;
 
                     } else {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
                                 <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       
                                `;
@@ -653,13 +655,13 @@
                   <?php } elseif ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
                     if (`${row.keterangan}` == 'null') {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
                                 <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-warning mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       `;
 
                     } else {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
                                 <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-warning btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       
                                `;
