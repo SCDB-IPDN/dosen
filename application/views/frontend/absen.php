@@ -86,14 +86,14 @@
                 <div class="col-sm-6">
                     <div class="card shadow">
                         <div class="card-body">
-                            <canvas id="absenpulang"></canvas>
+                            <canvas id="absenpulang_xxx"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="card shadow">
                         <div class="card-body">
-                            <canvas id="absenmasuk"></canvas>
+                            <canvas id="absenmasuk_xxx"></canvas>
                         </div>
                     </div>
                 </div>
@@ -123,8 +123,8 @@
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
         <script>
             // ABSEN PULANG
-            var ctx = document.getElementById('absenpulang').getContext('2d');
-            var absenpulang = new Chart(ctx, {
+            var ctx = document.getElementById('absenpulang_xxx').getContext('2d');
+            var absenpulang_xxx = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: [
@@ -202,8 +202,8 @@
             });
 
             // ABSEN MASUK
-            var ctx = document.getElementById('absenmasuk').getContext('2d');
-            var absenmasuk = new Chart(ctx, {
+            var ctx = document.getElementById('absenmasuk_xxx').getContext('2d');
+            var absenmasuk_xxx = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: [
