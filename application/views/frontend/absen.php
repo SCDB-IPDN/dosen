@@ -92,7 +92,7 @@
                         <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Absen Pulang</a>
                     </div>
                     <div id="demo" class="card-body collapse show">
-                        <canvas id="absenpulang"></canvas>
+                        <canvas id="absenpulang_xxx"></canvas>
                     </div>
                 </div>
             </div>
@@ -102,7 +102,8 @@
                         <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Absen Masuk</a>
                     </div>
                     <div id="demo2" class="card-body">
-                        <canvas id="absenmasuk"></canvas>
+                        <canvas id="absenmasuk_xxx"></canvas>
+
                     </div>
                 </div>
             </div>
@@ -132,8 +133,8 @@
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
         <script>
             // ABSEN PULANG
-            var ctx = document.getElementById('absenpulang').getContext('2d');
-            var absenpulang = new Chart(ctx, {
+            var ctx = document.getElementById('absenpulang_xxx').getContext('2d');
+            var absenpulang_xxx = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: [
@@ -211,8 +212,8 @@
             });
 
             // ABSEN MASUK
-            var ctx = document.getElementById('absenmasuk').getContext('2d');
-            var absenmasuk = new Chart(ctx, {
+            var ctx = document.getElementById('absenmasuk_xxx').getContext('2d');
+            var absenmasuk_xxx = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: [
@@ -437,57 +438,60 @@
     /* -------------------------------------------------------------------------- */
     /*                                Fetch Records                               */
     /* -------------------------------------------------------------------------- */
-    function fetch() {
-        $.ajax({
-            url: "<?php echo base_url('fetch_absen/' . base64_encode($this->session->userdata('username'))); ?>",
-            type: "post",
-            dataType: "json",
-            success: function(data) {
-                if (data.responce == "success") {
-                    var i = "1";
-                    $('#records').DataTable({
-                        "data": data.posts,
-                        "responsive": true,
-                        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
-                            "<'row'<'col-sm-12'tr>>" +
-                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                        buttons: [
-                            'copy', 'excel', 'pdf'
-                        ],
-                        "columns": [{
-                                "render": function() {
-                                    return a = i++;
-                                }
-                            },
-                            {
-                                "data": "tgl"
-                            },
-                            {
-                                "data": "waktu"
-                            },
-                            {
-                                "data": "waktu_pulang"
-                            },
-                            {
-                                "data": "via"
-                            },
-                            {
-                                "data": "kondisi"
-                            },
-                            {
-                                "data": "status"
-                            },
-                            {
-                                "data": "keterangan"
-                            }
-                        ]
-                    });
-                } else {
-                    toastr["error"](data.message);
-                }
+    <?php if (!empty($get_validate[0]->id_absen)) { ?>
 
-            }
-        });
-    }
-    fetch();
+        function fetch() {
+            $.ajax({
+                url: "<?php echo base_url('fetch_absen/' . base64_encode($this->session->userdata('username'))); ?>",
+                type: "post",
+                dataType: "json",
+                success: function(data) {
+                    if (data.responce == "success") {
+                        var i = "1";
+                        $('#records').DataTable({
+                            "data": data.posts,
+                            "responsive": true,
+                            dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                                "<'row'<'col-sm-12'tr>>" +
+                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                            buttons: [
+                                'copy', 'excel', 'pdf'
+                            ],
+                            "columns": [{
+                                    "render": function() {
+                                        return a = i++;
+                                    }
+                                },
+                                {
+                                    "data": "tgl"
+                                },
+                                {
+                                    "data": "waktu"
+                                },
+                                {
+                                    "data": "waktu_pulang"
+                                },
+                                {
+                                    "data": "via"
+                                },
+                                {
+                                    "data": "kondisi"
+                                },
+                                {
+                                    "data": "status"
+                                },
+                                {
+                                    "data": "keterangan"
+                                }
+                            ]
+                        });
+                    } else {
+                        toastr["error"](data.message);
+                    }
+
+                }
+            });
+        }
+        fetch();
+    <?php } ?>
 </script>
