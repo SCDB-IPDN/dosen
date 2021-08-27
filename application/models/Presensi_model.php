@@ -25,6 +25,25 @@ class Presensi_model extends CI_Model
         }
     }
 
+    public function get_detail_monitoring()
+    {
+        $get_data   = $this->db
+        ->select('COUNT( id_plot ) As TotalMonitoring, nama,nama_matkul,id_prodi,
+        CASE WHEN keterangan is null and upload is null THEN \'Belum Mulai\' 
+        WHEN keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
+        WHEN keterangan is NOT null and upload is NOT null THEN \'Telah Selesai\'END AS StatusMonitoring')
+        ->from('tbl_plot_dosen')
+        ->where("tanggal", date('2021-04-07'))
+        ->group_by(array("StatusMonitoring","nama","nama_matkul","id_prodi"))
+        ->get();
+
+    if ($get_data->num_rows() > 0) {
+        return $get_data->result();
+    } else {
+        return false;
+    }
+    }
+
     public function insert_entry($data)
     {
         return $this->db->insert('tbl_plot_dosen', $data);
