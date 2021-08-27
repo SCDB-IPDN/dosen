@@ -428,57 +428,60 @@
     /* -------------------------------------------------------------------------- */
     /*                                Fetch Records                               */
     /* -------------------------------------------------------------------------- */
-    function fetch() {
-        $.ajax({
-            url: "<?php echo base_url('fetch_absen/' . base64_encode($this->session->userdata('username'))); ?>",
-            type: "post",
-            dataType: "json",
-            success: function(data) {
-                if (data.responce == "success") {
-                    var i = "1";
-                    $('#records').DataTable({
-                        "data": data.posts,
-                        "responsive": true,
-                        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
-                            "<'row'<'col-sm-12'tr>>" +
-                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                        buttons: [
-                            'copy', 'excel', 'pdf'
-                        ],
-                        "columns": [{
-                                "render": function() {
-                                    return a = i++;
-                                }
-                            },
-                            {
-                                "data": "tgl"
-                            },
-                            {
-                                "data": "waktu"
-                            },
-                            {
-                                "data": "waktu_pulang"
-                            },
-                            {
-                                "data": "via"
-                            },
-                            {
-                                "data": "kondisi"
-                            },
-                            {
-                                "data": "status"
-                            },
-                            {
-                                "data": "keterangan"
-                            }
-                        ]
-                    });
-                } else {
-                    toastr["error"](data.message);
-                }
+    <?php if (!empty($get_validate[0]->id_absen)) { ?>
 
-            }
-        });
-    }
-    fetch();
+        function fetch() {
+            $.ajax({
+                url: "<?php echo base_url('fetch_absen/' . base64_encode($this->session->userdata('username'))); ?>",
+                type: "post",
+                dataType: "json",
+                success: function(data) {
+                    if (data.responce == "success") {
+                        var i = "1";
+                        $('#records').DataTable({
+                            "data": data.posts,
+                            "responsive": true,
+                            dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                                "<'row'<'col-sm-12'tr>>" +
+                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                            buttons: [
+                                'copy', 'excel', 'pdf'
+                            ],
+                            "columns": [{
+                                    "render": function() {
+                                        return a = i++;
+                                    }
+                                },
+                                {
+                                    "data": "tgl"
+                                },
+                                {
+                                    "data": "waktu"
+                                },
+                                {
+                                    "data": "waktu_pulang"
+                                },
+                                {
+                                    "data": "via"
+                                },
+                                {
+                                    "data": "kondisi"
+                                },
+                                {
+                                    "data": "status"
+                                },
+                                {
+                                    "data": "keterangan"
+                                }
+                            ]
+                        });
+                    } else {
+                        toastr["error"](data.message);
+                    }
+
+                }
+            });
+        }
+        fetch();
+    <?php } ?>
 </script>
