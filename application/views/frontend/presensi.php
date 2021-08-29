@@ -286,7 +286,7 @@
     <script>
       var ctx = document.getElementById('myChart3').getContext('2d');
       var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
           labels: [
             <?php if (count($get_count_status_monitoring) > 0) {
@@ -367,15 +367,15 @@
               <tr>
                 <th>No</th>
                 <th></th>
-                <th>NIP</th>
-                <th>Nama</th>
                 <th>Matakuliah</th>
-                <th>Tanggal</th>
                 <th>Jam</th>
                 <th>Kelas</th>
-                <th>Semester</th>
-                <th>Fakultas</th>
+                <th>Tanggal</th>
                 <th>Prodi</th>
+                <th>Fakultas</th>
+                <th>NIP</th>
+                <th>Nama</th>
+                <th>Semester</th>
                 <th>SKS</th>
                 <th>Gambar</th>
                 <th></th>
@@ -408,7 +408,7 @@
           <!-- Edit Record Form -->
           <form action="" method="post" id="edit_form">
             <input type="hidden" id="edit_id" name="edit_id" value="">
-           
+
             <div class="form-group">
               <label for="">Link Media Pembelajaran</label>
               <input type="text" id="edit_keterangan" class="form-control">
@@ -561,10 +561,26 @@
             "data": data.posts,
             "responsive": true,
             dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
-              "<'row'<'col-sm-12 col-md-1'tr>>" +
+              "<'row'<'col-sm-12'tr>>" +
               "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-            buttons: [
-              'copy', 'excel', 'pdf'
+            buttons: [{
+                extend: 'copy',
+                className: 'btn-info'
+              },
+              {
+                extend: 'excel',
+                className: 'btn-info'
+              },
+              {
+                extend: 'pdf',
+                className: 'btn-info',
+                orientation: 'landscape',
+                pageSize: 'A3'
+              },
+              {
+                extend: 'print',
+                className: 'btn-info'
+              }
             ],
             "columns": [{
                 "render": function() {
@@ -620,16 +636,7 @@
                 }
               },
               {
-                "data": "nip"
-              },
-              {
-                "data": "nama"
-              },
-              {
                 "data": "nama_matkul"
-              },
-              {
-                "data": "tanggal"
               },
               {
                 "data": "jam"
@@ -638,13 +645,22 @@
                 "data": "kelas"
               },
               {
-                "data": "semester"
+                "data": "tanggal"
+              },
+              {
+                "data": "nama_prodi"
               },
               {
                 "data": "nama_fakultas"
               },
               {
-                "data": "nama_prodi"
+                "data": "nip"
+              },
+              {
+                "data": "nama"
+              },
+              {
+                "data": "semester"
               },
               {
                 "data": "sks"

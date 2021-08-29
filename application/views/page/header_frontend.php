@@ -114,7 +114,7 @@
                             </label>
                         </div>
                     </nav>
-                </div> -->
+                    </div> -->
                     <!-- //toggle switch for light and dark theme -->
 
                 </nav>
