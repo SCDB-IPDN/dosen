@@ -9,7 +9,7 @@ class Presensi_model extends CI_Model
             $get_data   = $this->db
                 ->select('*')
                 ->from('tbl_plot_dosen')
-                ->where("tanggal", date('2021-04-07'))
+                ->where("tanggal", date('Y-m-d'))
                 ->get();
         } else {
             $get_data   = $this->db
@@ -33,7 +33,7 @@ class Presensi_model extends CI_Model
         WHEN keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
         WHEN keterangan is NOT null and upload is NOT null THEN \'Telah Selesai\'END AS StatusMonitoring')
         ->from('tbl_plot_dosen')
-        ->where("tanggal", date('2021-04-07'))
+        ->where("tanggal", date('Y-m-d'))
         ->group_by(array("StatusMonitoring","nama","nama_matkul","id_prodi"))
         ->get();
 
@@ -183,7 +183,7 @@ class Presensi_model extends CI_Model
         $get_data   = $this->db
             ->select('count( id_plot ) As TotalMonitoring, id_prodi')
             ->from('tbl_plot_dosen')
-            ->where("tanggal", date('2021-04-07'))
+            ->where("tanggal", date('Y-m-d'))
             ->group_by("id_prodi")
             ->get();
 
@@ -200,7 +200,7 @@ class Presensi_model extends CI_Model
         $get_data   = $this->db
             ->select('count( id_plot ) As TotalMonitoring, nama')
             ->from('tbl_plot_dosen')
-            ->where("tanggal", date('2021-04-07'))
+            ->where("tanggal", date('Y-m-d'))
             ->group_by("nama")
             ->get();
 
@@ -219,33 +219,33 @@ class Presensi_model extends CI_Model
              CASE WHEN keterangan is null and upload is null THEN \'Belum Mulai\' 
              WHEN keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
              WHEN keterangan is NOT null and upload is NOT null THEN \'Telah Selesai\'END AS StatusMonitoring')
-            ->from('tbl_plot_dosen')
-            ->where("tanggal", date('2021-04-07'))
-            ->group_by("StatusMonitoring")
-            ->get();
+             ->from('tbl_plot_dosen')
+             ->where("tanggal", date('Y-m-d'))
+             ->group_by("StatusMonitoring")
+             ->get();
+ 
+         if ($get_data->num_rows() > 0) {
+             return $get_data->result();
+         } else {
+             return false;
+         }
+     }
 
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
-
-    //count sudah upload
-    public function get_count_sudah_upload()
-    {
-        $get_data   = $this->db
-            ->select('count( id_plot ) As TotalMonitoring')
-            ->from('tbl_plot_dosen')
-            ->where("tanggal", date('2021-04-07'))
-            ->where("upload !=", null)
-            ->where("media_pembelajaran !=", null)
-            ->get();
-
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
+      //count sudah upload
+      public function get_count_sudah_upload()
+      {
+          $get_data   = $this->db
+              ->select('count( id_plot ) As TotalMonitoring')
+              ->from('tbl_plot_dosen')
+              ->where("tanggal", date('Y-m-d'))
+              ->where("upload !=", null)
+              ->where("media_pembelajaran !=", null)
+              ->get();
+  
+          if ($get_data->num_rows() > 0) {
+              return $get_data->result();
+          } else {
+              return false;
+          }
+      }
 }
