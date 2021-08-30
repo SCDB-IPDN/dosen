@@ -50,43 +50,48 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
 
 <!-- Dashboard -->
 <section id="home" class="w3l-banner py-5">
-    <div class="banner-image">
-    </div>
+    <!-- <div class="banner-image">
+    </div> -->
 
     <div id="particles-js"></div>
     <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
 
     <div class="banner-content">
         <div class="container pt-5 pb-md-4">
-            <div class="card border-primary text-center mb-3 mt-3">
-                <!-- <div class="card-header">
-                    Dashboard Presensi Perbulan
-                </div> -->
-                <div class="card-body">
-                    <h5 class="card-title">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</h5>
-                    <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan; ?></b></p>
+            <div class="card shadow text-center mb-3 mt-3" style="border-radius: 1rem !important;">
+                <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
+                </div>
+                <div id="card1" class="card-body ">
+                    <h4><b>Total Data: <?= $count_pulang_perbulan; ?></b></h4>
                 </div>
             </div>
             <!-- </div> -->
             <!-- <div class="container"> -->
             <div class="card-deck">
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data Dosen Non PNS</h5>
+                <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card11">Data Dosen Non PNS</a>
+                    </div>
+                    <div id="card11" class="card-body collapse show">
                         <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan1; ?></b></p>
                         <canvas id="absenpulangdosenperbln"></canvas>
                     </div>
                 </div>
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data PNS</h5>
+                <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card12">Data PNS</a>
+                    </div>
+                    <div id="card12" class="card-body collapse show">
                         <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan2; ?></b></p>
                         <canvas id="absenpulangpnsperbln"></canvas>
                     </div>
                 </div>
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data PNS Dosen</h5>
+                <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card13">Data PNS Dosen</a>
+                    </div>
+                    <div id="card13" class="card-body collapse show">
                         <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan3; ?></b></p>
                         <canvas id="absenpulangpnsdosenperbln"></canvas>
                     </div>
@@ -96,30 +101,38 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
         <!-- </div>
     <div class="banner-content"> -->
         <div class="container pt-5 pb-md-4">
-            <div class="card border-primary text-center mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</h5>
+            <div class="card text-center shadow mb-3" style="border-radius: 1rem !important;">
+                <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
+                </div>
+                <div id="card2" class="card-body">
                     <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan; ?></b></p>
                 </div>
             </div>
             <div class="card-deck">
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data Dosen Non PNS</h5>
+                <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card21">Data Dosen Non PNS</a>
+                    </div>
+                    <div id="card21" class="card-body">
                         <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan1; ?></b></p>
                         <canvas id="absenmasukdosenperbln"></canvas>
                     </div>
                 </div>
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data PNS</h5>
+                <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card22">Data PNS</a>
+                    </div>
+                    <div id="card22" class="card-body">
                         <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan2; ?></b></p>
                         <canvas id="absenmasukpnsperbln"></canvas>
                     </div>
                 </div>
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <h5 class="card-title">Data PNS Dosen</h5>
+                <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card-header bg-primary" style="border-radius: 1rem !important;">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card23">Data PNS Dosen</a>
+                    </div>
+                    <div id="card23" class="card-body">
                         <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan3; ?></b></p>
                         <canvas id="absenmasukpnsdosenperbln"></canvas>
                     </div>
