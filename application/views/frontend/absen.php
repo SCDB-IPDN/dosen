@@ -342,7 +342,7 @@
                                 <label for="">Kondisi</label>
                                 <select name="kondisi" id="kondisi" class="form-control">
                                     <option value="Sehat">Sehat</option>
-                                    <option value="Kurang Sehat/Fit">Kurang Sehat/Fit</option>
+                                    <!-- <option value="Kurang Sehat/Fit">Kurang Sehat/Fit</option> -->
                                     <option value="Sakit">Sakit</option>
                                 </select>
                             </div>
@@ -478,7 +478,7 @@
                                     "data": "kondisi"
                                 },
                                 {
-                                    "data": "status"
+                                    "data": "status_pulang"
                                 },
                                 {
                                     "data": "keterangan"

@@ -85,13 +85,25 @@ class Presensi_model extends CI_Model
     {
         if ($username == 'admin') {
             $get_data   = $this->db
-                ->select('*')
+                ->select('*,
+                CASE
+                        WHEN waktu_pulang < \'16:00:00\' THEN
+                        \'Sebelum Waktunya\' 
+                        WHEN waktu_pulang > \'16:00:00\' THEN
+                        \'Tepat Waktu\' ELSE \'\' 
+                    END AS status_pulang')
                 ->from('absensi')
                 ->where("tgl", date('Y-m-d'))
                 ->get();
         } else {
             $get_data   = $this->db
-                ->select('*')
+                ->select('*,
+                CASE
+                        WHEN waktu_pulang < \'16:00:00\' THEN
+                        \'Pulang Sebelum Waktunya\' 
+                        WHEN waktu_pulang > \'16:00:00\' THEN
+                        \'Pulang Tepat Waktu\' ELSE \'\' 
+                    END AS status_pulang')
                 ->from('absensi')
                 ->where("username", $username)
                 ->where("tgl", date('Y-m-d'))
@@ -199,11 +211,11 @@ class Presensi_model extends CI_Model
         }
     }
 
-     //count belum upload
-     public function get_count_status_monitoring()
-     {
-         $get_data   = $this->db
-             ->select('COUNT( id_plot ) As TotalMonitoring, 
+    //count belum upload
+    public function get_count_status_monitoring()
+    {
+        $get_data   = $this->db
+            ->select('COUNT( id_plot ) As TotalMonitoring, 
              CASE WHEN keterangan is null and upload is null THEN \'Belum Mulai\' 
              WHEN keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
              WHEN keterangan is NOT null and upload is NOT null THEN \'Telah Selesai\'END AS StatusMonitoring')
