@@ -100,7 +100,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
         </div>
         <!-- </div>
     <div class="banner-content"> -->
-        <div class="container pt-5 pb-md-4">
+         <div class="container pt-5 pb-md-4">
             <div class="card text-center shadow mb-3" style="border-radius: 1rem !important;">
                 <div class="card-header bg-primary" style="border-radius: 1rem !important;">
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
