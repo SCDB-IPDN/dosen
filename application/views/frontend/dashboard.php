@@ -58,7 +58,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
 
     <div class="banner-content">
         <div class="container pt-5 pb-md-4">
-            <div class="card shadow text-center mb-3 mt-3" style="border-radius: 1rem !important;">
+            <div class="card shadow text-center mb-3 mt-3 border-0" style="border-radius: 1rem !important;">
                 <div class="card-header bg-primary" style="border-radius: 1rem !important;">
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
                 </div>
@@ -70,7 +70,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
             <!-- <div class="container"> -->
             <div class="row">
                 <div class="col-md-4 my-1">
-                    <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card shadow border-0" style="border-radius: 1rem !important;">
                         <div class="card-header bg-primary" style="border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card11">Data Dosen Non PNS</a>
                         </div>
@@ -81,7 +81,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                     </div>
                 </div>
                 <div class="col-md-4 my-1">
-                    <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card shadow border-0" style="border-radius: 1rem !important;">
                         <div class="card-header bg-primary" style="border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card12">Data PNS</a>
                         </div>
@@ -92,7 +92,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                     </div>
                 </div>
                 <div class="col-md-4 my-1">
-                    <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card shadow border-0" style="border-radius: 1rem !important;">
                         <div class="card-header bg-primary" style="border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card13">Data PNS Dosen</a>
                         </div>
@@ -107,7 +107,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
         <!-- </div>
     <div class="banner-content"> -->
         <div class="container pt-5 pb-md-4">
-            <div class="card text-center shadow mb-3" style="border-radius: 1rem !important;">
+            <div class="card text-center shadow mb-3 border-0" style="border-radius: 1rem !important;">
                 <div class="card-header bg-primary" style="border-radius: 1rem !important;">
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
                 </div>
@@ -117,7 +117,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
             </div>
             <div class="row">
                 <div class="col-md-4 my-1">
-                    <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card shadow border-0" style="border-radius: 1rem !important;">
                         <div class="card-header bg-primary" style="border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card21">Data Dosen Non PNS</a>
                         </div>
@@ -128,7 +128,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                     </div>
                 </div>
                 <div class="col-md-4 my-1">
-                    <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card shadow border-0" style="border-radius: 1rem !important;">
                         <div class="card-header bg-primary" style="border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card22">Data PNS</a>
                         </div>
@@ -139,7 +139,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                     </div>
                 </div>
                 <div class="col-md-4 my-1">
-                    <div class="card shadow" style="border-radius: 1rem !important;">
+                    <div class="card shadow border-0" style="border-radius: 1rem !important;">
                         <div class="card-header bg-primary" style="border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card23">Data PNS Dosen</a>
                         </div>

@@ -21,20 +21,23 @@
 
 <body>
 
+<div id="particles-js"></div>
+ <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
+
     <div class="content">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 animated2 pulse">
                     <img src="<?php echo base_url('assets/login-form-07/images/undraw_remotely_2j6y.svg'); ?>" alt="Image" class="img-fluid">
                 </div>
-                <div class="col-md-6 contents">
+                <div class="col-md-6 contents animated fadeInRight">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="mb-4">
                                 <h3>Login Form</h3>
                                 <p class="mb-4">Aplikasi Presensi</p>
                             </div>
-                            <form action="<?= base_url('/ceklogin') ?>" method="post">
+                            <form class="animated2 pulse" action="<?= base_url('/ceklogin') ?>" method="post">
                                 <div class="form-group first">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" id="username" name="username">

@@ -24,7 +24,6 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/dashboard');
-		$this->load->view('page/javascript_frontend');
 		$this->load->view('page/js_datatable_frontend');
 	}
 }
