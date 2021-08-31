@@ -99,7 +99,7 @@
 
     <?php if ($this->session->userdata('role') == 1) { ?>
       <div class="row mt-3">
-        <div class="col-md-4 mt-2 animated pulse">
+        <div class="col-md-4 mt-2 animated swing">
           <div class="card shadow border-0" style="border-radius: 1rem !important;">
             <div class="card-header bg-primary" style="border-radius: 1rem !important;">
               <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Per Prodi</a>
@@ -109,7 +109,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mt-2 animated pulse">
+        <div class="col-md-4 mt-2 animated swing">
           <div class="card shadow border-0" style="border-radius: 1rem !important;">
             <div class="card-header bg-primary" style="border-radius: 1rem !important;">
               <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Per Dosen</a>
@@ -132,7 +132,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mt-2 animated pulse">
+        <div class="col-md-4 mt-2 animated swing">
           <div class="card shadow border-0" style="border-radius: 1rem !important;">
             <div class="card-header bg-primary" style="border-radius: 1rem !important;">
               <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo3"><i class="fa fa-expand"></i> Status Monitoring Pembelajaran</a>
@@ -144,216 +144,217 @@
           </div>
         </div>
       </div>
-    <?php } ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: [
-            <?php if (count($get_current_prodi) > 0) {
-              foreach ($get_current_prodi as $data) { ?> "<?= $data->id_prodi ?>",
-            <?php }
-            } ?>
-          ],
-          datasets: [{
-            label: '',
-            fill: true,
-            data: [
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: [
               <?php if (count($get_current_prodi) > 0) {
-                foreach ($get_current_prodi as $data) { ?>
-                  <?= $data->TotalMonitoring ?>,
+                foreach ($get_current_prodi as $data) { ?> "<?= $data->id_prodi ?>",
               <?php }
               } ?>
             ],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 2
-          }]
-        },
-
-        options: {
-          plugins: {
-            legend: {
-              display: false
-            },
-            // title: {
-            //   display: true,
-            //   text: '',
-
-            //   font: {
-            //     size: 20
-            //   },
-            //   color: 'blue',
-            //   padding: {
-            //     top: 10,
-            //     bottom: 30
-            //   }
-            // }
+            datasets: [{
+              label: '',
+              fill: true,
+              data: [
+                <?php if (count($get_current_prodi) > 0) {
+                  foreach ($get_current_prodi as $data) { ?>
+                    <?= $data->TotalMonitoring ?>,
+                <?php }
+                } ?>
+              ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 2
+            }]
           },
-          indexAxis: 'x',
-          scales: {
-            y: {
-              beginAtZero: true
+
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              },
+              // title: {
+              //   display: true,
+              //   text: '',
+
+              //   font: {
+              //     size: 20
+              //   },
+              //   color: 'blue',
+              //   padding: {
+              //     top: 10,
+              //     bottom: 30
+              //   }
+              // }
+            },
+            indexAxis: 'x',
+            scales: {
+              y: {
+                beginAtZero: true
+              }
             }
           }
-        }
-      });
-    </script>
-    <script>
-      var ctx = document.getElementById('myChart2').getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: [
-            <?php if (count($get_current_dosen) > 0) {
-              foreach ($get_current_dosen as $data) { ?> "<?= $data->nama ?>",
-            <?php }
-            } ?>
-          ],
-          datasets: [{
-            label: '',
-            fill: true,
-            data: [
+        });
+      </script>
+      <script>
+        var ctx = document.getElementById('myChart2').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: [
               <?php if (count($get_current_dosen) > 0) {
-                foreach ($get_current_dosen as $data) { ?>
-                  <?= $data->TotalMonitoring ?>,
+                foreach ($get_current_dosen as $data) { ?> "<?= $data->nama ?>",
               <?php }
               } ?>
             ],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 2
-          }]
-        },
-
-        options: {
-          plugins: {
-            legend: {
-              display: false
-            },
-            // title: {
-            //   display: true,
-            //   text: '',
-
-            //   font: {
-            //     size: 20
-            //   },
-            //   color: 'blue',
-            //   padding: {
-            //     top: 10,
-            //     bottom: 30
-            //   }
-            // }
+            datasets: [{
+              label: '',
+              fill: true,
+              data: [
+                <?php if (count($get_current_dosen) > 0) {
+                  foreach ($get_current_dosen as $data) { ?>
+                    <?= $data->TotalMonitoring ?>,
+                <?php }
+                } ?>
+              ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 2
+            }]
           },
-          indexAxis: 'y',
-          scales: {
-            y: {
-              beginAtZero: true
+
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              },
+              // title: {
+              //   display: true,
+              //   text: '',
+
+              //   font: {
+              //     size: 20
+              //   },
+              //   color: 'blue',
+              //   padding: {
+              //     top: 10,
+              //     bottom: 30
+              //   }
+              // }
+            },
+            indexAxis: 'y',
+            scales: {
+              y: {
+                beginAtZero: true
+              }
             }
           }
-        }
-      });
-    </script>
-    <script>
-      var ctx = document.getElementById('myChart3').getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: [
-            <?php if (count($get_count_status_monitoring) > 0) {
-              foreach ($get_count_status_monitoring as $data) { ?> "<?= $data->StatusMonitoring ?>",
-            <?php }
-            } ?>
-          ],
-          datasets: [{
-            label: '',
-            fill: true,
-            data: [
+        });
+      </script>
+      <script>
+        var ctx = document.getElementById('myChart3').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: [
               <?php if (count($get_count_status_monitoring) > 0) {
-                foreach ($get_count_status_monitoring as $data) { ?>
-                  <?= $data->TotalMonitoring ?>,
+                foreach ($get_count_status_monitoring as $data) { ?> "<?= $data->StatusMonitoring ?>",
               <?php }
               } ?>
             ],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 2
-          }]
-        },
-
-        options: {
-          plugins: {
-            legend: {
-              display: false
-            },
-            // title: {
-            //   display: true,
-            //   text: '',
-
-            //   font: {
-            //     size: 20
-            //   },
-            //   color: 'blue',
-            //   padding: {
-            //     top: 10,
-            //     bottom: 30
-            //   }
-            // }
+            datasets: [{
+              label: '',
+              fill: true,
+              data: [
+                <?php if (count($get_count_status_monitoring) > 0) {
+                  foreach ($get_count_status_monitoring as $data) { ?>
+                    <?= $data->TotalMonitoring ?>,
+                <?php }
+                } ?>
+              ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 2
+            }]
           },
-          indexAxis: 'y',
-          scales: {
-            y: {
-              beginAtZero: true
+
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              },
+              // title: {
+              //   display: true,
+              //   text: '',
+
+              //   font: {
+              //     size: 20
+              //   },
+              //   color: 'blue',
+              //   padding: {
+              //     top: 10,
+              //     bottom: 30
+              //   }
+              // }
+            },
+            indexAxis: 'y',
+            scales: {
+              y: {
+                beginAtZero: true
+              }
             }
           }
-        }
-      });
-    </script>
+        });
+      </script>
+    <?php } ?>
 
     <!-- <div class="row">
       <div class="col-md-3 card shadow">asd</div>
@@ -407,7 +408,7 @@
               <div id="show_img"></div>
             </div>
           </div> -->
-          <!-- Edit Record Form -->
+          <!-- mulai Record Form -->
           <form action="" method="post" id="edit_form">
             <input type="hidden" id="edit_id" name="edit_id" value="">
 
@@ -426,7 +427,7 @@
   </div>
 
   <!-- Akhiri Pembelajaran Modal -->
-  <div class="modal fade" id="edit_modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="akhiri_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -441,9 +442,9 @@
               <div id="show_img"></div>
             </div>
           </div> -->
-          <!-- Edit Record Form -->
-          <form action="" method="post" id="edit_form2">
-            <input type="hidden" id="edit_id2" name="edit_id2" value="">
+          <!-- mulai Record Form -->
+          <form action="" method="post" id="akhir_form">
+            <input type="hidden" id="akhiri_id" name="akhiri_id" value="">
             <div class="form-group">
               <label for="">Media Belajar</label>
               <select name="edit_media" id="edit_media" class="form-control">
@@ -455,7 +456,7 @@
             <div class="form-group">
               <label for="">Upload Bukti</label>
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="edit_img">
+                <input type="file" class="custom-file-input" name="upload_img" id="upload_img">
                 <label class="custom-file-label" for="customFile">Pilih Gambar!</label>
               </div>
             </div>
@@ -463,7 +464,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="update2">Mulai Pembelajaran</button>
+          <button type="button" class="btn btn-primary" id="akhiri_pembelajaran">Akhiri Pembelajaran</button>
         </div>
       </div>
     </div>
@@ -474,10 +475,10 @@
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <input type="hidden" id="zoom_id" name="edit_id" value="">
+          <input type="hidden" id="zoom_id" name="zoom_id" value="">
           <div class="row text-center">
             <div class="col-md-12 my-2">
-              <div id="show_img2"></div>
+              <div id="img_show"></div>
             </div>
           </div>
         </div>
@@ -596,40 +597,52 @@
 
                     if (`${row.keterangan}` == 'null' && `${row.upload}` == 'null') {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
-                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-light btn-disabled disabledxxx mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled disabledxxx mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       `;
 
                     } else if (`${row.keterangan}` != 'null' && `${row.upload}` == 'null') {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
-                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-primary mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-primary mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       `;
 
                     } else if (`${row.keterangan}` == 'null' && `${row.upload}` != 'null') {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
-                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       `;
 
                     } else {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
-                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       
                                `;
                     }
                   <?php } elseif ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
-                    if (`${row.keterangan}` == 'null') {
+                    if (`${row.keterangan}` == 'null' && `${row.upload}` == 'null') {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
-                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-warning mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled disabledxxx mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else if (`${row.keterangan}` != 'null' && `${row.upload}` == 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-primary mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else if (`${row.keterangan}` == 'null' && `${row.upload}` != 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       `;
 
                     } else {
                       var ax = `
-                                <a href="#" value="${row.id_plot}" id="edit" class="btn btn-primary btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
-                                <a href="#" value="${row.id_plot}" id="edit2" class="btn btn-warning btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
                       
                                `;
                     }
@@ -829,12 +842,12 @@
   });
 
   /* ---------------------------- Mulai Pemebelajaran Modal --------------------------- */
-  $(document).on("click", "#edit", function(e) {
+  $(document).on("click", "#mulai", function(e) {
     e.preventDefault();
     var edit_id = $(this).attr("value");
 
     $.ajax({
-      url: "<?php echo base_url(); ?>edit",
+      url: "<?php echo base_url(); ?>mulai_edit",
       type: "post",
       dataType: "json",
       data: {
@@ -868,21 +881,21 @@
   });
 
   /* ---------------------------- Akhiri Pembelajaran Modal --------------------------- */
-  $(document).on("click", "#edit2", function(e) {
+  $(document).on("click", "#akhiri", function(e) {
     e.preventDefault();
-    var edit_id = $(this).attr("value");
+    var akhiri_id = $(this).attr("value");
 
     $.ajax({
-      url: "<?php echo base_url(); ?>edit",
+      url: "<?php echo base_url(); ?>akhiri_edit",
       type: "post",
       dataType: "json",
       data: {
-        edit_id: edit_id
+        akhiri_id: akhiri_id
       },
       success: function(data) {
         if (data.responce == "success") {
-          $('#edit_modal2').modal('show');
-          $("#edit_id2").val(data.post.id_plot);
+          $('#akhiri_modal').modal('show');
+          $("#akhiri_id").val(data.post.id_plot);
           // $("#edit_nip").val(data.post.nip);
           // $("#edit_nama").val(data.post.nama);
           // $("#edit_matkul").val(data.post.nama_matkul);
@@ -894,9 +907,9 @@
           // $("#edit_prodi").val(data.post.nama_prodi);
           // $("#edit_sks").val(data.post.sks);
           $("#edit_media").val(data.post.media_pembelajaran);
-          $("#show_img").html(`
-                    <img src="${base_url}assets/upload/${data.post.upload}" width="300" height="250" class="rounded img-thumbnail">
-                `);
+          // $("#show_img").html(`
+          //           <img src="${base_url}assets/upload/${data.post.upload}" width="300" height="250" class="rounded img-thumbnail">
+          //       `);
           // $("#edit_keterangan").val(data.post.keterangan);
           // $("#edit_waktu").val(data.post.waktu_upload);
         } else {
@@ -912,7 +925,7 @@
     var zoom_id = $(this).attr("value");
 
     $.ajax({
-      url: "<?php echo base_url(); ?>edit",
+      url: "<?php echo base_url(); ?>mulai_edit",
       type: "post",
       dataType: "json",
       data: {
@@ -922,7 +935,7 @@
         if (data.responce == "success") {
           $('#zoom_modal').modal('show');
           $("#zoom_id").val(data.post.id_plot);
-          $("#show_img2").html(`
+          $("#img_show").html(`
                     <img src="${base_url}assets/upload/${data.post.upload}" width="100%" height="100%" class="rounded img-thumbnail">
                 `);
         } else {
@@ -965,7 +978,7 @@
       fd.append("edit_keterangan", edit_keterangan);
       fd.append("edit_waktu", edit_waktu);
       $.ajax({
-        url: "<?php echo base_url(); ?>update",
+        url: "<?php echo base_url(); ?>mulai_update",
         type: "post",
         dataType: "json",
         data: fd,
@@ -988,33 +1001,34 @@
   /* -------------------------------------------------------------------------- */
   /*                     Update Akhiri Pembelajaran Records                      */
   /* -------------------------------------------------------------------------- */
-  $(document).on("click", "#update2", function(e) {
+  $(document).on("click", "#akhiri_pembelajaran", function(e) {
     e.preventDefault();
     var today = new Date();
     var date = today.getFullYear() + '-' + adjust(today.getMonth() + 1) + '-' + adjust(today.getDate());
     var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
 
-    var edit_id = $("#edit_id2").val();
+    var akhiri_id = $("#akhiri_id").val();
     var edit_media = $("#edit_media").val();
     // var edit_keterangan = $("#edit_keterangan").val();
-    var edit_waktu = `${date}T${time}`;
+    var edit_waktu_akhiri = `${date}T${time}`;
 
-    var edit_img = $("#edit_img")[0].files[0];
+    var upload_img = $("#upload_img")[0].files[0];
+    
 
     if (edit_id == "" || edit_media == "") {
       alert("All field is required");
     } else {
       var fd = new FormData();
 
-      fd.append("edit_id", edit_id);
+      fd.append("akhiri_id", akhiri_id);
       fd.append("edit_media", edit_media);
       // fd.append("edit_keterangan", edit_keterangan);
-      fd.append("edit_waktu", edit_waktu);
-      if ($("#edit_img")[0].files.length > 0) {
-        fd.append("edit_img", edit_img);
+      fd.append("edit_waktu_akhiri", edit_waktu_akhiri);
+      if ($("#upload_img")[0].files.length > 0) {
+        fd.append("upload_img", upload_img);
       }
       $.ajax({
-        url: "<?php echo base_url(); ?>update2",
+        url: "<?php echo base_url(); ?>akhiri_update",
         type: "post",
         dataType: "json",
         data: fd,
@@ -1024,7 +1038,7 @@
           if (data.responce == "success") {
             $('#records').DataTable().destroy();
             fetch();
-            $('#edit_modal2').modal('hide');
+            $('#akhiri_modal').modal('hide');
             toastr["success"](data.message);
           } else {
             toastr["error"](data.message);

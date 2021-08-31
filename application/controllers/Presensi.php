@@ -78,10 +78,10 @@ class Presensi extends CI_Controller
 	public function fetch_detail_monitoring()
 	{
 		if ($this->input->is_ajax_request()) {
-				$posts = $this->presensi_model->get_detail_monitoring();
+			$posts = $this->presensi_model->get_detail_monitoring();
 
-				$data = array('responce' => 'success', 'posts' => $posts);
-				echo json_encode($data);
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
 		}
 	}
 
@@ -102,7 +102,7 @@ class Presensi extends CI_Controller
 		}
 	}
 
-	public function edit()
+	public function mulai_edit()
 	{
 		if ($this->input->is_ajax_request()) {
 			$edit_id = $this->input->post('edit_id');
@@ -118,9 +118,25 @@ class Presensi extends CI_Controller
 		}
 	}
 
+	public function akhiri_edit()
+	{
+		if ($this->input->is_ajax_request()) {
+			$edit_id = $this->input->post('akhiri_id');
+
+			if ($post = $this->presensi_model->edit_entry($edit_id)) {
+				$data = array('responce' => 'success', 'post' => $post);
+			} else {
+				$data = array('responce' => 'error', 'message' => 'failed to fetch record');
+			}
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
 
 
-	public function update()
+
+	public function mulai_update()
 	{
 
 		if ($this->input->is_ajax_request()) {
@@ -133,9 +149,9 @@ class Presensi extends CI_Controller
 				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu');
 
 				if ($this->presensi_model->update_entry($id, $ajax_data)) {
-					$data = array('responce' => 'success', 'message' => 'Record update Successfully');
+					$data = array('responce' => 'success', 'message' => 'Pembelajaran telah berlangsung');
 				} else {
-					$data = array('responce' => 'error', 'message' => 'Failed to update record');
+					$data = array('responce' => 'error', 'message' => 'Gagal memulai pembelajaran');
 				}
 			}
 
@@ -145,16 +161,18 @@ class Presensi extends CI_Controller
 		}
 	}
 
-	public function update2()
+	public function akhiri_update()
 	{
 		if ($this->input->is_ajax_request()) {
 			$this->form_validation->set_rules('edit_media', 'Media', 'required');
-			// $this->form_validation->set_rules('edit_img', 'Gambar', 'required');
+			if (empty($_FILES['upload_img']['name'])) {
+				$this->form_validation->set_rules('upload_img', 'Gambar', 'required');
+			}
 
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
-				if (isset($_FILES["edit_img"]["name"])) {
+				if (isset($_FILES["upload_img"]["name"])) {
 					$config['upload_path'] = APPPATH . '../assets/upload/';
 					$config['allowed_types'] = 'gif|jpg|png';
 					$config['max_size']     = '99999';
@@ -162,10 +180,10 @@ class Presensi extends CI_Controller
 					// $config['max_height'] = '768';
 					$this->load->library('upload', $config);
 
-					if (!$this->upload->do_upload("edit_img")) {
+					if (!$this->upload->do_upload("upload_img")) {
 						$data = array('responce' => "error", 'message' => $this->upload->display_errors());
 					} else {
-						$edit_id = $this->input->post('edit_id');
+						$edit_id = $this->input->post('akhiri_id');
 						if ($post = $this->presensi_model->single_entry($edit_id)) {
 							unlink(APPPATH . '../assets/upload/' . $post->upload);
 							$ajax_data['upload'] = $this->upload->data('file_name');
@@ -173,14 +191,14 @@ class Presensi extends CI_Controller
 					}
 				}
 
-				$id = $this->input->post('edit_id');
+				$id = $this->input->post('akhiri_id');
 				$ajax_data['media_pembelajaran'] = $this->input->post('edit_media');
-				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu');
+				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu_akhiri');
 
 				if ($this->presensi_model->update_entry($id, $ajax_data)) {
-					$data = array('responce' => 'success', 'message' => 'Record update Successfully');
+					$data = array('responce' => 'success', 'message' => 'Pembelajaran telah berakhir');
 				} else {
-					$data = array('responce' => 'error', 'message' => 'Failed to update record');
+					$data = array('responce' => 'error', 'message' => 'Gagal mengakhiri pembelajaran');
 				}
 				// }
 			}

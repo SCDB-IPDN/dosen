@@ -34,8 +34,8 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="mb-4">
-                                <h3>Login Form</h3>
-                                <p class="mb-4">Aplikasi Presensi</p>
+                                <h3 class="text-light">Login Form</h3>
+                                <p class="mb-4 text-light">Aplikasi Presensi</p>
                             </div>
                             <form class="animated2 pulse" action="<?= base_url('/ceklogin') ?>" method="post">
                                 <div class="form-group first">
