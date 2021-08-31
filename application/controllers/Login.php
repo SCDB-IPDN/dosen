@@ -43,13 +43,8 @@ class Login extends CI_Controller {
 			$this->session->set_userdata($dataSession);
 			redirect(base_url("beranda"));
 		} else {
-			echo "
-				<script>
-					alert('$cek');
-					window.location='Login';
-				</script>
-			";
-			//redirect("Login");
+			$this->session->set_flashdata('error',$cek); 
+			redirect(site_url("login"));
 		}
 	}
 
