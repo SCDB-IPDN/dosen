@@ -6,16 +6,16 @@
     <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
 
     <div class="container pt-5 pb-md-4">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12 mt-5">
                 <h1 class="text-center title-big">
                     Presensi Kehadiran
                 </h1>
                 <hr style="background-color: primary; color: primary; height: 1px;">
             </div>
-        </div>
+        </div> -->
 
-        <div class="row card shadow mt-1 mx-0">
+        <div class="row card shadow mt-4 mx-0 border-0">
             <div class="card-header bg-primary">
                 <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#profil"><i class="fa fa-expand"></i> Profil</a>
             </div>
@@ -87,7 +87,7 @@
         <!-- <div class="row card shadow mt-3"> -->
         <div class="row">
             <div class="col-sm-6 my-1 mt-3">
-                <div class="card shadow">
+                <div class="card shadow border-0">
                     <div class="card-header bg-primary">
                         <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Absen Pulang</a>
                     </div>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="col-sm-6 my-1 mt-3">
-                <div class="card shadow">
+                <div class="card shadow border-0">
                     <div class="card-header bg-primary">
                         <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Absen Masuk</a>
                     </div>

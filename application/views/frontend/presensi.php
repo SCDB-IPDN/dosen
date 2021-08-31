@@ -6,6 +6,8 @@
 </style>
 
 <section id="home" class="w3l-banner mt-4">
+  <div id="particles-js"></div>
+  <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
   <!-- <div class="banner-image">
   </div> -->
   <div class="container mt-5">
@@ -97,8 +99,8 @@
 
     <?php if ($this->session->userdata('role') == 1) { ?>
       <div class="row mt-3">
-        <div class="col-md-4 mt-2">
-          <div class="card shadow" style="border-radius: 1rem !important;">
+        <div class="col-md-4 mt-2 animated pulse">
+          <div class="card shadow border-0" style="border-radius: 1rem !important;">
             <div class="card-header bg-primary" style="border-radius: 1rem !important;">
               <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Per Prodi</a>
             </div>
@@ -107,8 +109,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mt-2">
-          <div class="card shadow" style="border-radius: 1rem !important;">
+        <div class="col-md-4 mt-2 animated pulse">
+          <div class="card shadow border-0" style="border-radius: 1rem !important;">
             <div class="card-header bg-primary" style="border-radius: 1rem !important;">
               <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Per Dosen</a>
             </div>
@@ -130,8 +132,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mt-2">
-          <div class="card shadow" style="border-radius: 1rem !important;">
+        <div class="col-md-4 mt-2 animated pulse">
+          <div class="card shadow border-0" style="border-radius: 1rem !important;">
             <div class="card-header bg-primary" style="border-radius: 1rem !important;">
               <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo3"><i class="fa fa-expand"></i> Status Monitoring Pembelajaran</a>
             </div>

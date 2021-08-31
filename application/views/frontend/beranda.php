@@ -10,7 +10,7 @@
             <div class="container pt-5 pb-md-4">
                 <div class="row align-items-center">
                     <div class="col-md-6 pt-md-0 pt-4">
-                        <div class="card shadow rounded" style="border-radius: 3rem !important;">
+                        <div class="card shadow rounded" style="border-radius: 1rem !important;">
                             <h3 class="mb-lg-4 mb-3 mt-3 mx-3 title">Selamat Datang</h3>
                             <p align="justify" class="mx-3 my-3">
                                 <?php
@@ -29,15 +29,15 @@
                         </div>
                         <div class="mt-md-5 mt-4 mb-lg-0 mb-4">
                             <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29){ ?>
-                                <a class="btn button-style" href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
-                                <a class="btn button-style" href="<?php echo base_url('monitoring'); ?>" role="button">Monitoring Pembelajaran</a>
+                                <a class="btn button-style animated tada " href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
+                                <a class="btn button-style animated tada " href="<?php echo base_url('monitoring'); ?>" role="button">Monitoring Pembelajaran</a>
                             <?php } elseif($this->session->userdata('role') == 23) { ?>
-                                <a class="btn button-style" href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
+                                <a class="btn button-style animated tada " href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
                             <?php } ?>
                         </div>
                     </div>
                     <div class="col-md-6 mt-md-0 mt-4">
-                        <img class="img-fluid" src="<?php echo base_url('assets/frontend/images/20945183.png'); ?>" alt=" ">
+                        <img class="img-fluid animated pulse" src="<?php echo base_url('assets/frontend/images/20945183.png'); ?>" alt=" ">
                     </div>
                 </div>
             </div>

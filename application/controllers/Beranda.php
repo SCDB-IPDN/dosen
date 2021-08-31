@@ -35,7 +35,7 @@ class Beranda extends CI_Controller {
 
 		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/tentang', $data);
-		$this->load->view('page/footer_frontend');
+		// $this->load->view('page/footer_frontend');
 		$this->load->view('page/javascript_frontend');
 	}
 

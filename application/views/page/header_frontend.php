@@ -9,6 +9,7 @@
     <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/fontawesome-all.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/style-starter.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/animated.css'); ?>">
     <!-- Particle -->
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/particle.css'); ?>">
 
