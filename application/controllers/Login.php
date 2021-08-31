@@ -16,8 +16,8 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('frontend/login');
-		$this->load->view('page/header_frontend');
-		$this->load->view('page/javascript_frontend');
+		// $this->load->view('page/header_frontend');
+		// $this->load->view('page/javascript_frontend');
 	}
 
 	public function cek_login()
@@ -43,13 +43,8 @@ class Login extends CI_Controller {
 			$this->session->set_userdata($dataSession);
 			redirect(base_url("beranda"));
 		} else {
-			echo "
-				<script>
-					alert('$cek');
-					window.location='Login';
-				</script>
-			";
-			//redirect("Login");
+			$this->session->set_flashdata('error',$cek); 
+			redirect(site_url("login"));
 		}
 	}
 
