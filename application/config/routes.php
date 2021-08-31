@@ -61,10 +61,11 @@ $route['monitoring'] = 'Presensi';
 $route['insert'] = 'Presensi/insert';
 $route['fetch/(:any)'] = 'Presensi/fetch/$1';
 $route['delete'] = 'Presensi/delete';
-$route['edit'] = 'Presensi/edit';
+$route['mulai_edit'] = 'Presensi/mulai_edit';
+$route['akhiri_edit'] = 'Presensi/akhiri_edit';
 $route['fetchstatus'] = 'Presensi/fetch_detail_monitoring';
-$route['update'] = 'Presensi/update';
-$route['update2'] = 'Presensi/update2';
+$route['mulai_update'] = 'Presensi/mulai_update';
+$route['akhiri_update'] = 'Presensi/akhiri_update';
 
 
 $route['absen'] = 'Presensi/absen';

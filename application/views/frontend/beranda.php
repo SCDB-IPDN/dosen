@@ -29,15 +29,15 @@
                         </div>
                         <div class="mt-md-5 mt-4 mb-lg-0 mb-4">
                             <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29){ ?>
-                                <a class="btn button-style animated tada " href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
-                                <a class="btn button-style animated tada " href="<?php echo base_url('monitoring'); ?>" role="button">Monitoring Pembelajaran</a>
+                                <a class="btn button-style animated2 tada " href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
+                                <a class="btn button-style animated2 tada " href="<?php echo base_url('monitoring'); ?>" role="button">Monitoring Pembelajaran</a>
                             <?php } elseif($this->session->userdata('role') == 23) { ?>
-                                <a class="btn button-style animated tada " href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
+                                <a class="btn button-style animated2 tada " href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
                             <?php } ?>
                         </div>
                     </div>
                     <div class="col-md-6 mt-md-0 mt-4">
-                        <img class="img-fluid animated pulse" src="<?php echo base_url('assets/frontend/images/20945183.png'); ?>" alt=" ">
+                        <img class="img-fluid animated2 pulse" src="<?php echo base_url('assets/frontend/images/20945183.png'); ?>" alt=" ">
                     </div>
                 </div>
             </div>
