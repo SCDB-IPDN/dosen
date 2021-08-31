@@ -16,8 +16,8 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('frontend/login');
-		$this->load->view('page/header_frontend');
-		$this->load->view('page/javascript_frontend');
+		// $this->load->view('page/header_frontend');
+		// $this->load->view('page/javascript_frontend');
 	}
 
 	public function cek_login()
