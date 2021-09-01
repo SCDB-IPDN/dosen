@@ -5,7 +5,7 @@
   }
 </style>
 
-<section id="home" class="w3l-banner mt-4">
+<section id="home" class="w3l-banner">
   <div id="particles-js"></div>
   <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
   <!-- <div class="banner-image">
@@ -101,18 +101,19 @@
       <div class="row mt-3">
         <div class="col-md-4 mt-2 animated swing">
           <div class="card shadow border-0" style="border-radius: 1rem !important;">
-            <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-              <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo"><i class="fa fa-expand"></i> Data Per Prodi</a>
+            <div class="card-header border-0" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+              <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#demo" ><i class="fa fa-expand"></i> Data Per Prodi</a>
             </div>
             <div id="demo" class="card-body collapse show">
+              <p>*Chart jumlah jadwal matakuliah pada setiap prodi per hari ini.</p>
               <canvas id="myChart"></canvas>
             </div>
           </div>
         </div>
         <div class="col-md-4 mt-2 animated swing">
           <div class="card shadow border-0" style="border-radius: 1rem !important;">
-            <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-              <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Per Dosen</a>
+            <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+              <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#demo2"><i class="fa fa-expand"></i> Data Per Dosen</a>
             </div>
             <div id="demo2" class="card-body collapse show">
               <!-- <strong>
@@ -128,16 +129,18 @@
                 <?php }
                                                                                                           } ?> </a>
             </strong> -->
+            <p>*Chart jumlah jadwal matakuliah untuk masing-masing dosen per hari ini.</p>
               <canvas id="myChart2"></canvas>
             </div>
           </div>
         </div>
         <div class="col-md-4 mt-2 animated swing">
           <div class="card shadow border-0" style="border-radius: 1rem !important;">
-            <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-              <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#demo3"><i class="fa fa-expand"></i> Status Monitoring Pembelajaran</a>
+            <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+              <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#demo3"><i class="fa fa-expand"></i> Status Monitoring Pembelajaran</a>
             </div>
             <div id="demo3" class="card-body collapse show">
+            <p>*Chart jumlah status monitoring pembelajaran daring</p>
               <canvas id="myChart3"></canvas>
               <button type="button" class="btn btn-outline-info btn-sm btn-block mt-2" data-toggle="modal" data-target="#detail_modal">Tampilkan Detail</button>
             </div>
@@ -159,7 +162,7 @@
               } ?>
             ],
             datasets: [{
-              label: '',
+              label: 'Jumlah matakuliah hari ini',
               fill: true,
               data: [
                 <?php if (count($get_current_prodi) > 0) {
@@ -219,7 +222,7 @@
       <script>
         var ctx = document.getElementById('myChart2').getContext('2d');
         var myChart = new Chart(ctx, {
-          type: 'line',
+          type: 'doughnut',
           data: {
             labels: [
               <?php if (count($get_current_dosen) > 0) {
@@ -228,7 +231,7 @@
               } ?>
             ],
             datasets: [{
-              label: '',
+              label: 'Jadwal Mengajar',
               fill: true,
               data: [
                 <?php if (count($get_current_dosen) > 0) {
@@ -297,7 +300,7 @@
               } ?>
             ],
             datasets: [{
-              label: '',
+              label: 'Pembelajaran',
               fill: true,
               data: [
                 <?php if (count($get_count_status_monitoring) > 0) {
@@ -1013,7 +1016,7 @@
     var edit_waktu_akhiri = `${date}T${time}`;
 
     var upload_img = $("#upload_img")[0].files[0];
-    
+
 
     if (edit_id == "" || edit_media == "") {
       alert("All field is required");

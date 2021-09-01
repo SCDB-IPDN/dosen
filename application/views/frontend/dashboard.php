@@ -59,8 +59,8 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
     <div class="banner-content">
         <div class="container pt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-                <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
+                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
                 </div>
                 <div id="card1" class="card-body ">
                     <h4><b>Total Data: <?= $count_pulang_perbulan; ?></b></h4>
@@ -71,8 +71,8 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
             <div class="row">
                 <div class="col-md-4 my-1">
                     <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
-                        <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card11">Data Dosen Non PNS</a>
+                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card11">Data Dosen Non PNS</a>
                         </div>
                         <div id="card11" class="card-body collapse show">
                             <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan1; ?></b></p>
@@ -82,8 +82,8 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                 </div>
                 <div class="col-md-4 my-1">
                     <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
-                        <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card12">Data PNS</a>
+                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card12">Data PNS</a>
                         </div>
                         <div id="card12" class="card-body collapse show">
                             <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan2; ?></b></p>
@@ -93,8 +93,8 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                 </div>
                 <div class="col-md-4 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card13">Data PNS Dosen</a>
+                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card13">Data PNS Dosen</a>
                         </div>
                         <div id="card13" class="card-body collapse show">
                             <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan3; ?></b></p>
@@ -108,8 +108,8 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
     <div class="banner-content"> -->
         <div class="container pt-5 pb-md-4">
             <div class="card text-center shadow mb-3 border-0 animated fadeInUp" style="border-radius: 1rem !important;">
-                <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
+                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
                 </div>
                 <div id="card2" class="card-body">
                     <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan; ?></b></p>
@@ -118,8 +118,8 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
             <div class="row">
                 <div class="col-md-4 my-1">
                     <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
-                        <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card21">Data Dosen Non PNS</a>
+                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card21">Data Dosen Non PNS</a>
                         </div>
                         <div id="card21" class="card-body">
                             <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan1; ?></b></p>
@@ -129,8 +129,8 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                 </div>
                 <div class="col-md-4 my-1">
                     <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
-                        <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card22">Data PNS</a>
+                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card22">Data PNS</a>
                         </div>
                         <div id="card22" class="card-body">
                             <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan2; ?></b></p>
@@ -140,8 +140,8 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                 </div>
                 <div class="col-md-4 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header bg-primary" style="border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-primary" data-toggle="collapse" data-target="#card23">Data PNS Dosen</a>
+                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card23">Data PNS Dosen</a>
                         </div>
                         <div id="card23" class="card-body">
                             <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan3; ?></b></p>
