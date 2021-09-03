@@ -11,14 +11,7 @@
   <!-- <div class="banner-image">
   </div> -->
   <div class="container mt-5">
-    <!-- <div class="row">
-      <div class="col-md-12 mt-5">
-        <h1 class="text-center title-big">
-          Monitoring Pembelajaran
-        </h1>
-        <hr style="background-color: black; color: black; height: 1px;">
-      </div>
-    </div> -->
+  
     <div class="row mt-5">
       <div class="col-md-12 mt-5">
         <!-- Add Records Modal -->

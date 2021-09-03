@@ -249,4 +249,153 @@ class Presensi_model extends CI_Model
               return false;
           }
       }
+
+       //count identitas kelas
+    public function get_count_identitas_kelas()
+    {
+        $get_data   = $this->db
+            ->select('count(id_plot) as total_kelas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('2021-04-07'))
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+       //count identitas kelas detail   
+       public function get_count_identitas_kelas_detail()
+       {
+           $get_data   = $this->db
+               ->select('count(id_plot) as total_kelas,id_fakultas')
+               ->from('tbl_plot_dosen')
+               ->where("tanggal", date('2021-04-07'))
+               ->group_by("id_fakultas")
+               ->get();
+   
+           if ($get_data->num_rows() > 0) {
+               return $get_data->result();
+           } else {
+               return false;
+           }
+       }
+
+         //count identitas dosen
+    public function get_count_dosen()
+    {
+        $get_data   = $this->db
+            ->select('count(DISTINCT(nama)) as total_dosen')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('2021-04-07'))
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+     //count identitas dosen detail   
+     public function get_count_dosen_detail()
+     {
+         $get_data   = $this->db
+             ->select('nama,id_fakultas,COUNT(id_plot) as total_pembelajaran')
+             ->from('tbl_plot_dosen')
+             ->where("tanggal", date('2021-04-07'))
+             ->group_by("nama")
+             ->get();
+ 
+         if ($get_data->num_rows() > 0) {
+             return $get_data->result();
+         } else {
+             return false;
+         }
+     }
+
+          //count identitas matakuliah
+    public function get_count_matakuliah()
+    {
+        $get_data   = $this->db
+        ->select('count(id_plot) as total_kelas')
+        ->from('tbl_plot_dosen')
+        ->where("tanggal", date('2021-04-07'))
+        ->get();
+
+    if ($get_data->num_rows() > 0) {
+        return $get_data->result();
+    } else {
+        return false;
+    }
+    }
+
+     //count identitas matakuliah detail   
+     public function get_count_matakuliah_detail()
+     {
+         $get_data   = $this->db
+             ->select('id_fakultas,COUNT(id_plot) as total_pembelajaran')
+             ->from('tbl_plot_dosen')
+             ->where("tanggal", date('2021-04-07'))
+             ->group_by("id_fakultas")
+             ->get();
+ 
+         if ($get_data->num_rows() > 0) {
+             return $get_data->result();
+         } else {
+             return false;
+         }
+     }
+
+     //count identitas matakuliah lebih detail   
+     public function get_count_matakuliah_lebih_detail()
+     {
+         $get_data   = $this->db
+             ->select('nama_matkul,id_fakultas,COUNT(id_plot) as total_pembelajaran')
+             ->from('tbl_plot_dosen')
+             ->where("tanggal", date('2021-04-07'))
+             ->group_by("nama_matkul,id_fakultas")
+             ->get();
+ 
+         if ($get_data->num_rows() > 0) {
+             return $get_data->result();
+         } else {
+             return false;
+         }
+     }
+
+           //count identitas matakuliah
+    public function get_count_prodi()
+    {
+        $get_data   = $this->db
+        ->select('COUNT(DISTINCT(id_prodi)) as total_prodi')
+        ->from('tbl_plot_dosen')
+        ->where("tanggal", date('2021-04-07'))
+        ->get();
+
+    if ($get_data->num_rows() > 0) {
+        return $get_data->result();
+    } else {
+        return false;
+    }
+    }
+
+     //count identitas matakuliah detail   
+     public function get_count_prodi_detail()
+     {
+         $get_data   = $this->db
+             ->select('id_fakultas,COUNT(id_plot) as total_pembelajaran')
+             ->from('tbl_plot_dosen')
+             ->where("tanggal", date('2021-04-07'))
+             ->group_by("id_fakultas")
+             ->get();
+ 
+         if ($get_data->num_rows() > 0) {
+             return $get_data->result();
+         } else {
+             return false;
+         }
+     }
 }

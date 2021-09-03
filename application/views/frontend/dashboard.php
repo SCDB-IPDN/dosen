@@ -57,6 +57,43 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
     <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
 
     <div class="banner-content">
+
+        <div class="container mt-5">
+            <div class="row mt-5">
+                <div class="col-md-3">
+                    <div class="card-counter primary">
+                        <i class="fa fa-code-fork"></i>
+                        <span class="count-numbers">12</span>
+                        <span class="count-name">Flowz</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card-counter danger">
+                        <i class="fa fa-ticket"></i>
+                        <span class="count-numbers">599</span>
+                        <span class="count-name">Instances</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card-counter success">
+                        <i class="fa fa-database"></i>
+                        <span class="count-numbers">6875</span>
+                        <span class="count-name">Data</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card-counter info">
+                        <i class="fa fa-users"></i>
+                        <span class="count-numbers">35</span>
+                        <span class="count-name">Users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container pt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
                 <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
