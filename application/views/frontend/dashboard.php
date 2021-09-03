@@ -46,6 +46,22 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
     $count_masuk_perbulan2 = 0;
     $count_masuk_perbulan3 = 0;
 }
+
+if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
+    $count_total_pembelajaran = 0;
+    $count_pembelajaran_berlangsung = 0;
+    $count_pembelajaran_selesai = 0;
+    foreach ($get_count_fakultas as $data) {
+        $count_total_pembelajaran += $data->total_pembelajaran;
+        $count_pembelajaran_berlangsung += $data->proses_pembelajaran;
+        $count_pembelajaran_selesai += $data->selesai_pembelajaran;
+    }
+} else {
+    $count_total_pembelajaran = 0;
+    $count_pembelajaran_berlangsung = 0;
+    $count_pembelajaran_selesai = 0;
+}
+// var_dump($get_absen_all[0]->total);exit;
 ?>
 
 <!-- Dashboard -->
@@ -57,41 +73,73 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
     <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
 
     <div class="banner-content">
-
-        <div class="container mt-5">
-            <div class="row mt-5">
-                <div class="col-md-3">
-                    <div class="card-counter primary">
-                        <i class="fa fa-code-fork"></i>
-                        <span class="count-numbers">12</span>
-                        <span class="count-name">Flowz</span>
+        <div class="container pt-5 mt-5 pb-md-4">
+            <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
+                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#cardx1"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
+                </div>
+                <div id="cardx1" class="card-body ">
+                    <!-- <h4><b>Total Pembelajaran: <?= $count_total_pembelajaran; ?></b></h4> -->
+                    <div class="progress" style="height:30px">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pembelajaran_berlangsung; ?>" aria-valuemin="0" aria-valuemax="<?= $count_total_pembelajaran; ?>"><?= $count_pembelajaran_berlangsung; ?> (Sedang Berlangsung)</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pembelajaran_selesai; ?>" aria-valuemin="0" aria-valuemax="<?= $count_total_pembelajaran; ?>"><?= $count_pembelajaran_selesai; ?> (Selesai)</div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_total_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $count_total_pembelajaran; ?>"><?= $count_total_pembelajaran; ?> (Total Pembelajaran)</div>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="card-counter danger">
-                        <i class="fa fa-ticket"></i>
-                        <span class="count-numbers">599</span>
-                        <span class="count-name">Instances</span>
-                    </div>
-                </div>
+                <?php if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
+                    foreach ($get_count_fakultas as $data) { ?>
+                        <div id="cardx1" class="card-body ">
+                            <h4><b><a href="<?php echo base_url('dashboard/fakultas_detail/'.$data->id_fakultas); ?>" target="_blank">Fakultas <?= $data->id_fakultas; ?></a></b></h4>
+                            <div class="progress" style="height:30px">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $data->proses_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $data->total_pembelajaran; ?>"><?= $data->proses_pembelajaran; ?> (Sedang Berlangsung)</div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $data->selesai_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $data->total_pembelajaran; ?>"><?= $data->selesai_pembelajaran; ?> (Selesai)</div>
+                                <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $data->total_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $data->total_pembelajaran; ?>"><?= $data->total_pembelajaran; ?> (Total Pembelajaran)</div>
+                            </div>
+                        </div>
 
-                <div class="col-md-3">
-                    <div class="card-counter success">
-                        <i class="fa fa-database"></i>
-                        <span class="count-numbers">6875</span>
-                        <span class="count-name">Data</span>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card-counter info">
-                        <i class="fa fa-users"></i>
-                        <span class="count-numbers">35</span>
-                        <span class="count-name">Users</span>
-                    </div>
-                </div>
+                <?php
+                    }
+                } ?>
             </div>
+
+            <!-- <div class="row">
+                <?php if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
+                    if (count($get_count_fakultas) == 3) {
+                        $col_md = 4;
+                    } elseif (count($get_count_fakultas) == 2) {
+                        $col_md = 6;
+                    } elseif (count($get_count_fakultas) == 1) {
+                        $col_md = 12;
+                    } else {
+                        $col_md = 3;
+                    }
+                    $ix = 1;
+                    foreach ($get_count_fakultas as $data) {
+                        // var_dump($get_count_fakultas1);exit;
+                        if ($ix == 1) {
+                            $card_counter = 'primary';
+                        } elseif ($ix == 2) {
+                            $card_counter = 'danger';
+                        } elseif ($ix == 3) {
+                            $card_counter = 'success';
+                        } else {
+                            $card_counter = 'info';
+                        } ?>
+                        <div class="col-md-<?= $col_md; ?>">
+                            <a href="">
+                                <div class="card-counter <?= $card_counter; ?>">
+                                    <i class="fa fa-code-fork"></i>
+                                    <span class="count-numbers"><?= $data->total_pembelajaran; ?>/<?= $data->proses_pembelajaran; ?>/<?= $data->selesai_pembelajaran; ?></span>
+                                    <span class="count-name"><?= $data->id_fakultas; ?></span>
+                                </div>
+                            </a>
+                        </div>
+                <?php $ix++;
+                    }
+                }
+                ?>
+            </div> -->
         </div>
 
         <div class="container pt-5 pb-md-4">
@@ -100,7 +148,12 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
                 </div>
                 <div id="card1" class="card-body ">
-                    <h4><b>Total Data: <?= $count_pulang_perbulan; ?></b></h4>
+
+                    <div class="progress" style="height:30px">
+                        <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pulang_perbulan; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_pulang_perbulan; ?> (Masuk dan Pulang)</div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
+                    </div>
+                    <!-- <h4><b>Total Data: <?= $count_pulang_perbulan; ?></b></h4> -->
                 </div>
             </div>
             <!-- </div> -->
@@ -149,8 +202,13 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
                 </div>
                 <div id="card2" class="card-body">
-                    <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan; ?></b></p>
+
+                    <div class="progress" style="height:30px">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_masuk_perbulan; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_masuk_perbulan; ?> (Hanya Masuk)</div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
+                    </div>
                 </div>
+                <!-- <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan; ?></b></p> -->
             </div>
             <div class="row">
                 <div class="col-md-4 my-1">
