@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/particle.css'); ?>">
 
     <!-- Bootstrap CSS -->
-    <?php if ($this->uri->segment(1) == 'monitoring' || $this->uri->segment(1) == 'absen') { ?>
+    <?php if ($this->uri->segment(1) == 'monitoring' || $this->uri->segment(1) == 'absen' || $this->uri->segment(1) == 'dashboard') { ?>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <?php } ?>
 
