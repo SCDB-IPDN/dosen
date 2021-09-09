@@ -18,7 +18,7 @@ if ($get_absen_pulang_perbulan_chart_perhari != false && !empty($get_absen_pulan
             $count_pulang_perbulan_1_3 += $data->jumlah_hadir;
         }
         if ($data->role == "THL dan TA") {
-            $count_masuk_perbulan4 += $data->jumlah_hadir;
+            $count_pulang_perbulan_1_4 += $data->jumlah_hadir;
         }
     }
 } else {
@@ -47,7 +47,7 @@ if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbul
             $count_pulang_perbulan3 += $data->jumlah_hadir;
         }
         if ($data->role == "THL dan TA") {
-            $count_masuk_perbulan4 += $data->jumlah_hadir;
+            $count_pulang_perbulan4 += $data->jumlah_hadir;
         }
     }
 } else {
