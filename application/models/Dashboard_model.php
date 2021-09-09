@@ -122,4 +122,86 @@ class Dashboard_model extends CI_Model
             return false;
         }
     }
+
+    public function get_all_total_done()
+    {
+        $get_data   = $this->db
+            ->select('COUNT(DISTINCT(id_fakultas)) as total_fakultas, 
+            COUNT(DISTINCT(id_prodi)) as total_prodi, 
+            COUNT(nama_matkul) as total_matkul, COUNT(DISTINCT(nama)) as total_dosen, 
+            COUNT(DISTINCT(id_plot)) as total_kelas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where("keterangan !=", null)
+            ->where("upload !=", null)
+            ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_all_total()
+    {
+        $get_data   = $this->db
+            ->select('COUNT(DISTINCT(id_fakultas)) as total_fakultas, 
+            COUNT(DISTINCT(id_prodi)) as total_prodi, 
+            COUNT(nama_matkul) as total_matkul, COUNT(DISTINCT(nama)) as total_dosen, 
+            COUNT(DISTINCT(id_plot)) as total_kelas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_summary_fakultas_done()
+    {
+        $get_data   = $this->db
+            ->select('id_fakultas,
+            COUNT(DISTINCT(id_prodi)) as prodi, 
+            COUNT(nama_matkul) as matkul, 
+            COUNT(DISTINCT(nama)) as dosen,
+            COUNT(id_plot) as kelas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where("keterangan !=", null)
+            ->where("upload !=", null)
+            ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_summary_fakultas()
+    {
+        $get_data   = $this->db
+            ->select('id_fakultas,
+            COUNT(DISTINCT(id_prodi)) as prodi, 
+            COUNT(nama_matkul) as matkul, 
+            COUNT(DISTINCT(nama)) as dosen,
+            COUNT(id_plot) as kelas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
 }
