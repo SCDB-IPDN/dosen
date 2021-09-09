@@ -1,9 +1,40 @@
 <?php
+
+if ($get_absen_pulang_perbulan_chart_perhari != false && !empty($get_absen_pulang_perbulan_chart_perhari)) {
+    $count_pulang_perbulan_1_ = 0;
+    $count_pulang_perbulan_1_1 = 0;
+    $count_pulang_perbulan_1_2 = 0;
+    $count_pulang_perbulan_1_3 = 0;
+    $count_pulang_perbulan_1_4 = 0;
+    foreach ($get_absen_pulang_perbulan_chart_perhari as $data) {
+        $count_pulang_perbulan_1_ += $data->jumlah_hadir;
+        if ($data->role == "Dosen") {
+            $count_pulang_perbulan_1_1 += $data->jumlah_hadir;
+        }
+        if ($data->role == "PNS") {
+            $count_pulang_perbulan_1_2 += $data->jumlah_hadir;
+        }
+        if ($data->role == "PNS dan DOSEN") {
+            $count_pulang_perbulan_1_3 += $data->jumlah_hadir;
+        }
+        if ($data->role == "THL dan TA") {
+            $count_masuk_perbulan4 += $data->jumlah_hadir;
+        }
+    }
+} else {
+    $count_pulang_perbulan_1_ = 0;
+    $count_pulang_perbulan_1_1 = 0;
+    $count_pulang_perbulan_1_2 = 0;
+    $count_pulang_perbulan_1_3 = 0;
+    $count_pulang_perbulan_1_4 = 0;
+}
+
 if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
     $count_pulang_perbulan = 0;
     $count_pulang_perbulan1 = 0;
     $count_pulang_perbulan2 = 0;
     $count_pulang_perbulan3 = 0;
+    $count_pulang_perbulan4 = 0;
     foreach ($get_absen_pulang_perbulan_chart as $data) {
         $count_pulang_perbulan += $data->jumlah_hadir;
         if ($data->role == "Dosen") {
@@ -15,12 +46,45 @@ if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbul
         if ($data->role == "PNS dan DOSEN") {
             $count_pulang_perbulan3 += $data->jumlah_hadir;
         }
+        if ($data->role == "THL dan TA") {
+            $count_masuk_perbulan4 += $data->jumlah_hadir;
+        }
     }
 } else {
     $count_pulang_perbulan = 0;
     $count_pulang_perbulan1 = 0;
     $count_pulang_perbulan2 = 0;
     $count_pulang_perbulan3 = 0;
+    $count_pulang_perbulan4 = 0;
+}
+
+if ($get_absen_masuk_perbulan_chart_perhari != false && !empty($get_absen_masuk_perbulan_chart_perhari)) {
+    $count_masuk_perbulan_1_ = 0;
+    $count_masuk_perbulan_1_1 = 0;
+    $count_masuk_perbulan_1_2 = 0;
+    $count_masuk_perbulan_1_3 = 0;
+    $count_masuk_perbulan_1_4 = 0;
+    foreach ($get_absen_masuk_perbulan_chart_perhari as $data) {
+        $count_masuk_perbulan_1_ += $data->jumlah_hadir;
+        if ($data->role == "Dosen") {
+            $count_masuk_perbulan_1_1 += $data->jumlah_hadir;
+        }
+        if ($data->role == "PNS") {
+            $count_masuk_perbulan_1_2 += $data->jumlah_hadir;
+        }
+        if ($data->role == "PNS dan DOSEN") {
+            $count_masuk_perbulan_1_3 += $data->jumlah_hadir;
+        }
+        if ($data->role == "THL dan TA") {
+            $count_masuk_perbulan_1_4 += $data->jumlah_hadir;
+        }
+    }
+} else {
+    $count_masuk_perbulan_1_ = 0;
+    $count_masuk_perbulan_1_1 = 0;
+    $count_masuk_perbulan_1_2 = 0;
+    $count_masuk_perbulan_1_3 = 0;
+    $count_masuk_perbulan_1_4 = 0;
 }
 
 if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
@@ -28,6 +92,7 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
     $count_masuk_perbulan1 = 0;
     $count_masuk_perbulan2 = 0;
     $count_masuk_perbulan3 = 0;
+    $count_masuk_perbulan4 = 0;
     foreach ($get_absen_masuk_perbulan_chart as $data) {
         $count_masuk_perbulan += $data->jumlah_hadir;
         if ($data->role == "Dosen") {
@@ -39,12 +104,16 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
         if ($data->role == "PNS dan DOSEN") {
             $count_masuk_perbulan3 += $data->jumlah_hadir;
         }
+        if ($data->role == "THL dan TA") {
+            $count_masuk_perbulan4 += $data->jumlah_hadir;
+        }
     }
 } else {
     $count_masuk_perbulan = 0;
     $count_masuk_perbulan1 = 0;
     $count_masuk_perbulan2 = 0;
     $count_masuk_perbulan3 = 0;
+    $count_masuk_perbulan4 = 0;
 }
 
 if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
@@ -164,7 +233,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         </div>
                     </div>
                     <div class="row">
-                    <div id="collapseKelas" class="col-lg-12 col-sm-6 mt-0 collapse In">
+                        <div id="collapseKelas" class="col-lg-12 col-sm-6 mt-0 collapse In">
                             <div class="card-box bg-primary">
                                 <div class="inner">
                                     <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
@@ -398,13 +467,37 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
         <div class="container pt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
                 <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Tanggal <?= date('Y-m-d'); ?></a>
+                </div>
+                <div id="card1" class="card-body ">
+                    <h4>Presensi Masuk dan Pulang</h4>
+                    <div class="progress" style="height:30px">
+                        <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pulang_perbulan_1_; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_pulang_perbulan_1_; ?> Pegawai</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= ($get_absen_all[0]->total - $count_pulang_perbulan_1_); ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= ($get_absen_all[0]->total - $count_pulang_perbulan_1_); ?> (Tidak Absen)</div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
+                    </div>
+                </div>
+                <div id="card1" class="card-body ">
+                    <h4>Presensi Hanya Masuk</h4>
+                    <div class="progress" style="height:30px">
+                        <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_masuk_perbulan_1_; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_masuk_perbulan_1_; ?> Pegawai</div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= ($get_absen_all[0]->total - $count_masuk_perbulan_1_); ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= ($get_absen_all[0]->total - $count_masuk_perbulan_1_); ?> (Tidak Absen)</div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pt-5 pb-md-4">
+            <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
+                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
                 </div>
                 <div id="card1" class="card-body ">
 
                     <div class="progress" style="height:30px">
                         <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pulang_perbulan; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_pulang_perbulan; ?> (Masuk dan Pulang)</div>
-                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
+                        <!-- <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div> -->
                     </div>
                     <!-- <h4><b>Total Data: <?= $count_pulang_perbulan; ?></b></h4> -->
                 </div>
@@ -412,7 +505,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
             <!-- </div> -->
             <!-- <div class="container"> -->
             <div class="row">
-                <div class="col-md-4 my-1">
+                <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
                         <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card11">Data Dosen Non PNS</a>
@@ -423,7 +516,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 my-1">
+                <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
                         <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card12">Data PNS</a>
@@ -434,7 +527,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 my-1">
+                <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
                         <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card13">Data PNS Dosen</a>
@@ -442,6 +535,17 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         <div id="card13" class="card-body collapse show">
                             <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan3; ?></b></p>
                             <canvas id="absenpulangpnsdosenperbln"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 my-1">
+                    <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
+                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card14">Data THL dan TA</a>
+                        </div>
+                        <div id="card14" class="card-body collapse show">
+                            <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan4; ?></b></p>
+                            <canvas id="absenpulangthltaperbln"></canvas>
                         </div>
                     </div>
                 </div>
@@ -458,13 +562,13 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
                     <div class="progress" style="height:30px">
                         <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_masuk_perbulan; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_masuk_perbulan; ?> (Hanya Masuk)</div>
-                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
+                        <!-- <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div> -->
                     </div>
                 </div>
                 <!-- <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan; ?></b></p> -->
             </div>
             <div class="row">
-                <div class="col-md-4 my-1">
+                <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
                         <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card21">Data Dosen Non PNS</a>
@@ -475,7 +579,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 my-1">
+                <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
                         <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card22">Data PNS</a>
@@ -486,7 +590,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 my-1">
+                <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
                         <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card23">Data PNS Dosen</a>
@@ -494,6 +598,17 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         <div id="card23" class="card-body">
                             <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan3; ?></b></p>
                             <canvas id="absenmasukpnsdosenperbln"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 my-1">
+                    <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
+                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card24">Data THL dan TA</a>
+                        </div>
+                        <div id="card24" class="card-body">
+                            <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan4; ?></b></p>
+                            <canvas id="absenmasukthltaperbln"></canvas>
                         </div>
                     </div>
                 </div>
@@ -864,6 +979,114 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
         }
     });
 
+    // ABSEN PULANG THL DAN TA PERBULAN
+    var ctx = document.getElementById('absenpulangthltaperbln').getContext('2d');
+    var absenpulangpnsdosenperbln = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                <?php if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
+                    foreach ($get_absen_pulang_perbulan_chart as $data) {
+                        if ($data->role == "THL dan TA") {
+                            switch ($data->bulan) {
+                                case "1":
+                                    $namaBulan = "'Januari'";
+                                    break;
+                                case "2":
+                                    $namaBulan = "'Februari'";
+                                    break;
+                                case "3":
+                                    $namaBulan = "'Maret'";
+                                    break;
+                                case "4":
+                                    $namaBulan = "'April'";
+                                    break;
+                                case "5":
+                                    $namaBulan = "'Mei'";
+                                    break;
+                                case "6":
+                                    $namaBulan = "'Juni'";
+                                    break;
+                                case "7":
+                                    $namaBulan = "'Juli'";
+                                    break;
+                                case "8":
+                                    $namaBulan = "'Agustus'";
+                                    break;
+                                case "9":
+                                    $namaBulan = "'September'";
+                                    break;
+                                case "10":
+                                    $namaBulan = "'Oktober'";
+                                    break;
+                                case "11":
+                                    $namaBulan = "'November'";
+                                    break;
+                                case "12":
+                                    $namaBulan = "'Desember'";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo $namaBulan . ",";
+                        }
+                    }
+                } else {
+                    echo "0,";
+                } ?>
+            ],
+            datasets: [
+
+                {
+                    label: "Data THL dan TA",
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    data: [
+                        <?php
+                        if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
+                            foreach ($get_absen_pulang_perbulan_chart as $data) {
+                                if ($data->role == "THL dan TA") {
+                                    echo $data->jumlah_hadir . ",";
+                                }
+                            }
+                        } else {
+                            echo "0,";
+                        }
+
+                        ?>
+                    ]
+                }
+            ]
+        },
+
+        plugins: [ChartDataLabels],
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    color: '#17202a',
+                    font: {
+                        weight: 'bold',
+                    }
+                },
+                title: {
+                    font: {
+                        size: 20
+                    },
+                    color: 'blue',
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    }
+                }
+            }
+        }
+    });
+
     // ABSEN MASUK DOSEN PERBULAN
     var ctx = document.getElementById('absenmasukdosenperbln').getContext('2d');
     var absenmasukdosenperbln = new Chart(ctx, {
@@ -1139,6 +1362,114 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
                             foreach ($get_absen_masuk_perbulan_chart as $data) {
                                 if ($data->role == "PNS dan DOSEN") {
+                                    echo $data->jumlah_hadir . ",";
+                                }
+                            }
+                        } else {
+                            echo "0,";
+                        }
+
+                        ?>
+                    ]
+                }
+            ]
+        },
+
+        plugins: [ChartDataLabels],
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    color: '#17202a',
+                    font: {
+                        weight: 'bold',
+                    }
+                },
+                title: {
+                    font: {
+                        size: 20
+                    },
+                    color: 'blue',
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    }
+                }
+            }
+        }
+    });
+
+    // ABSEN MASUK THL DAN TA PERBULAN
+    var ctx = document.getElementById('absenmasukthltaperbln').getContext('2d');
+    var absenmasukpnsdosenperbln = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                <?php if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
+                    foreach ($get_absen_masuk_perbulan_chart as $data) {
+                        if ($data->role == "THL dan TA") {
+                            switch ($data->bulan) {
+                                case "1":
+                                    $namaBulan = "'Januari'";
+                                    break;
+                                case "2":
+                                    $namaBulan = "'Februari'";
+                                    break;
+                                case "3":
+                                    $namaBulan = "'Maret'";
+                                    break;
+                                case "4":
+                                    $namaBulan = "'April'";
+                                    break;
+                                case "5":
+                                    $namaBulan = "'Mei'";
+                                    break;
+                                case "6":
+                                    $namaBulan = "'Juni'";
+                                    break;
+                                case "7":
+                                    $namaBulan = "'Juli'";
+                                    break;
+                                case "8":
+                                    $namaBulan = "'Agustus'";
+                                    break;
+                                case "9":
+                                    $namaBulan = "'September'";
+                                    break;
+                                case "10":
+                                    $namaBulan = "'Oktober'";
+                                    break;
+                                case "11":
+                                    $namaBulan = "'November'";
+                                    break;
+                                case "12":
+                                    $namaBulan = "'Desember'";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo $namaBulan . ",";
+                        }
+                    }
+                } else {
+                    echo "0,";
+                } ?>
+            ],
+            datasets: [
+
+                {
+                    label: "Data THL dan TA",
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    data: [
+                        <?php
+                        if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
+                            foreach ($get_absen_masuk_perbulan_chart as $data) {
+                                if ($data->role == "THL dan TA") {
                                     echo $data->jumlah_hadir . ",";
                                 }
                             }

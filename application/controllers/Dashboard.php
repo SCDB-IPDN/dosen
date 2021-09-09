@@ -21,7 +21,9 @@ class Dashboard extends CI_Controller
 		$data = array(
 			'get_absen_all'						=> $this->Dashboard_model->get_absen_all(),
 			'get_absen_pulang_perbulan_chart'	=> $this->Dashboard_model->get_absen_pulang_perbulan_chart(),
+			'get_absen_pulang_perbulan_chart_perhari'	=> $this->Dashboard_model->get_absen_pulang_perbulan_chart_perhari(),
 			'get_absen_masuk_perbulan_chart'	=> $this->Dashboard_model->get_absen_masuk_perbulan_chart(),
+			'get_absen_masuk_perbulan_chart_perhari'	=> $this->Dashboard_model->get_absen_masuk_perbulan_chart_perhari(),
 			'get_count_fakultas'				=> $this->Dashboard_model->get_count_fakultas(),
 			'get_all_total'						=> $this->Dashboard_model->get_all_total(),
 			'get_summary_fakultas'				=> $this->Dashboard_model->get_summary_fakultas(),
