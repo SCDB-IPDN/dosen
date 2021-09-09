@@ -61,6 +61,75 @@ if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
     $count_pembelajaran_berlangsung = 0;
     $count_pembelajaran_selesai = 0;
 }
+
+if ($get_all_total != false && !empty($get_all_total)) {
+
+    $get_total_fakultas = 0;
+    $get_total_prodi = 0;
+    $get_total_matkul = 0;
+    $get_total_dosen = 0;
+    $get_total_kelas = 0;
+
+    foreach ($get_all_total as $data) {
+        $get_total_fakultas += $data->total_fakultas;
+        $get_total_prodi += $data->total_prodi;
+        $get_total_matkul += $data->total_matkul;
+        $get_total_dosen += $data->total_dosen;
+        $get_total_kelas += $data->total_kelas;
+    }
+} else {
+    $get_total_fakultas = 0;
+    $get_total_prodi = 0;
+    $get_total_matkul = 0;
+    $get_total_dosen = 0;
+    $get_total_kelas = 0;
+}
+
+if ($get_all_total_done != false && !empty($get_all_total_done)) {
+
+    $get_total_fakultas_done = 0;
+    $get_total_prodi_done = 0;
+    $get_total_matkul_done = 0;
+    $get_total_dosen_done = 0;
+    $get_total_kelas_done = 0;
+
+    foreach ($get_all_total_done as $data) {
+        $get_total_fakultas_done += $data->total_fakultas;
+        $get_total_prodi_done += $data->total_prodi;
+        $get_total_matkul_done += $data->total_matkul;
+        $get_total_dosen_done += $data->total_dosen;
+        $get_total_kelas_done += $data->total_kelas;
+    }
+} else {
+    $get_total_fakultas_done = 0;
+    $get_total_prodi_done = 0;
+    $get_total_matkul_done = 0;
+    $get_total_dosen_done = 0;
+    $get_total_kelas_done = 0;
+}
+
+if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+
+    $get_fakultas = 'Tidak Ada Pembelajaran Daring!';
+    $get_prodi = 0;
+    $get_matkul = 0;
+    $get_dosen = 0;
+    $get_kelas = 0;
+
+    foreach ($get_summary_fakultas as $data) {
+        $get_fakultas = $data->id_fakultas;
+        $get_prodi += $data->prodi;
+        $get_matkul += $data->matkul;
+        $get_dosen += $data->dosen;
+        $get_kelas += $data->kelas;
+    }
+} else {
+    $get_fakultas = 'Tidak Ada Pembelajaran Daring!';
+    $get_prodi = 0;
+    $get_matkul = 0;
+    $get_dosen = 0;
+    $get_kelas = 0;
+}
 // var_dump($get_absen_all[0]->total);exit;
 ?>
 
@@ -73,13 +142,197 @@ if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
     <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
 
     <div class="banner-content">
-        <div class="container pt-5 mt-5 pb-md-4">
+        <div class="container mt-5">
+            <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
+                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#cardatas"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
+                </div>
+                <div id="cardatas" class="card-body">
+
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_kelas_done; ?> / <?= $get_total_kelas; ?> </h3>
+                                    <p class="text-light"> KELAS </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseKelas">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div id="collapseKelas" class="col-lg-12 col-sm-6 mt-0 collapse In">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+                                        foreach ($get_summary_fakultas as $data) { ?>
+                                            <p class="text-light"> <?= $data->id_fakultas; ?> : <?= $data->kelas; ?> </p>
+                                    <?php
+                                        }
+                                    } ?>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
+                                    <p class="text-light"> DOSEN </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosen">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="collapseDosen" class="col-lg-12 col-sm-6 collapse In">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+                                        foreach ($get_summary_fakultas as $data) { ?>
+                                            <p class="text-light"> <?= $data->id_fakultas; ?> : <?= $data->dosen; ?> </p>
+                                    <?php
+                                        }
+                                    } ?>
+                                </div>
+
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
+                                    <p class="text-light"> MATAKULIAH </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkul">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="collapseMatkul" class="col-lg-12 col-sm-6 collapse In">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+                                        foreach ($get_summary_fakultas as $data) { ?>
+                                            <p class="text-light"> <?= $data->id_fakultas; ?> : <?= $data->matkul; ?> </p>
+                                    <?php
+                                        }
+                                    } ?>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                </div> -->
+                                <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_prodi; ?> </h3>
+                                    <p class="text-light"> PRODI </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdi">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="collapseProdi" class="col-md-12 col-sm-6 collapse In">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+                                        foreach ($get_summary_fakultas as $data) { ?>
+                                            <p class="text-light"> <?= $data->id_fakultas; ?> : <?= $data->prodi; ?> </p>
+                                    <?php
+                                        }
+                                    } ?>
+
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                </div> -->
+                                <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6">
+                            <div class="card-box bg-blue">
+                                <div class="inner">
+
+                                    <h3 class="text-light"> <?= $get_total_fakultas; ?> </h3>
+                                    <p class="text-light"> FAKULTAS </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseFakultas">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="collapseFakultas" class="col-md-12 col-sm-6 collapse In">
+                            <div class="card-box bg-blue">
+                                <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+                                    foreach ($get_summary_fakultas as $data) { ?>
+                                        <p class="text-light"> <?= $data->id_fakultas; ?> </p>
+                                <?php
+                                    }
+                                } ?>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                </div> -->
+                                <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="container pt-5 mt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
                 <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#cardx1"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
                 </div>
                 <div id="cardx1" class="card-body ">
-                    <!-- <h4><b>Total Pembelajaran: <?= $count_total_pembelajaran; ?></b></h4> -->
+                    <h4><b>Total Pembelajaran: <?= $count_total_pembelajaran; ?></b></h4>
                     <div class="progress" style="height:30px">
                         <div class="progress-bar bg-warning" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pembelajaran_berlangsung; ?>" aria-valuemin="0" aria-valuemax="<?= $count_total_pembelajaran; ?>"><?= $count_pembelajaran_berlangsung; ?> (Sedang Berlangsung)</div>
                         <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pembelajaran_selesai; ?>" aria-valuemin="0" aria-valuemax="<?= $count_total_pembelajaran; ?>"><?= $count_pembelajaran_selesai; ?> (Selesai)</div>
@@ -90,7 +343,7 @@ if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
                 <?php if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
                     foreach ($get_count_fakultas as $data) { ?>
                         <div id="cardx1" class="card-body ">
-                            <h4><b><a href="<?php echo base_url('dashboard/fakultas_detail/'.$data->id_fakultas); ?>" target="_blank">Fakultas <?= $data->id_fakultas; ?></a></b></h4>
+                            <h4><b><a href="<?php echo base_url('dashboard/fakultas_detail/' . $data->id_fakultas); ?>" target="_blank">Fakultas <?= $data->id_fakultas; ?></a></b></h4>
                             <div class="progress" style="height:30px">
                                 <div class="progress-bar bg-warning" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $data->proses_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $data->total_pembelajaran; ?>"><?= $data->proses_pembelajaran; ?> (Sedang Berlangsung)</div>
                                 <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $data->selesai_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $data->total_pembelajaran; ?>"><?= $data->selesai_pembelajaran; ?> (Selesai)</div>
@@ -101,9 +354,9 @@ if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
                 <?php
                     }
                 } ?>
-            </div>
+            </div> -->
 
-            <!-- <div class="row">
+        <!-- <div class="row">
                 <?php if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
                     if (count($get_count_fakultas) == 3) {
                         $col_md = 4;
@@ -140,7 +393,7 @@ if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
                 }
                 ?>
             </div> -->
-        </div>
+        <!-- </div> -->
 
         <div class="container pt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">

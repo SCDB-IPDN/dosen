@@ -1,28 +1,34 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard extends CI_Controller
+{
 
-	function __construct(){
-		parent::__construct();	
+	function __construct()
+	{
+		parent::__construct();
 
 		$this->load->library('session');
-		if($this->session->userdata('status') != "login"){
+		if ($this->session->userdata('status') != "login") {
 			redirect(base_url());
 		}
-		
+
 		$this->load->model('Dashboard_model');
 	}
 
 	public function index()
 	{
-        $data = array(
+		$data = array(
 			'get_absen_all'						=> $this->Dashboard_model->get_absen_all(),
 			'get_absen_pulang_perbulan_chart'	=> $this->Dashboard_model->get_absen_pulang_perbulan_chart(),
 			'get_absen_masuk_perbulan_chart'	=> $this->Dashboard_model->get_absen_masuk_perbulan_chart(),
 			'get_count_fakultas'				=> $this->Dashboard_model->get_count_fakultas(),
-            'dashboard'							=> 'active'
-        );
+			'get_all_total'						=> $this->Dashboard_model->get_all_total(),
+			'get_summary_fakultas'				=> $this->Dashboard_model->get_summary_fakultas(),
+			'get_all_total_done'				=> $this->Dashboard_model->get_all_total_done(),
+			'get_summary_fakultas_done'			=> $this->Dashboard_model->get_summary_fakultas_done(),
+			'dashboard'							=> 'active'
+		);
 
 		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/dashboard');
@@ -31,10 +37,10 @@ class Dashboard extends CI_Controller {
 
 	public function fakultas_detail($fakultas)
 	{
-        $data = array(
+		$data = array(
 			'get_prodi'		=> $this->Dashboard_model->get_prodi_perfakultas($fakultas),
-            'dashboard'		=> 'active'
-        );
+			'dashboard'		=> 'active'
+		);
 
 		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/dashboard_detail');

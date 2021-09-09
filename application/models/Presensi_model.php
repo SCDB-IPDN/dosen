@@ -9,14 +9,14 @@ class Presensi_model extends CI_Model
             $get_data   = $this->db
                 ->select('*')
                 ->from('tbl_plot_dosen')
-                ->where("tanggal", date('2021-04-07'))
+                ->where("tanggal", date('Y-m-d'))
                 ->get();
         } else {
             $get_data   = $this->db
                 ->select('*')
                 ->from('tbl_plot_dosen')
                 ->where("nip", $username)
-                ->where("tanggal", date('2021-04-07'))
+                ->where("tanggal", date('Y-m-d'))
                 ->get();
         }
         if ($get_data->num_rows() > 0) {
@@ -34,7 +34,7 @@ class Presensi_model extends CI_Model
         WHEN keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
         WHEN keterangan is NOT null and upload is NOT null THEN \'Telah Selesai\'END AS StatusMonitoring')
         ->from('tbl_plot_dosen')
-        ->where("tanggal", date('2021-04-07'))
+        ->where("tanggal", date('Y-m-d'))
         ->group_by(array("StatusMonitoring","nama","nama_matkul","id_prodi"))
         ->get();
 
@@ -184,7 +184,7 @@ class Presensi_model extends CI_Model
         $get_data   = $this->db
             ->select('count( id_plot ) As TotalMonitoring, id_prodi')
             ->from('tbl_plot_dosen')
-            ->where("tanggal", date('2021-04-07'))
+            ->where("tanggal", date('Y-m-d'))
             ->group_by("id_prodi")
             ->get();
 
@@ -201,7 +201,7 @@ class Presensi_model extends CI_Model
         $get_data   = $this->db
             ->select('count( id_plot ) As TotalMonitoring, nama')
             ->from('tbl_plot_dosen')
-            ->where("tanggal", date('2021-04-07'))
+            ->where("tanggal", date('Y-m-d'))
             ->group_by("nama")
             ->get();
 
@@ -221,7 +221,7 @@ class Presensi_model extends CI_Model
              WHEN keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
              WHEN keterangan is NOT null and upload is NOT null THEN \'Telah Selesai\'END AS StatusMonitoring')
              ->from('tbl_plot_dosen')
-             ->where("tanggal", date('2021-04-07'))
+             ->where("tanggal", date('Y-m-d'))
              ->group_by("StatusMonitoring")
              ->get();
  
@@ -238,7 +238,7 @@ class Presensi_model extends CI_Model
           $get_data   = $this->db
               ->select('count( id_plot ) As TotalMonitoring')
               ->from('tbl_plot_dosen')
-              ->where("tanggal", date('2021-04-07'))
+              ->where("tanggal", date('Y-m-d'))
               ->where("upload !=", null)
               ->where("media_pembelajaran !=", null)
               ->get();
@@ -256,7 +256,7 @@ class Presensi_model extends CI_Model
         $get_data   = $this->db
             ->select('count(id_plot) as total_kelas')
             ->from('tbl_plot_dosen')
-            ->where("tanggal", date('2021-04-07'))
+            ->where("tanggal", date('Y-m-d'))
             ->get();
 
         if ($get_data->num_rows() > 0) {
@@ -272,7 +272,7 @@ class Presensi_model extends CI_Model
            $get_data   = $this->db
                ->select('count(id_plot) as total_kelas,id_fakultas')
                ->from('tbl_plot_dosen')
-               ->where("tanggal", date('2021-04-07'))
+               ->where("tanggal", date('Y-m-d'))
                ->group_by("id_fakultas")
                ->get();
    
@@ -289,7 +289,7 @@ class Presensi_model extends CI_Model
         $get_data   = $this->db
             ->select('count(DISTINCT(nama)) as total_dosen')
             ->from('tbl_plot_dosen')
-            ->where("tanggal", date('2021-04-07'))
+            ->where("tanggal", date('Y-m-d'))
             ->get();
 
         if ($get_data->num_rows() > 0) {
@@ -305,7 +305,7 @@ class Presensi_model extends CI_Model
          $get_data   = $this->db
              ->select('nama,id_fakultas,COUNT(id_plot) as total_pembelajaran')
              ->from('tbl_plot_dosen')
-             ->where("tanggal", date('2021-04-07'))
+             ->where("tanggal", date('Y-m-d'))
              ->group_by("nama")
              ->get();
  
@@ -322,7 +322,7 @@ class Presensi_model extends CI_Model
         $get_data   = $this->db
         ->select('count(id_plot) as total_kelas')
         ->from('tbl_plot_dosen')
-        ->where("tanggal", date('2021-04-07'))
+        ->where("tanggal", date('Y-m-d'))
         ->get();
 
     if ($get_data->num_rows() > 0) {
@@ -338,7 +338,7 @@ class Presensi_model extends CI_Model
          $get_data   = $this->db
              ->select('id_fakultas,COUNT(id_plot) as total_pembelajaran')
              ->from('tbl_plot_dosen')
-             ->where("tanggal", date('2021-04-07'))
+             ->where("tanggal", date('Y-m-d'))
              ->group_by("id_fakultas")
              ->get();
  
@@ -355,7 +355,7 @@ class Presensi_model extends CI_Model
          $get_data   = $this->db
              ->select('nama_matkul,id_fakultas,COUNT(id_plot) as total_pembelajaran')
              ->from('tbl_plot_dosen')
-             ->where("tanggal", date('2021-04-07'))
+             ->where("tanggal", date('Y-m-d'))
              ->group_by("nama_matkul,id_fakultas")
              ->get();
  
@@ -372,7 +372,7 @@ class Presensi_model extends CI_Model
         $get_data   = $this->db
         ->select('COUNT(DISTINCT(id_prodi)) as total_prodi')
         ->from('tbl_plot_dosen')
-        ->where("tanggal", date('2021-04-07'))
+        ->where("tanggal", date('Y-m-d'))
         ->get();
 
     if ($get_data->num_rows() > 0) {
@@ -388,7 +388,7 @@ class Presensi_model extends CI_Model
          $get_data   = $this->db
              ->select('id_fakultas,COUNT(id_plot) as total_pembelajaran')
              ->from('tbl_plot_dosen')
-             ->where("tanggal", date('2021-04-07'))
+             ->where("tanggal", date('Y-m-d'))
              ->group_by("id_fakultas")
              ->get();
  
