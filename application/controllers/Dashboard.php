@@ -14,6 +14,9 @@ class Dashboard extends CI_Controller
 		}
 
 		$this->load->model('Dashboard_model');
+		$this->load->model('Presensi_model');
+		
+		
 	}
 
 	public function index()
@@ -29,12 +32,52 @@ class Dashboard extends CI_Controller
 			'get_summary_fakultas'				=> $this->Dashboard_model->get_summary_fakultas(),
 			'get_all_total_done'				=> $this->Dashboard_model->get_all_total_done(),
 			'get_summary_fakultas_done'			=> $this->Dashboard_model->get_summary_fakultas_done(),
+			'get_count_status_monitoring'		=> $this->Presensi_model->get_count_status_monitoring(),
 			'dashboard'							=> 'active'
 		);
 
 		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/dashboard');
-		$this->load->view('page/js_datatable_frontend');
+		
+	}
+
+	public function fetch_detail_monitoring()
+	{
+		if ($this->input->is_ajax_request()) {
+			$posts = $this->Presensi_model->get_detail_monitoring();
+
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		}
+	}
+
+	public function fetch_status_belum_dimulai()
+	{
+		if ($this->input->is_ajax_request()) {
+			$posts = $this->Presensi_model->get_status_belum_dimulai();
+
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		}
+	}
+	public function fetch_status_sedang_berlangsung()
+	{
+		if ($this->input->is_ajax_request()) {
+			$posts = $this->Presensi_model->get_status_sedang_berlangsung();
+
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		}
+	}
+	public function fetch_status_telah_selesai()
+	{
+		if ($this->input->is_ajax_request()) {
+			$posts = $this->Presensi_model->get_status_telah_selesai();
+
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		}
+		
 	}
 
 	public function fakultas_detail($fakultas)

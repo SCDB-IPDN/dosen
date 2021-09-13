@@ -4,18 +4,22 @@
     padding: 20px 10px 40px;
     margin: 5px 0px;
 }
+
 .card-box:hover {
     text-decoration: none;
     color: #f1f1f1;
 }
+
 .card-box:hover .icon i {
     font-size: 100px;
     transition: 1s;
     -webkit-transition: 1s;
 }
+
 .card-box .inner {
     padding: 5px 10px 0 10px;
 }
+
 .card-box h3 {
     font-size: 50px;
     font-weight: bold;
@@ -24,11 +28,12 @@
     padding: 0;
     text-align: center;
 }
+
 .card-box p {
-     font-weight: bold;
+    font-weight: bold;
     font-size: 20px;
-    
 }
+
 .card-box .icon {
     position: absolute;
     top: auto;
@@ -38,6 +43,7 @@
     font-size: 72px;
     color: rgba(250, 250, 250, 0.15);
 }
+
 .card-box .card-box-footer {
     position: absolute;
     left: 0px;
@@ -49,18 +55,23 @@
     width: 100%;
     text-decoration: none;
 }
+
 .card-box:hover .card-box-footer {
     background: rgba(231, 227, 227, 0.3);
 }
+
 .bg-blue {
     background-color: #1b80f5 !important;
 }
+
 .bg-green {
     background-color: #00a65a !important;
 }
+
 .bg-orange {
     background-color: #f39c12 !important;
 }
+
 .bg-red {
     background-color: #d9534f !important;
 }

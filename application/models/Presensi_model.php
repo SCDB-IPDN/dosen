@@ -26,6 +26,61 @@ class Presensi_model extends CI_Model
         }
     }
 
+ 
+     public function get_status_belum_dimulai()
+     {
+         $get_data   = $this->db
+             ->select('*')
+             ->from('tbl_plot_dosen')
+             ->where("tanggal", date('Y-m-d'))
+             ->where('keterangan', null)
+             ->where('media_pembelajaran', null)
+             ->where('upload', null)
+             ->get();
+ 
+         if ($get_data->num_rows() > 0) {
+             return $get_data->result();
+         } else {
+             return false;
+         }
+     }
+
+     public function get_status_sedang_berlangsung()
+     {
+         $get_data   = $this->db
+             ->select('*')
+             ->from('tbl_plot_dosen')
+             ->where("tanggal", date('Y-m-d'))
+             ->where('keterangan !=', null)
+             ->where('media_pembelajaran', null)
+             ->where('upload', null)
+             ->get();
+ 
+         if ($get_data->num_rows() > 0) {
+             return $get_data->result();
+         } else {
+             return false;
+         }
+     }
+
+     public function get_status_telah_selesai()
+     {
+         $get_data   = $this->db
+             ->select('*')
+             ->from('tbl_plot_dosen')
+             ->where("tanggal", date('Y-m-d'))
+             ->where('keterangan !=', null)
+             ->where('media_pembelajaran !=', null)
+             ->where('upload !=', null)
+             ->get();
+ 
+         if ($get_data->num_rows() > 0) {
+             return $get_data->result();
+         } else {
+             return false;
+         }
+     }
+
     public function get_detail_monitoring()
     {
         $get_data   = $this->db
