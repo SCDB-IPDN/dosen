@@ -1,3 +1,45 @@
+<style>
+    /* Style tab links */
+    .tablink {
+        background-color: #0460ca;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 33.3%;
+    }
+
+    .tablink:hover {
+        background-color: #65a8f5;
+    }
+
+    /* Style the tab content (and add height:100% for full page content) */
+    .tabcontent {
+        color: white;
+        display: none;
+        padding: 100px 20px;
+        height: 100%;
+    }
+
+    #Home {
+        background-color: #1b80f5;
+    }
+
+    #News {
+        background-color: #1b80f5;
+    }
+
+    #Contact {
+        background-color: #1b80f5;
+    }
+
+    #About {
+        background-color: #1b80f5;
+    }
+</style>
 <?php
 
 if ($get_absen_pulang_perbulan_chart_perhari != false && !empty($get_absen_pulang_perbulan_chart_perhari)) {
@@ -218,6 +260,102 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                 </div>
                 <div id="cardatas" class="card-body">
 
+                    <div class="row mb-3">
+                        <div class="col-lg-6">
+                            <p>*Chart jumlah status monitoring pembelajaran daring</p>
+                            <canvas id="myChart3"></canvas>
+                            <button type="button" class="btn btn-outline-info btn-sm btn-block mt-2" data-toggle="modal" data-target="#detail_modal">Tampilkan Detail</button>
+                        </div>
+                    </div>
+
+                    <!-- <button class="tablink" onclick="openPage('Home', this, '#1b80f5')">Home</button> -->
+                    <button class="tablink" onclick="openPage('News', this, '#1b80f5')">Belum Mulai</button>
+                    <button class="tablink" onclick="openPage('Contact', this, '#1b80f5')">Sedang Berlangsung</button>
+                    <button class="tablink" onclick="openPage('About', this, '#1b80f5')" id="defaultOpen">Telah Selesai</button>
+
+                    <!-- <div id="Home" class="tabcontent">
+                        <h3>Home</h3>
+                        <p>Home is where the heart is..</p>
+                    </div> -->
+
+                    <div id="News" class="tabcontent">
+
+                    </div>
+
+                    <div id="Contact" class="tabcontent">
+                        <p class="text-light">Daftar pembelajaran <b>Sedang Berlangsung</b></p>
+                        <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                            <div class="col-md-12 my-5">
+                                <div class="table-responsive-xl mx-2">
+                                    <table class="table table-hover table-xl" id="sedang_berlangsung">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Dosen</th>
+                                                <th>Matakuliah</th>
+                                                <th>Jam</th>
+                                                <th>Kelas</th>
+                                                <th>Prodi</th>
+                                                <th>Fakultas</th>
+                                                <th>Link</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="About" class="tabcontent">
+                        <p class="text-light">Daftar pembelajaran <b>Telah Selesai</b></p>
+                        <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                            <div class="col-md-12 my-5">
+                                <div class="table-responsive-xl mx-2">
+                                    <table class="table table-hover table-xl" id="telah_selesai">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Dosen</th>
+                                                <th>Matakuliah</th>
+                                                <th>Jam</th>
+                                                <th>Kelas</th>
+                                                <th>Prodi</th>
+                                                <th>Fakultas</th>
+                                                <th>Link</th>
+                                                <th>Gambar</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        function openPage(pageName, elmnt, color) {
+                            // Hide all elements with class="tabcontent" by default */
+                            var i, tabcontent, tablinks;
+                            tabcontent = document.getElementsByClassName("tabcontent");
+                            for (i = 0; i < tabcontent.length; i++) {
+                                tabcontent[i].style.display = "none";
+                            }
+
+                            // Remove the background color of all tablinks/buttons
+                            tablinks = document.getElementsByClassName("tablink");
+                            for (i = 0; i < tablinks.length; i++) {
+                                tablinks[i].style.backgroundColor = "";
+                            }
+
+                            // Show the specific tab content
+                            document.getElementById(pageName).style.display = "block";
+
+                            // Add the specific color to the button used to open the tab content
+                            elmnt.style.backgroundColor = color;
+                        }
+
+                        // Get the element with id="defaultOpen" and click on it
+                        document.getElementById("defaultOpen").click();
+                    </script>
+
                     <div class="row">
                         <div class="col-lg-12 col-sm-6">
                             <div class="card-box bg-primary">
@@ -383,13 +521,66 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
 
+        <!-- detail modal -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="detail_modal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailModalLabel">Status Monitoring Pembelajaran</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive-xl mx-2">
+                                            <table class="table table-hover table-xl" id="detail_monitoring">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Dosen</th>
+                                                        <th>Matakuliah</th>
+                                                        <th>Prodi</th>
+                                                        <th>Status</th>
+                                                        <th>Jumlah</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div> -->
 
-
-
-
-
-
+                                <center><p>Daftar Pembelajaran <b>Belum dimulai</b></p></center>
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive-xl mx-2">
+                                            <table class="table table-hover table-xl" id="belum_dimulai">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Dosen</th>
+                                                        <th>Matakuliah</th>
+                                                        <th>Jam</th>
+                                                        <th>Kelas</th>
+                                                        <th>Prodi</th>
+                                                        <th>Fakultas</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -620,7 +811,76 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script>
+    var ctx = document.getElementById('myChart3').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                <?php if (count($get_count_status_monitoring) > 0) {
+                    foreach ($get_count_status_monitoring as $data) { ?> "<?= $data->StatusMonitoring ?>",
+                <?php }
+                } ?>
+            ],
+            datasets: [{
+                label: 'Pembelajaran',
+                fill: true,
+                data: [
+                    <?php if (count($get_count_status_monitoring) > 0) {
+                        foreach ($get_count_status_monitoring as $data) { ?>
+                            <?= $data->TotalMonitoring ?>,
+                    <?php }
+                    } ?>
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
 
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                },
+                // title: {
+                //   display: true,
+                //   text: '',
+
+                //   font: {
+                //     size: 20
+                //   },
+                //   color: 'blue',
+                //   padding: {
+                //     top: 10,
+                //     bottom: 30
+                //   }
+                // }
+            },
+            indexAxis: 'y',
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+<?php $this->load->view('page/js_datatable_frontend'); ?>
 <script>
     // ABSEN PULANG DOSEN PERBULAN
     var ctx = document.getElementById('absenpulangdosenperbln').getContext('2d');
@@ -1508,4 +1768,273 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
             }
         }
     });
+
+
+    /* -------------------------------------------------------------------------- */
+    /*                       Fetch Status Monitoring Records                      */
+    /* -------------------------------------------------------------------------- */
+    function fetchStatusMonitoring() {
+        $.ajax({
+            url: "<?php echo base_url(); ?>fetchstatusdashboard",
+            type: "post",
+            dataType: "json",
+            success: function(data) {
+                if (data.responce == "success") {
+
+                    var i = "1";
+                    $('#detail_monitoring').DataTable({
+                        "data": data.posts,
+                        "responsive": true,
+                        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                            'copy', 'excel', 'pdf'
+                        ],
+                        "columns": [{
+                                "render": function() {
+                                    return a = i++;
+                                }
+                            },
+                            {
+                                "data": "nama"
+                            },
+                            {
+                                "data": "nama_matkul"
+                            },
+                            {
+                                "data": "id_prodi"
+                            },
+                            {
+                                "data": "StatusMonitoring"
+                            },
+                            {
+                                "data": "TotalMonitoring"
+                            }
+
+                        ]
+                    });
+                } else {
+                    toastr["error"](data.message);
+                }
+
+            }
+        });
+    }
+    fetchStatusMonitoring();
+
+    /* -------------------------------------------------------------------------- */
+    /*                           Fetch Status Belum Dimulai                       */
+    /* -------------------------------------------------------------------------- */
+    function fetchBelumDimulai() {
+        $.ajax({
+            url: "<?php echo base_url(); ?>fetchstatusbelumdimulai",
+            type: "post",
+            dataType: "json",
+            success: function(data) {
+                if (data.responce == "success") {
+
+                    var i = "1";
+                    $('#belum_dimulai').DataTable({
+                        "data": data.posts,
+                        "responsive": true,
+                        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                            'copy', 'excel', 'pdf'
+                        ],
+                        "columns": [{
+                                "render": function() {
+                                    return a = i++;
+                                }
+                            },
+                            {
+                                "data": "nama"
+                            },
+                            {
+                                "data": "nama_matkul"
+                            },
+                            {
+                                "data": "jam"
+                            },
+                            {
+                                "data": "kelas"
+                            },
+                            {
+                                "data": "id_prodi"
+                            },
+                            {
+                                "data": "id_fakultas"
+                            }
+
+                        ]
+                    });
+                } else {
+                    toastr["error"](data.message);
+                }
+
+            }
+        });
+    }
+    fetchBelumDimulai();
+    /* -------------------------------------------------------------------------- */
+    /*                           Fetch Status Sedang Berlangsung                    */
+    /* -------------------------------------------------------------------------- */
+    function fetchSedangBerlangsung() {
+        $.ajax({
+            url: "<?php echo base_url(); ?>fetchstatussedangberlangsung",
+            type: "post",
+            dataType: "json",
+            success: function(data) {
+                if (data.responce == "success") {
+
+                    var i = "1";
+                    $('#sedang_berlangsung').DataTable({
+                        "data": data.posts,
+                        "responsive": true,
+                        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                            'copy', 'excel', 'pdf'
+                        ],
+                        "columns": [{
+                                "render": function() {
+                                    return a = i++;
+                                }
+                            },
+                            {
+                                "data": "nama"
+                            },
+                            {
+                                "data": "nama_matkul"
+                            },
+                            {
+                                "data": "jam"
+                            },
+                            {
+                                "data": "kelas"
+                            },
+                            {
+                                "data": "id_prodi"
+                            },
+                            {
+                                "data": "id_fakultas"
+                            },
+                            {
+                                "data": "keterangan",
+                                render: function(data, type, row, meta) {
+                                    if (`${row.keterangan}` != 'null') {
+                                        var a = `
+                                <a href="${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
+                              `;
+
+                                    } else {
+                                        var a = `Belum menyisipkan link`;
+                                    }
+
+
+                                    return a;
+                                }
+                            }
+
+                        ]
+                    });
+                } else {
+                    toastr["error"](data.message);
+                }
+
+            }
+        });
+    }
+    fetchSedangBerlangsung();
+
+    /* -------------------------------------------------------------------------- */
+    /*                           Fetch Status Telah Selesai                       */
+    /* -------------------------------------------------------------------------- */
+    function fetchTelahSelesai() {
+        $.ajax({
+            url: "<?php echo base_url(); ?>fetchstatustelahselesai",
+            type: "post",
+            dataType: "json",
+            success: function(data) {
+                if (data.responce == "success") {
+
+                    var i = "1";
+                    $('#telah_selesai').DataTable({
+                        "data": data.posts,
+                        "responsive": true,
+                        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                            'copy', 'excel', 'pdf'
+                        ],
+                        "columns": [{
+                                "render": function() {
+                                    return a = i++;
+                                }
+                            },
+                            {
+                                "data": "nama"
+                            },
+                            {
+                                "data": "nama_matkul"
+                            },
+                            {
+                                "data": "jam"
+                            },
+                            {
+                                "data": "kelas"
+                            },
+                            {
+                                "data": "id_prodi"
+                            },
+                            {
+                                "data": "id_fakultas"
+                            },
+                            {
+                                "data": "keterangan",
+                                render: function(data, type, row, meta) {
+                                    if (`${row.keterangan}` != 'null') {
+                                        var a = `
+                                <a href="${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
+                              `;
+
+                                    } else {
+                                        var a = `Belum menyisipkan link`;
+                                    }
+
+
+                                    return a;
+                                }
+                            },
+                            {
+                                "data": "upload",
+                                render: function(data, type, row, meta) {
+
+                                    if (`${row.upload}` != 'null') {
+                                        var a = `
+                                <img src="<?php echo base_url(); ?>/assets/upload/${row.upload}" width="300" height="200" class="img-thumbnail" id="zoom" value="${row.id_plot}"/>
+                            `;
+
+                                    } else {
+                                        var a = ` Tidak ada Bukti Foto pembelajaran daring!`;
+                                    }
+
+                                    return a;
+                                },
+                            }
+
+                        ]
+                    });
+                } else {
+                    toastr["error"](data.message);
+                }
+
+            }
+        });
+    }
+    fetchTelahSelesai();
 </script>

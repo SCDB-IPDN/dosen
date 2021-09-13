@@ -64,6 +64,10 @@ $route['delete'] = 'Presensi/delete';
 $route['mulai_edit'] = 'Presensi/mulai_edit';
 $route['akhiri_edit'] = 'Presensi/akhiri_edit';
 $route['fetchstatus'] = 'Presensi/fetch_detail_monitoring';
+$route['fetchstatusdashboard'] = 'Dashboard/fetch_detail_monitoring';
+$route['fetchstatusbelumdimulai'] = 'Dashboard/fetch_status_belum_dimulai';
+$route['fetchstatussedangberlangsung'] = 'Dashboard/fetch_status_sedang_berlangsung';
+$route['fetchstatustelahselesai'] = 'Dashboard/fetch_status_telah_selesai';
 $route['mulai_update'] = 'Presensi/mulai_update';
 $route['akhiri_update'] = 'Presensi/akhiri_update';
 
