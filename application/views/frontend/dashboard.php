@@ -264,97 +264,11 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         <div class="col-lg-6">
                             <p>*Chart jumlah status monitoring pembelajaran daring</p>
                             <canvas id="myChart3"></canvas>
-                            <button type="button" class="btn btn-outline-info btn-sm btn-block mt-2" data-toggle="modal" data-target="#detail_modal">Tampilkan Detail</button>
+                            <button type="button" class="btn btn-info btn-sm mt-2" data-toggle="modal" data-target="#modal_mulai">Detail Belum Dimulai</button>
+                            <button type="button" class="btn btn-warning btn-sm mt-2" data-toggle="modal" data-target="#modal_berlangsung">Detail Sedang Berlangsung</button>
+                            <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#modal_selesai">Detail Telah Selesai</button>
                         </div>
                     </div>
-
-                    <!-- <button class="tablink" onclick="openPage('Home', this, '#1b80f5')">Home</button> -->
-                    <button class="tablink" onclick="openPage('News', this, '#1b80f5')">Belum Mulai</button>
-                    <button class="tablink" onclick="openPage('Contact', this, '#1b80f5')">Sedang Berlangsung</button>
-                    <button class="tablink" onclick="openPage('About', this, '#1b80f5')" id="defaultOpen">Telah Selesai</button>
-
-                    <!-- <div id="Home" class="tabcontent">
-                        <h3>Home</h3>
-                        <p>Home is where the heart is..</p>
-                    </div> -->
-
-                    <div id="News" class="tabcontent">
-
-                    </div>
-
-                    <div id="Contact" class="tabcontent">
-                        <p class="text-light">Daftar pembelajaran <b>Sedang Berlangsung</b></p>
-                        <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
-                            <div class="col-md-12 my-5">
-                                <div class="table-responsive-xl mx-2">
-                                    <table class="table table-hover table-xl" id="sedang_berlangsung">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Dosen</th>
-                                                <th>Matakuliah</th>
-                                                <th>Jam</th>
-                                                <th>Kelas</th>
-                                                <th>Prodi</th>
-                                                <th>Fakultas</th>
-                                                <th>Link</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="About" class="tabcontent">
-                        <p class="text-light">Daftar pembelajaran <b>Telah Selesai</b></p>
-                        <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
-                            <div class="col-md-12 my-5">
-                                <div class="table-responsive-xl mx-2">
-                                    <table class="table table-hover table-xl" id="telah_selesai">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Dosen</th>
-                                                <th>Matakuliah</th>
-                                                <th>Jam</th>
-                                                <th>Kelas</th>
-                                                <th>Prodi</th>
-                                                <th>Fakultas</th>
-                                                <th>Link</th>
-                                                <th>Gambar</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <script>
-                        function openPage(pageName, elmnt, color) {
-                            // Hide all elements with class="tabcontent" by default */
-                            var i, tabcontent, tablinks;
-                            tabcontent = document.getElementsByClassName("tabcontent");
-                            for (i = 0; i < tabcontent.length; i++) {
-                                tabcontent[i].style.display = "none";
-                            }
-
-                            // Remove the background color of all tablinks/buttons
-                            tablinks = document.getElementsByClassName("tablink");
-                            for (i = 0; i < tablinks.length; i++) {
-                                tablinks[i].style.backgroundColor = "";
-                            }
-
-                            // Show the specific tab content
-                            document.getElementById(pageName).style.display = "block";
-
-                            // Add the specific color to the button used to open the tab content
-                            elmnt.style.backgroundColor = color;
-                        }
-
-                        // Get the element with id="defaultOpen" and click on it
-                        document.getElementById("defaultOpen").click();
-                    </script>
 
                     <div class="row">
                         <div class="col-lg-12 col-sm-6">
@@ -525,11 +439,11 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
             </div>
         </div>
 
-        <!-- detail modal -->
+        <!-- modal belum dimulai -->
         <div class="container">
             <div class="col-md-12">
                 <!-- Modal -->
-                <div class="modal fade" id="detail_modal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modal_mulai" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header bg-primary">
@@ -539,26 +453,9 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <!-- <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive-xl mx-2">
-                                            <table class="table table-hover table-xl" id="detail_monitoring">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Dosen</th>
-                                                        <th>Matakuliah</th>
-                                                        <th>Prodi</th>
-                                                        <th>Status</th>
-                                                        <th>Jumlah</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div> -->
-
-                                <center><p>Daftar Pembelajaran <b>Belum dimulai</b></p></center>
+                                <center>
+                                    <p>Daftar Pembelajaran <b>Belum dimulai</b></p>
+                                </center>
                                 <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
                                     <div class="col-md-12 my-5">
                                         <div class="table-responsive-xl mx-2">
@@ -572,6 +469,91 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                                                         <th>Kelas</th>
                                                         <th>Prodi</th>
                                                         <th>Fakultas</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal sedang berlangsung -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="modal_berlangsung" tabindex="-1" role="dialog" aria-labelledby="detailModalLabelBerlangsung" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailModalLabelBerlangsung">Status Monitoring Pembelajaran</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-light">Daftar pembelajaran <b>Sedang Berlangsung</b></p>
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive-xl mx-2">
+                                            <table class="table table-hover table-xl" id="sedang_berlangsung">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Dosen</th>
+                                                        <th>Matakuliah</th>
+                                                        <th>Jam</th>
+                                                        <th>Kelas</th>
+                                                        <th>Prodi</th>
+                                                        <th>Fakultas</th>
+                                                        <th>Link</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal telah selesai -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="modal_selesai" tabindex="-1" role="dialog" aria-labelledby="detailModalLabelSelesai" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailModalLabelSelesai">Status Monitoring Pembelajaran</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-light">Daftar pembelajaran <b>Telah Selesai</b></p>
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive-xl mx-2">
+                                            <table class="table table-hover table-xl" id="telah_selesai">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Dosen</th>
+                                                        <th>Matakuliah</th>
+                                                        <th>Jam</th>
+                                                        <th>Kelas</th>
+                                                        <th>Prodi</th>
+                                                        <th>Fakultas</th>
+                                                        <th>Link</th>
+                                                        <th>Gambar</th>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -2036,5 +2018,6 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
             }
         });
     }
-    fetchTelahSelesai();
+     fetchTelahSelesai();
 </script>
+
