@@ -29,10 +29,23 @@ class Dashboard extends CI_Controller
 			'get_absen_masuk_perbulan_chart_perhari'	=> $this->Dashboard_model->get_absen_masuk_perbulan_chart_perhari(),
 			'get_count_fakultas'				=> $this->Dashboard_model->get_count_fakultas(),
 			'get_all_total'						=> $this->Dashboard_model->get_all_total(),
+			'get_all_total_kelas'						=> $this->Dashboard_model->get_all_total_kelas(),
 			'get_summary_fakultas'				=> $this->Dashboard_model->get_summary_fakultas(),
 			'get_all_total_done'				=> $this->Dashboard_model->get_all_total_done(),
 			'get_summary_fakultas_done'			=> $this->Dashboard_model->get_summary_fakultas_done(),
 			'get_count_status_monitoring'		=> $this->Presensi_model->get_count_status_monitoring(),
+			'get_absen_perkampus_thl_ta'		=> $this->Dashboard_model->get_absen_perkampus_thl_ta(),
+			'count_get_absen_perkampus_thl_ta'	=> $this->Dashboard_model->count_get_absen_perkampus_thl_ta(),
+			'get_absen_perkampus_dosen'			=> $this->Dashboard_model->get_absen_perkampus_dosen(),
+			'count_get_absen_perkampus_dosen'	=> $this->Dashboard_model->count_get_absen_perkampus_dosen(),
+			'get_absen_perkampus_pns'			=> $this->Dashboard_model->get_absen_perkampus_pns(),
+			'count_get_absen_perkampus_pns'		=> $this->Dashboard_model->count_get_absen_perkampus_pns(),
+			'get_absen_perkampus_pns_dosen'		=> $this->Dashboard_model->get_absen_perkampus_pns_dosen(),
+			'count_get_absen_perkampus_pns_dosen'		=> $this->Dashboard_model->count_get_absen_perkampus_pns_dosen(),
+			'get_absen_perkampus_thl_ta_masuk'		=> $this->Dashboard_model->get_absen_perkampus_thl_ta_masuk(),
+			'get_absen_perkampus_dosen_masuk'		=> $this->Dashboard_model->get_absen_perkampus_dosen_masuk(),
+			'get_absen_perkampus_pns_masuk'		=> $this->Dashboard_model->get_absen_perkampus_pns_masuk(),
+			'get_absen_perkampus_pns_dosen_masuk'		=> $this->Dashboard_model->get_absen_perkampus_pns_dosen_masuk(),
 			'dashboard'							=> 'active'
 		);
 
