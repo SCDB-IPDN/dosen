@@ -76,7 +76,8 @@ $route['absen'] = 'Presensi/absen';
 $route['fetch_absen/(:any)'] = 'Presensi/fetch_absen/$1';
 $route['lokasi'] = 'Presensi/lokasi';
 $route['insert_absen'] = 'Presensi/insert_absen';
-$route['absen_pulang/(:any)'] = 'Presensi/absen_pulang/$1';
+// $route['absen_pulang/(:any)'] = 'Presensi/absen_pulang/$1';
+$route['absen_pulang'] = 'Presensi/absen_pulang';
 
 $route['dashboard'] = 'Dashboard';
 
