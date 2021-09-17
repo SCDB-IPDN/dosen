@@ -266,11 +266,29 @@ class Presensi extends CI_Controller
 		}
 	}
 
-	public function absen_pulang($username)
+	public function absen_pulang()
 	{
-		$data_update['waktu_pulang'] = date("H:i:s");
-		$data_update['status'] = "Pulang";
-		$this->presensi_model->update_entry_absen(base64_decode($username), $data_update);
-		redirect(base_url("absen"));
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$ajax_data = $this->input->post();
+
+				if ($this->presensi_model->update_entry_absen($this->session->userdata('username'), $ajax_data)) {
+					$data = array('responce' => 'success', 'message' => 'Record Update Successfully');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Failed to Update record');
+				}
+			}
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+
+		// $data_update['waktu_pulang'] = date("H:i:s");
+		// $data_update['status'] = "Pulang";
+		// $this->presensi_model->update_entry_absen(base64_decode($username), $data_update);
+		// redirect(base_url("absen"));
 	}
 }

@@ -182,11 +182,17 @@ if ($get_all_total != false && !empty($get_all_total)) {
     $get_total_kelas = 0;
 
     foreach ($get_all_total as $data) {
+        foreach ($get_all_total_kelas as $dataxxx) {
+            if ($dataxxx->id_fakultas == $data->id_fakultas) {
+                $data_kelas_ex = explode(',', $dataxxx->kelas);
+                $get_total_kelas += count($data_kelas_ex);
+            }
+        }
         $get_total_fakultas += $data->total_fakultas;
         $get_total_prodi += $data->total_prodi;
         $get_total_matkul += $data->total_matkul;
         $get_total_dosen += $data->total_dosen;
-        $get_total_kelas += $data->total_kelas;
+        // $get_total_kelas += $data->total_kelas;
     }
 } else {
     $get_total_fakultas = 0;
@@ -241,6 +247,30 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
     $get_dosen = 0;
     $get_kelas = 0;
 }
+
+if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+
+    $get_fakultas = 'Tidak Ada Pembelajaran Daring!';
+    $get_prodi = 0;
+    $get_matkul = 0;
+    $get_dosen = 0;
+    $get_kelas = 0;
+
+    foreach ($get_summary_fakultas as $data) {
+        $get_fakultas = $data->id_fakultas;
+        $get_prodi += $data->prodi;
+        $get_matkul += $data->matkul;
+        $get_dosen += $data->dosen;
+        $get_kelas += $data->kelas;
+    }
+} else {
+    $get_fakultas = 'Tidak Ada Pembelajaran Daring!';
+    $get_prodi = 0;
+    $get_matkul = 0;
+    $get_dosen = 0;
+    $get_kelas = 0;
+}
+
 // var_dump($get_absen_all[0]->total);exit;
 ?>
 
@@ -289,9 +319,37 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             <div class="card-box bg-primary">
                                 <div class="inner">
                                     <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
-                                        foreach ($get_summary_fakultas as $data) { ?>
-                                            <p class="text-light"> <?= $data->id_fakultas; ?> : <?= $data->kelas; ?> </p>
-                                    <?php
+                                        $get_total_kelas1 = 0;
+                                        $get_total_kelas2 = 0;
+                                        $get_total_kelas3 = 0;
+                                        foreach ($get_all_total_kelas as $dataxxx) {
+                                            if ($dataxxx->id_fakultas == 'FHTP') {
+                                                $data_kelas_ex_det1 = explode(',', $dataxxx->kelas);
+                                                $get_total_kelas1 += count($data_kelas_ex_det1);
+                                            }
+                                            if ($dataxxx->id_fakultas == 'FMP') {
+                                                $data_kelas_ex_det2 = explode(',', $dataxxx->kelas);
+                                                $get_total_kelas2 += count($data_kelas_ex_det2);
+                                            }
+                                            if ($dataxxx->id_fakultas == 'FPP') {
+                                                $data_kelas_ex_det3 = explode(',', $dataxxx->kelas);
+                                                $get_total_kelas3 += count($data_kelas_ex_det3);
+                                            }
+                                        }
+
+                                        foreach ($get_summary_fakultas as $data) {
+                                            if ($data->id_fakultas == 'FHTP') {
+                                                echo "
+                                                <p class=\"text-light\"> $data->id_fakultas : $get_total_kelas1 </p>";
+                                            }
+                                            if ($data->id_fakultas == 'FMP') {
+                                                echo "
+                                                <p class=\"text-light\"> $data->id_fakultas : $get_total_kelas2 </p>";
+                                            }
+                                            if ($data->id_fakultas == 'FPP') {
+                                                echo "
+                                                <p class=\"text-light\"> $data->id_fakultas : $get_total_kelas3 </p>";
+                                            }
                                         }
                                     } ?>
                                 </div>
@@ -459,19 +517,21 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                                 <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
                                     <div class="col-md-12 my-5">
                                         <div class="table-responsive-xl mx-2">
-                                            <table class="table table-hover table-xl" id="belum_dimulai">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Dosen</th>
-                                                        <th>Matakuliah</th>
-                                                        <th>Jam</th>
-                                                        <th>Kelas</th>
-                                                        <th>Prodi</th>
-                                                        <th>Fakultas</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
+                                            <div class="container">
+                                                <table class="table table-hover table-xl" id="belum_dimulai">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Dosen</th>
+                                                            <th>Matakuliah</th>
+                                                            <th>Jam</th>
+                                                            <th>Kelas</th>
+                                                            <th>Prodi</th>
+                                                            <th>Fakultas</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -649,7 +709,127 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= ($get_absen_all[0]->total - $count_pulang_perbulan_1_); ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= ($get_absen_all[0]->total - $count_pulang_perbulan_1_); ?> (Tidak Absen)</div>
                         <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
                     </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-xl">
+                            <?php if (count($get_absen_perkampus_dosen) > 0) { ?>
+                                Dosen Non PNS
+                                <?php foreach ($get_absen_perkampus_dosen as $data) { ?>
+                                    <div class="d-flex mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa fa-circle text-primary f-s-8 mr-2"></i>
+                                            <?= $data->kampus; ?>
+                                        </div>
+                                        <div class="d-flex align-items-center ml-auto">
+                                            <div class="text-right pl-2 f-w-600">
+                                                <span>
+                                                    <?= $data->jumlah_hadir; ?> Dari
+                                                    <?php foreach ($count_get_absen_perkampus_dosen as $datax) {
+                                                        if ($datax->kampus == $data->kampus) { ?>
+                                                            <?= $datax->total; ?>
+                                                        <?php  } ?>
+                                                    <?php } ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php  } else {
+                                echo "Tidak ada absen untuk Dosen Non PNS";
+                            } ?>
+                        </div>
+
+                        <div class="col-xl">
+                            <?php if (count($get_absen_perkampus_thl_ta) > 0) { ?>
+                                THL dan TA
+                                <?php foreach ($get_absen_perkampus_thl_ta as $data) { ?>
+                                    <div class="d-flex mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa fa-circle text-primary f-s-8 mr-2"></i>
+                                            <?= $data->nama_satker; ?>
+                                        </div>
+                                        <div class="d-flex align-items-center ml-auto">
+                                            <div class="text-right pl-2 f-w-600">
+                                                <span>
+                                                    <?= $data->jumlah_hadir; ?> Dari
+                                                    <?php foreach ($count_get_absen_perkampus_thl_ta as $datax) {
+                                                        if ($datax->nama_satker == $data->nama_satker) { ?>
+                                                            <?= $datax->total; ?>
+                                                        <?php  } ?>
+                                                    <?php } ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php } else {
+                                echo "Tidak ada absen untuk THL dan TA";
+                            } ?>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-xl">
+                            <?php if (count($get_absen_perkampus_pns) > 0) { ?>
+                                PNS
+                                <?php foreach ($get_absen_perkampus_pns as $data) { ?>
+                                    <div class="d-flex mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa fa-circle text-primary f-s-8 mr-2"></i>
+                                            <?= $data->bagian; ?>
+                                        </div>
+                                        <div class="d-flex align-items-center ml-auto">
+                                            <div class="text-right pl-2 f-w-600">
+                                                <span>
+                                                    <?= $data->jumlah_hadir; ?> Dari
+                                                    <?php foreach ($count_get_absen_perkampus_pns as $datax) {
+                                                        if ($datax->bagian == $data->bagian) { ?>
+                                                            <?= $datax->total; ?>
+                                                        <?php  } ?>
+                                                    <?php } ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php  } else {
+                                echo "Tidak ada absen untuk PNS";
+                            } ?>
+                        </div>
+
+                        <div class="col-xl">
+                            <?php if (count($get_absen_perkampus_pns_dosen) > 0) { ?>
+                                PNS DOSEN
+                                <?php foreach ($get_absen_perkampus_pns_dosen as $data) { ?>
+                                    <div class="d-flex mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa fa-circle text-primary f-s-8 mr-2"></i>
+                                            <?= $data->bagian; ?>
+                                        </div>
+                                        <div class="d-flex align-items-center ml-auto">
+                                            <div class="text-right pl-2 f-w-600">
+                                                <span>
+                                                    <?= $data->jumlah_hadir; ?> Dari
+                                                    <?php foreach ($count_get_absen_perkampus_pns_dosen as $datax) {
+                                                        if ($datax->bagian == $data->bagian) { ?>
+                                                            <?= $datax->total; ?>
+                                                        <?php  } ?>
+                                                    <?php } ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php } else {
+                                echo "Tidak ada absen untuk PNS DOSEN";
+                            } ?>
+                        </div>
+                    </div>
+
                 </div>
+
                 <div id="card1" class="card-body ">
                     <h4>Presensi Hanya Masuk</h4>
                     <div class="progress" style="height:30px">
@@ -657,6 +837,125 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= ($get_absen_all[0]->total - $count_masuk_perbulan_1_); ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= ($get_absen_all[0]->total - $count_masuk_perbulan_1_); ?> (Tidak Absen)</div>
                         <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
                     </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-xl">
+                            <?php if (count($get_absen_perkampus_dosen_masuk) > 0) { ?>
+                                Dosen Non PNS
+                                <?php foreach ($get_absen_perkampus_dosen_masuk as $data) { ?>
+                                    <div class="d-flex mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa fa-circle text-green f-s-8 mr-2"></i>
+                                            <?= $data->kampus; ?>
+                                        </div>
+                                        <div class="d-flex align-items-center ml-auto">
+                                            <div class="text-right pl-2 f-w-600">
+                                                <span>
+                                                    <?= $data->jumlah_hadir; ?> Dari
+                                                    <?php foreach ($count_get_absen_perkampus_thl_ta as $datax) {
+                                                        if ($datax->kampus == $data->kampus) { ?>
+                                                            <?= $datax->total; ?>
+                                                        <?php  } ?>
+                                                    <?php } ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php } else {
+                                echo "Tidak ada absen untuk Dosen Non PNS";
+                            } ?>
+                        </div>
+
+                        <div class="col-xl">
+                            <?php if (count($get_absen_perkampus_thl_ta_masuk) > 0) { ?>
+                                THL dan TA
+                                <?php foreach ($get_absen_perkampus_thl_ta_masuk as $data) { ?>
+                                    <div class="d-flex mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa fa-circle text-green f-s-8 mr-2"></i>
+                                            <?= $data->nama_satker; ?>
+                                        </div>
+                                        <div class="d-flex align-items-center ml-auto">
+                                            <div class="text-right pl-2 f-w-600">
+                                                <span>
+                                                    <?= $data->jumlah_hadir; ?> Dari
+                                                    <?php foreach ($count_get_absen_perkampus_thl_ta as $datax) {
+                                                        if ($datax->nama_satker == $data->nama_satker) { ?>
+                                                            <?= $datax->total; ?>
+                                                        <?php  } ?>
+                                                    <?php } ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php } else {
+                                echo "Tidak ada absen untuk THL dan TA";
+                            } ?>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-xl">
+                            <?php if (count($get_absen_perkampus_pns_masuk) > 0) { ?>
+                                PNS
+                                <?php foreach ($get_absen_perkampus_pns_masuk as $data) { ?>
+                                    <div class="d-flex mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa fa-circle text-green f-s-8 mr-2"></i>
+                                            <?= $data->bagian; ?>
+                                        </div>
+                                        <div class="d-flex align-items-center ml-auto">
+                                            <div class="text-right pl-2 f-w-600">
+                                                <span>
+                                                    <?= $data->jumlah_hadir; ?> Dari
+                                                    <?php foreach ($count_get_absen_perkampus_pns as $datax) {
+                                                        if ($datax->bagian == $data->bagian) { ?>
+                                                            <?= $datax->total; ?>
+                                                        <?php  } ?>
+                                                    <?php } ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php  } else {
+                                echo "Tidak ada absen untuk PNS";
+                            } ?>
+                        </div>
+
+                        <div class="col-xl">
+                            <?php if (count($get_absen_perkampus_pns_dosen_masuk) > 0) { ?>
+                                PNS DOSEN
+                                <?php foreach ($get_absen_perkampus_pns_dosen_masuk as $data) { ?>
+                                    <div class="d-flex mb-2">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa fa-circle text-green f-s-8 mr-2"></i>
+                                            <?= $data->bagian; ?>
+                                        </div>
+                                        <div class="d-flex align-items-center ml-auto">
+                                            <div class="text-right pl-2 f-w-600">
+                                                <span>
+                                                    <?= $data->jumlah_hadir; ?> Dari
+                                                    <?php foreach ($count_get_absen_perkampus_pns_dosen as $datax) {
+                                                        if ($datax->bagian == $data->bagian) { ?>
+                                                            <?= $datax->total; ?>
+                                                        <?php  } ?>
+                                                    <?php } ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            <?php } else {
+                                echo "Tidak ada absen untuk PNS DOSEN";
+                            } ?>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -2018,6 +2317,5 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
             }
         });
     }
-     fetchTelahSelesai();
+    fetchTelahSelesai();
 </script>
-

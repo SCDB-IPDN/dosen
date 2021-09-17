@@ -48,9 +48,9 @@
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasuk" disabled>
                                                 Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                             </button>
-                                            <a href="<?php echo base_url('absen_pulang/' . base64_encode($this->session->userdata('username'))); ?>" type="button" class="btn btn-danger">
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#absenpulang">
                                                 Absen Pulang <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-                                            </a>
+                                            </button>
                                         <?php } else { ?>
                                             <button type="button" class="btn btn-primary" disabled>
                                                 Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
@@ -142,7 +142,7 @@
                             foreach ($get_absen_pulang_chart as $data) { ?> "<?= $data->role ?>",
                         <?php }
                         } else {
-                            echo "Data Tidak Ditemukan";
+                            echo "'Data Tidak Ditemukan'";
                         } ?>
                     ],
                     datasets: [{
@@ -221,7 +221,7 @@
                             foreach ($get_absen_masuk_chart as $data) { ?> "<?= $data->role ?>",
                         <?php }
                         } else {
-                            echo "Data Tidak Ditemukan";
+                            echo "'Data Tidak Ditemukan'";
                         } ?>
                     ],
                     datasets: [{
@@ -304,7 +304,7 @@
                                 <th>Via</th>
                                 <th>Kondisi</th>
                                 <th>Status</th>
-                                <th>Keterangan</th>
+                                <th>Aktivitas</th>
                             </tr>
                         </thead>
                     </table>
@@ -346,10 +346,10 @@
                                     <option value="Sakit">Sakit</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="">Keterangan</label>
                                 <textarea type="text" name="keterangan" id="keterangan" class="form-control"></textarea>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -359,11 +359,44 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal Absen Pulang -->
+        <div class="modal fade" id="absenpulang" tabindex="-1" role="dialog" aria-labelledby="absenpulanglabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="absenpulanglabel">Absen Pulang</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post" id="form">
+                            <div class="form-group">
+                                <label for="">Tanggal</label>
+                                <input type="text" name="tgl" id="tgl" class="form-control" value="<?php echo date("Y-m-d") ?>" readonly>
+                                <input type="hidden" name="username" id="username" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
+                                <input type="hidden" name="waktu_pulang" id="waktu_pulang" class="form-control" value="<?php echo date("H:i:s") ?>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Aktivitas (*)</label>
+                                <textarea type="text" name="keterangan" id="keterangan" class="form-control" required></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-primary" id="updatex">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 <input type="hidden" value="<?php echo base_url(); ?>" id="base_url">
 <?php $this->load->view('page/js_datatable_frontend'); ?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     /* --------------------------------- Baseurl -------------------------------- */
@@ -397,11 +430,15 @@
         var waktu = $("#waktu").val();
         var via = $("#via").val();
         var kondisi = $("#kondisi").val();
-        var keterangan = $("#keterangan").val();
+        // var keterangan = $("#keterangan").val();
         var status = "Masuk";
 
         if (tgl == "" || via == "" || kondisi == "" || waktu == "" || username == "" || jns_user == "") {
-            alert("Harap Untuk Mengisi Data Dengan Lengkap");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Harap Untuk Mengisi Data Dengan Lengkap',
+            })
         } else {
             $.ajax({
                 url: "<?php echo base_url(); ?>insert_absen",
@@ -414,7 +451,7 @@
                     waktu: waktu,
                     via: via,
                     kondisi: kondisi,
-                    keterangan: keterangan,
+                    // keterangan: keterangan,
                     status: status
                 },
                 success: function(data) {
@@ -433,6 +470,56 @@
             $("#form")[0].reset();
         }
         setInterval('location.reload()', 1000)
+    });
+
+    /* -------------------------------------------------------------------------- */
+    /*                               Update Records                               */
+    /* -------------------------------------------------------------------------- */
+    $(document).on("click", "#updatex", function(e) {
+        e.preventDefault();
+
+        var username = $("#username").val();
+        var jns_user = <?php echo $this->session->userdata('role') ?>;
+        var waktu_pulang = $("#waktu_pulang").val();
+        var keterangan = $("#keterangan").val();
+        var status = "Pulang";
+
+        if (waktu_pulang == "" || keterangan == "" || status == "" || username == "" || jns_user == "") {
+            // alert("Harap Untuk Mengisi Data Dengan Lengkap");
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Harap Untuk Mengisi Aktivitas',
+            })
+        } else {
+            $.ajax({
+                url: "<?php echo base_url(); ?>absen_pulang",
+                type: "post",
+                dataType: "json",
+                data: {
+                    username: username,
+                    jns_user: jns_user,
+                    waktu_pulang: waktu_pulang,
+                    keterangan: keterangan,
+                    status: status
+                },
+                success: function(data) {
+                    if (data.responce == "success") {
+                        $('#records').DataTable().destroy();
+                        fetch();
+                        $('#absenpulang').modal('hide');
+                        toastr["success"](data.message);
+                    } else {
+                        toastr["error"](data.message);
+                    }
+
+                }
+            });
+
+            $("#form")[0].reset();
+            setInterval('location.reload()', 1000)
+        }
     });
 
     /* -------------------------------------------------------------------------- */
