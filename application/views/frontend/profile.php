@@ -31,7 +31,17 @@
                                 <div class="d-flex contact-grid mt-4 pt-lg-2">
                                     <div class="cont-right">
                                         <h5>Nama Pengguna:</h5>
-                                        <p><?= count($get_profile) == 0 ? '-' : $get_profile[0]->nama; ?></p>
+                                        <p>
+                                            <?php if (count($get_profile) != 0) {
+                                                if ($get_profile[0]->nama == 'Dr. HARI NUR CAHYA MURNI, M.Si') {
+                                                    echo $this->session->userdata('username');
+                                                } else {
+                                                    echo $get_profile[0]->nama;
+                                                }
+                                            } else {
+                                                echo "-";
+                                            } ?>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="d-flex contact-grid mt-4 pt-lg-2">
