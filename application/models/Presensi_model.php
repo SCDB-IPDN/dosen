@@ -11,6 +11,78 @@ class Presensi_model extends CI_Model
                 ->from('tbl_plot_dosen')
                 ->where("tanggal", date('Y-m-d'))
                 ->get();
+        } elseif ($username == 'UtamaMP') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("id_fakultas", "FMP")
+                ->where("tingkatan", "Praja Utama")
+                ->where("tanggal", date('Y-m-d'))
+                ->get();
+        } elseif ($username == 'UtamaPM') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("id_fakultas", "FHTP")
+                ->where("tingkatan", "Praja Utama")
+                ->where("tanggal", date('Y-m-d'))
+                ->get();
+        } elseif ($username == 'UtamaPP') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("id_fakultas", "FPP")
+                ->where("tingkatan", "Praja Utama")
+                ->where("tanggal", date('Y-m-d'))
+                ->get();
+        } elseif ($username == 'MadyaMP') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("id_fakultas", "FMP")
+                ->where("tingkatan", "Madya Praja")
+                ->where("tanggal", date('Y-m-d'))
+                ->get();
+        } elseif ($username == 'MadyaPM') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("id_fakultas", "FHTP")
+                ->where("tingkatan", "Madya Praja")
+                ->where("tanggal", date('Y-m-d'))
+                ->get();
+        } elseif ($username == 'MadyaPP') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("id_fakultas", "FPP")
+                ->where("tingkatan", "Madya Praja")
+                ->where("tanggal", date('Y-m-d'))
+                ->get();
+        } elseif ($username == 'MudaMP') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("id_fakultas", "FMP")
+                ->where("tingkatan", "Muda Praja")
+                ->where("tanggal", date('Y-m-d'))
+                ->get();
+        } elseif ($username == 'MudaPM') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("id_fakultas", "FHTP")
+                ->where("tingkatan", "Muda Praja")
+                ->where("tanggal", date('Y-m-d'))
+                ->get();
+        } elseif ($username == 'MudaPP') {
+            $get_data   = $this->db
+                ->select('*')
+                ->from('tbl_plot_dosen')
+                ->where("id_fakultas", "FPP")
+                ->where("tingkatan", "Muda Praja")
+                ->where("tanggal", date('Y-m-d'))
+                ->get();
         } else {
             $get_data   = $this->db
                 ->select('*')
@@ -19,6 +91,7 @@ class Presensi_model extends CI_Model
                 ->where("tanggal", date('Y-m-d'))
                 ->get();
         }
+
         if ($get_data->num_rows() > 0) {
             return $get_data->result();
         } else {
@@ -26,78 +99,78 @@ class Presensi_model extends CI_Model
         }
     }
 
- 
-     public function get_status_belum_dimulai()
-     {
-         $get_data   = $this->db
-             ->select('*')
-             ->from('tbl_plot_dosen')
-             ->where("tanggal", date('Y-m-d'))
-             ->where('keterangan', null)
-             ->where('media_pembelajaran', null)
-             ->where('upload', null)
-             ->get();
- 
-         if ($get_data->num_rows() > 0) {
-             return $get_data->result();
-         } else {
-             return false;
-         }
-     }
 
-     public function get_status_sedang_berlangsung()
-     {
-         $get_data   = $this->db
-             ->select('*')
-             ->from('tbl_plot_dosen')
-             ->where("tanggal", date('Y-m-d'))
-             ->where('keterangan !=', null)
-             ->where('media_pembelajaran', null)
-             ->where('upload', null)
-             ->get();
- 
-         if ($get_data->num_rows() > 0) {
-             return $get_data->result();
-         } else {
-             return false;
-         }
-     }
+    public function get_status_belum_dimulai()
+    {
+        $get_data   = $this->db
+            ->select('*')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where('keterangan', null)
+            ->where('media_pembelajaran', null)
+            ->where('upload', null)
+            ->get();
 
-     public function get_status_telah_selesai()
-     {
-         $get_data   = $this->db
-             ->select('*')
-             ->from('tbl_plot_dosen')
-             ->where("tanggal", date('Y-m-d'))
-             ->where('keterangan !=', null)
-             ->where('media_pembelajaran !=', null)
-             ->where('upload !=', null)
-             ->get();
- 
-         if ($get_data->num_rows() > 0) {
-             return $get_data->result();
-         } else {
-             return false;
-         }
-     }
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_status_sedang_berlangsung()
+    {
+        $get_data   = $this->db
+            ->select('*')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where('keterangan !=', null)
+            ->where('media_pembelajaran', null)
+            ->where('upload', null)
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_status_telah_selesai()
+    {
+        $get_data   = $this->db
+            ->select('*')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where('keterangan !=', null)
+            ->where('media_pembelajaran !=', null)
+            ->where('upload !=', null)
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
 
     public function get_detail_monitoring()
     {
         $get_data   = $this->db
-        ->select('COUNT( id_plot ) As TotalMonitoring, nama,nama_matkul,id_prodi,
+            ->select('COUNT( id_plot ) As TotalMonitoring, nama,nama_matkul,id_prodi,
         CASE WHEN keterangan is null and upload is null THEN \'Belum Mulai\' 
         WHEN keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
         WHEN keterangan is NOT null and upload is NOT null THEN \'Telah Selesai\'END AS StatusMonitoring')
-        ->from('tbl_plot_dosen')
-        ->where("tanggal", date('Y-m-d'))
-        ->group_by(array("StatusMonitoring","nama","nama_matkul","id_prodi"))
-        ->get();
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by(array("StatusMonitoring", "nama", "nama_matkul", "id_prodi"))
+            ->get();
 
-    if ($get_data->num_rows() > 0) {
-        return $get_data->result();
-    } else {
-        return false;
-    }
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
     }
 
     public function insert_entry($data)
@@ -275,37 +348,37 @@ class Presensi_model extends CI_Model
              CASE WHEN keterangan is null and upload is null THEN \'Belum Mulai\' 
              WHEN keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
              WHEN keterangan is NOT null and upload is NOT null THEN \'Telah Selesai\'END AS StatusMonitoring')
-             ->from('tbl_plot_dosen')
-             ->where("tanggal", date('Y-m-d'))
-             ->group_by("StatusMonitoring")
-             ->get();
- 
-         if ($get_data->num_rows() > 0) {
-             return $get_data->result();
-         } else {
-             return false;
-         }
-     }
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by("StatusMonitoring")
+            ->get();
 
-      //count sudah upload
-      public function get_count_sudah_upload()
-      {
-          $get_data   = $this->db
-              ->select('count( id_plot ) As TotalMonitoring')
-              ->from('tbl_plot_dosen')
-              ->where("tanggal", date('Y-m-d'))
-              ->where("upload !=", null)
-              ->where("media_pembelajaran !=", null)
-              ->get();
-  
-          if ($get_data->num_rows() > 0) {
-              return $get_data->result();
-          } else {
-              return false;
-          }
-      }
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
 
-       //count identitas kelas
+    //count sudah upload
+    public function get_count_sudah_upload()
+    {
+        $get_data   = $this->db
+            ->select('count( id_plot ) As TotalMonitoring')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where("upload !=", null)
+            ->where("media_pembelajaran !=", null)
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    //count identitas kelas
     public function get_count_identitas_kelas()
     {
         $get_data   = $this->db
@@ -321,24 +394,24 @@ class Presensi_model extends CI_Model
         }
     }
 
-       //count identitas kelas detail   
-       public function get_count_identitas_kelas_detail()
-       {
-           $get_data   = $this->db
-               ->select('count(id_plot) as total_kelas,id_fakultas')
-               ->from('tbl_plot_dosen')
-               ->where("tanggal", date('Y-m-d'))
-               ->group_by("id_fakultas")
-               ->get();
-   
-           if ($get_data->num_rows() > 0) {
-               return $get_data->result();
-           } else {
-               return false;
-           }
-       }
+    //count identitas kelas detail   
+    public function get_count_identitas_kelas_detail()
+    {
+        $get_data   = $this->db
+            ->select('count(id_plot) as total_kelas,id_fakultas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by("id_fakultas")
+            ->get();
 
-         //count identitas dosen
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    //count identitas dosen
     public function get_count_dosen()
     {
         $get_data   = $this->db
@@ -354,103 +427,103 @@ class Presensi_model extends CI_Model
         }
     }
 
-     //count identitas dosen detail   
-     public function get_count_dosen_detail()
-     {
-         $get_data   = $this->db
-             ->select('nama,id_fakultas,COUNT(id_plot) as total_pembelajaran')
-             ->from('tbl_plot_dosen')
-             ->where("tanggal", date('Y-m-d'))
-             ->group_by("nama")
-             ->get();
- 
-         if ($get_data->num_rows() > 0) {
-             return $get_data->result();
-         } else {
-             return false;
-         }
-     }
+    //count identitas dosen detail   
+    public function get_count_dosen_detail()
+    {
+        $get_data   = $this->db
+            ->select('nama,id_fakultas,COUNT(id_plot) as total_pembelajaran')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by("nama")
+            ->get();
 
-          //count identitas matakuliah
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    //count identitas matakuliah
     public function get_count_matakuliah()
     {
         $get_data   = $this->db
-        ->select('count(id_plot) as total_kelas')
-        ->from('tbl_plot_dosen')
-        ->where("tanggal", date('Y-m-d'))
-        ->get();
+            ->select('count(id_plot) as total_kelas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->get();
 
-    if ($get_data->num_rows() > 0) {
-        return $get_data->result();
-    } else {
-        return false;
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
     }
+
+    //count identitas matakuliah detail   
+    public function get_count_matakuliah_detail()
+    {
+        $get_data   = $this->db
+            ->select('id_fakultas,COUNT(id_plot) as total_pembelajaran')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
     }
 
-     //count identitas matakuliah detail   
-     public function get_count_matakuliah_detail()
-     {
-         $get_data   = $this->db
-             ->select('id_fakultas,COUNT(id_plot) as total_pembelajaran')
-             ->from('tbl_plot_dosen')
-             ->where("tanggal", date('Y-m-d'))
-             ->group_by("id_fakultas")
-             ->get();
- 
-         if ($get_data->num_rows() > 0) {
-             return $get_data->result();
-         } else {
-             return false;
-         }
-     }
+    //count identitas matakuliah lebih detail   
+    public function get_count_matakuliah_lebih_detail()
+    {
+        $get_data   = $this->db
+            ->select('nama_matkul,id_fakultas,COUNT(id_plot) as total_pembelajaran')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by("nama_matkul,id_fakultas")
+            ->get();
 
-     //count identitas matakuliah lebih detail   
-     public function get_count_matakuliah_lebih_detail()
-     {
-         $get_data   = $this->db
-             ->select('nama_matkul,id_fakultas,COUNT(id_plot) as total_pembelajaran')
-             ->from('tbl_plot_dosen')
-             ->where("tanggal", date('Y-m-d'))
-             ->group_by("nama_matkul,id_fakultas")
-             ->get();
- 
-         if ($get_data->num_rows() > 0) {
-             return $get_data->result();
-         } else {
-             return false;
-         }
-     }
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
 
-           //count identitas matakuliah
+    //count identitas matakuliah
     public function get_count_prodi()
     {
         $get_data   = $this->db
-        ->select('COUNT(DISTINCT(id_prodi)) as total_prodi')
-        ->from('tbl_plot_dosen')
-        ->where("tanggal", date('Y-m-d'))
-        ->get();
+            ->select('COUNT(DISTINCT(id_prodi)) as total_prodi')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->get();
 
-    if ($get_data->num_rows() > 0) {
-        return $get_data->result();
-    } else {
-        return false;
-    }
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
     }
 
-     //count identitas matakuliah detail   
-     public function get_count_prodi_detail()
-     {
-         $get_data   = $this->db
-             ->select('id_fakultas,COUNT(id_plot) as total_pembelajaran')
-             ->from('tbl_plot_dosen')
-             ->where("tanggal", date('Y-m-d'))
-             ->group_by("id_fakultas")
-             ->get();
- 
-         if ($get_data->num_rows() > 0) {
-             return $get_data->result();
-         } else {
-             return false;
-         }
-     }
+    //count identitas matakuliah detail   
+    public function get_count_prodi_detail()
+    {
+        $get_data   = $this->db
+            ->select('id_fakultas,COUNT(id_plot) as total_pembelajaran')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
 }
