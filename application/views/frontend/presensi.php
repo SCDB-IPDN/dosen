@@ -616,7 +616,7 @@
                       
                                `;
                     }
-                  <?php } elseif ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
+                  <?php } elseif ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29 || $this->session->userdata('role') == 30 || $this->session->userdata('role') == 31 || $this->session->userdata('role') == 32 || $this->session->userdata('role') == 33 || $this->session->userdata('role') == 34 || $this->session->userdata('role') == 35 || $this->session->userdata('role') == 36 || $this->session->userdata('role') == 37 || $this->session->userdata('role') == 38) { ?>
                     if (`${row.keterangan}` == 'null' && `${row.upload}` == 'null') {
                       var ax = `
                                 <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>

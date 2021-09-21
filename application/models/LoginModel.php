@@ -13,7 +13,7 @@ class LoginModel extends CI_Model
                     ->select('id')
                     ->from($tabel)
                     ->where($kriteria)
-                    ->where_in('role',[1,22,23,29,30])
+                    ->where_in('role',[1,22,23,29,30,31,32,33,34,35,36,37,38])
                     ->get();
         if($cekLogin->num_rows() > 0) {
             return $cekLogin->num_rows();

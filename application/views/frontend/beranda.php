@@ -31,8 +31,10 @@
                             <?php if($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29){ ?>
                                 <a class="btn button-style animated tada my-1 mx-auto" href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
                                 <a class="btn button-style animated tada my-1 mx-auto" href="<?php echo base_url('monitoring'); ?>" role="button">Monitoring Pembelajaran</a>
-                            <?php } elseif($this->session->userdata('role') == 30 || $this->session->userdata('role') == 23) { ?>
+                            <?php } elseif($this->session->userdata('role') == 23) { ?>
                                 <a class="btn button-style animated tada " href="<?php echo base_url('absen'); ?>" role="button">Presensi Kehadiran</a>
+                            <?php } elseif($this->session->userdata('role') == 30 || $this->session->userdata('role') == 31 || $this->session->userdata('role') == 32 || $this->session->userdata('role') == 33 || $this->session->userdata('role') == 34 || $this->session->userdata('role') == 35 || $this->session->userdata('role') == 36 || $this->session->userdata('role') == 37 || $this->session->userdata('role') == 38) { ?>
+                                <a class="btn button-style animated tada my-1 mx-auto" href="<?php echo base_url('monitoring'); ?>" role="button">Monitoring Pembelajaran</a>
                             <?php } ?>
                         </div>
                     </div>
