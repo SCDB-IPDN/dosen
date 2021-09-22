@@ -15,8 +15,6 @@ class Dashboard extends CI_Controller
 
 		$this->load->model('Dashboard_model');
 		$this->load->model('Presensi_model');
-		
-		
 	}
 
 	public function index()
@@ -29,8 +27,13 @@ class Dashboard extends CI_Controller
 			'get_absen_masuk_perbulan_chart_perhari'	=> $this->Dashboard_model->get_absen_masuk_perbulan_chart_perhari(),
 			'get_count_fakultas'				=> $this->Dashboard_model->get_count_fakultas(),
 			'get_all_total'						=> $this->Dashboard_model->get_all_total(),
-			'get_all_total_kelas'						=> $this->Dashboard_model->get_all_total_kelas(),
+			'get_all_total_kelas'				=> $this->Dashboard_model->get_all_total_kelas(),
+			'get_all_kelas_belum_mulai'				=> $this->Dashboard_model->get_kelas_belum_mulai(),
+			'get_all_kelas_berlangsung'				=> $this->Dashboard_model->get_kelas_berlangsung(),
+			'get_all_kelas_selesai'					=> $this->Dashboard_model->get_kelas_selesai(),
 			'get_summary_fakultas'				=> $this->Dashboard_model->get_summary_fakultas(),
+			'get_all_total_belum_mulai'				=> $this->Dashboard_model->get_all_total_belum_mulai(),
+			'get_all_total_berlangsung'				=> $this->Dashboard_model->get_all_total_berlangsung(),
 			'get_all_total_done'				=> $this->Dashboard_model->get_all_total_done(),
 			'get_summary_fakultas_done'			=> $this->Dashboard_model->get_summary_fakultas_done(),
 			'get_count_status_monitoring'		=> $this->Presensi_model->get_count_status_monitoring(),
@@ -44,14 +47,13 @@ class Dashboard extends CI_Controller
 			'count_get_absen_perkampus_pns_dosen'		=> $this->Dashboard_model->count_get_absen_perkampus_pns_dosen(),
 			'get_absen_perkampus_thl_ta_masuk'		=> $this->Dashboard_model->get_absen_perkampus_thl_ta_masuk(),
 			'get_absen_perkampus_dosen_masuk'		=> $this->Dashboard_model->get_absen_perkampus_dosen_masuk(),
-			'get_absen_perkampus_pns_masuk'		=> $this->Dashboard_model->get_absen_perkampus_pns_masuk(),
+			'get_absen_perkampus_pns_masuk'			=> $this->Dashboard_model->get_absen_perkampus_pns_masuk(),
 			'get_absen_perkampus_pns_dosen_masuk'		=> $this->Dashboard_model->get_absen_perkampus_pns_dosen_masuk(),
 			'dashboard'							=> 'active'
 		);
 
 		$this->load->view('page/header_frontend', $data);
 		$this->load->view('frontend/dashboard');
-		
 	}
 
 	public function fetch_detail_monitoring()
@@ -90,7 +92,6 @@ class Dashboard extends CI_Controller
 			$data = array('responce' => 'success', 'posts' => $posts);
 			echo json_encode($data);
 		}
-		
 	}
 
 	public function fakultas_detail($fakultas)

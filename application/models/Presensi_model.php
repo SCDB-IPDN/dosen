@@ -125,7 +125,7 @@ class Presensi_model extends CI_Model
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
             ->where('keterangan !=', null)
-            ->where('media_pembelajaran', null)
+            ->where('media_pembelajaran !=', null)
             ->where('upload', null)
             ->get();
 
@@ -345,9 +345,9 @@ class Presensi_model extends CI_Model
     {
         $get_data   = $this->db
             ->select('COUNT( id_plot ) As TotalMonitoring, 
-             CASE WHEN keterangan is null and upload is null THEN \'Belum Mulai\' 
-             WHEN keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
-             WHEN keterangan is NOT null and upload is NOT null THEN \'Telah Selesai\'END AS StatusMonitoring')
+             CASE WHEN keterangan is null and upload is null and media_pembelajaran is null THEN \'Belum Mulai\' 
+             WHEN media_pembelajaran is NOT null and keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
+             WHEN keterangan is NOT null and upload is NOT null and media_pembelajaran is not null THEN \'Telah Selesai\'END AS StatusMonitoring')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
             ->group_by("StatusMonitoring")

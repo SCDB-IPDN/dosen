@@ -1,45 +1,3 @@
-<style>
-    /* Style tab links */
-    .tablink {
-        background-color: #0460ca;
-        color: white;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        font-size: 17px;
-        width: 33.3%;
-    }
-
-    .tablink:hover {
-        background-color: #65a8f5;
-    }
-
-    /* Style the tab content (and add height:100% for full page content) */
-    .tabcontent {
-        color: white;
-        display: none;
-        padding: 100px 20px;
-        height: 100%;
-    }
-
-    #Home {
-        background-color: #1b80f5;
-    }
-
-    #News {
-        background-color: #1b80f5;
-    }
-
-    #Contact {
-        background-color: #1b80f5;
-    }
-
-    #About {
-        background-color: #1b80f5;
-    }
-</style>
 <?php
 
 if ($get_absen_pulang_perbulan_chart_perhari != false && !empty($get_absen_pulang_perbulan_chart_perhari)) {
@@ -180,14 +138,46 @@ if ($get_all_total != false && !empty($get_all_total)) {
     $get_total_matkul = 0;
     $get_total_dosen = 0;
     $get_total_kelas = 0;
+    $get_kelas_belum_mulai = 0;
+    $get_kelas_berlangsung = 0;
+    $get_kelas_selesai = 0;
 
     foreach ($get_all_total as $data) {
-        foreach ($get_all_total_kelas as $dataxxx) {
-            if ($dataxxx->id_fakultas == $data->id_fakultas) {
-                $data_kelas_ex = explode(',', $dataxxx->kelas);
-                $get_total_kelas += count($data_kelas_ex);
+        if ($get_all_total_kelas != false && !empty($get_all_total_kelas)) {
+            foreach ($get_all_total_kelas as $dataxxx) {
+                if ($dataxxx->id_fakultas == $data->id_fakultas) {
+                    $data_kelas_ex = explode(',', $dataxxx->kelas);
+                    $get_total_kelas += count($data_kelas_ex);
+                }
             }
         }
+        if ($get_all_kelas_belum_mulai != false && !empty($get_all_kelas_belum_mulai)) {
+            foreach ($get_all_kelas_belum_mulai as $belummulai) {
+                if ($belummulai->id_fakultas == $data->id_fakultas) {
+                    $data_kelas_belum_mulai = explode(',', $belummulai->kelas);
+                    $get_kelas_belum_mulai += count($data_kelas_belum_mulai);
+                }
+            }
+        }
+
+        if ($get_all_kelas_berlangsung != false && !empty($get_all_kelas_berlangsung)) {
+            foreach ($get_all_kelas_berlangsung as $berlangsung) {
+                if ($berlangsung->id_fakultas == $data->id_fakultas) {
+                    $data_kelas_berlangsung = explode(',', $berlangsung->kelas);
+                    $get_kelas_berlangsung += count($data_kelas_berlangsung);
+                }
+            }
+        }
+
+        if ($get_all_kelas_selesai != false && !empty($get_all_kelas_selesai)) {
+            foreach ($get_all_kelas_selesai as $selesai) {
+                if ($selesai->id_fakultas == $data->id_fakultas) {
+                    $data_kelas_selesai = explode(',', $selesai->kelas);
+                    $get_kelas_selesai += count($data_kelas_selesai);
+                }
+            }
+        }
+
         $get_total_fakultas += $data->total_fakultas;
         $get_total_prodi += $data->total_prodi;
         $get_total_matkul += $data->total_matkul;
@@ -200,6 +190,9 @@ if ($get_all_total != false && !empty($get_all_total)) {
     $get_total_matkul = 0;
     $get_total_dosen = 0;
     $get_total_kelas = 0;
+    $get_kelas_belum_mulai = 0;
+    $get_kelas_berlangsung = 0;
+    $get_kelas_selesai = 0;
 }
 
 if ($get_all_total_done != false && !empty($get_all_total_done)) {
@@ -225,6 +218,52 @@ if ($get_all_total_done != false && !empty($get_all_total_done)) {
     $get_total_kelas_done = 0;
 }
 
+if ($get_all_total_berlangsung != false && !empty($get_all_total_berlangsung)) {
+
+    $get_total_fakultas_berlangsung = 0;
+    $get_total_prodi_berlangsung = 0;
+    $get_total_matkul_berlangsung = 0;
+    $get_total_dosen_berlangsung = 0;
+    $get_total_kelas_berlangsung = 0;
+
+    foreach ($get_all_total_berlangsung as $data) {
+        $get_total_fakultas_berlangsung += $data->total_fakultas;
+        $get_total_prodi_berlangsung += $data->total_prodi;
+        $get_total_matkul_berlangsung += $data->total_matkul;
+        $get_total_dosen_berlangsung += $data->total_dosen;
+        $get_total_kelas_berlangsung += $data->total_kelas;
+    }
+} else {
+    $get_total_fakultas_berlangsung = 0;
+    $get_total_prodi_berlangsung = 0;
+    $get_total_matkul_berlangsung = 0;
+    $get_total_dosen_berlangsung = 0;
+    $get_total_kelas_berlangsung = 0;
+}
+
+if ($get_all_total_belum_mulai != false && !empty($get_all_total_belum_mulai)) {
+
+    $get_total_fakultas_belum_mulai = 0;
+    $get_total_prodi_belum_mulai = 0;
+    $get_total_matkul_belum_mulai = 0;
+    $get_total_dosen_belum_mulai = 0;
+    $get_total_kelas_belum_mulai = 0;
+
+    foreach ($get_all_total_belum_mulai as $data) {
+        $get_total_fakultas_belum_mulai += $data->total_fakultas;
+        $get_total_prodi_belum_mulai += $data->total_prodi;
+        $get_total_matkul_belum_mulai += $data->total_matkul;
+        $get_total_dosen_belum_mulai += $data->total_dosen;
+        $get_total_kelas_belum_mulai += $data->total_kelas;
+    }
+} else {
+    $get_total_fakultas_belum_mulai = 0;
+    $get_total_prodi_belum_mulai = 0;
+    $get_total_matkul_belum_mulai = 0;
+    $get_total_dosen_belum_mulai = 0;
+    $get_total_kelas_belum_mulai = 0;
+}
+
 if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
     $get_fakultas = 'Tidak Ada Pembelajaran Daring!';
@@ -269,6 +308,29 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
     $get_matkul = 0;
     $get_dosen = 0;
     $get_kelas = 0;
+}
+
+if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring)) {
+
+    $get_pembelajaran_belum_mulai = 0;
+    $get_pembelajaran_berlangsung = 0;
+    $get_pembelajaran_selesai = 0;
+
+    foreach ($get_count_status_monitoring as $data) {
+        $get_status = $data->StatusMonitoring;
+        if ($get_status == 'Belum Mulai') {
+            $get_pembelajaran_belum_mulai = $data->TotalMonitoring;
+        } else if ($get_status == 'Sedang Berlangsung') {
+            $get_pembelajaran_berlangsung = $data->TotalMonitoring;
+        } else {
+            $get_pembelajaran_selesai = $data->TotalMonitoring;
+        }
+    }
+} else {
+
+    $get_pembelajaran_belum_mulai = 0;
+    $get_pembelajaran_berlangsung = 0;
+    $get_pembelajaran_selesai = 0;
 }
 
 // var_dump($get_absen_all[0]->total);exit;
@@ -284,25 +346,40 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
     <div class="banner-content">
         <div class="container mt-5">
-            <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#cardatas"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
+            <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
+                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardchart"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
+                </div>
+                <div id="cardchart" class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-lg-8">
+                            <p>*Chart jumlah status monitoring pembelajaran daring</p>
+                            <canvas id="myChart3"></canvas>
+
+
+                        </div>
+                        <div class="col-md-4">
+
+                            <button type="button" class="btn btn-block btn-danger btn-lg mt-5 mx-auto" data-toggle="modal" data-target="#modal_mulai"><b><?= $get_pembelajaran_belum_mulai; ?></b> Belum Dimulai</button>
+                            <button type="button" class="btn btn-block btn-warning btn-lg mt-2" data-toggle="modal" data-target="#modal_berlangsung"><b><?= $get_pembelajaran_berlangsung; ?></b> Berlangsung</button>
+                            <button type="button" class="btn btn-block btn-primary btn-lg mt-2" data-toggle="modal" data-target="#modal_selesai"><b><?= $get_pembelajaran_selesai; ?></b> Selesai</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
+                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardatas"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
                 </div>
                 <div id="cardatas" class="card-body">
 
-                    <div class="row mb-3">
-                        <div class="col-lg-6">
-                            <p>*Chart jumlah status monitoring pembelajaran daring</p>
-                            <canvas id="myChart3"></canvas>
-                            <button type="button" class="btn btn-info btn-sm mt-2" data-toggle="modal" data-target="#modal_mulai">Detail Belum Dimulai</button>
-                            <button type="button" class="btn btn-warning btn-sm mt-2" data-toggle="modal" data-target="#modal_berlangsung">Detail Sedang Berlangsung</button>
-                            <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#modal_selesai">Detail Telah Selesai</button>
-                        </div>
-                    </div>
+
 
                     <div class="row">
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#7952B3;">
                                 <div class="inner">
                                     <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
                                     <p class="text-light"> KELAS </p>
@@ -314,9 +391,9 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#7952B3;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_kelas_belum_mulai; ?> </h3>
                                     <p class="text-light"> BELUM MULAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -326,9 +403,9 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#7952B3;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_kelas_berlangsung; ?> </h3>
                                     <p class="text-light"> BERLANGSUNG </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -338,9 +415,9 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#7952B3;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_kelas_selesai; ?> </h3>
                                     <p class="text-light"> SELESAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -352,7 +429,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                     </div>
                     <div class="row">
                         <div id="collapseKelas" class="col-lg-12 col-sm-6 mt-0 collapse In">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#7952B3;">
                                 <div class="inner">
                                     <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                                         $get_total_kelas1 = 0;
@@ -398,7 +475,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                     </div>
                     <div class="row">
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#346751;">
                                 <div class="inner">
                                     <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
                                     <p class="text-light"> DOSEN </p>
@@ -410,9 +487,10 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#346751;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
+                                    <!-- <h3 class="text-light"> <?= $get_total_dosen_belum_mulai; ?> </h3> -->
+                                    <h3 class="text-light"> <?= $get_total_dosen - ($get_total_dosen_berlangsung + $get_total_dosen_done); ?> </h3>
                                     <p class="text-light"> BELUM MULAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -422,9 +500,9 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#346751;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_total_dosen_berlangsung; ?> </h3>
                                     <p class="text-light"> BERLANGSUNG </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -434,9 +512,9 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#346751;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_total_dosen_done; ?> </h3>
                                     <p class="text-light"> SELESAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -448,7 +526,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                     </div>
                     <div class="row">
                         <div id="collapseDosen" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#346751;">
                                 <div class="inner">
                                     <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                                         foreach ($get_summary_fakultas as $data) { ?>
@@ -469,7 +547,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
                     <div class="row">
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#C84B31;">
                                 <div class="inner">
                                     <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
                                     <p class="text-light"> MATAKULIAH </p>
@@ -481,9 +559,9 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#C84B31;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_total_matkul - ($get_total_matkul_berlangsung + $get_total_matkul_done); ?> </h3>
                                     <p class="text-light"> BELUM MULAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -493,9 +571,9 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#C84B31;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_total_matkul_berlangsung; ?> </h3>
                                     <p class="text-light"> BERLANGSUNG </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -505,9 +583,9 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#C84B31;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_total_matkul_done; ?> </h3>
                                     <p class="text-light"> SELESAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -519,7 +597,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                     </div>
                     <div class="row">
                         <div id="collapseMatkul" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#C84B31;">
                                 <div class="inner">
                                     <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                                         foreach ($get_summary_fakultas as $data) { ?>
@@ -538,7 +616,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
                     <div class="row">
                         <div class="col-md-12 col-sm-6">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#AF0069;">
                                 <div class="inner">
                                     <h3 class="text-light"> <?= $get_total_prodi; ?> </h3>
                                     <p class="text-light"> PRODI </p>
@@ -552,7 +630,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                     </div>
                     <div class="row">
                         <div id="collapseProdi" class="col-md-12 col-sm-6 collapse In">
-                            <div class="card-box bg-primary">
+                            <div class="card-box" style="background-color:#C3BA85;">
                                 <div class="inner">
                                     <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                                         foreach ($get_summary_fakultas as $data) { ?>
@@ -571,7 +649,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-sm-6">
-                            <div class="card-box bg-blue">
+                            <div class="card-box" style="background-color:#035397;">
                                 <div class="inner">
 
                                     <h3 class="text-light"> <?= $get_total_fakultas; ?> </h3>
@@ -586,7 +664,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                     </div>
                     <div class="row">
                         <div id="collapseFakultas" class="col-md-12 col-sm-6 collapse In">
-                            <div class="card-box bg-blue">
+                            <div class="card-box" style="background-color:#035397;">
                                 <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                                     foreach ($get_summary_fakultas as $data) { ?>
                                         <p class="text-light"> <?= $data->id_fakultas; ?> </p>
@@ -655,7 +733,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
             <div class="col-md-12">
                 <!-- Modal -->
                 <div class="modal fade" id="modal_berlangsung" tabindex="-1" role="dialog" aria-labelledby="detailModalLabelBerlangsung" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header bg-primary">
                                 <h5 class="modal-title text-light" id="detailModalLabelBerlangsung">Status Monitoring Pembelajaran</h5>
@@ -697,7 +775,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
             <div class="col-md-12">
                 <!-- Modal -->
                 <div class="modal fade" id="modal_selesai" tabindex="-1" role="dialog" aria-labelledby="detailModalLabelSelesai" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header bg-primary">
                                 <h5 class="modal-title text-light" id="detailModalLabelSelesai">Status Monitoring Pembelajaran</h5>
@@ -738,8 +816,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
         <!-- <div class="container pt-5 mt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#cardx1"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
+              <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardx1"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
                 </div>
                 <div id="cardx1" class="card-body ">
                     <h4><b>Total Pembelajaran: <?= $count_total_pembelajaran; ?></b></h4>
@@ -807,8 +885,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
         <div class="container pt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Tanggal <?= date('Y-m-d'); ?></a>
+              <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Tanggal <?= date('Y-m-d'); ?></a>
                 </div>
                 <div id="card1" class="card-body ">
                     <h4>Presensi Masuk dan Pulang</h4>
@@ -1070,8 +1148,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
         <div class="container pt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
+              <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
                 </div>
                 <div id="card1" class="card-body ">
 
@@ -1087,8 +1165,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
             <div class="row">
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card11">Data Dosen Non PNS</a>
+                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card11">Data Dosen Non PNS</a>
                         </div>
                         <div id="card11" class="card-body collapse show">
                             <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan1; ?></b></p>
@@ -1098,8 +1176,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card12">Data PNS</a>
+                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card12">Data PNS</a>
                         </div>
                         <div id="card12" class="card-body collapse show">
                             <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan2; ?></b></p>
@@ -1109,8 +1187,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card13">Data PNS Dosen</a>
+                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card13">Data PNS Dosen</a>
                         </div>
                         <div id="card13" class="card-body collapse show">
                             <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan3; ?></b></p>
@@ -1120,8 +1198,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card14">Data THL dan TA</a>
+                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card14">Data THL dan TA</a>
                         </div>
                         <div id="card14" class="card-body collapse show">
                             <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan4; ?></b></p>
@@ -1135,8 +1213,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
     <div class="banner-content"> -->
         <div class="container pt-5 pb-md-4">
             <div class="card text-center shadow mb-3 border-0 animated fadeInUp" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
+              <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
                 </div>
                 <div id="card2" class="card-body">
 
@@ -1150,8 +1228,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
             <div class="row">
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card21">Data Dosen Non PNS</a>
+                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card21">Data Dosen Non PNS</a>
                         </div>
                         <div id="card21" class="card-body">
                             <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan1; ?></b></p>
@@ -1161,8 +1239,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card22">Data PNS</a>
+                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card22">Data PNS</a>
                         </div>
                         <div id="card22" class="card-body">
                             <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan2; ?></b></p>
@@ -1172,8 +1250,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card23">Data PNS Dosen</a>
+                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card23">Data PNS Dosen</a>
                         </div>
                         <div id="card23" class="card-body">
                             <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan3; ?></b></p>
@@ -1183,8 +1261,8 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background: linear-gradient(180deg, rgba(45,150,253,1) 57%, rgba(15,88,255,1) 88%); border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-light" data-toggle="collapse" data-target="#card24">Data THL dan TA</a>
+                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card24">Data THL dan TA</a>
                         </div>
                         <div id="card24" class="card-body">
                             <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan4; ?></b></p>
@@ -1223,16 +1301,16 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                 ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
                     'rgba(255, 159, 64, 0.2)'
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
+                    'rgba(54, 162, 235, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
@@ -1260,7 +1338,7 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                 //   }
                 // }
             },
-            indexAxis: 'y',
+            indexAxis: 'x',
             scales: {
                 y: {
                     beginAtZero: true
