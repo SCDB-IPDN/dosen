@@ -301,11 +301,47 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-12 col-sm-6">
+                        <div class="col-lg-3 col-sm-6">
                             <div class="card-box bg-primary">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_kelas_done; ?> / <?= $get_total_kelas; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
                                     <p class="text-light"> KELAS </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseKelas">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
+                                    <p class="text-light"> BELUM MULAI </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseKelas">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
+                                    <p class="text-light"> BERLANGSUNG </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseKelas">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
+                                    <p class="text-light"> SELESAI </p>
                                 </div>
                                 <!-- <div class="icon">
                                     <i class="fa fa-users"></i>
@@ -361,11 +397,47 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12 col-sm-6">
+                        <div class="col-lg-3 col-sm-6">
                             <div class="card-box bg-primary">
                                 <div class="inner">
                                     <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
                                     <p class="text-light"> DOSEN </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosen">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
+                                    <p class="text-light"> BELUM MULAI </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosen">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
+                                    <p class="text-light"> BERLANGSUNG </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-users"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosen">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
+                                    <p class="text-light"> SELESAI </p>
                                 </div>
                                 <!-- <div class="icon">
                                     <i class="fa fa-users"></i>
@@ -396,11 +468,47 @@ if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
 
 
                     <div class="row">
-                        <div class="col-lg-12 col-sm-6">
+                        <div class="col-lg-3 col-sm-6">
                             <div class="card-box bg-primary">
                                 <div class="inner">
                                     <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
                                     <p class="text-light"> MATAKULIAH </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkul">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
+                                    <p class="text-light"> BELUM MULAI </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkul">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
+                                    <p class="text-light"> BERLANGSUNG </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkul">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card-box bg-primary">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
+                                    <p class="text-light"> SELESAI </p>
                                 </div>
                                 <!-- <div class="icon">
                                     <i class="fa fa-user-plus" aria-hidden="true"></i>
