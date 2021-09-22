@@ -7,7 +7,7 @@
         <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
 
         <div class="banner-content">
-            <div class="container pt-5 pb-md-4">
+            <div class="container pt-5 pb-md-4 mt-2">
                 <div class="card mb-3 mt-3 shadow rounded" style="border-radius: 3rem !important;">
                     <div class="row no-gutters">
                         <div class="col-md-4 my-1">

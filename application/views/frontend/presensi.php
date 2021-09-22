@@ -10,7 +10,7 @@
   <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
   <!-- <div class="banner-image">
   </div> -->
-  <div class="container mt-5">
+  <div class="container pt-4 pb-md-4 mt-1">
 
     <div class="row mt-5">
       <div class="col-md-12 mt-5">
@@ -54,7 +54,7 @@
     </div> -->
 
         <!-- detail modal -->
-        <div class="container">
+        <div class="container mt-4">
           <div class="col-md-12">
             <!-- Modal -->
             <div class="modal fade" id="detail_modal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
@@ -1006,7 +1006,7 @@
     var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
 
     var akhiri_id = $("#akhiri_id").val();
-   
+
     // var edit_keterangan = $("#edit_keterangan").val();
     var edit_waktu_akhiri = `${date}T${time}`;
 
@@ -1019,7 +1019,7 @@
       var fd = new FormData();
 
       fd.append("akhiri_id", akhiri_id);
-     
+
       // fd.append("edit_keterangan", edit_keterangan);
       fd.append("edit_waktu_akhiri", edit_waktu_akhiri);
       if ($("#upload_img")[0].files.length > 0) {
