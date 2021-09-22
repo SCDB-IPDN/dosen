@@ -141,12 +141,15 @@ class Presensi extends CI_Controller
 
 		if ($this->input->is_ajax_request()) {
 			$this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
+			$this->form_validation->set_rules('edit_media', 'Media', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
 				$id = $this->input->post('edit_id');
+				$ajax_data['media_pembelajaran'] = $this->input->post('edit_media');
 				$ajax_data['keterangan'] = $this->input->post('edit_keterangan');
 				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu');
+				$ajax_data['user_update'] = $this->session->userdata('username');
 
 				if ($this->presensi_model->update_entry($id, $ajax_data)) {
 					$data = array('responce' => 'success', 'message' => 'Pembelajaran telah berlangsung');
@@ -164,17 +167,17 @@ class Presensi extends CI_Controller
 	public function akhiri_update()
 	{
 		if ($this->input->is_ajax_request()) {
-			$this->form_validation->set_rules('edit_media', 'Media', 'required');
 			if (empty($_FILES['upload_img']['name'])) {
 				$this->form_validation->set_rules('upload_img', 'Gambar', 'required');
 			}
 
-			if ($this->form_validation->run() == FALSE) {
+			if ($this->form_validation->run() == FALSE && empty($_FILES['upload_img']['name'])) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
+				
 				if (isset($_FILES["upload_img"]["name"])) {
 					$config['upload_path'] = APPPATH . '../assets/upload/';
-					$config['allowed_types'] = 'gif|jpg|png';
+					$config['allowed_types'] = 'gif|jpg|png|jpeg';
 					$config['max_size']     = '99999';
 					// $config['max_width'] = '1024';
 					// $config['max_height'] = '768';
@@ -185,15 +188,15 @@ class Presensi extends CI_Controller
 					} else {
 						$edit_id = $this->input->post('akhiri_id');
 						if ($post = $this->presensi_model->single_entry($edit_id)) {
-							unlink(APPPATH . '../assets/upload/' . $post->upload);
+							// unlink(APPPATH . '../assets/upload/' . $post->upload);
 							$ajax_data['upload'] = $this->upload->data('file_name');
 						}
 					}
 				}
-
+			
 				$id = $this->input->post('akhiri_id');
-				$ajax_data['media_pembelajaran'] = $this->input->post('edit_media');
 				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu_akhiri');
+				$ajax_data['user_update'] = $this->session->userdata('username');
 
 				if ($this->presensi_model->update_entry($id, $ajax_data)) {
 					$data = array('responce' => 'success', 'message' => 'Pembelajaran telah berakhir');
