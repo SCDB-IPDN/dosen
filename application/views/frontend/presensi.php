@@ -360,7 +360,7 @@
     </div> -->
         <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
           <div class="col-md-12 my-5">
-            <div class="table-responsive-xl mx-2">
+            <div class="table-responsive mx-2">
               <table class="table table-hover table-xl" id="records">
                 <thead>
                   <tr>

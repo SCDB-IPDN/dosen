@@ -702,7 +702,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                 </center>
                                 <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
                                     <div class="col-md-12 my-5">
-                                        <div class="table-responsive-xl mx-2">
+                                        <div class="table-responsive mx-2">
                                             <div class="container">
                                                 <table class="table table-hover table-xl" id="belum_dimulai">
                                                     <thead>
@@ -733,7 +733,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
             <div class="col-md-12">
                 <!-- Modal -->
                 <div class="modal fade" id="modal_berlangsung" tabindex="-1" role="dialog" aria-labelledby="detailModalLabelBerlangsung" aria-hidden="true">
-                    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header bg-primary">
                                 <h5 class="modal-title text-light" id="detailModalLabelBerlangsung">Status Monitoring Pembelajaran</h5>
@@ -745,7 +745,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                 <p class="text-light">Daftar pembelajaran <b>Sedang Berlangsung</b></p>
                                 <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
                                     <div class="col-md-12 my-5">
-                                        <div class="table-responsive-xl mx-2">
+                                        <div class="table-responsive mx-2">
                                             <table class="table table-hover table-xl" id="sedang_berlangsung">
                                                 <thead>
                                                     <tr>
@@ -787,7 +787,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                 <p class="text-light">Daftar pembelajaran <b>Telah Selesai</b></p>
                                 <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
                                     <div class="col-md-12 my-5">
-                                        <div class="table-responsive-xl mx-2">
+                                        <div class="table-responsive mx-2">
                                             <table class="table table-hover table-xl" id="telah_selesai">
                                                 <thead>
                                                     <tr>
@@ -885,7 +885,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
 
         <div class="container pt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-              <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Tanggal <?= date('Y-m-d'); ?></a>
                 </div>
                 <div id="card1" class="card-body ">
@@ -1148,7 +1148,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
 
         <div class="container pt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-              <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
                 </div>
                 <div id="card1" class="card-body ">
@@ -1165,7 +1165,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
             <div class="row">
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
-                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card11">Data Dosen Non PNS</a>
                         </div>
                         <div id="card11" class="card-body collapse show">
@@ -1176,7 +1176,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
-                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card12">Data PNS</a>
                         </div>
                         <div id="card12" class="card-body collapse show">
@@ -1187,7 +1187,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card13">Data PNS Dosen</a>
                         </div>
                         <div id="card13" class="card-body collapse show">
@@ -1198,7 +1198,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card14">Data THL dan TA</a>
                         </div>
                         <div id="card14" class="card-body collapse show">
@@ -1213,7 +1213,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
     <div class="banner-content"> -->
         <div class="container pt-5 pb-md-4">
             <div class="card text-center shadow mb-3 border-0 animated fadeInUp" style="border-radius: 1rem !important;">
-              <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
                 </div>
                 <div id="card2" class="card-body">
@@ -1228,7 +1228,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
             <div class="row">
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
-                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card21">Data Dosen Non PNS</a>
                         </div>
                         <div id="card21" class="card-body">
@@ -1239,7 +1239,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
-                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card22">Data PNS</a>
                         </div>
                         <div id="card22" class="card-body">
@@ -1250,7 +1250,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card23">Data PNS Dosen</a>
                         </div>
                         <div id="card23" class="card-body">
@@ -1261,7 +1261,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                 </div>
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                      <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
                             <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card24">Data THL dan TA</a>
                         </div>
                         <div id="card24" class="card-body">
@@ -2390,15 +2390,16 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                 "data": "id_fakultas"
                             },
                             {
-                                "data": "keterangan",
                                 render: function(data, type, row, meta) {
-                                    if (`${row.keterangan}` != 'null') {
+                                    if (`${row.keterangan}`.substring(8,0) != 'https://') {
                                         var a = `
-                                <a href="${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
+                                <a href="https://${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
                               `;
 
                                     } else {
-                                        var a = `Belum menyisipkan link`;
+                                        var a = `
+                                <a href="${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
+                              `;
                                     }
 
 
@@ -2464,13 +2465,15 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                             {
                                 "data": "keterangan",
                                 render: function(data, type, row, meta) {
-                                    if (`${row.keterangan}` != 'null') {
+                                    if (`${row.keterangan}`.substring(8,0) != 'https://') {
                                         var a = `
-                                <a href="${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
+                                <a href="https://${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
                               `;
 
                                     } else {
-                                        var a = `Belum menyisipkan link`;
+                                        var a = `
+                                <a href="${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
+                              `;
                                     }
 
 
