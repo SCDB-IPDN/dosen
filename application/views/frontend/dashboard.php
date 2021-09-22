@@ -489,7 +489,8 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                         <div class="col-lg-3 col-sm-6">
                             <div class="card-box" style="background-color:#346751;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_dosen_belum_mulai; ?> </h3>
+                                    <!-- <h3 class="text-light"> <?= $get_total_dosen_belum_mulai; ?> </h3> -->
+                                    <h3 class="text-light"> <?= $get_total_dosen - ($get_total_dosen_berlangsung + $get_total_dosen_done); ?> </h3>
                                     <p class="text-light"> BELUM MULAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -560,7 +561,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                         <div class="col-lg-3 col-sm-6">
                             <div class="card-box" style="background-color:#C84B31;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul_belum_mulai; ?> </h3>
+                                    <h3 class="text-light"> <?= $get_total_matkul - ($get_total_matkul_berlangsung + $get_total_matkul_done); ?> </h3>
                                     <p class="text-light"> BELUM MULAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -1337,7 +1338,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                 //   }
                 // }
             },
-            indexAxis: 'y',
+            indexAxis: 'x',
             scales: {
                 y: {
                     beginAtZero: true
