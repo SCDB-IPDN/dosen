@@ -170,6 +170,7 @@ class Presensi extends CI_Controller
 			if (empty($_FILES['upload_img']['name'])) {
 				$this->form_validation->set_rules('upload_img', 'Gambar', 'required');
 			}
+			$this->form_validation->set_rules('jumlah_praja', 'Jumlah Praja', 'required');
 
 			if ($this->form_validation->run() == FALSE && empty($_FILES['upload_img']['name'])) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
@@ -197,6 +198,8 @@ class Presensi extends CI_Controller
 				$id = $this->input->post('akhiri_id');
 				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu_akhiri');
 				$ajax_data['user_update'] = $this->session->userdata('username');
+				$ajax_data['jumlah_praja'] = $this->input->post('jumlah_praja');
+				$ajax_data['keterangan_praja'] = $this->input->post('keterangan_praja');
 
 				if ($this->presensi_model->update_entry($id, $ajax_data)) {
 					$data = array('responce' => 'success', 'message' => 'Pembelajaran telah berakhir');
