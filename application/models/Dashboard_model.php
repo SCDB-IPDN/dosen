@@ -187,12 +187,59 @@ class Dashboard_model extends CI_Model
         $get_data   = $this->db
             ->select('COUNT(DISTINCT(id_fakultas)) as total_fakultas, 
             COUNT(DISTINCT(id_prodi)) as total_prodi, 
-            COUNT(nama_matkul) as total_matkul, COUNT(DISTINCT(nama)) as total_dosen, 
+            COUNT(DISTINCT(nama_matkul)) as total_matkul, 
+            COUNT(DISTINCT(nama)) as total_dosen, 
             COUNT(DISTINCT(id_plot)) as total_kelas')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
             ->where("keterangan !=", null)
             ->where("upload !=", null)
+            ->where("media_pembelajaran !=", null)
+            ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_all_total_berlangsung()
+    {
+        $get_data   = $this->db
+            ->select('COUNT(DISTINCT(id_fakultas)) as total_fakultas, 
+            COUNT(DISTINCT(id_prodi)) as total_prodi, 
+            COUNT(DISTINCT(nama_matkul)) as total_matkul, 
+            COUNT(DISTINCT(nama)) as total_dosen, 
+            COUNT(DISTINCT(id_plot)) as total_kelas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where("keterangan !=", null)
+            ->where("upload", null)
+            ->where("media_pembelajaran !=", null)
+            ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+    public function get_all_total_belum_mulai()
+    {
+        $get_data   = $this->db
+            ->select('COUNT(DISTINCT(id_fakultas)) as total_fakultas, 
+            COUNT(DISTINCT(id_prodi)) as total_prodi, 
+            COUNT(DISTINCT(nama_matkul)) as total_matkul, 
+            COUNT(DISTINCT(nama)) as total_dosen, 
+            COUNT(DISTINCT(id_plot)) as total_kelas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where("keterangan", null)
+            ->where("upload", null)
+            ->where("media_pembelajaran", null)
             ->group_by("id_fakultas")
             ->get();
 
@@ -209,6 +256,61 @@ class Dashboard_model extends CI_Model
             ->select('kelas,id_fakultas')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
+            // ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_kelas_belum_mulai()
+    {
+        $get_data   = $this->db
+            ->select('kelas,id_fakultas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where('media_pembelajaran', null)
+            ->where('keterangan', null)
+            ->where('upload', null)
+            // ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+    public function get_kelas_berlangsung()
+    {
+        $get_data   = $this->db
+            ->select('kelas,id_fakultas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where('media_pembelajaran !=', null)
+            ->where('keterangan !=', null)
+            ->where('upload', null)
+            // ->group_by("id_fakultas")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+    public function get_kelas_selesai()
+    {
+        $get_data   = $this->db
+            ->select('kelas,id_fakultas')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->where('media_pembelajaran !=', null)
+            ->where('keterangan !=', null)
+            ->where('upload !=', null)
             // ->group_by("id_fakultas")
             ->get();
 
