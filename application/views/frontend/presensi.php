@@ -10,7 +10,7 @@
   <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
   <!-- <div class="banner-image">
   </div> -->
-  <div class="container mt-5">
+  <div class="container pt-4 pb-md-4 mt-1">
 
     <div class="row mt-5">
       <div class="col-md-12 mt-5">
@@ -54,7 +54,7 @@
     </div> -->
 
         <!-- detail modal -->
-        <div class="container">
+        <div class="container mt-4">
           <div class="col-md-12">
             <!-- Modal -->
             <div class="modal fade" id="detail_modal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
@@ -366,14 +366,14 @@
                   <tr>
                     <th>No</th>
                     <th></th>
+                    <th>NIP / Nama Dosen</th>
                     <th>Matakuliah</th>
                     <th>Jam</th>
                     <th>Kelas</th>
                     <th>Tanggal</th>
                     <th>Prodi</th>
                     <th>Fakultas</th>
-                    <th>NIP</th>
-                    <th>Nama</th>
+                    <th>Angkatan</th>
                     <th>Semester</th>
                     <th>SKS</th>
                     <th>Gambar</th>
@@ -412,7 +412,8 @@
                   <select name="edit_media" id="edit_media" class="form-control">
                     <option value="">--Pilih Media--</option>
                     <option value="Zoom">Zoom</option>
-                    <option value="Google">Google Meet</option>
+                    <option value="Google Meet">Google Meet</option>
+                    <option value="Lainnya">Lainnya</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -456,6 +457,14 @@
                     <label class="custom-file-label" for="customFile">Pilih Gambar!</label>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="">Jumlah Praja Hadir</label>
+                  <input type="number" id="jumlah_praja" class="form-control" onkeypress="return isNumberKey(event)">
+                </div>
+                <div class="form-group">
+                  <label for="">Keterangan Tidak Hadir</label>
+                  <textarea type="text" id="keterangan_praja" class="form-control"></textarea>
+                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -488,6 +497,13 @@
 <?php $this->load->view('page/js_datatable_frontend'); ?>
 
 <script>
+  function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+      return false;
+    return true;
+  }
+
   /* --------------------------------- Baseurl -------------------------------- */
   var base_url = $("#base_url").val();
 
@@ -647,6 +663,13 @@
                 }
               },
               {
+                // "data": "nip",
+                render: function(data, type, row, meta) {
+                  var a = ` (<b>${row.nip}</b>)<br>${row.nama} `;
+                  return a;
+                }
+              },
+              {
                 "data": "nama_matkul"
               },
               {
@@ -665,10 +688,10 @@
                 "data": "nama_fakultas"
               },
               {
-                "data": "nip"
-              },
-              {
-                "data": "nama"
+                render: function(data, type, row, meta) {
+                  var a = ` Angkatan ${row.angkatan} ${row.tingkatan} `;
+                  return a;
+                }
               },
               {
                 "data": "semester"
@@ -695,10 +718,15 @@
                 "data": "keterangan",
                 render: function(data, type, row, meta) {
                   if (`${row.keterangan}` != 'null') {
-                    var a = `
+                    if (`${row.media_pembelajaran}` == 'Lainnya') {
+                      var a = `
+                                <p>${row.keterangan}</p>
+                              `;
+                    } else {
+                      var a = `
                                 <a href="${row.keterangan}" target="_blank">Link Mengajar</a>
                               `;
-
+                    }
                   } else {
                     var a = `Belum menyisipkan link`;
                   }
@@ -1006,20 +1034,24 @@
     var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
 
     var akhiri_id = $("#akhiri_id").val();
-   
+    var jumlah_praja = $("#jumlah_praja").val();
+    var keterangan_praja = $("#keterangan_praja").val();
+
     // var edit_keterangan = $("#edit_keterangan").val();
     var edit_waktu_akhiri = `${date}T${time}`;
 
     var upload_img = $("#upload_img")[0].files[0];
 
 
-    if (edit_id == "") {
+    if (edit_id == "" || jumlah_praja == "") {
       alert("All field is required");
     } else {
       var fd = new FormData();
 
       fd.append("akhiri_id", akhiri_id);
-     
+      fd.append("jumlah_praja", jumlah_praja);
+      fd.append("keterangan_praja", keterangan_praja);
+
       // fd.append("edit_keterangan", edit_keterangan);
       fd.append("edit_waktu_akhiri", edit_waktu_akhiri);
       if ($("#upload_img")[0].files.length > 0) {
