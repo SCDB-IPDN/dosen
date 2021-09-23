@@ -489,8 +489,8 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                         <div class="col-lg-3 col-sm-6">
                             <div class="card-box" style="background-color:#346751;">
                                 <div class="inner">
-                                    <!-- <h3 class="text-light"> <?= $get_total_dosen_belum_mulai; ?> </h3> -->
-                                    <h3 class="text-light"> <?= $get_total_dosen - ($get_total_dosen_berlangsung + $get_total_dosen_done); ?> </h3>
+                                    <h3 class="text-light"> <?= $get_total_dosen_belum_mulai; ?> </h3>
+                                    <!-- <h3 class="text-light"> <?= $get_total_dosen - ($get_total_dosen_berlangsung + $get_total_dosen_done); ?> </h3> -->
                                     <p class="text-light"> BELUM MULAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -561,7 +561,8 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                         <div class="col-lg-3 col-sm-6">
                             <div class="card-box" style="background-color:#C84B31;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul - ($get_total_matkul_berlangsung + $get_total_matkul_done); ?> </h3>
+                                <h3 class="text-light"> <?= $get_total_matkul_belum_mulai; ?> </h3>
+                                    <!-- <h3 class="text-light"> <?= $get_total_matkul - ($get_total_matkul_berlangsung + $get_total_matkul_done); ?> </h3> -->
                                     <p class="text-light"> BELUM MULAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -714,6 +715,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                                             <th>Kelas</th>
                                                             <th>Prodi</th>
                                                             <th>Fakultas</th>
+                                                            <th>Angkatan</th>
                                                         </tr>
                                                     </thead>
                                                 </table>
@@ -756,6 +758,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                                         <th>Kelas</th>
                                                         <th>Prodi</th>
                                                         <th>Fakultas</th>
+                                                        <th>Angkatan</th>
                                                         <th>Link</th>
                                                     </tr>
                                                 </thead>
@@ -799,6 +802,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                                         <th>Prodi</th>
                                                         <th>Fakultas</th>
                                                         <th>Link</th>
+                                                        <th>Angkatan</th>
                                                         <th>Gambar</th>
                                                     </tr>
                                                 </thead>
@@ -2333,6 +2337,12 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                             },
                             {
                                 "data": "id_fakultas"
+                            },
+                            {
+                                render: function(data, type, row, meta) {
+                                    var a = ` Angkatan ${row.angkatan} ${row.tingkatan} `;
+                                    return a;
+                                }
                             }
 
                         ]
@@ -2391,7 +2401,13 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                             },
                             {
                                 render: function(data, type, row, meta) {
-                                    if (`${row.keterangan}`.substring(8,0) != 'https://') {
+                                    var a = ` Angkatan ${row.angkatan} ${row.tingkatan} `;
+                                    return a;
+                                }
+                            },
+                            {
+                                render: function(data, type, row, meta) {
+                                    if (`${row.keterangan}`.substring(8, 0) != 'https://') {
                                         var a = `
                                 <a href="https://${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
                               `;
@@ -2465,7 +2481,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                             {
                                 "data": "keterangan",
                                 render: function(data, type, row, meta) {
-                                    if (`${row.keterangan}`.substring(8,0) != 'https://') {
+                                    if (`${row.keterangan}`.substring(8, 0) != 'https://') {
                                         var a = `
                                 <a href="https://${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
                               `;
@@ -2477,6 +2493,12 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                     }
 
 
+                                    return a;
+                                }
+                            },
+                            {
+                                render: function(data, type, row, meta) {
+                                    var a = ` Angkatan ${row.angkatan} ${row.tingkatan} `;
                                     return a;
                                 }
                             },

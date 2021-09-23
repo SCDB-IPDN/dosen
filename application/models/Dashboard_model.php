@@ -187,8 +187,8 @@ class Dashboard_model extends CI_Model
         $get_data   = $this->db
             ->select('COUNT(DISTINCT(id_fakultas)) as total_fakultas, 
             COUNT(DISTINCT(id_prodi)) as total_prodi, 
-            COUNT(DISTINCT(nama_matkul)) as total_matkul, 
-            COUNT(DISTINCT(nama)) as total_dosen, 
+            COUNT(nama_matkul) as total_matkul, 
+            COUNT(nama) as total_dosen, 
             COUNT(DISTINCT(id_plot)) as total_kelas')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
@@ -210,8 +210,8 @@ class Dashboard_model extends CI_Model
         $get_data   = $this->db
             ->select('COUNT(DISTINCT(id_fakultas)) as total_fakultas, 
             COUNT(DISTINCT(id_prodi)) as total_prodi, 
-            COUNT(DISTINCT(nama_matkul)) as total_matkul, 
-            COUNT(DISTINCT(nama)) as total_dosen, 
+            COUNT(nama_matkul) as total_matkul, 
+            COUNT(nama) as total_dosen, 
             COUNT(DISTINCT(id_plot)) as total_kelas')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
@@ -232,8 +232,8 @@ class Dashboard_model extends CI_Model
         $get_data   = $this->db
             ->select('COUNT(DISTINCT(id_fakultas)) as total_fakultas, 
             COUNT(DISTINCT(id_prodi)) as total_prodi, 
-            COUNT(DISTINCT(nama_matkul)) as total_matkul, 
-            COUNT(DISTINCT(nama)) as total_dosen, 
+            COUNT(nama_matkul) as total_matkul, 
+            COUNT(nama) as total_dosen, 
             COUNT(DISTINCT(id_plot)) as total_kelas')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
@@ -326,8 +326,8 @@ class Dashboard_model extends CI_Model
         $get_data   = $this->db
             ->select('COUNT(DISTINCT(id_fakultas)) as total_fakultas, 
             COUNT(DISTINCT(id_prodi)) as total_prodi, 
-            COUNT(DISTINCT(nama_matkul)) as total_matkul, 
-            COUNT(DISTINCT(nama)) as total_dosen, 
+            COUNT(nama_matkul) as total_matkul, 
+            COUNT(nama) as total_dosen, 
             COUNT(DISTINCT(id_plot)) as total_kelas,
             id_fakultas')
             ->from('tbl_plot_dosen')
