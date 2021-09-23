@@ -141,6 +141,25 @@ class Dashboard_model extends CI_Model
         }
     }
 
+    public function get_count_status_prodi()
+    {
+        $get_data   = $this->db
+            ->select('COUNT(DISTINCT( id_prodi )) As TotalProdi, 
+             CASE WHEN keterangan is null and upload is null and media_pembelajaran is null THEN \'Belum Mulai\' 
+             WHEN media_pembelajaran is NOT null and keterangan is NOT null and upload is null THEN \'Sedang Berlangsung\' 
+             WHEN keterangan is NOT null and upload is NOT null and media_pembelajaran is not null THEN \'Telah Selesai\'END AS StatusMonitoring')
+            ->from('tbl_plot_dosen')
+            ->where("tanggal", date('Y-m-d'))
+            ->group_by("StatusMonitoring")
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
     public function get_count_fakultas()
     {
         $get_data   = $this->db
