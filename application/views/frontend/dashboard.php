@@ -333,6 +333,29 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
     $get_pembelajaran_selesai = 0;
 }
 
+if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
+
+    $get_prodi_belum_mulai = 0;
+    $get_prodi_berlangsung = 0;
+    $get_prodi_selesai = 0;
+
+    foreach ($get_count_status_prodi as $data) {
+        $get_status = $data->StatusMonitoring;
+        if ($get_status == 'Belum Mulai') {
+            $get_prodi_belum_mulai = $data->TotalProdi;
+        } else if ($get_status == 'Sedang Berlangsung') {
+            $get_prodi_berlangsung = $data->TotalProdi;
+        } else {
+            $get_prodi_selesai = $data->TotalProdi;
+        }
+    }
+} else {
+
+    $get_prodi_belum_mulai = 0;
+    $get_prodi_berlangsung = 0;
+    $get_prodi_selesai = 0;
+}
+
 // var_dump($get_absen_all[0]->total);exit;
 ?>
 
@@ -489,8 +512,8 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                         <div class="col-lg-3 col-sm-6">
                             <div class="card-box" style="background-color:#346751;">
                                 <div class="inner">
-                                    <!-- <h3 class="text-light"> <?= $get_total_dosen_belum_mulai; ?> </h3> -->
-                                    <h3 class="text-light"> <?= $get_total_dosen - ($get_total_dosen_berlangsung + $get_total_dosen_done); ?> </h3>
+                                    <h3 class="text-light"> <?= $get_total_dosen_belum_mulai; ?> </h3>
+                                    <!-- <h3 class="text-light"> <?= $get_total_dosen - ($get_total_dosen_berlangsung + $get_total_dosen_done); ?> </h3> -->
                                     <p class="text-light"> BELUM MULAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -561,7 +584,8 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                         <div class="col-lg-3 col-sm-6">
                             <div class="card-box" style="background-color:#C84B31;">
                                 <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul - ($get_total_matkul_berlangsung + $get_total_matkul_done); ?> </h3>
+                                <h3 class="text-light"> <?= $get_total_matkul_belum_mulai; ?> </h3>
+                                    <!-- <h3 class="text-light"> <?= $get_total_matkul - ($get_total_matkul_berlangsung + $get_total_matkul_done); ?> </h3> -->
                                     <p class="text-light"> BELUM MULAI </p>
                                 </div>
                                 <!-- <div class="icon">
@@ -615,7 +639,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12 col-sm-6">
+                        <div class="col-md-3 col-sm-6">
                             <div class="card-box" style="background-color:#AF0069;">
                                 <div class="inner">
                                     <h3 class="text-light"> <?= $get_total_prodi; ?> </h3>
@@ -627,10 +651,46 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                 <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdi">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
                         </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card-box" style="background-color:#AF0069;">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_prodi_belum_mulai; ?> </h3>
+                                    <p class="text-light"> BELUM MULAI </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdi">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card-box" style="background-color:#AF0069;">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_prodi_berlangsung; ?> </h3>
+                                    <p class="text-light"> BERLANGSUNG </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdi">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card-box" style="background-color:#AF0069;">
+                                <div class="inner">
+                                    <h3 class="text-light"> <?= $get_prodi_selesai; ?> </h3>
+                                    <p class="text-light"> SELESAI </p>
+                                </div>
+                                <!-- <div class="icon">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                </div> -->
+                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdi">View More <i class="fa fa-arrow-circle-down"></i></a>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div id="collapseProdi" class="col-md-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#C3BA85;">
+                            <div class="card-box" style="background-color:#AF0069;">
                                 <div class="inner">
                                     <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
                                         foreach ($get_summary_fakultas as $data) { ?>
@@ -714,6 +774,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                                             <th>Kelas</th>
                                                             <th>Prodi</th>
                                                             <th>Fakultas</th>
+                                                            <th>Angkatan</th>
                                                         </tr>
                                                     </thead>
                                                 </table>
@@ -756,6 +817,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                                         <th>Kelas</th>
                                                         <th>Prodi</th>
                                                         <th>Fakultas</th>
+                                                        <th>Angkatan</th>
                                                         <th>Link</th>
                                                     </tr>
                                                 </thead>
@@ -799,6 +861,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                                         <th>Prodi</th>
                                                         <th>Fakultas</th>
                                                         <th>Link</th>
+                                                        <th>Angkatan</th>
                                                         <th>Gambar</th>
                                                     </tr>
                                                 </thead>
@@ -2333,6 +2396,12 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                             },
                             {
                                 "data": "id_fakultas"
+                            },
+                            {
+                                render: function(data, type, row, meta) {
+                                    var a = ` Angkatan ${row.angkatan} ${row.tingkatan} `;
+                                    return a;
+                                }
                             }
 
                         ]
@@ -2391,7 +2460,13 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                             },
                             {
                                 render: function(data, type, row, meta) {
-                                    if (`${row.keterangan}`.substring(8,0) != 'https://') {
+                                    var a = ` Angkatan ${row.angkatan} ${row.tingkatan} `;
+                                    return a;
+                                }
+                            },
+                            {
+                                render: function(data, type, row, meta) {
+                                    if (`${row.keterangan}`.substring(8, 0) != 'https://') {
                                         var a = `
                                 <a href="https://${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
                               `;
@@ -2465,7 +2540,7 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                             {
                                 "data": "keterangan",
                                 render: function(data, type, row, meta) {
-                                    if (`${row.keterangan}`.substring(8,0) != 'https://') {
+                                    if (`${row.keterangan}`.substring(8, 0) != 'https://') {
                                         var a = `
                                 <a href="https://${row.keterangan}" target="_blank">Kunjungi Link Pembelajaran</a>
                               `;
@@ -2477,6 +2552,12 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
                                     }
 
 
+                                    return a;
+                                }
+                            },
+                            {
+                                render: function(data, type, row, meta) {
+                                    var a = ` Angkatan ${row.angkatan} ${row.tingkatan} `;
                                     return a;
                                 }
                             },
