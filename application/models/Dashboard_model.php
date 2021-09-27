@@ -208,7 +208,8 @@ class Dashboard_model extends CI_Model
             COUNT(DISTINCT(id_prodi)) as total_prodi, 
             COUNT(nama_matkul) as total_matkul, 
             COUNT(nama) as total_dosen, 
-            COUNT(DISTINCT(id_plot)) as total_kelas')
+            COUNT(DISTINCT(id_plot)) as total_kelas,
+            id_fakultas')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
             ->where("keterangan !=", null)
@@ -231,7 +232,8 @@ class Dashboard_model extends CI_Model
             COUNT(DISTINCT(id_prodi)) as total_prodi, 
             COUNT(nama_matkul) as total_matkul, 
             COUNT(nama) as total_dosen, 
-            COUNT(DISTINCT(id_plot)) as total_kelas')
+            COUNT(DISTINCT(id_plot)) as total_kelas,
+            id_fakultas')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
             ->where("keterangan !=", null)
@@ -253,7 +255,8 @@ class Dashboard_model extends CI_Model
             COUNT(DISTINCT(id_prodi)) as total_prodi, 
             COUNT(nama_matkul) as total_matkul, 
             COUNT(nama) as total_dosen, 
-            COUNT(DISTINCT(id_plot)) as total_kelas')
+            COUNT(DISTINCT(id_plot)) as total_kelas,
+            id_fakultas')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
             ->where("keterangan", null)
@@ -617,7 +620,7 @@ class Dashboard_model extends CI_Model
             tbl_dosen_pddikti.kampus")->result();
         return $get_data;
     }
-    
+
     public function get_absen_perkampus_thl_ta_masuk()
     {
         $get_data = $this->db->query("SELECT
@@ -637,6 +640,78 @@ class Dashboard_model extends CI_Model
             AND absensi.STATUS = 'Masuk' 
         GROUP BY
             tbl_thl.nama_satker")->result();
+        return $get_data;
+    }
+
+    public function fetchkelastotal()
+    {
+        $get_data = $this->db->query("SELECT
+            nama,
+            nama_matkul,
+            jam,
+            kelas,
+            id_prodi,
+            id_fakultas,
+            angkatan,
+            tingkatan 
+        FROM
+            `tbl_plot_dosen` 
+        WHERE
+        tanggal = '" . date('Y-m-d') . "'")->result();
+        return $get_data;
+    }
+
+    public function fetchkelas_belum_mulai()
+    {
+        $get_data = $this->db->query("SELECT
+            nama,
+            nama_matkul,
+            jam,
+            kelas,
+            id_prodi,
+            id_fakultas,
+            angkatan,
+            tingkatan 
+        FROM
+            `tbl_plot_dosen` 
+        WHERE
+        tanggal = '" . date('Y-m-d') . "' and media_pembelajaran is null and keterangan is null and upload is null")->result();
+        return $get_data;
+    }
+
+    public function fetchkelas_berlangsung()
+    {
+        $get_data = $this->db->query("SELECT
+            nama,
+            nama_matkul,
+            jam,
+            kelas,
+            id_prodi,
+            id_fakultas,
+            angkatan,
+            tingkatan 
+        FROM
+            `tbl_plot_dosen` 
+        WHERE
+        tanggal = '" . date('Y-m-d') . "' and media_pembelajaran is not null and keterangan is not null and upload is null")->result();
+        return $get_data;
+    }
+
+    public function fetchkelas_selesai()
+    {
+        $get_data = $this->db->query("SELECT
+            nama,
+            nama_matkul,
+            jam,
+            kelas,
+            id_prodi,
+            id_fakultas,
+            angkatan,
+            tingkatan 
+        FROM
+            `tbl_plot_dosen` 
+        WHERE
+        tanggal = '" . date('Y-m-d') . "' and media_pembelajaran is not null and keterangan is not null and upload is not null")->result();
         return $get_data;
     }
 }
