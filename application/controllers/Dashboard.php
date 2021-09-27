@@ -106,4 +106,49 @@ class Dashboard extends CI_Controller
 		$this->load->view('frontend/dashboard_detail');
 		$this->load->view('page/js_datatable_frontend');
 	}
+
+	public function fetchkelastotal()
+	{
+		if ($this->input->is_ajax_request()) {
+			$posts = $this->Dashboard_model->fetchkelastotal();
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+
+	public function fetchkelas_belum_mulai()
+	{
+		if ($this->input->is_ajax_request()) {
+			$posts = $this->Dashboard_model->fetchkelas_belum_mulai();
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+
+	public function fetchkelas_berlangsung()
+	{
+		if ($this->input->is_ajax_request()) {
+			$posts = $this->Dashboard_model->fetchkelas_berlangsung();
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+
+	public function fetchkelas_selesai()
+	{
+		if ($this->input->is_ajax_request()) {
+			$posts = $this->Dashboard_model->fetchkelas_selesai();
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+
 }

@@ -80,6 +80,10 @@ $route['insert_absen'] = 'Presensi/insert_absen';
 $route['absen_pulang'] = 'Presensi/absen_pulang';
 
 $route['dashboard'] = 'Dashboard';
+$route['kelas_total'] = 'Dashboard/fetchkelastotal';
+$route['kelas_belum_mulai'] = 'Dashboard/fetchkelas_belum_mulai';
+$route['kelas_berlangsung'] = 'Dashboard/fetchkelas_berlangsung';
+$route['kelas_selesai'] = 'Dashboard/fetchkelas_selesai';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
