@@ -2,31 +2,31 @@
 
 if ($get_absen_pulang_perbulan_chart_perhari != false && !empty($get_absen_pulang_perbulan_chart_perhari)) {
     $count_pulang_perbulan_1_ = 0;
-    $count_pulang_perbulan_1_1 = 0;
-    $count_pulang_perbulan_1_2 = 0;
-    $count_pulang_perbulan_1_3 = 0;
-    $count_pulang_perbulan_1_4 = 0;
+    // $count_pulang_perbulan_1_1 = 0;
+    // $count_pulang_perbulan_1_2 = 0;
+    // $count_pulang_perbulan_1_3 = 0;
+    // $count_pulang_perbulan_1_4 = 0;
     foreach ($get_absen_pulang_perbulan_chart_perhari as $data) {
         $count_pulang_perbulan_1_ += $data->jumlah_hadir;
-        if ($data->role == "Dosen") {
-            $count_pulang_perbulan_1_1 += $data->jumlah_hadir;
-        }
-        if ($data->role == "PNS") {
-            $count_pulang_perbulan_1_2 += $data->jumlah_hadir;
-        }
-        if ($data->role == "PNS dan DOSEN") {
-            $count_pulang_perbulan_1_3 += $data->jumlah_hadir;
-        }
-        if ($data->role == "THL dan TA") {
-            $count_pulang_perbulan_1_4 += $data->jumlah_hadir;
-        }
+        // if ($data->role == "Dosen") {
+        //     $count_pulang_perbulan_1_1 += $data->jumlah_hadir;
+        // }
+        // if ($data->role == "PNS") {
+        //     $count_pulang_perbulan_1_2 += $data->jumlah_hadir;
+        // }
+        // if ($data->role == "PNS dan DOSEN") {
+        //     $count_pulang_perbulan_1_3 += $data->jumlah_hadir;
+        // }
+        // if ($data->role == "THL dan TA") {
+        //     $count_pulang_perbulan_1_4 += $data->jumlah_hadir;
+        // }
     }
 } else {
     $count_pulang_perbulan_1_ = 0;
-    $count_pulang_perbulan_1_1 = 0;
-    $count_pulang_perbulan_1_2 = 0;
-    $count_pulang_perbulan_1_3 = 0;
-    $count_pulang_perbulan_1_4 = 0;
+    // $count_pulang_perbulan_1_1 = 0;
+    // $count_pulang_perbulan_1_2 = 0;
+    // $count_pulang_perbulan_1_3 = 0;
+    // $count_pulang_perbulan_1_4 = 0;
 }
 
 if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
@@ -60,31 +60,31 @@ if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbul
 
 if ($get_absen_masuk_perbulan_chart_perhari != false && !empty($get_absen_masuk_perbulan_chart_perhari)) {
     $count_masuk_perbulan_1_ = 0;
-    $count_masuk_perbulan_1_1 = 0;
-    $count_masuk_perbulan_1_2 = 0;
-    $count_masuk_perbulan_1_3 = 0;
-    $count_masuk_perbulan_1_4 = 0;
+    // $count_masuk_perbulan_1_1 = 0;
+    // $count_masuk_perbulan_1_2 = 0;
+    // $count_masuk_perbulan_1_3 = 0;
+    // $count_masuk_perbulan_1_4 = 0;
     foreach ($get_absen_masuk_perbulan_chart_perhari as $data) {
         $count_masuk_perbulan_1_ += $data->jumlah_hadir;
-        if ($data->role == "Dosen") {
-            $count_masuk_perbulan_1_1 += $data->jumlah_hadir;
-        }
-        if ($data->role == "PNS") {
-            $count_masuk_perbulan_1_2 += $data->jumlah_hadir;
-        }
-        if ($data->role == "PNS dan DOSEN") {
-            $count_masuk_perbulan_1_3 += $data->jumlah_hadir;
-        }
-        if ($data->role == "THL dan TA") {
-            $count_masuk_perbulan_1_4 += $data->jumlah_hadir;
-        }
+        // if ($data->role == "Dosen") {
+        //     $count_masuk_perbulan_1_1 += $data->jumlah_hadir;
+        // }
+        // if ($data->role == "PNS") {
+        //     $count_masuk_perbulan_1_2 += $data->jumlah_hadir;
+        // }
+        // if ($data->role == "PNS dan DOSEN") {
+        //     $count_masuk_perbulan_1_3 += $data->jumlah_hadir;
+        // }
+        // if ($data->role == "THL dan TA") {
+        //     $count_masuk_perbulan_1_4 += $data->jumlah_hadir;
+        // }
     }
 } else {
     $count_masuk_perbulan_1_ = 0;
-    $count_masuk_perbulan_1_1 = 0;
-    $count_masuk_perbulan_1_2 = 0;
-    $count_masuk_perbulan_1_3 = 0;
-    $count_masuk_perbulan_1_4 = 0;
+    // $count_masuk_perbulan_1_1 = 0;
+    // $count_masuk_perbulan_1_2 = 0;
+    // $count_masuk_perbulan_1_3 = 0;
+    // $count_masuk_perbulan_1_4 = 0;
 }
 
 if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
@@ -116,28 +116,13 @@ if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan
     $count_masuk_perbulan4 = 0;
 }
 
-if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
-    $count_total_pembelajaran = 0;
-    $count_pembelajaran_berlangsung = 0;
-    $count_pembelajaran_selesai = 0;
-    foreach ($get_count_fakultas as $data) {
-        $count_total_pembelajaran += $data->total_pembelajaran;
-        $count_pembelajaran_berlangsung += $data->proses_pembelajaran;
-        $count_pembelajaran_selesai += $data->selesai_pembelajaran;
-    }
-} else {
-    $count_total_pembelajaran = 0;
-    $count_pembelajaran_berlangsung = 0;
-    $count_pembelajaran_selesai = 0;
-}
-
 if ($get_all_total != false && !empty($get_all_total)) {
-
     $get_total_fakultas = 0;
     $get_total_prodi = 0;
     $get_total_matkul = 0;
     $get_total_dosen = 0;
     $get_total_kelas = 0;
+
     $get_kelas_belum_mulai = 0;
     $get_kelas_berlangsung = 0;
     $get_kelas_selesai = 0;
@@ -209,7 +194,6 @@ if ($get_all_total != false && !empty($get_all_total)) {
             $get_total_dosen_fpp += $data->total_dosen;
             $get_total_prodi_fpp += $data->total_prodi;
         }
-        // $get_total_kelas += $data->total_kelas;
     }
 } else {
     $get_total_fakultas = 0;
@@ -217,6 +201,7 @@ if ($get_all_total != false && !empty($get_all_total)) {
     $get_total_matkul = 0;
     $get_total_dosen = 0;
     $get_total_kelas = 0;
+
     $get_kelas_belum_mulai = 0;
     $get_kelas_berlangsung = 0;
     $get_kelas_selesai = 0;
@@ -235,12 +220,8 @@ if ($get_all_total != false && !empty($get_all_total)) {
 }
 
 if ($get_all_total_done != false && !empty($get_all_total_done)) {
-
-    $get_total_fakultas_done = 0;
-    $get_total_prodi_done = 0;
     $get_total_matkul_done = 0;
     $get_total_dosen_done = 0;
-    $get_total_kelas_done = 0;
 
     $get_total_dosen_selesai_fhtp = 0;
     $get_total_dosen_selesai_fmp = 0;
@@ -249,17 +230,14 @@ if ($get_all_total_done != false && !empty($get_all_total_done)) {
     $get_total_matkul_selesai_fhtp = 0;
     $get_total_matkul_selesai_fmp = 0;
     $get_total_matkul_selesai_fpp = 0;
-    
+
     $get_total_prodi_selesai_fhtp = 0;
     $get_total_prodi_selesai_fmp = 0;
     $get_total_prodi_selesai_fpp = 0;
 
     foreach ($get_all_total_done as $data) {
-        $get_total_fakultas_done += $data->total_fakultas;
-        $get_total_prodi_done += $data->total_prodi;
         $get_total_matkul_done += $data->total_matkul;
         $get_total_dosen_done += $data->total_dosen;
-        $get_total_kelas_done += $data->total_kelas;
 
         if ($data->id_fakultas == 'FHTP') {
             $get_total_dosen_selesai_fhtp += $data->total_dosen;
@@ -278,11 +256,8 @@ if ($get_all_total_done != false && !empty($get_all_total_done)) {
         }
     }
 } else {
-    $get_total_fakultas_done = 0;
-    $get_total_prodi_done = 0;
     $get_total_matkul_done = 0;
     $get_total_dosen_done = 0;
-    $get_total_kelas_done = 0;
 
     $get_total_dosen_selesai_fhtp = 0;
     $get_total_dosen_selesai_fmp = 0;
@@ -298,12 +273,8 @@ if ($get_all_total_done != false && !empty($get_all_total_done)) {
 }
 
 if ($get_all_total_berlangsung != false && !empty($get_all_total_berlangsung)) {
-
-    $get_total_fakultas_berlangsung = 0;
-    $get_total_prodi_berlangsung = 0;
     $get_total_matkul_berlangsung = 0;
     $get_total_dosen_berlangsung = 0;
-    $get_total_kelas_berlangsung = 0;
 
     $get_total_dosen_berlangsung_fhtp = 0;
     $get_total_dosen_berlangsung_fmp = 0;
@@ -318,11 +289,8 @@ if ($get_all_total_berlangsung != false && !empty($get_all_total_berlangsung)) {
     $get_total_prodi_berlangsung_fpp = 0;
 
     foreach ($get_all_total_berlangsung as $data) {
-        $get_total_fakultas_berlangsung += $data->total_fakultas;
-        $get_total_prodi_berlangsung += $data->total_prodi;
         $get_total_matkul_berlangsung += $data->total_matkul;
         $get_total_dosen_berlangsung += $data->total_dosen;
-        $get_total_kelas_berlangsung += $data->total_kelas;
 
         if ($data->id_fakultas == 'FHTP') {
             $get_total_dosen_berlangsung_fhtp += $data->total_dosen;
@@ -340,11 +308,8 @@ if ($get_all_total_berlangsung != false && !empty($get_all_total_berlangsung)) {
         }
     }
 } else {
-    $get_total_fakultas_berlangsung = 0;
-    $get_total_prodi_berlangsung = 0;
     $get_total_matkul_berlangsung = 0;
     $get_total_dosen_berlangsung = 0;
-    $get_total_kelas_berlangsung = 0;
 
     $get_total_dosen_berlangsung_fhtp = 0;
     $get_total_dosen_berlangsung_fmp = 0;
@@ -353,19 +318,15 @@ if ($get_all_total_berlangsung != false && !empty($get_all_total_berlangsung)) {
     $get_total_matkul_berlangsung_fhtp = 0;
     $get_total_matkul_berlangsung_fmp = 0;
     $get_total_matkul_berlangsung_fpp = 0;
-    
+
     $get_total_prodi_berlangsung_fhtp = 0;
     $get_total_prodi_berlangsung_fmp = 0;
     $get_total_prodi_berlangsung_fpp = 0;
 }
 
 if ($get_all_total_belum_mulai != false && !empty($get_all_total_belum_mulai)) {
-
-    $get_total_fakultas_belum_mulai = 0;
-    $get_total_prodi_belum_mulai = 0;
     $get_total_matkul_belum_mulai = 0;
     $get_total_dosen_belum_mulai = 0;
-    $get_total_kelas_belum_mulai = 0;
 
     $get_total_dosen_belum_mulai_fhtp = 0;
     $get_total_dosen_belum_mulai_fmp = 0;
@@ -380,11 +341,8 @@ if ($get_all_total_belum_mulai != false && !empty($get_all_total_belum_mulai)) {
     $get_total_prodi_belum_mulai_fpp = 0;
 
     foreach ($get_all_total_belum_mulai as $data) {
-        $get_total_fakultas_belum_mulai += $data->total_fakultas;
-        $get_total_prodi_belum_mulai += $data->total_prodi;
         $get_total_matkul_belum_mulai += $data->total_matkul;
         $get_total_dosen_belum_mulai += $data->total_dosen;
-        $get_total_kelas_belum_mulai += $data->total_kelas;
 
         if ($data->id_fakultas == 'FHTP') {
             $get_total_dosen_belum_mulai_fhtp += $data->total_dosen;
@@ -402,11 +360,8 @@ if ($get_all_total_belum_mulai != false && !empty($get_all_total_belum_mulai)) {
         }
     }
 } else {
-    $get_total_fakultas_belum_mulai = 0;
-    $get_total_prodi_belum_mulai = 0;
     $get_total_matkul_belum_mulai = 0;
     $get_total_dosen_belum_mulai = 0;
-    $get_total_kelas_belum_mulai = 0;
 
     $get_total_dosen_belum_mulai_fhtp = 0;
     $get_total_dosen_belum_mulai_fmp = 0;
@@ -421,54 +376,7 @@ if ($get_all_total_belum_mulai != false && !empty($get_all_total_belum_mulai)) {
     $get_total_prodi_belum_mulai_fpp = 0;
 }
 
-if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
-
-    $get_fakultas = 'Tidak Ada Pembelajaran Daring!';
-    $get_prodi = 0;
-    $get_matkul = 0;
-    $get_dosen = 0;
-    $get_kelas = 0;
-
-    foreach ($get_summary_fakultas as $data) {
-        $get_fakultas = $data->id_fakultas;
-        $get_prodi += $data->prodi;
-        $get_matkul += $data->matkul;
-        $get_dosen += $data->dosen;
-        $get_kelas += $data->kelas;
-    }
-} else {
-    $get_fakultas = 'Tidak Ada Pembelajaran Daring!';
-    $get_prodi = 0;
-    $get_matkul = 0;
-    $get_dosen = 0;
-    $get_kelas = 0;
-}
-
-if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
-
-    $get_fakultas = 'Tidak Ada Pembelajaran Daring!';
-    $get_prodi = 0;
-    $get_matkul = 0;
-    $get_dosen = 0;
-    $get_kelas = 0;
-
-    foreach ($get_summary_fakultas as $data) {
-        $get_fakultas = $data->id_fakultas;
-        $get_prodi += $data->prodi;
-        $get_matkul += $data->matkul;
-        $get_dosen += $data->dosen;
-        $get_kelas += $data->kelas;
-    }
-} else {
-    $get_fakultas = 'Tidak Ada Pembelajaran Daring!';
-    $get_prodi = 0;
-    $get_matkul = 0;
-    $get_dosen = 0;
-    $get_kelas = 0;
-}
-
 if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring)) {
-
     $get_pembelajaran_belum_mulai = 0;
     $get_pembelajaran_berlangsung = 0;
     $get_pembelajaran_selesai = 0;
@@ -484,14 +392,12 @@ if ($get_count_status_monitoring != false && !empty($get_count_status_monitoring
         }
     }
 } else {
-
     $get_pembelajaran_belum_mulai = 0;
     $get_pembelajaran_berlangsung = 0;
     $get_pembelajaran_selesai = 0;
 }
 
 if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
-
     $get_prodi_belum_mulai = 0;
     $get_prodi_berlangsung = 0;
     $get_prodi_selesai = 0;
@@ -507,20 +413,14 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
         }
     }
 } else {
-
     $get_prodi_belum_mulai = 0;
     $get_prodi_berlangsung = 0;
     $get_prodi_selesai = 0;
 }
-
-// var_dump($get_absen_all[0]->total);exit;
 ?>
 
 <!-- Dashboard -->
 <section id="home" class="w3l-banner py-5">
-    <!-- <div class="banner-image">
-    </div> -->
-
     <div id="particles-js"></div>
     <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
 
@@ -550,41 +450,6 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardatas"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
                 </div>
                 <div id="cardatas" class="card-body">
-
-                    <!-- <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#d39c37;">
-                                <div class="inner">
-                                    <h3 class="text-light"> 0 </h3>
-                                    <p class="text-light"> PRAJA </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#d39c37;">
-                                <div class="inner">
-                                    <h3 class="text-light"> 0 </h3>
-                                    <p class="text-light"> BELUM MULAI </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#d39c37;">
-                                <div class="inner">
-                                    <h3 class="text-light"> 0 </h3>
-                                    <p class="text-light"> BERLANGSUNG </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#d39c37;">
-                                <div class="inner">
-                                    <h3 class="text-light"> 0 </h3>
-                                    <p class="text-light"> SELESAI </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                     <div class="row">
                         <div class="col-lg-3 col-sm-6">
@@ -890,6 +755,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                         </div>
                     </div>
 
+                    <!-- FAKULTAS -->
                     <div class="row">
                         <div class="col-md-12 col-sm-6">
                             <div class="card-box" style="background-color:#035397;">
@@ -898,9 +764,6 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                     <h3 class="text-light"> <?= $get_total_fakultas; ?> </h3>
                                     <p class="text-light"> FAKULTAS </p>
                                 </div>
-                                <!-- <div class="icon">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                </div> -->
                                 <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseFakultas">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
                         </div>
@@ -914,13 +777,10 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                 <?php
                                     }
                                 } ?>
-                                <!-- <div class="icon">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                </div> -->
-                                <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
                             </div>
                         </div>
                     </div>
+                    <!-- // FAKULTAS -->
 
                 </div>
             </div>
@@ -1384,76 +1244,6 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
             </div>
         </div>
 
-
-        <!-- <div class="container pt-5 mt-5 pb-md-4">
-            <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-              <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardx1"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
-                </div>
-                <div id="cardx1" class="card-body ">
-                    <h4><b>Total Pembelajaran: <?= $count_total_pembelajaran; ?></b></h4>
-                    <div class="progress" style="height:30px">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pembelajaran_berlangsung; ?>" aria-valuemin="0" aria-valuemax="<?= $count_total_pembelajaran; ?>"><?= $count_pembelajaran_berlangsung; ?> (Sedang Berlangsung)</div>
-                        <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pembelajaran_selesai; ?>" aria-valuemin="0" aria-valuemax="<?= $count_total_pembelajaran; ?>"><?= $count_pembelajaran_selesai; ?> (Selesai)</div>
-                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_total_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $count_total_pembelajaran; ?>"><?= $count_total_pembelajaran; ?> (Total Pembelajaran)</div>
-                    </div>
-                </div>
-
-                <?php if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
-                    foreach ($get_count_fakultas as $data) { ?>
-                        <div id="cardx1" class="card-body ">
-                            <h4><b><a href="<?php echo base_url('dashboard/fakultas_detail/' . $data->id_fakultas); ?>" target="_blank">Fakultas <?= $data->id_fakultas; ?></a></b></h4>
-                            <div class="progress" style="height:30px">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $data->proses_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $data->total_pembelajaran; ?>"><?= $data->proses_pembelajaran; ?> (Sedang Berlangsung)</div>
-                                <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $data->selesai_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $data->total_pembelajaran; ?>"><?= $data->selesai_pembelajaran; ?> (Selesai)</div>
-                                <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $data->total_pembelajaran; ?>" aria-valuemin="0" aria-valuemax="<?= $data->total_pembelajaran; ?>"><?= $data->total_pembelajaran; ?> (Total Pembelajaran)</div>
-                            </div>
-                        </div>
-
-                <?php
-                    }
-                } ?>
-            </div> -->
-
-        <!-- <div class="row">
-                <?php if ($get_count_fakultas != false && !empty($get_count_fakultas)) {
-                    if (count($get_count_fakultas) == 3) {
-                        $col_md = 4;
-                    } elseif (count($get_count_fakultas) == 2) {
-                        $col_md = 6;
-                    } elseif (count($get_count_fakultas) == 1) {
-                        $col_md = 12;
-                    } else {
-                        $col_md = 3;
-                    }
-                    $ix = 1;
-                    foreach ($get_count_fakultas as $data) {
-                        // var_dump($get_count_fakultas1);exit;
-                        if ($ix == 1) {
-                            $card_counter = 'primary';
-                        } elseif ($ix == 2) {
-                            $card_counter = 'danger';
-                        } elseif ($ix == 3) {
-                            $card_counter = 'success';
-                        } else {
-                            $card_counter = 'info';
-                        } ?>
-                        <div class="col-md-<?= $col_md; ?>">
-                            <a href="">
-                                <div class="card-counter <?= $card_counter; ?>">
-                                    <i class="fa fa-code-fork"></i>
-                                    <span class="count-numbers"><?= $data->total_pembelajaran; ?>/<?= $data->proses_pembelajaran; ?>/<?= $data->selesai_pembelajaran; ?></span>
-                                    <span class="count-name"><?= $data->id_fakultas; ?></span>
-                                </div>
-                            </a>
-                        </div>
-                <?php $ix++;
-                    }
-                }
-                ?>
-            </div> -->
-        <!-- </div> -->
-
         <div class="container pt-5 pb-md-4">
             <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
                 <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
@@ -1584,7 +1374,6 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                             } ?>
                         </div>
                     </div>
-
                 </div>
 
                 <div id="card1" class="card-body ">
@@ -1723,16 +1512,12 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                     <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
                 </div>
                 <div id="card1" class="card-body ">
-
                     <div class="progress" style="height:30px">
                         <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pulang_perbulan; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_pulang_perbulan; ?> (Masuk dan Pulang)</div>
-                        <!-- <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div> -->
                     </div>
-                    <!-- <h4><b>Total Data: <?= $count_pulang_perbulan; ?></b></h4> -->
                 </div>
             </div>
-            <!-- </div> -->
-            <!-- <div class="container"> -->
+
             <div class="row">
                 <div class="col-md-6 my-1">
                     <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
@@ -1780,8 +1565,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                 </div>
             </div>
         </div>
-        <!-- </div>
-    <div class="banner-content"> -->
+
         <div class="container pt-5 pb-md-4">
             <div class="card text-center shadow mb-3 border-0 animated fadeInUp" style="border-radius: 1rem !important;">
                 <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
@@ -1791,10 +1575,8 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
 
                     <div class="progress" style="height:30px">
                         <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_masuk_perbulan; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_masuk_perbulan; ?> (Hanya Masuk)</div>
-                        <!-- <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div> -->
                     </div>
                 </div>
-                <!-- <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan; ?></b></p> -->
             </div>
             <div class="row">
                 <div class="col-md-6 my-1">
@@ -1849,6 +1631,8 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<?php $this->load->view('page/js_datatable_frontend'); ?>
+
 <script>
     var ctx = document.getElementById('myChart3').getContext('2d');
     var myChart = new Chart(ctx, {
@@ -1895,19 +1679,6 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                 legend: {
                     display: false
                 },
-                // title: {
-                //   display: true,
-                //   text: '',
-
-                //   font: {
-                //     size: 20
-                //   },
-                //   color: 'blue',
-                //   padding: {
-                //     top: 10,
-                //     bottom: 30
-                //   }
-                // }
             },
             indexAxis: 'x',
             scales: {
@@ -1917,9 +1688,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
             }
         }
     });
-</script>
-<?php $this->load->view('page/js_datatable_frontend'); ?>
-<script>
+
     // ABSEN PULANG DOSEN PERBULAN
     var ctx = document.getElementById('absenpulangdosenperbln').getContext('2d');
     var absenpulangdosenperbln = new Chart(ctx, {
@@ -2806,60 +2575,6 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
             }
         }
     });
-
-
-    /* -------------------------------------------------------------------------- */
-    /*                       Fetch Status Monitoring Records                      */
-    /* -------------------------------------------------------------------------- */
-    function fetchStatusMonitoring() {
-        $.ajax({
-            url: "<?php echo base_url(); ?>fetchstatusdashboard",
-            type: "post",
-            dataType: "json",
-            success: function(data) {
-                if (data.responce == "success") {
-
-                    var i = "1";
-                    $('#detail_monitoring').DataTable({
-                        "data": data.posts,
-                        "responsive": true,
-                        dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
-                            "<'row'<'col-sm-12'tr>>" +
-                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                        buttons: [
-                            'copy', 'excel', 'pdf'
-                        ],
-                        "columns": [{
-                                "render": function() {
-                                    return a = i++;
-                                }
-                            },
-                            {
-                                "data": "nama"
-                            },
-                            {
-                                "data": "nama_matkul"
-                            },
-                            {
-                                "data": "id_prodi"
-                            },
-                            {
-                                "data": "StatusMonitoring"
-                            },
-                            {
-                                "data": "TotalMonitoring"
-                            }
-
-                        ]
-                    });
-                } else {
-                    toastr["error"](data.message);
-                }
-
-            }
-        });
-    }
-    fetchStatusMonitoring();
 
     /* -------------------------------------------------------------------------- */
     /*                           Fetch Status Belum Dimulai                       */
