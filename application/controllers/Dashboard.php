@@ -25,7 +25,6 @@ class Dashboard extends CI_Controller
 			'get_absen_pulang_perbulan_chart_perhari'		=> $this->Dashboard_model->get_absen_pulang_perbulan_chart_perhari(),
 			'get_absen_masuk_perbulan_chart'				=> $this->Dashboard_model->get_absen_masuk_perbulan_chart(),
 			'get_absen_masuk_perbulan_chart_perhari'		=> $this->Dashboard_model->get_absen_masuk_perbulan_chart_perhari(),
-			'get_count_fakultas'							=> $this->Dashboard_model->get_count_fakultas(),
 			'get_all_total'									=> $this->Dashboard_model->get_all_total(),
 			'get_all_total_kelas'							=> $this->Dashboard_model->get_all_total_kelas(),
 			'get_all_kelas_belum_mulai'						=> $this->Dashboard_model->get_kelas_belum_mulai(),
@@ -35,7 +34,6 @@ class Dashboard extends CI_Controller
 			'get_all_total_belum_mulai'						=> $this->Dashboard_model->get_all_total_belum_mulai(),
 			'get_all_total_berlangsung'						=> $this->Dashboard_model->get_all_total_berlangsung(),
 			'get_all_total_done'							=> $this->Dashboard_model->get_all_total_done(),
-			'get_summary_fakultas_done'						=> $this->Dashboard_model->get_summary_fakultas_done(),
 			'get_count_status_monitoring'					=> $this->Presensi_model->get_count_status_monitoring(),
 			'get_absen_perkampus_thl_ta'					=> $this->Dashboard_model->get_absen_perkampus_thl_ta(),
 			'count_get_absen_perkampus_thl_ta'				=> $this->Dashboard_model->count_get_absen_perkampus_thl_ta(),
@@ -57,15 +55,15 @@ class Dashboard extends CI_Controller
 		$this->load->view('frontend/dashboard');
 	}
 
-	public function fetch_detail_monitoring()
-	{
-		if ($this->input->is_ajax_request()) {
-			$posts = $this->Presensi_model->get_detail_monitoring();
+	// public function fetch_detail_monitoring()
+	// {
+	// 	if ($this->input->is_ajax_request()) {
+	// 		$posts = $this->Presensi_model->get_detail_monitoring();
 
-			$data = array('responce' => 'success', 'posts' => $posts);
-			echo json_encode($data);
-		}
-	}
+	// 		$data = array('responce' => 'success', 'posts' => $posts);
+	// 		echo json_encode($data);
+	// 	}
+	// }
 
 	public function fetch_status_belum_dimulai()
 	{
@@ -76,6 +74,7 @@ class Dashboard extends CI_Controller
 			echo json_encode($data);
 		}
 	}
+
 	public function fetch_status_sedang_berlangsung()
 	{
 		if ($this->input->is_ajax_request()) {
@@ -85,6 +84,7 @@ class Dashboard extends CI_Controller
 			echo json_encode($data);
 		}
 	}
+
 	public function fetch_status_telah_selesai()
 	{
 		if ($this->input->is_ajax_request()) {
@@ -93,18 +93,6 @@ class Dashboard extends CI_Controller
 			$data = array('responce' => 'success', 'posts' => $posts);
 			echo json_encode($data);
 		}
-	}
-
-	public function fakultas_detail($fakultas)
-	{
-		$data = array(
-			'get_prodi'		=> $this->Dashboard_model->get_prodi_perfakultas($fakultas),
-			'dashboard'		=> 'active'
-		);
-
-		$this->load->view('page/header_frontend', $data);
-		$this->load->view('frontend/dashboard_detail');
-		$this->load->view('page/js_datatable_frontend');
 	}
 
 	public function fetchkelastotal()
@@ -150,5 +138,4 @@ class Dashboard extends CI_Controller
 			echo "No direct script access allowed";
 		}
 	}
-
 }

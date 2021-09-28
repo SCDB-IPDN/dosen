@@ -160,25 +160,6 @@ class Dashboard_model extends CI_Model
         }
     }
 
-    public function get_count_fakultas()
-    {
-        $get_data   = $this->db
-            ->select('id_fakultas, 
-                COUNT( id_plot ) AS total_pembelajaran,
-                COUNT( keterangan ) - count( upload ) AS proses_pembelajaran,
-                COUNT( upload ) AS selesai_pembelajaran')
-            ->from('tbl_plot_dosen')
-            ->where("tanggal", date('Y-m-d'))
-            ->group_by("id_fakultas")
-            ->get();
-
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
-
     public function get_prodi_perfakultas($fakultas)
     {
         $get_data   = $this->db
@@ -354,28 +335,6 @@ class Dashboard_model extends CI_Model
             id_fakultas')
             ->from('tbl_plot_dosen')
             ->where("tanggal", date('Y-m-d'))
-            ->group_by("id_fakultas")
-            ->get();
-
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
-
-    public function get_summary_fakultas_done()
-    {
-        $get_data   = $this->db
-            ->select('id_fakultas,
-            COUNT(DISTINCT(id_prodi)) as prodi, 
-            COUNT(nama_matkul) as matkul, 
-            COUNT(DISTINCT(nama)) as dosen,
-            COUNT(id_plot) as kelas')
-            ->from('tbl_plot_dosen')
-            ->where("tanggal", date('Y-m-d'))
-            ->where("keterangan !=", null)
-            ->where("upload !=", null)
             ->group_by("id_fakultas")
             ->get();
 
