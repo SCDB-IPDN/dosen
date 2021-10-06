@@ -1,121 +1,5 @@
 <?php
 
-if ($get_absen_pulang_perbulan_chart_perhari != false && !empty($get_absen_pulang_perbulan_chart_perhari)) {
-    $count_pulang_perbulan_1_ = 0;
-    // $count_pulang_perbulan_1_1 = 0;
-    // $count_pulang_perbulan_1_2 = 0;
-    // $count_pulang_perbulan_1_3 = 0;
-    // $count_pulang_perbulan_1_4 = 0;
-    foreach ($get_absen_pulang_perbulan_chart_perhari as $data) {
-        $count_pulang_perbulan_1_ += $data->jumlah_hadir;
-        // if ($data->role == "Dosen") {
-        //     $count_pulang_perbulan_1_1 += $data->jumlah_hadir;
-        // }
-        // if ($data->role == "PNS") {
-        //     $count_pulang_perbulan_1_2 += $data->jumlah_hadir;
-        // }
-        // if ($data->role == "PNS dan DOSEN") {
-        //     $count_pulang_perbulan_1_3 += $data->jumlah_hadir;
-        // }
-        // if ($data->role == "THL dan TA") {
-        //     $count_pulang_perbulan_1_4 += $data->jumlah_hadir;
-        // }
-    }
-} else {
-    $count_pulang_perbulan_1_ = 0;
-    // $count_pulang_perbulan_1_1 = 0;
-    // $count_pulang_perbulan_1_2 = 0;
-    // $count_pulang_perbulan_1_3 = 0;
-    // $count_pulang_perbulan_1_4 = 0;
-}
-
-if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-    $count_pulang_perbulan = 0;
-    $count_pulang_perbulan1 = 0;
-    $count_pulang_perbulan2 = 0;
-    $count_pulang_perbulan3 = 0;
-    $count_pulang_perbulan4 = 0;
-    foreach ($get_absen_pulang_perbulan_chart as $data) {
-        $count_pulang_perbulan += $data->jumlah_hadir;
-        if ($data->role == "Dosen") {
-            $count_pulang_perbulan1 += $data->jumlah_hadir;
-        }
-        if ($data->role == "PNS") {
-            $count_pulang_perbulan2 += $data->jumlah_hadir;
-        }
-        if ($data->role == "PNS dan DOSEN") {
-            $count_pulang_perbulan3 += $data->jumlah_hadir;
-        }
-        if ($data->role == "THL dan TA") {
-            $count_pulang_perbulan4 += $data->jumlah_hadir;
-        }
-    }
-} else {
-    $count_pulang_perbulan = 0;
-    $count_pulang_perbulan1 = 0;
-    $count_pulang_perbulan2 = 0;
-    $count_pulang_perbulan3 = 0;
-    $count_pulang_perbulan4 = 0;
-}
-
-if ($get_absen_masuk_perbulan_chart_perhari != false && !empty($get_absen_masuk_perbulan_chart_perhari)) {
-    $count_masuk_perbulan_1_ = 0;
-    // $count_masuk_perbulan_1_1 = 0;
-    // $count_masuk_perbulan_1_2 = 0;
-    // $count_masuk_perbulan_1_3 = 0;
-    // $count_masuk_perbulan_1_4 = 0;
-    foreach ($get_absen_masuk_perbulan_chart_perhari as $data) {
-        $count_masuk_perbulan_1_ += $data->jumlah_hadir;
-        // if ($data->role == "Dosen") {
-        //     $count_masuk_perbulan_1_1 += $data->jumlah_hadir;
-        // }
-        // if ($data->role == "PNS") {
-        //     $count_masuk_perbulan_1_2 += $data->jumlah_hadir;
-        // }
-        // if ($data->role == "PNS dan DOSEN") {
-        //     $count_masuk_perbulan_1_3 += $data->jumlah_hadir;
-        // }
-        // if ($data->role == "THL dan TA") {
-        //     $count_masuk_perbulan_1_4 += $data->jumlah_hadir;
-        // }
-    }
-} else {
-    $count_masuk_perbulan_1_ = 0;
-    // $count_masuk_perbulan_1_1 = 0;
-    // $count_masuk_perbulan_1_2 = 0;
-    // $count_masuk_perbulan_1_3 = 0;
-    // $count_masuk_perbulan_1_4 = 0;
-}
-
-if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
-    $count_masuk_perbulan = 0;
-    $count_masuk_perbulan1 = 0;
-    $count_masuk_perbulan2 = 0;
-    $count_masuk_perbulan3 = 0;
-    $count_masuk_perbulan4 = 0;
-    foreach ($get_absen_masuk_perbulan_chart as $data) {
-        $count_masuk_perbulan += $data->jumlah_hadir;
-        if ($data->role == "Dosen") {
-            $count_masuk_perbulan1 += $data->jumlah_hadir;
-        }
-        if ($data->role == "PNS") {
-            $count_masuk_perbulan2 += $data->jumlah_hadir;
-        }
-        if ($data->role == "PNS dan DOSEN") {
-            $count_masuk_perbulan3 += $data->jumlah_hadir;
-        }
-        if ($data->role == "THL dan TA") {
-            $count_masuk_perbulan4 += $data->jumlah_hadir;
-        }
-    }
-} else {
-    $count_masuk_perbulan = 0;
-    $count_masuk_perbulan1 = 0;
-    $count_masuk_perbulan2 = 0;
-    $count_masuk_perbulan3 = 0;
-    $count_masuk_perbulan4 = 0;
-}
-
 if ($get_all_total != false && !empty($get_all_total)) {
     $get_total_fakultas = 0;
     $get_total_prodi = 0;
@@ -1244,261 +1128,449 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
             </div>
         </div>
 
-        <div class="container pt-5 pb-md-4">
-            <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
+        <div class="container">
+            <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
                 <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Tanggal <?= date('Y-m-d'); ?></a>
+                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardpresensiatas"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Kehadiran Tanggal <?= date('d-M-Y'); ?></a>
                 </div>
-                <div id="card1" class="card-body ">
-                    <h4>Presensi Masuk dan Pulang</h4>
-                    <div class="progress" style="height:30px">
-                        <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pulang_perbulan_1_; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_pulang_perbulan_1_; ?> Pegawai</div>
-                        <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= ($get_absen_all[0]->total - $count_pulang_perbulan_1_); ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= ($get_absen_all[0]->total - $count_pulang_perbulan_1_); ?> (Tidak Absen)</div>
-                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
-                    </div>
+                <div id="cardpresensiatas" class="card-body">
 
-                    <br>
                     <div class="row">
-                        <div class="col-xl">
-                            <?php if (count($get_absen_perkampus_dosen) > 0) { ?>
-                                Dosen Non PNS
-                                <?php foreach ($get_absen_perkampus_dosen as $data) { ?>
-                                    <div class="d-flex mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-circle text-primary f-s-8 mr-2"></i>
-                                            <?= $data->kampus; ?>
-                                        </div>
-                                        <div class="d-flex align-items-center ml-auto">
-                                            <div class="text-right pl-2 f-w-600">
-                                                <span>
-                                                    <?= $data->jumlah_hadir; ?> Dari
-                                                    <?php foreach ($count_get_absen_perkampus_dosen as $datax) {
-                                                        if ($datax->kampus == $data->kampus) { ?>
-                                                            <?= $datax->total; ?>
-                                                        <?php  } ?>
-                                                    <?php } ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            <?php  } else {
-                                echo "Tidak ada absen untuk Dosen Non PNS";
-                            } ?>
-                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#7952B3;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_countx1 = 0;
+                                            $data_countx4 = 0;
+                                            $data_countx7 = 0;
+                                            if ($count_get_absen_perkampus_dosen != false && !empty($count_get_absen_perkampus_dosen)) {
+                                                foreach ($count_get_absen_perkampus_dosen as $datax) {
+                                                    $data_countx1 += $datax->total;
+                                                }
+                                                $data_countx1 = $data_countx1;
+                                            } else {
+                                                $data_countx1 = 0;
+                                            }
 
-                        <div class="col-xl">
-                            <?php if (count($get_absen_perkampus_thl_ta) > 0) { ?>
-                                THL dan TA
-                                <?php foreach ($get_absen_perkampus_thl_ta as $data) { ?>
-                                    <div class="d-flex mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-circle text-primary f-s-8 mr-2"></i>
-                                            <?= $data->nama_satker; ?>
-                                        </div>
-                                        <div class="d-flex align-items-center ml-auto">
-                                            <div class="text-right pl-2 f-w-600">
-                                                <span>
-                                                    <?= $data->jumlah_hadir; ?> Dari
-                                                    <?php foreach ($count_get_absen_perkampus_thl_ta as $datax) {
-                                                        if ($datax->nama_satker == $data->nama_satker) { ?>
-                                                            <?= $datax->total; ?>
-                                                        <?php  } ?>
-                                                    <?php } ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            <?php } else {
-                                echo "Tidak ada absen untuk THL dan TA";
-                            } ?>
+                                            if ($count_get_absen_perkampus_pns != false && !empty($count_get_absen_perkampus_pns)) {
+                                                foreach ($count_get_absen_perkampus_pns as $datax) {
+                                                    $data_countx4 += $datax->total;
+                                                }
+                                                $data_countx4 = $data_countx4;
+                                            } else {
+                                                $data_countx4 = 0;
+                                            }
+
+                                            if ($count_get_absen_perkampus_thl != false && !empty($count_get_absen_perkampus_thl)) {
+                                                foreach ($count_get_absen_perkampus_thl as $datax) {
+                                                    $data_countx7 += $datax->total;
+                                                }
+                                                $data_countx7 = $data_countx7;
+                                            } else {
+                                                $data_countx7 = 0;
+                                            }
+
+                                            $total_presensi = $data_countx1 + $data_countx4 + $data_countx7 + 4;
+                                            echo $total_presensi;
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> TOTAL </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#7952B3;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_masuk">
+                                        <h3 class="text-light">
+                                            <?php
+                                                $data_countx2 = 0;
+                                                $data_countx5 = 0;
+                                                $data_countx8 = 0;
+                                                $data_countx10 = 0;
+                                                if ($count_get_absen_perkampus_dosen_masuk != false && !empty($count_get_absen_perkampus_dosen_masuk)) {
+                                                    foreach ($count_get_absen_perkampus_dosen_masuk as $datax) {
+                                                        $data_countx2 += $datax->total;
+                                                    }
+                                                    $data_countx2 = $data_countx2;
+                                                } else {
+                                                    $data_countx2 = 0;
+                                                }
+
+                                                if ($count_get_absen_perkampus_pns_masuk != false && !empty($count_get_absen_perkampus_pns_masuk)) {
+                                                    foreach ($count_get_absen_perkampus_pns_masuk as $datax) {
+                                                        $data_countx5 += $datax->total;
+                                                    }
+                                                    $data_countx5 = $data_countx5;
+                                                } else {
+                                                    $data_countx5 = 0;
+                                                }
+
+                                                if ($count_get_absen_perkampus_thl_masuk != false && !empty($count_get_absen_perkampus_thl_masuk)) {
+                                                    foreach ($count_get_absen_perkampus_thl_masuk as $datax) {
+                                                        $data_countx8 += $datax->total;
+                                                    }
+                                                    $data_countx8 = $data_countx8;
+                                                } else {
+                                                    $data_countx8 = 0;
+                                                }
+                                                
+                                                if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
+                                                    $data_countx10 = 4;
+                                                } else {
+                                                    $data_countx10 = 0;
+                                                }
+
+                                                $total_presensi_masuk = $data_countx2 + $data_countx5 + $data_countx8 + $data_countx10;
+                                                echo $total_presensi_masuk;
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI MASUK </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#7952B3;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_pulang">
+                                        <h3 class="text-light">
+                                            <?php
+                                                $data_countx3 = 0;
+                                                $data_countx6 = 0;
+                                                $data_countx9 = 0;
+                                                $data_countx11 = 0;
+                                                if ($count_get_absen_perkampus_dosen_pulang != false && !empty($count_get_absen_perkampus_dosen_pulang)) {
+                                                    foreach ($count_get_absen_perkampus_dosen_pulang as $datax) {
+                                                        $data_countx3 += $datax->total;
+                                                    }
+                                                    $data_countx3 = $data_countx3;
+                                                } else {
+                                                    $data_countx3 = 0;
+                                                }
+
+                                                if ($count_get_absen_perkampus_pns_pulang != false && !empty($count_get_absen_perkampus_pns_pulang)) {
+                                                    foreach ($count_get_absen_perkampus_pns_pulang as $datax) {
+                                                        $data_countx6 += $datax->total;
+                                                    }
+                                                    $data_countx6 = $data_countx6;
+                                                } else {
+                                                    $data_countx6 = 0;
+                                                }
+
+                                                if ($count_get_absen_perkampus_thl_pulang != false && !empty($count_get_absen_perkampus_thl_pulang)) {
+                                                    foreach ($count_get_absen_perkampus_thl_pulang as $datax) {
+                                                        $data_countx9 += $datax->total;
+                                                    }
+                                                    $data_countx9 = $data_countx9;
+                                                } else {
+                                                    $data_countx9 = 0;
+                                                }
+                                                
+                                                if (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
+                                                    $data_countx11 = 4;
+                                                } else {
+                                                    $data_countx11 = 0;
+                                                }
+
+                                                $total_presensi_pulang = $data_countx3 + $data_countx6 + $data_countx9 + $data_countx11;
+                                                echo $total_presensi_pulang;
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI PULANG </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <br>
                     <div class="row">
-                        <div class="col-xl">
-                            <?php if (count($get_absen_perkampus_pns) > 0) { ?>
-                                PNS
-                                <?php foreach ($get_absen_perkampus_pns as $data) { ?>
-                                    <div class="d-flex mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-circle text-primary f-s-8 mr-2"></i>
-                                            <?= $data->bagian; ?>
-                                        </div>
-                                        <div class="d-flex align-items-center ml-auto">
-                                            <div class="text-right pl-2 f-w-600">
-                                                <span>
-                                                    <?= $data->jumlah_hadir; ?> Dari
-                                                    <?php foreach ($count_get_absen_perkampus_pns as $datax) {
-                                                        if ($datax->bagian == $data->bagian) { ?>
-                                                            <?= $datax->total; ?>
-                                                        <?php  } ?>
-                                                    <?php } ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            <?php  } else {
-                                echo "Tidak ada absen untuk PNS";
-                            } ?>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#346751;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#346751;" data-toggle="modal" data-target="#presensi_total_dosen">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count1 = 0;
+                                            if ($count_get_absen_perkampus_dosen != false && !empty($count_get_absen_perkampus_dosen)) {
+                                                foreach ($count_get_absen_perkampus_dosen as $datax) {
+                                                    $data_count1 += $datax->total; ?>
+                                            <?php }
+                                                echo $data_count1;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> DOSEN </p>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="col-xl">
-                            <?php if (count($get_absen_perkampus_pns_dosen) > 0) { ?>
-                                PNS DOSEN
-                                <?php foreach ($get_absen_perkampus_pns_dosen as $data) { ?>
-                                    <div class="d-flex mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-circle text-primary f-s-8 mr-2"></i>
-                                            <?= $data->bagian; ?>
-                                        </div>
-                                        <div class="d-flex align-items-center ml-auto">
-                                            <div class="text-right pl-2 f-w-600">
-                                                <span>
-                                                    <?= $data->jumlah_hadir; ?> Dari
-                                                    <?php foreach ($count_get_absen_perkampus_pns_dosen as $datax) {
-                                                        if ($datax->bagian == $data->bagian) { ?>
-                                                            <?= $datax->total; ?>
-                                                        <?php  } ?>
-                                                    <?php } ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            <?php } else {
-                                echo "Tidak ada absen untuk PNS DOSEN";
-                            } ?>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#346751;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#346751;" data-toggle="modal" data-target="#presensi_total_dosen_masuk">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count2 = 0;
+                                            if ($count_get_absen_perkampus_dosen_masuk != false && !empty($count_get_absen_perkampus_dosen_masuk)) {
+                                                foreach ($count_get_absen_perkampus_dosen_masuk as $datax) {
+                                                    $data_count2 += $datax->total; ?>
+                                            <?php }
+                                                echo $data_count2;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI MASUK </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#346751;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#346751;" data-toggle="modal" data-target="#presensi_total_dosen_pulang">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count3 = 0;
+                                            if ($count_get_absen_perkampus_dosen_pulang != false && !empty($count_get_absen_perkampus_dosen_pulang)) {
+                                                foreach ($count_get_absen_perkampus_dosen_pulang as $datax) {
+                                                    $data_count3 += $datax->total; ?>
+                                            <?php }
+                                                echo $data_count3;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI PULANG </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div id="card1" class="card-body ">
-                    <h4>Presensi Hanya Masuk</h4>
-                    <div class="progress" style="height:30px">
-                        <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_masuk_perbulan_1_; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_masuk_perbulan_1_; ?> Pegawai</div>
-                        <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= ($get_absen_all[0]->total - $count_masuk_perbulan_1_); ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= ($get_absen_all[0]->total - $count_masuk_perbulan_1_); ?> (Tidak Absen)</div>
-                        <div class="progress-bar bg-info" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $get_absen_all[0]->total; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $get_absen_all[0]->total; ?> (Total Pegawai)</div>
-                    </div>
-
-                    <br>
                     <div class="row">
-                        <div class="col-xl">
-                            <?php if (count($get_absen_perkampus_dosen_masuk) > 0) { ?>
-                                Dosen Non PNS
-                                <?php foreach ($get_absen_perkampus_dosen_masuk as $data) { ?>
-                                    <div class="d-flex mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-circle text-green f-s-8 mr-2"></i>
-                                            <?= $data->kampus; ?>
-                                        </div>
-                                        <div class="d-flex align-items-center ml-auto">
-                                            <div class="text-right pl-2 f-w-600">
-                                                <span>
-                                                    <?= $data->jumlah_hadir; ?> Dari
-                                                    <?php foreach ($count_get_absen_perkampus_thl_ta as $datax) {
-                                                        if ($datax->kampus == $data->kampus) { ?>
-                                                            <?= $datax->total; ?>
-                                                        <?php  } ?>
-                                                    <?php } ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            <?php } else {
-                                echo "Tidak ada absen untuk Dosen Non PNS";
-                            } ?>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#C84B31;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#C84B31;" data-toggle="modal" data-target="#presensi_total_pns">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count4 = 0;
+                                            if ($count_get_absen_perkampus_pns != false && !empty($count_get_absen_perkampus_pns)) {
+                                                foreach ($count_get_absen_perkampus_pns as $datax) {
+                                                    $data_count4 += $datax->total; ?>
+                                            <?php }
+                                                echo $data_count4;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PNS </p>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="col-xl">
-                            <?php if (count($get_absen_perkampus_thl_ta_masuk) > 0) { ?>
-                                THL dan TA
-                                <?php foreach ($get_absen_perkampus_thl_ta_masuk as $data) { ?>
-                                    <div class="d-flex mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-circle text-green f-s-8 mr-2"></i>
-                                            <?= $data->nama_satker; ?>
-                                        </div>
-                                        <div class="d-flex align-items-center ml-auto">
-                                            <div class="text-right pl-2 f-w-600">
-                                                <span>
-                                                    <?= $data->jumlah_hadir; ?> Dari
-                                                    <?php foreach ($count_get_absen_perkampus_thl_ta as $datax) {
-                                                        if ($datax->nama_satker == $data->nama_satker) { ?>
-                                                            <?= $datax->total; ?>
-                                                        <?php  } ?>
-                                                    <?php } ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            <?php } else {
-                                echo "Tidak ada absen untuk THL dan TA";
-                            } ?>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#C84B31;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#C84B31;" data-toggle="modal" data-target="#presensi_total_pns_masuk">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count5 = 0;
+                                            if ($count_get_absen_perkampus_pns_masuk != false && !empty($count_get_absen_perkampus_pns_masuk)) {
+                                                foreach ($count_get_absen_perkampus_pns_masuk as $datax) {
+                                                    $data_count5 += $datax->total; ?>
+                                            <?php }
+                                                echo $data_count5;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI MASUK </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#C84B31;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#C84B31;" data-toggle="modal" data-target="#presensi_total_pns_pulang">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count6 = 0;
+                                            if ($count_get_absen_perkampus_pns_pulang != false && !empty($count_get_absen_perkampus_pns_pulang)) {
+                                                foreach ($count_get_absen_perkampus_pns_pulang as $datax) {
+                                                    $data_count6 += $datax->total; ?>
+                                            <?php }
+                                                echo $data_count6;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI PULANG </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <br>
                     <div class="row">
-                        <div class="col-xl">
-                            <?php if (count($get_absen_perkampus_pns_masuk) > 0) { ?>
-                                PNS
-                                <?php foreach ($get_absen_perkampus_pns_masuk as $data) { ?>
-                                    <div class="d-flex mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-circle text-green f-s-8 mr-2"></i>
-                                            <?= $data->bagian; ?>
-                                        </div>
-                                        <div class="d-flex align-items-center ml-auto">
-                                            <div class="text-right pl-2 f-w-600">
-                                                <span>
-                                                    <?= $data->jumlah_hadir; ?> Dari
-                                                    <?php foreach ($count_get_absen_perkampus_pns as $datax) {
-                                                        if ($datax->bagian == $data->bagian) { ?>
-                                                            <?= $datax->total; ?>
-                                                        <?php  } ?>
-                                                    <?php } ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            <?php  } else {
-                                echo "Tidak ada absen untuk PNS";
-                            } ?>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#AF0069;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#AF0069;" data-toggle="modal" data-target="#presensi_total_thl">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count7 = 0;
+                                            if ($count_get_absen_perkampus_thl != false && !empty($count_get_absen_perkampus_thl)) {
+                                                foreach ($count_get_absen_perkampus_thl as $datax) {
+                                                    $data_count7 += $datax->total; ?>
+                                            <?php }
+                                                echo $data_count7;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> THL </p>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#AF0069;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#AF0069;" data-toggle="modal" data-target="#presensi_total_thl_masuk">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count8 = 0;
+                                            if ($count_get_absen_perkampus_thl_masuk != false && !empty($count_get_absen_perkampus_thl_masuk)) {
+                                                foreach ($count_get_absen_perkampus_thl_masuk as $datax) {
+                                                    $data_count8 += $datax->total; ?>
+                                            <?php }
+                                                echo $data_count8;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI MASUK </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#AF0069;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#AF0069;" data-toggle="modal" data-target="#presensi_total_thl_pulang">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count9 = 0;
+                                            if ($count_get_absen_perkampus_thl_pulang != false && !empty($count_get_absen_perkampus_thl_pulang)) {
+                                                foreach ($count_get_absen_perkampus_thl_pulang as $datax) {
+                                                    $data_count9 += $datax->total; ?>
+                                            <?php }
+                                                echo $data_count9;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI PULANG </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="col-xl">
-                            <?php if (count($get_absen_perkampus_pns_dosen_masuk) > 0) { ?>
-                                PNS DOSEN
-                                <?php foreach ($get_absen_perkampus_pns_dosen_masuk as $data) { ?>
-                                    <div class="d-flex mb-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fa fa-circle text-green f-s-8 mr-2"></i>
-                                            <?= $data->bagian; ?>
-                                        </div>
-                                        <div class="d-flex align-items-center ml-auto">
-                                            <div class="text-right pl-2 f-w-600">
-                                                <span>
-                                                    <?= $data->jumlah_hadir; ?> Dari
-                                                    <?php foreach ($count_get_absen_perkampus_pns_dosen as $datax) {
-                                                        if ($datax->bagian == $data->bagian) { ?>
-                                                            <?= $datax->total; ?>
-                                                        <?php  } ?>
-                                                    <?php } ?>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            <?php } else {
-                                echo "Tidak ada absen untuk PNS DOSEN";
-                            } ?>
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#035397;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#035397;" data-toggle="modal" data-target="#presensi_total_ta">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count10 = 0;
+                                            if ($count_get_absen_perkampus_ta != false && !empty($count_get_absen_perkampus_ta)) {
+                                                foreach ($count_get_absen_perkampus_ta as $datax) {
+                                                    $data_count10 += $datax->total;
+                                                }
+                                                echo $data_count10;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> TA </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#035397;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#035397;" data-toggle="modal" data-target="#presensi_total_ta_masuk">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count11 = 0;
+                                            if ($count_get_absen_perkampus_ta_masuk != false && !empty($count_get_absen_perkampus_ta_masuk)) {
+                                                foreach ($count_get_absen_perkampus_ta_masuk as $datax) {
+                                                    $data_count11 += $datax->total;
+                                                }
+                                                echo $data_count11;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
+                                            //     echo 4;
+                                            // } else {
+                                            //     echo 0;
+                                            // }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI MASUK </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card-box" style="background-color:#035397;">
+                                <div class="inner">
+                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#035397;" data-toggle="modal" data-target="#presensi_total_ta_pulang">
+                                        <h3 class="text-light">
+                                            <?php
+                                            $data_count12 = 0;
+                                            if ($count_get_absen_perkampus_ta_pulang != false && !empty($count_get_absen_perkampus_ta_pulang)) {
+                                                foreach ($count_get_absen_perkampus_ta_pulang as $datax) {
+                                                    $data_count12 += $datax->total;
+                                                }
+                                                echo $data_count12;
+                                            } else {
+                                                echo 0;
+                                            }
+                                            
+                                            // if (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
+                                            //     echo 4;
+                                            // } else {
+                                            //     echo 0;
+                                            // }
+                                            ?>
+                                        </h3>
+                                    </button>
+                                    <p class="text-light"> PRESENSI PULANG </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1506,125 +1578,580 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
             </div>
         </div>
 
-        <div class="container pt-5 pb-md-4">
-            <div class="card shadow text-center mb-3 mt-3 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card1"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Masuk dan Pulang)</a>
-                </div>
-                <div id="card1" class="card-body ">
-                    <div class="progress" style="height:30px">
-                        <div class="progress-bar bg-success" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_pulang_perbulan; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_pulang_perbulan; ?> (Masuk dan Pulang)</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 my-1">
-                    <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card11">Data Dosen Non PNS</a>
-                        </div>
-                        <div id="card11" class="card-body collapse show">
-                            <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan1; ?></b></p>
-                            <canvas id="absenpulangdosenperbln"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 my-1">
-                    <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card12">Data PNS</a>
-                        </div>
-                        <div id="card12" class="card-body collapse show">
-                            <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan2; ?></b></p>
-                            <canvas id="absenpulangpnsperbln"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 my-1">
-                    <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card13">Data PNS Dosen</a>
-                        </div>
-                        <div id="card13" class="card-body collapse show">
-                            <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan3; ?></b></p>
-                            <canvas id="absenpulangpnsdosenperbln"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 my-1">
-                    <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card14">Data THL dan TA</a>
-                        </div>
-                        <div id="card14" class="card-body collapse show">
-                            <p class="card-text"><b>Total Data: <?= $count_pulang_perbulan4; ?></b></p>
-                            <canvas id="absenpulangthltaperbln"></canvas>
+        <!-- MODAL PRESENSI TOTAL DOSEN -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_dosen" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotaldosen" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotaldosen">PRESENSI DOSEN</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php if ($count_get_absen_perkampus_dosen != false && !empty($count_get_absen_perkampus_dosen)) {
+                                                        foreach ($count_get_absen_perkampus_dosen as $dataxxx) {
+                                                            echo "
+                                                        <tr>
+                                                            <th>$dataxxx->kampus</th>
+                                                            <th>$dataxxx->total Pegawai</th>
+                                                        </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "
+                                                            <tr>
+                                                                <th>Tidak Ada Presensi Dosen</th>
+                                                            </tr>";
+                                                    }  ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container pt-5 pb-md-4">
-            <div class="card text-center shadow mb-3 border-0 animated fadeInUp" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card2">Rekapitulasi Data Presensi Perbulan Tahun <?= date('Y'); ?> (Hanya Masuk)</a>
-                </div>
-                <div id="card2" class="card-body">
-
-                    <div class="progress" style="height:30px">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width:100%;height:30px" aria-valuenow="<?= $count_masuk_perbulan; ?>" aria-valuemin="0" aria-valuemax="<?= $get_absen_all[0]->total; ?>"><?= $count_masuk_perbulan; ?> (Hanya Masuk)</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 my-1">
-                    <div class="card shadow border-0 animated fadeInLeft" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card21">Data Dosen Non PNS</a>
-                        </div>
-                        <div id="card21" class="card-body">
-                            <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan1; ?></b></p>
-                            <canvas id="absenmasukdosenperbln"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 my-1">
-                    <div class="card shadow border-0 animated zoomIn" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card22">Data PNS</a>
-                        </div>
-                        <div id="card22" class="card-body">
-                            <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan2; ?></b></p>
-                            <canvas id="absenmasukpnsperbln"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 my-1">
-                    <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card23">Data PNS Dosen</a>
-                        </div>
-                        <div id="card23" class="card-body">
-                            <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan3; ?></b></p>
-                            <canvas id="absenmasukpnsdosenperbln"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 my-1">
-                    <div class="card shadow border-0 animated fadeInRight" style="border-radius: 1rem !important;">
-                        <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                            <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#card24">Data THL dan TA</a>
-                        </div>
-                        <div id="card24" class="card-body">
-                            <p class="card-text"><b>Total Data: <?= $count_masuk_perbulan4; ?></b></p>
-                            <canvas id="absenmasukthltaperbln"></canvas>
+        <!-- MODAL PRESENSI TOTAL DOSEN MASUK -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_dosen_masuk" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotaldosenmasuk" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotaldosenmasuk">PRESENSI MASUK DOSEN</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php if ($count_get_absen_perkampus_dosen_masuk != false && !empty($count_get_absen_perkampus_dosen_masuk)) {
+                                                        foreach ($count_get_absen_perkampus_dosen_masuk as $dataxxx) {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>$dataxxx->kampus</th>
+                                                                    <th>$dataxxx->total Pegawai</th>
+                                                                </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "
+                                                            <tr>
+                                                                <th>Tidak Ada Presensi Masuk Dosen</th>
+                                                            </tr>";
+                                                    } ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- MODAL PRESENSI TOTAL DOSEN PULANG -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_dosen_pulang" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotaldosenpulang" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotaldosenpulang">PRESENSI PULANG DOSEN</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php if ($count_get_absen_perkampus_dosen_pulang != false && !empty($count_get_absen_perkampus_dosen_pulang)) {
+                                                        foreach ($count_get_absen_perkampus_dosen_pulang as $dataxxx) {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>$dataxxx->kampus</th>
+                                                                    <th>$dataxxx->total Pegawai</th>
+                                                                </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "
+                                                            <tr>
+                                                                <th>Tidak Ada Presensi Pulang Dosen</th>
+                                                            </tr>";
+                                                    } ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRESENSI TOTAL PNS -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_pns" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotalpns" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotalpns">PRESENSI PNS</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php if ($count_get_absen_perkampus_pns != false && !empty($count_get_absen_perkampus_pns)) {
+                                                        foreach ($count_get_absen_perkampus_pns as $dataxxx) {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>$dataxxx->bagian</th>
+                                                                    <th>$dataxxx->total Pegawai</th>
+                                                                </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "
+                                                            <tr>
+                                                                <th>Tidak Ada Presensi Pulang PNS</th>
+                                                            </tr>";
+                                                    } ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRESENSI TOTAL PNS MASUK -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_pns_masuk" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotalpnsmasuk" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotalpnsmasuk">PRESENSI MASUK PNS</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php if ($count_get_absen_perkampus_pns_masuk != false && !empty($count_get_absen_perkampus_pns_masuk)) {
+                                                        foreach ($count_get_absen_perkampus_pns_masuk as $dataxxx) {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>$dataxxx->bagian</th>
+                                                                    <th>$dataxxx->total Pegawai</th>
+                                                                </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "
+                                                            <tr>
+                                                                <th>Tidak Ada Presensi Masuk PNS</th>
+                                                            </tr>";
+                                                    } ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRESENSI TOTAL PNS PULANG -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_pns_pulang" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotalpnspulang" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotalpnspulang">PRESENSI PULANG PNS</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php if ($count_get_absen_perkampus_pns_pulang != false && !empty($count_get_absen_perkampus_pns_pulang)) {
+                                                        foreach ($count_get_absen_perkampus_pns_pulang as $dataxxx) {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>$dataxxx->bagian</th>
+                                                                    <th>$dataxxx->total Pegawai</th>
+                                                                </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "
+                                                            <tr>
+                                                                <th>Tidak Ada Presensi Pulang PNS</th>
+                                                            </tr>";
+                                                    } ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRESENSI TOTAL THL -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_thl" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotalthl" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotalthl">PRESENSI THL</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php if ($count_get_absen_perkampus_thl != false && !empty($count_get_absen_perkampus_thl)) {
+                                                        foreach ($count_get_absen_perkampus_thl as $dataxxx) {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>$dataxxx->nama_satker</th>
+                                                                    <th>$dataxxx->total Pegawai</th>
+                                                                </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "
+                                                            <tr>
+                                                                <th>Tidak Ada Presensi THL</th>
+                                                            </tr>";
+                                                    } ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRESENSI TOTAL THL MASUK -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_thl_masuk" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotalthlmasuk" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotalthlmasuk">PRESENSI MASUK THL</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php if ($count_get_absen_perkampus_thl_masuk != false && !empty($count_get_absen_perkampus_thl_masuk)) {
+                                                        foreach ($count_get_absen_perkampus_thl_masuk as $dataxxx) {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>$dataxxx->nama_satker</th>
+                                                                    <th>$dataxxx->total Pegawai</th>
+                                                                </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "
+                                                            <tr>
+                                                                <th>Tidak Ada Presensi Masuk THL</th>
+                                                            </tr>";
+                                                    } ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRESENSI TOTAL THL PULANG -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_thl_pulang" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotalthlpulang" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotalthlpulang">PRESENSI PULANG THL</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php if ($count_get_absen_perkampus_thl_pulang != false && !empty($count_get_absen_perkampus_thl_pulang)) {
+                                                        foreach ($count_get_absen_perkampus_thl_pulang as $dataxxx) {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>$dataxxx->nama_satker</th>
+                                                                    <th>$dataxxx->total Pegawai</th>
+                                                                </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "
+                                                            <tr>
+                                                                <th>Tidak Ada Presensi Pulang THL</th>
+                                                            </tr>";
+                                                    } ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRESENSI TOTAL TA -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_ta" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotalta" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotalta">PRESENSI TA</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php 
+                                                        if ($count_get_absen_perkampus_ta != false && !empty($count_get_absen_perkampus_ta)) {
+                                                            foreach ($count_get_absen_perkampus_ta as $dataxxx) {
+                                                                echo "
+                                                                    <tr>
+                                                                        <th>$dataxxx->penugasan</th>
+                                                                        <th>$dataxxx->total Pegawai</th>
+                                                                    </tr>";
+                                                            }
+                                                        } else {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>Tidak Ada Presensi Pulang THL</th>
+                                                                </tr>";
+                                                        }
+                                                    ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRESENSI TOTAL TA MASUK -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_ta_masuk" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotaltamasuk" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotaltamasuk">PRESENSI MASUK TA</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php 
+                                                        if ($count_get_absen_perkampus_ta_masuk != false && !empty($count_get_absen_perkampus_ta_masuk)) {
+                                                            foreach ($count_get_absen_perkampus_ta_masuk as $dataxxx) {
+                                                                echo "
+                                                                    <tr>
+                                                                        <th>$dataxxx->penugasan</th>
+                                                                        <th>$dataxxx->total Pegawai</th>
+                                                                    </tr>";
+                                                            }
+                                                        } else {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>Tidak Ada Presensi Masuk TA</th>
+                                                                </tr>";
+                                                        } 
+                                                        
+                                                        // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
+                                                        //     echo "
+                                                        //         <tr>
+                                                        //             <th>Staf Ahli IT</th>
+                                                        //             <th>4 Pegawai</th>
+                                                        //         </tr>";
+                                                        // } else {
+                                                        //     echo "<tr>
+                                                        //         <th>Tidak Ada Presensi Pulang THL</th>
+                                                        //     </tr>";
+                                                        // }
+                                                    ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PRESENSI TOTAL TA PULANG -->
+        <div class="container">
+            <div class="col-md-12">
+                <!-- Modal -->
+                <div class="modal fade" id="presensi_total_ta_pulang" tabindex="-1" role="dialog" aria-labelledby="detailmodalpresensitotaltapulang" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+                                <h5 class="modal-title text-light" id="detailmodalpresensitotaltapulang">PRESENSI PULANG TA</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                    <div class="col-md-12 my-5">
+                                        <div class="table-responsive mx-2">
+                                            <table class="table table-hover table-xl">
+                                                <thead>
+                                                    <?php 
+                                                        if ($count_get_absen_perkampus_ta_pulang != false && !empty($count_get_absen_perkampus_ta_pulang)) {
+                                                            foreach ($count_get_absen_perkampus_ta_pulang as $dataxxx) {
+                                                                echo "
+                                                                    <tr>
+                                                                        <th>$dataxxx->penugasan</th>
+                                                                        <th>$dataxxx->total Pegawai</th>
+                                                                    </tr>";
+                                                            }
+                                                        } else {
+                                                            echo "
+                                                                <tr>
+                                                                    <th>Tidak Ada Presensi Pulang TA</th>
+                                                                </tr>";
+                                                        }
+                                                        
+                                                        // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
+                                                        //     echo "<tr>
+                                                        //         <th>Tidak Ada Presensi Pulang TA</th>
+                                                        //     </tr>";
+                                                        // } elseif (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
+                                                        //     echo "
+                                                        //         <tr>
+                                                        //             <th>Staf Ahli IT</th>
+                                                        //             <th>4 Pegawai</th>
+                                                        //         </tr>";
+                                                        // } else {
+                                                        //     echo "<tr>
+                                                        //         <th>Tidak Ada Presensi Pulang TA</th>
+                                                        //     </tr>";
+                                                        // }
+                                                    ?>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 <!-- //Dashboard -->
@@ -1684,893 +2211,6 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
             scales: {
                 y: {
                     beginAtZero: true
-                }
-            }
-        }
-    });
-
-    // ABSEN PULANG DOSEN PERBULAN
-    var ctx = document.getElementById('absenpulangdosenperbln').getContext('2d');
-    var absenpulangdosenperbln = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                <?php if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                    foreach ($get_absen_pulang_perbulan_chart as $data) {
-                        if ($data->role == "Dosen") {
-                            switch ($data->bulan) {
-                                case "1":
-                                    $namaBulan = "'Januari'";
-                                    break;
-                                case "2":
-                                    $namaBulan = "'Februari'";
-                                    break;
-                                case "3":
-                                    $namaBulan = "'Maret'";
-                                    break;
-                                case "4":
-                                    $namaBulan = "'April'";
-                                    break;
-                                case "5":
-                                    $namaBulan = "'Mei'";
-                                    break;
-                                case "6":
-                                    $namaBulan = "'Juni'";
-                                    break;
-                                case "7":
-                                    $namaBulan = "'Juli'";
-                                    break;
-                                case "8":
-                                    $namaBulan = "'Agustus'";
-                                    break;
-                                case "9":
-                                    $namaBulan = "'September'";
-                                    break;
-                                case "10":
-                                    $namaBulan = "'Oktober'";
-                                    break;
-                                case "11":
-                                    $namaBulan = "'November'";
-                                    break;
-                                case "12":
-                                    $namaBulan = "'Desember'";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            echo $namaBulan . ",";
-                        }
-                    }
-                } else {
-                    echo "0,";
-                } ?>
-            ],
-            datasets: [{
-                    label: "Data Dosen Non PNS",
-                    fill: false,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1,
-                    data: [
-                        <?php if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                            foreach ($get_absen_pulang_perbulan_chart as $data) {
-                                if ($data->role == "Dosen") {
-                                    echo $data->jumlah_hadir . ",";
-                                }
-                            }
-                        } else {
-                            echo "0,";
-                        } ?>
-                    ]
-                },
-                // {
-                //     label: "Data PNS",
-                //     fill: true,
-                //     backgroundColor: 'rgb(148, 80, 2)',
-                //     borderColor: 'rgb(0, 0, 0)',
-                //     data: [
-                //         <?php
-                            //         if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                            //             foreach ($get_absen_pulang_perbulan_chart as $data) {
-                            //                 if ($data->role == "PNS") {
-                            //                     echo $data->jumlah_hadir . ",";
-                            //                 }
-                            //             }
-                            //         } else {
-                            //             echo "0";
-                            //         } 
-                            ?>
-                //     ]
-                // },
-                // {
-                //     label: "Data Dosen PNS",
-                //     fill: true,
-                //     backgroundColor: 'rgb(68, 59, 238)',
-                //     borderColor: 'rgb(0, 0, 0)',
-                //     data: [
-                //         <?php
-                            //         if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                            //             foreach ($get_absen_pulang_perbulan_chart as $data) {
-                            //                 if ($data->role == "PNS dan DOSEN") {
-                            //                     echo $data->jumlah_hadir . ",";
-                            //                 }
-                            //             }
-                            //         } else {
-                            //             echo "0";
-                            //         }
-                            //         
-                            ?>
-                //     ]
-                // }
-            ]
-        },
-
-        plugins: [ChartDataLabels],
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#17202a',
-                    font: {
-                        weight: 'bold',
-                    }
-                },
-                title: {
-                    // display: true,
-                    // text: 'Total Presensi: <?= $count_pulang_perbulan ?>',
-
-                    font: {
-                        size: 20
-                    },
-                    color: 'blue',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
-                }
-            }
-        }
-    });
-
-    // ABSEN PULANG PNS PERBULAN
-    var ctx = document.getElementById('absenpulangpnsperbln').getContext('2d');
-    var absenpulangpnsperbln = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                <?php if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                    foreach ($get_absen_pulang_perbulan_chart as $data) {
-                        if ($data->role == "PNS") {
-                            switch ($data->bulan) {
-                                case "1":
-                                    $namaBulan = "'Januari'";
-                                    break;
-                                case "2":
-                                    $namaBulan = "'Februari'";
-                                    break;
-                                case "3":
-                                    $namaBulan = "'Maret'";
-                                    break;
-                                case "4":
-                                    $namaBulan = "'April'";
-                                    break;
-                                case "5":
-                                    $namaBulan = "'Mei'";
-                                    break;
-                                case "6":
-                                    $namaBulan = "'Juni'";
-                                    break;
-                                case "7":
-                                    $namaBulan = "'Juli'";
-                                    break;
-                                case "8":
-                                    $namaBulan = "'Agustus'";
-                                    break;
-                                case "9":
-                                    $namaBulan = "'September'";
-                                    break;
-                                case "10":
-                                    $namaBulan = "'Oktober'";
-                                    break;
-                                case "11":
-                                    $namaBulan = "'November'";
-                                    break;
-                                case "12":
-                                    $namaBulan = "'Desember'";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            echo $namaBulan . ",";
-                        }
-                    }
-                } else {
-                    echo "0,";
-                } ?>
-            ],
-            datasets: [{
-                label: "Data PNS",
-                fill: true,
-                backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                borderColor: 'rgba(255, 206, 86, 1)',
-                borderWidth: 1,
-                data: [
-                    <?php
-                    if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                        foreach ($get_absen_pulang_perbulan_chart as $data) {
-                            if ($data->role == "PNS") {
-                                echo $data->jumlah_hadir . ",";
-                            }
-                        }
-                    } else {
-                        echo "0,";
-                    } ?>
-                ]
-            }]
-        },
-
-        plugins: [ChartDataLabels],
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#17202a',
-                    font: {
-                        weight: 'bold',
-                    }
-                },
-                title: {
-
-                    font: {
-                        size: 20
-                    },
-                    color: 'blue',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
-                }
-            }
-        }
-    });
-
-    // ABSEN PULANG PNS DOSEN PERBULAN
-    var ctx = document.getElementById('absenpulangpnsdosenperbln').getContext('2d');
-    var absenpulangpnsdosenperbln = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                <?php if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                    foreach ($get_absen_pulang_perbulan_chart as $data) {
-                        if ($data->role == "PNS dan DOSEN") {
-                            switch ($data->bulan) {
-                                case "1":
-                                    $namaBulan = "'Januari'";
-                                    break;
-                                case "2":
-                                    $namaBulan = "'Februari'";
-                                    break;
-                                case "3":
-                                    $namaBulan = "'Maret'";
-                                    break;
-                                case "4":
-                                    $namaBulan = "'April'";
-                                    break;
-                                case "5":
-                                    $namaBulan = "'Mei'";
-                                    break;
-                                case "6":
-                                    $namaBulan = "'Juni'";
-                                    break;
-                                case "7":
-                                    $namaBulan = "'Juli'";
-                                    break;
-                                case "8":
-                                    $namaBulan = "'Agustus'";
-                                    break;
-                                case "9":
-                                    $namaBulan = "'September'";
-                                    break;
-                                case "10":
-                                    $namaBulan = "'Oktober'";
-                                    break;
-                                case "11":
-                                    $namaBulan = "'November'";
-                                    break;
-                                case "12":
-                                    $namaBulan = "'Desember'";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            echo $namaBulan . ",";
-                        }
-                    }
-                } else {
-                    echo "0,";
-                } ?>
-            ],
-            datasets: [
-
-                {
-                    label: "Data Dosen PNS",
-                    fill: true,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                    data: [
-                        <?php
-                        if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                            foreach ($get_absen_pulang_perbulan_chart as $data) {
-                                if ($data->role == "PNS dan DOSEN") {
-                                    echo $data->jumlah_hadir . ",";
-                                }
-                            }
-                        } else {
-                            echo "0,";
-                        }
-
-                        ?>
-                    ]
-                }
-            ]
-        },
-
-        plugins: [ChartDataLabels],
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#17202a',
-                    font: {
-                        weight: 'bold',
-                    }
-                },
-                title: {
-                    font: {
-                        size: 20
-                    },
-                    color: 'blue',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
-                }
-            }
-        }
-    });
-
-    // ABSEN PULANG THL DAN TA PERBULAN
-    var ctx = document.getElementById('absenpulangthltaperbln').getContext('2d');
-    var absenpulangpnsdosenperbln = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                <?php if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                    foreach ($get_absen_pulang_perbulan_chart as $data) {
-                        if ($data->role == "THL dan TA") {
-                            switch ($data->bulan) {
-                                case "1":
-                                    $namaBulan = "'Januari'";
-                                    break;
-                                case "2":
-                                    $namaBulan = "'Februari'";
-                                    break;
-                                case "3":
-                                    $namaBulan = "'Maret'";
-                                    break;
-                                case "4":
-                                    $namaBulan = "'April'";
-                                    break;
-                                case "5":
-                                    $namaBulan = "'Mei'";
-                                    break;
-                                case "6":
-                                    $namaBulan = "'Juni'";
-                                    break;
-                                case "7":
-                                    $namaBulan = "'Juli'";
-                                    break;
-                                case "8":
-                                    $namaBulan = "'Agustus'";
-                                    break;
-                                case "9":
-                                    $namaBulan = "'September'";
-                                    break;
-                                case "10":
-                                    $namaBulan = "'Oktober'";
-                                    break;
-                                case "11":
-                                    $namaBulan = "'November'";
-                                    break;
-                                case "12":
-                                    $namaBulan = "'Desember'";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            echo $namaBulan . ",";
-                        }
-                    }
-                } else {
-                    echo "0,";
-                } ?>
-            ],
-            datasets: [
-
-                {
-                    label: "Data THL dan TA",
-                    fill: true,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                    data: [
-                        <?php
-                        if ($get_absen_pulang_perbulan_chart != false && !empty($get_absen_pulang_perbulan_chart)) {
-                            foreach ($get_absen_pulang_perbulan_chart as $data) {
-                                if ($data->role == "THL dan TA") {
-                                    echo $data->jumlah_hadir . ",";
-                                }
-                            }
-                        } else {
-                            echo "0,";
-                        }
-
-                        ?>
-                    ]
-                }
-            ]
-        },
-
-        plugins: [ChartDataLabels],
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#17202a',
-                    font: {
-                        weight: 'bold',
-                    }
-                },
-                title: {
-                    font: {
-                        size: 20
-                    },
-                    color: 'blue',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
-                }
-            }
-        }
-    });
-
-    // ABSEN MASUK DOSEN PERBULAN
-    var ctx = document.getElementById('absenmasukdosenperbln').getContext('2d');
-    var absenmasukdosenperbln = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                <?php if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
-                    foreach ($get_absen_masuk_perbulan_chart as $data) {
-                        if ($data->role == "Dosen") {
-                            switch ($data->bulan) {
-                                case "1":
-                                    $namaBulan = "'Januari'";
-                                    break;
-                                case "2":
-                                    $namaBulan = "'Februari'";
-                                    break;
-                                case "3":
-                                    $namaBulan = "'Maret'";
-                                    break;
-                                case "4":
-                                    $namaBulan = "'April'";
-                                    break;
-                                case "5":
-                                    $namaBulan = "'Mei'";
-                                    break;
-                                case "6":
-                                    $namaBulan = "'Juni'";
-                                    break;
-                                case "7":
-                                    $namaBulan = "'Juli'";
-                                    break;
-                                case "8":
-                                    $namaBulan = "'Agustus'";
-                                    break;
-                                case "9":
-                                    $namaBulan = "'September'";
-                                    break;
-                                case "10":
-                                    $namaBulan = "'Oktober'";
-                                    break;
-                                case "11":
-                                    $namaBulan = "'November'";
-                                    break;
-                                case "12":
-                                    $namaBulan = "'Desember'";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            echo $namaBulan . ",";
-                        }
-                    }
-                } else {
-                    echo "0,";
-                } ?>
-            ],
-            datasets: [{
-                label: "Data Dosen Non PNS",
-                fill: false,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-                data: [
-                    <?php if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
-                        foreach ($get_absen_masuk_perbulan_chart as $data) {
-                            if ($data->role == "Dosen") {
-                                echo $data->jumlah_hadir . ",";
-                            }
-                        }
-                    } else {
-                        echo "0,";
-                    } ?>
-                ]
-            }]
-        },
-
-        plugins: [ChartDataLabels],
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#17202a',
-                    font: {
-                        weight: 'bold',
-                    }
-                },
-                title: {
-                    font: {
-                        size: 20
-                    },
-                    color: 'blue',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
-                }
-            }
-        }
-    });
-
-    // ABSEN MASUK PNS PERBULAN
-    var ctx = document.getElementById('absenmasukpnsperbln').getContext('2d');
-    var absenmasukpnsperbln = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                <?php if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
-                    foreach ($get_absen_masuk_perbulan_chart as $data) {
-                        if ($data->role == "PNS") {
-                            switch ($data->bulan) {
-                                case "1":
-                                    $namaBulan = "'Januari'";
-                                    break;
-                                case "2":
-                                    $namaBulan = "'Februari'";
-                                    break;
-                                case "3":
-                                    $namaBulan = "'Maret'";
-                                    break;
-                                case "4":
-                                    $namaBulan = "'April'";
-                                    break;
-                                case "5":
-                                    $namaBulan = "'Mei'";
-                                    break;
-                                case "6":
-                                    $namaBulan = "'Juni'";
-                                    break;
-                                case "7":
-                                    $namaBulan = "'Juli'";
-                                    break;
-                                case "8":
-                                    $namaBulan = "'Agustus'";
-                                    break;
-                                case "9":
-                                    $namaBulan = "'September'";
-                                    break;
-                                case "10":
-                                    $namaBulan = "'Oktober'";
-                                    break;
-                                case "11":
-                                    $namaBulan = "'November'";
-                                    break;
-                                case "12":
-                                    $namaBulan = "'Desember'";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            echo $namaBulan . ",";
-                        }
-                    }
-                } else {
-                    echo "0,";
-                } ?>
-            ],
-            datasets: [{
-                label: "Data PNS",
-                fill: true,
-                backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                borderColor: 'rgba(255, 206, 86, 1)',
-                borderWidth: 1,
-                data: [
-                    <?php
-                    if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
-                        foreach ($get_absen_masuk_perbulan_chart as $data) {
-                            if ($data->role == "PNS") {
-                                echo $data->jumlah_hadir . ",";
-                            }
-                        }
-                    } else {
-                        echo "0,";
-                    } ?>
-                ]
-            }]
-        },
-
-        plugins: [ChartDataLabels],
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#17202a',
-                    font: {
-                        weight: 'bold',
-                    }
-                },
-                title: {
-
-                    font: {
-                        size: 20
-                    },
-                    color: 'blue',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
-                }
-            }
-        }
-    });
-
-    // ABSEN MASUK PNS DOSEN PERBULAN
-    var ctx = document.getElementById('absenmasukpnsdosenperbln').getContext('2d');
-    var absenmasukpnsdosenperbln = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                <?php if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
-                    foreach ($get_absen_masuk_perbulan_chart as $data) {
-                        if ($data->role == "PNS dan DOSEN") {
-                            switch ($data->bulan) {
-                                case "1":
-                                    $namaBulan = "'Januari'";
-                                    break;
-                                case "2":
-                                    $namaBulan = "'Februari'";
-                                    break;
-                                case "3":
-                                    $namaBulan = "'Maret'";
-                                    break;
-                                case "4":
-                                    $namaBulan = "'April'";
-                                    break;
-                                case "5":
-                                    $namaBulan = "'Mei'";
-                                    break;
-                                case "6":
-                                    $namaBulan = "'Juni'";
-                                    break;
-                                case "7":
-                                    $namaBulan = "'Juli'";
-                                    break;
-                                case "8":
-                                    $namaBulan = "'Agustus'";
-                                    break;
-                                case "9":
-                                    $namaBulan = "'September'";
-                                    break;
-                                case "10":
-                                    $namaBulan = "'Oktober'";
-                                    break;
-                                case "11":
-                                    $namaBulan = "'November'";
-                                    break;
-                                case "12":
-                                    $namaBulan = "'Desember'";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            echo $namaBulan . ",";
-                        }
-                    }
-                } else {
-                    echo "0,";
-                } ?>
-            ],
-            datasets: [
-
-                {
-                    label: "Data Dosen PNS",
-                    fill: true,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                    data: [
-                        <?php
-                        if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
-                            foreach ($get_absen_masuk_perbulan_chart as $data) {
-                                if ($data->role == "PNS dan DOSEN") {
-                                    echo $data->jumlah_hadir . ",";
-                                }
-                            }
-                        } else {
-                            echo "0,";
-                        }
-
-                        ?>
-                    ]
-                }
-            ]
-        },
-
-        plugins: [ChartDataLabels],
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#17202a',
-                    font: {
-                        weight: 'bold',
-                    }
-                },
-                title: {
-                    font: {
-                        size: 20
-                    },
-                    color: 'blue',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
-                }
-            }
-        }
-    });
-
-    // ABSEN MASUK THL DAN TA PERBULAN
-    var ctx = document.getElementById('absenmasukthltaperbln').getContext('2d');
-    var absenmasukpnsdosenperbln = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: [
-                <?php if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
-                    foreach ($get_absen_masuk_perbulan_chart as $data) {
-                        if ($data->role == "THL dan TA") {
-                            switch ($data->bulan) {
-                                case "1":
-                                    $namaBulan = "'Januari'";
-                                    break;
-                                case "2":
-                                    $namaBulan = "'Februari'";
-                                    break;
-                                case "3":
-                                    $namaBulan = "'Maret'";
-                                    break;
-                                case "4":
-                                    $namaBulan = "'April'";
-                                    break;
-                                case "5":
-                                    $namaBulan = "'Mei'";
-                                    break;
-                                case "6":
-                                    $namaBulan = "'Juni'";
-                                    break;
-                                case "7":
-                                    $namaBulan = "'Juli'";
-                                    break;
-                                case "8":
-                                    $namaBulan = "'Agustus'";
-                                    break;
-                                case "9":
-                                    $namaBulan = "'September'";
-                                    break;
-                                case "10":
-                                    $namaBulan = "'Oktober'";
-                                    break;
-                                case "11":
-                                    $namaBulan = "'November'";
-                                    break;
-                                case "12":
-                                    $namaBulan = "'Desember'";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            echo $namaBulan . ",";
-                        }
-                    }
-                } else {
-                    echo "0,";
-                } ?>
-            ],
-            datasets: [
-
-                {
-                    label: "Data THL dan TA",
-                    fill: true,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                    data: [
-                        <?php
-                        if ($get_absen_masuk_perbulan_chart != false && !empty($get_absen_masuk_perbulan_chart)) {
-                            foreach ($get_absen_masuk_perbulan_chart as $data) {
-                                if ($data->role == "THL dan TA") {
-                                    echo $data->jumlah_hadir . ",";
-                                }
-                            }
-                        } else {
-                            echo "0,";
-                        }
-
-                        ?>
-                    ]
-                }
-            ]
-        },
-
-        plugins: [ChartDataLabels],
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                },
-                datalabels: {
-                    color: '#17202a',
-                    font: {
-                        weight: 'bold',
-                    }
-                },
-                title: {
-                    font: {
-                        size: 20
-                    },
-                    color: 'blue',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
                 }
             }
         }
@@ -2637,6 +2277,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
         });
     }
     fetchBelumDimulai();
+
     /* -------------------------------------------------------------------------- */
     /*                           Fetch Status Sedang Berlangsung                    */
     /* -------------------------------------------------------------------------- */
@@ -2934,7 +2575,6 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
     }
     fetchtabel_kelas_belum_mulai();
 
-
     /* -------------------------------------------------------------------------- */
     /*                           Fetch KELAS BERLANGSUNG                          */
     /* -------------------------------------------------------------------------- */
@@ -2995,7 +2635,6 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
         });
     }
     fetchtabel_kelas_berlangsung();
-
 
     /* -------------------------------------------------------------------------- */
     /*                           Fetch KELAS SELESAI                              */
