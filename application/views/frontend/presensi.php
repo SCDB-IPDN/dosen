@@ -385,6 +385,35 @@
             </div>
           </div>
         </div>
+
+        <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+          <div class="col-md-12 my-5">
+            <div class="table-responsive mx-2">
+              <table class="table table-hover table-xl" id="recordsBerlangsung">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th></th>
+                    <th>NIP / Nama Dosen</th>
+                    <th>Matakuliah</th>
+                    <th>Jam</th>
+                    <th>Kelas</th>
+                    <th>Tanggal</th>
+                    <th>Prodi</th>
+                    <th>Fakultas</th>
+                    <th>Angkatan</th>
+                    <th>Semester</th>
+                    <th>SKS</th>
+                    <th>Gambar</th>
+                    <th></th>
+
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+        
       </div>
       <!-- end of container -->
 
@@ -746,6 +775,193 @@
     });
   }
   fetch();
+
+   /* -------------------------------------------------------------------------- */
+  /*                                Fetch Records                               */
+  /* -------------------------------------------------------------------------- */
+  function fetchBerlangsung() {
+    $.ajax({
+      url: "<?php echo base_url('fetch/' . base64_encode($this->session->userdata('username'))); ?>",
+      type: "post",
+      dataType: "json",
+      success: function(data) {
+        if (data.responce == "success") {
+
+          var i = "1";
+          $('#recordsBerlangsung').DataTable({
+            "data": data.posts,
+            "responsive": true,
+            dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+              "<'row'<'col-sm-12'tr>>" +
+              "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [{
+                extend: 'copy',
+                className: 'btn-info'
+              },
+              {
+                extend: 'excel',
+                className: 'btn-info'
+              },
+              {
+                extend: 'pdf',
+                className: 'btn-info',
+                orientation: 'landscape',
+                pageSize: 'A3'
+              },
+              {
+                extend: 'print',
+                className: 'btn-info'
+              }
+            ],
+            "columns": [{
+                "render": function() {
+                  return a = i++;
+                }
+              },
+              {
+                "render": function(data, type, row, meta) {
+
+                  <?php if ($this->session->userdata('role') == 1) { ?>
+
+                    if (`${row.keterangan}` == 'null' && `${row.upload}` == 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled disabledxxx mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else if (`${row.keterangan}` != 'null' && `${row.upload}` == 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-primary mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else if (`${row.keterangan}` == 'null' && `${row.upload}` != 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      
+                               `;
+                    }
+                  <?php } elseif ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29 || $this->session->userdata('role') == 30 || $this->session->userdata('role') == 31 || $this->session->userdata('role') == 32 || $this->session->userdata('role') == 33 || $this->session->userdata('role') == 34 || $this->session->userdata('role') == 35 || $this->session->userdata('role') == 36 || $this->session->userdata('role') == 37 || $this->session->userdata('role') == 38) { ?>
+                    if (`${row.keterangan}` == 'null' && `${row.upload}` == 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled disabledxxx mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else if (`${row.keterangan}` != 'null' && `${row.upload}` == 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-primary mt-1"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else if (`${row.keterangan}` == 'null' && `${row.upload}` != 'null') {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-primary"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      `;
+
+                    } else {
+                      var ax = `
+                                <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
+                                <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
+                      
+                               `;
+                    }
+                  <?php } ?>
+                  return ax;
+                }
+              },
+              {
+                // "data": "nip",
+                render: function(data, type, row, meta) {
+                  var a = ` (<b>${row.nip}</b>)<br>${row.nama} `;
+                  return a;
+                }
+              },
+              {
+                "data": "nama_matkul"
+              },
+              {
+                "data": "jam"
+              },
+              {
+                "data": "kelas"
+              },
+              {
+                "data": "tanggal"
+              },
+              {
+                "data": "nama_prodi"
+              },
+              {
+                "data": "nama_fakultas"
+              },
+              {
+                render: function(data, type, row, meta) {
+                  var a = ` Angkatan ${row.angkatan} ${row.tingkatan} `;
+                  return a;
+                }
+              },
+              {
+                "data": "semester"
+              },
+              {
+                "data": "sks"
+              },
+              {
+                "data": "upload",
+                render: function(data, type, row, meta) {
+
+                  if (`${row.upload}` != 'null') {
+                    var a = `
+                                <img src="${base_url}/assets/upload/${row.upload}" width="300" height="200" class="img-thumbnail" id="zoom" value="${row.id_plot}"/>
+                            `;
+
+                  } else {
+                    var a = ` Segera upload bukti pembelajaran daring!`;
+                  }
+
+                  return a;
+                },
+              }, {
+                "data": "keterangan",
+                render: function(data, type, row, meta) {
+                  if (`${row.keterangan}` != 'null') {
+                    if (`${row.media_pembelajaran}` == 'Lainnya') {
+                      var a = `
+                                <p>${row.keterangan}</p>
+                              `;
+                    } else {
+                      var a = `
+                                <a href="${row.keterangan}" target="_blank">Link Mengajar</a>
+                              `;
+                    }
+                  } else {
+                    var a = `Belum menyisipkan link`;
+                  }
+
+
+                  return a;
+                }
+              }
+
+            ]
+          });
+        } else {
+          toastr["error"](data.message);
+        }
+
+      }
+    });
+  }
+  fetchBerlangsung();
 
   /* -------------------------------------------------------------------------- */
   /*                       Fetch Status Monitoring Records                      */
