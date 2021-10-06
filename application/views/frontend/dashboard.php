@@ -76,6 +76,7 @@ if ($get_all_total != false && !empty($get_all_total)) {
         }
         if ($data->id_fakultas == 'FPP') {
             $get_total_dosen_fpp += $data->total_dosen;
+            $get_total_matkul_fpp += $data->total_matkul;
             $get_total_prodi_fpp += $data->total_prodi;
         }
     }
@@ -240,6 +241,7 @@ if ($get_all_total_belum_mulai != false && !empty($get_all_total_belum_mulai)) {
         }
         if ($data->id_fakultas == 'FPP') {
             $get_total_dosen_belum_mulai_fpp += $data->total_dosen;
+            $get_total_matkul_belum_mulai_fpp += $data->total_matkul;
             $get_total_prodi_belum_mulai_fpp += $data->total_prodi;
         }
     }
@@ -1218,11 +1220,11 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                                     $data_countx8 = 0;
                                                 }
                                                 
-                                                if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
-                                                    $data_countx10 = 4;
-                                                } else {
-                                                    $data_countx10 = 0;
-                                                }
+                                                // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
+                                                //     $data_countx10 = 4;
+                                                // } else {
+                                                //     $data_countx10 = 0;
+                                                // }
 
                                                 $total_presensi_masuk = $data_countx2 + $data_countx5 + $data_countx8 + $data_countx10;
                                                 echo $total_presensi_masuk;
@@ -1270,11 +1272,11 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                                     $data_countx9 = 0;
                                                 }
                                                 
-                                                if (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
-                                                    $data_countx11 = 4;
-                                                } else {
-                                                    $data_countx11 = 0;
-                                                }
+                                                // if (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
+                                                //     $data_countx11 = 4;
+                                                // } else {
+                                                //     $data_countx11 = 0;
+                                                // }
 
                                                 $total_presensi_pulang = $data_countx3 + $data_countx6 + $data_countx9 + $data_countx11;
                                                 echo $total_presensi_pulang;
