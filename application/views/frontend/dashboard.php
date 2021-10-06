@@ -1141,7 +1141,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                         <div class="col-lg-4 col-sm-6">
                             <div class="card-box" style="background-color:#7952B3;">
                                 <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total">
+                                    <!-- <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total"> -->
                                         <h3 class="text-light">
                                             <?php
                                             $data_countx1 = 0;
@@ -1178,7 +1178,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                             echo $total_presensi;
                                             ?>
                                         </h3>
-                                    </button>
+                                    <!-- </button> -->
                                     <p class="text-light"> TOTAL </p>
                                 </div>
                             </div>
@@ -1186,7 +1186,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                         <div class="col-lg-4 col-sm-6">
                             <div class="card-box" style="background-color:#7952B3;">
                                 <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_masuk">
+                                    <!-- <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_masuk"> -->
                                         <h3 class="text-light">
                                             <?php
                                                 $data_countx2 = 0;
@@ -1230,7 +1230,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                                 echo $total_presensi_masuk;
                                             ?>
                                         </h3>
-                                    </button>
+                                    <!-- </button> -->
                                     <p class="text-light"> PRESENSI MASUK </p>
                                 </div>
                             </div>
@@ -1238,7 +1238,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                         <div class="col-lg-4 col-sm-6">
                             <div class="card-box" style="background-color:#7952B3;">
                                 <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_pulang">
+                                    <!-- <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_pulang"> -->
                                         <h3 class="text-light">
                                             <?php
                                                 $data_countx3 = 0;
@@ -1282,7 +1282,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                                 echo $total_presensi_pulang;
                                             ?>
                                         </h3>
-                                    </button>
+                                    <!-- </button> -->
                                     <p class="text-light"> PRESENSI PULANG </p>
                                 </div>
                             </div>
