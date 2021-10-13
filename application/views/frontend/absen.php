@@ -48,9 +48,15 @@
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasuk" disabled>
                                                 Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                             </button>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#absenpulang">
-                                                Absen Pulang <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-                                            </button>
+                                            <?php if (date("H:i:s") < "16:00:00") { ?>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#absenpulang" disabled>
+                                                    Absen Pulang <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                                                </button>
+                                            <?php } else { ?>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#absenpulang">
+                                                    Absen Pulang <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                                                </button>
+                                            <?php } ?>
                                         <?php } else { ?>
                                             <button type="button" class="btn btn-primary" disabled>
                                                 Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
