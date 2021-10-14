@@ -526,4 +526,109 @@ class Presensi_model extends CI_Model
             return false;
         }
     }
+
+    public function insert_entry_absen_auto()
+    {
+        if (date("H:i:s") >= "07:00:00" && date("H:i:s") <= "15:59:00") {
+            $data_masuk = array(
+                "0" => array(
+                    "username" => "1105011207970006",
+                    "jns_user" => "40",
+                    "tgl" => date("Y-m-d"),
+                    "waktu" => date("H:i:s"),
+                    "via" => "Work From Office",
+                    "kondisi" => "Sehat",
+                    "status" => "Masuk",
+                ),
+                "1" => array(
+                    "username" => "12345678997311",
+                    "jns_user" => "40",
+                    "tgl" => date("Y-m-d"),
+                    "waktu" => date("H:i:s"),
+                    "via" => "Work From Office",
+                    "kondisi" => "Sehat",
+                    "status" => "Masuk",
+                ),
+                "2" => array(
+                    "username" => "1234567899794",
+                    "jns_user" => "40",
+                    "tgl" => date("Y-m-d"),
+                    "waktu" => date("H:i:s"),
+                    "via" => "Work From Office",
+                    "kondisi" => "Sehat",
+                    "status" => "Masuk",
+                ),
+                "3" => array(
+                    "username" => "123456789",
+                    "jns_user" => "40",
+                    "tgl" => date("Y-m-d"),
+                    "waktu" => date("H:i:s"),
+                    "via" => "Work From Office",
+                    "kondisi" => "Sehat",
+                    "status" => "Masuk",
+                )
+            );
+
+            $usernamex = array('1105011207970006', '12345678997311', '1234567899794', '123456789');
+            $get_data   = $this->db
+                ->select('*')
+                ->from('absensi')
+                ->where_in('username', $usernamex)
+                ->where("tgl", date('Y-m-d'))
+                ->get();
+            if ($get_data->num_rows() > 0) {
+                return true;
+            } else {
+                for ($i = 0; $i < 4; $i++) {
+                    $this->db->insert('absensi', $data_masuk[$i]);
+                }
+                return true;
+            }
+        } elseif (date("H:i:s") >= "16:00:00" && date("H:i:s") <= "23:59:00") {
+            $data_keluar = array(
+                "0" => array(
+                    "username" => "1105011207970006",
+                    "jns_user" => "40",
+                    "waktu_pulang" => date("H:i:s"),
+                    "status" => "Pulang",
+                ),
+                "1" => array(
+                    "username" => "12345678997311",
+                    "jns_user" => "40",
+                    "waktu_pulang" => date("H:i:s"),
+                    "status" => "Pulang",
+                ),
+                "2" => array(
+                    "username" => "1234567899794",
+                    "jns_user" => "40",
+                    "waktu_pulang" => date("H:i:s"),
+                    "status" => "Pulang",
+                ),
+                "3" => array(
+                    "username" => "123456789",
+                    "jns_user" => "40",
+                    "waktu_pulang" => date("H:i:s"),
+                    "status" => "Pulang",
+                )
+            );
+
+            $usernamex = array('1105011207970006', '12345678997311', '1234567899794', '123456789');
+            $get_data   = $this->db
+                ->select('*')
+                ->from('absensi')
+                ->where_in('username', $usernamex)
+                ->where("tgl", date('Y-m-d'))
+                ->get();
+            if ($get_data->num_rows() > 0) {
+                for ($i = 0; $i < 4; $i++) {
+                    $this->db->update('absensi', $data_keluar[$i], array('username' => $data_keluar[$i]['username'], 'tgl' => date('Y-m-d')));
+                }
+                return true;
+            } else {
+                return true;
+            }
+        }
+    }
 }
+
+?>
