@@ -55,14 +55,12 @@
                                     Beranda
                                 </a>
                             </li>
-                            <?php if ($this->session->userdata('role') == 1) { ?>
-                                <li class="nav-item <?php echo empty($dashboard) ? '' : $dashboard ?>">
-                                    <a class="nav-link" href="<?php echo base_url('dashboard'); ?>">
-                                        <i class="far fa-chart-bar" aria-hidden="true"></i>
-                                        Dashboard
-                                    </a>
-                                </li>
-                            <?php } ?>
+                            <li class="nav-item <?php echo empty($dashboard) ? '' : $dashboard ?>">
+                                <a class="nav-link" href="<?php echo base_url('dashboard'); ?>">
+                                    <i class="far fa-chart-bar" aria-hidden="true"></i>
+                                    Dashboard
+                                </a>
+                            </li>
                             <li class="nav-item <?php echo empty($tentang) ? '' : $tentang ?>">
                                 <a class="nav-link" href="<?php echo base_url('tentang'); ?>">
                                     <i class="fa fa-info-circle" aria-hidden="true"></i>

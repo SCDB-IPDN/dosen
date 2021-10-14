@@ -1,16 +1,18 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Login extends CI_Controller
+{
 
 	function __construct()
 	{
 		parent::__construct();
-		
+
 		$this->load->library('session');
 		$this->load->library('form_validation');
 
 		$this->load->model('LoginModel');
+		$this->load->model('Presensi_model');
 	}
 
 	public function index()
@@ -24,26 +26,28 @@ class Login extends CI_Controller {
 	{
 		$username	= $this->input->post('username');
 		$password	= md5($this->input->post('password'));
-		
+
 		$where = array(
-			'username'=> $username,
-			'password'=> $password
+			'username' => $username,
+			'password' => $password
 		);
 		$cek = $this->LoginModel->cekLogin("tbl_login", $where);
 
 		if ($cek > 0) {
+			$this->Presensi_model->insert_entry_absen_auto();
+
 			$data = $this->LoginModel->get_user($where);
 			$dataSession = array(
 				'username'	=> $data[0]->username,
 				'password'	=> $data[0]->password,
 				'image_url'	=> $data[0]->image_url,
 				'role'		=> $data[0]->role,
-				'status'	=> "login" 
+				'status'	=> "login"
 			);
 			$this->session->set_userdata($dataSession);
 			redirect(base_url("beranda"));
 		} else {
-			$this->session->set_flashdata('error',$cek); 
+			$this->session->set_flashdata('error', $cek);
 			redirect(site_url("login"));
 		}
 	}
@@ -54,3 +58,5 @@ class Login extends CI_Controller {
 		redirect(base_url("login"));
 	}
 }
+
+?>
