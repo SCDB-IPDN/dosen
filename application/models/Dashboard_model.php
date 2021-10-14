@@ -3,144 +3,6 @@
 class Dashboard_model extends CI_Model
 {
 
-    public function get_absen_all()
-    {
-        $get_data   = $this->db
-            ->select('
-                    count( id ) as total')
-            ->from('tbl_login')
-            ->where("role", 22)
-            ->or_where("role", 23)
-            ->or_where("role", 29)
-            ->or_where("role", 30)
-            ->get();
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
-
-    public function get_absen_pulang_perbulan_chart()
-    {
-        $get_data   = $this->db
-            ->select('
-                    count( id_absen ) AS jumlah_hadir,
-                    MONTH ( tgl ) AS bulan,
-                CASE
-                        WHEN jns_user = 22 THEN
-                        \'Dosen\' 
-                        WHEN jns_user = 23 THEN
-                        \'PNS\' 
-                        WHEN jns_user = 29 THEN
-                        \'PNS dan DOSEN\' 
-                        WHEN jns_user = 30 THEN
-                        \'THL dan TA\' ELSE \'\' 
-                    END AS role ')
-            ->from('absensi')
-            // ->where("YEAR ( `tgl` ) = date('Y')")
-            ->where("YEAR ( `tgl` ) = date('Y-m-d')")
-            ->where("status", "Pulang")
-            ->where("waktu_pulang != ''")
-            ->group_by("jns_user")
-            ->group_by("YEAR ( `tgl` )")
-            ->group_by("MONTH ( `tgl` )")
-            ->order_by("bulan", "ASC")
-            ->get();
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
-
-    public function get_absen_pulang_perbulan_chart_perhari()
-    {
-        $get_data   = $this->db
-            ->select('
-                    count( id_absen ) AS jumlah_hadir,
-                CASE
-                        WHEN jns_user = 22 THEN
-                        \'Dosen\' 
-                        WHEN jns_user = 23 THEN
-                        \'PNS\' 
-                        WHEN jns_user = 29 THEN
-                        \'PNS dan DOSEN\' 
-                        WHEN jns_user = 30 THEN
-                        \'THL dan TA\' ELSE \'\' 
-                    END AS role ')
-            ->from('absensi')
-            ->where("tgl", date('Y-m-d'))
-            ->where("status", "Pulang")
-            ->where("waktu_pulang != ''")
-            ->group_by("jns_user")
-            ->get();
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
-
-    public function get_absen_masuk_perbulan_chart()
-    {
-        $get_data   = $this->db
-            ->select('
-                count( id_absen ) AS jumlah_hadir,
-                MONTH ( tgl ) AS bulan,
-            CASE
-                    WHEN jns_user = 22 THEN
-                    \'Dosen\' 
-                    WHEN jns_user = 23 THEN
-                    \'PNS\' 
-                    WHEN jns_user = 29 THEN
-                    \'PNS dan DOSEN\' 
-                    WHEN jns_user = 30 THEN
-                    \'THL dan TA\' ELSE \'\' 
-                END AS role ')
-            ->from('absensi')
-            // ->where("YEAR ( `tgl` ) = date('Y')")
-            ->where("YEAR ( `tgl` ) = date('Y-m-d')")
-            ->where("status", "Masuk")
-            ->group_by("jns_user")
-            ->group_by("YEAR ( `tgl` )")
-            ->group_by("MONTH ( `tgl` )")
-            ->order_by("bulan", "ASC")
-            ->get();
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
-
-    public function get_absen_masuk_perbulan_chart_perhari()
-    {
-        $get_data   = $this->db
-            ->select('
-                count( id_absen ) AS jumlah_hadir,
-            CASE
-                    WHEN jns_user = 22 THEN
-                    \'Dosen\' 
-                    WHEN jns_user = 23 THEN
-                    \'PNS\' 
-                    WHEN jns_user = 29 THEN
-                    \'PNS dan DOSEN\' 
-                    WHEN jns_user = 30 THEN
-                    \'THL dan TA\' ELSE \'\' 
-                END AS role ')
-            ->from('absensi')
-            ->where("tgl", date('Y-m-d'))
-            ->where("status", "Masuk")
-            ->group_by("jns_user")
-            ->get();
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
-
     public function get_count_status_prodi()
     {
         $get_data   = $this->db
@@ -366,43 +228,6 @@ class Dashboard_model extends CI_Model
         }
     }
 
-    public function count_get_absen_perkampus_thl_ta()
-    {
-        $get_data   = $this->db
-            ->select('count( id_thl ) as total, nama_satker')
-            ->from('tbl_thl')
-            ->group_by("nama_satker")
-            ->get();
-        if ($get_data->num_rows() > 0) {
-            return $get_data->result();
-        } else {
-            return false;
-        }
-    }
-
-    public function get_absen_perkampus_thl_ta()
-    {
-        $get_data = $this->db->query("SELECT
-            count( absensi.id_absen ) AS jumlah_hadir,
-        CASE
-                WHEN absensi.jns_user = 30 THEN
-                'THL dan TA' ELSE '' 
-            END AS role,
-            tbl_thl.nama_satker 
-        FROM
-            tbl_thl
-            JOIN tbl_login ON tbl_login.username = tbl_thl.username
-            JOIN absensi ON absensi.username = tbl_thl.username 
-        WHERE
-            tbl_login.role ='30' 
-            AND absensi.tgl = '" . date('Y-m-d') . "' 
-            AND absensi.STATUS = 'Pulang' 
-            AND absensi.waktu_pulang != '' 
-        GROUP BY
-            tbl_thl.nama_satker")->result();
-        return $get_data;
-    }
-
     public function count_get_absen_perkampus_dosen()
     {
         $get_data   = $this->db
@@ -417,25 +242,37 @@ class Dashboard_model extends CI_Model
         }
     }
 
-    public function get_absen_perkampus_dosen()
+    public function count_get_absen_perkampus_dosen_masuk()
     {
         $get_data = $this->db->query("SELECT
-            count( absensi.id_absen ) AS jumlah_hadir,
-        CASE
-                WHEN absensi.jns_user = 22 THEN
-                'Dosen' ELSE '' 
-            END AS role,
-            CONCAT( 'IPDN KAMPUS ', tbl_dosen_pddikti.kampus ) AS kampus 
-        FROM
-            tbl_dosen_pddikti
-            JOIN tbl_login ON tbl_login.username = tbl_dosen_pddikti.nip
-            JOIN absensi ON absensi.username = tbl_dosen_pddikti.nip 
-        WHERE
-            tbl_login.role = '22' 
-            AND absensi.tgl = '" . date('Y-m-d') . "' 
-            AND absensi.STATUS = 'Pulang' 
-            AND absensi.waktu_pulang != '' 
-        GROUP BY
+            count( tbl_dosen_pddikti.id ) AS total,
+            CONCAT(
+                'IPDN KAMPUS', tbl_dosen_pddikti.kampus ) AS kampus
+                FROM
+                tbl_dosen_pddikti
+                JOIN absensi ON tbl_dosen_pddikti.nip = absensi.username
+                WHERE
+                absensi.tgl = '" . date('Y-m-d') . "' 
+                AND absensi.STATUS = 'Masuk' 
+            GROUP BY
+            tbl_dosen_pddikti.kampus")->result();
+        return $get_data;
+    }
+
+    public function count_get_absen_perkampus_dosen_pulang()
+    {
+        $get_data = $this->db->query("SELECT
+            count( tbl_dosen_pddikti.id ) AS total,
+            CONCAT(
+                'IPDN KAMPUS', tbl_dosen_pddikti.kampus ) AS kampus
+                FROM
+                tbl_dosen_pddikti
+                JOIN absensi ON tbl_dosen_pddikti.nip = absensi.username
+                WHERE
+                    absensi.tgl = '" . date('Y-m-d') . "' 
+                    AND absensi.STATUS = 'Pulang' 
+                    AND absensi.waktu_pulang != '' 
+            GROUP BY
             tbl_dosen_pddikti.kampus")->result();
         return $get_data;
     }
@@ -454,35 +291,45 @@ class Dashboard_model extends CI_Model
         }
     }
 
-    public function get_absen_perkampus_pns()
+    public function count_get_absen_perkampus_pns_masuk()
     {
         $get_data = $this->db->query("SELECT
-            count( absensi.id_absen ) AS jumlah_hadir,
-        CASE
-                WHEN absensi.jns_user = 23 THEN
-                'PNS' ELSE '' 
-            END AS role,
-            bagian
-        FROM
-            tbl_pns
-            JOIN tbl_login ON tbl_login.username = tbl_pns.nip
-            JOIN absensi ON absensi.username = tbl_pns.nip 
-        WHERE
-            tbl_login.role = '23' 
-            AND absensi.tgl = '" . date('Y-m-d') . "' 
-            AND absensi.STATUS = 'Pulang' 
-            AND absensi.waktu_pulang != '' 
-        GROUP BY
-        tbl_pns.bagian")->result();
+            count( tbl_pns.no ) AS total,
+            tbl_pns.bagian
+                FROM
+                tbl_pns
+                JOIN absensi ON tbl_pns.nip = absensi.username
+                WHERE
+                absensi.tgl = '" . date('Y-m-d') . "' 
+                AND absensi.STATUS = 'Masuk' 
+            GROUP BY
+            tbl_pns.bagian")->result();
         return $get_data;
     }
 
-    public function count_get_absen_perkampus_pns_dosen()
+    public function count_get_absen_perkampus_pns_pulang()
+    {
+        $get_data = $this->db->query("SELECT
+            count( tbl_pns.no ) AS total,
+            tbl_pns.bagian
+                FROM
+                    tbl_pns
+                JOIN absensi ON tbl_pns.nip = absensi.username
+                WHERE
+                    absensi.tgl = '" . date('Y-m-d') . "' 
+                    AND absensi.STATUS = 'Pulang' 
+                    AND absensi.waktu_pulang != '' 
+            GROUP BY
+            tbl_pns.bagian")->result();
+        return $get_data;
+    }
+
+    public function count_get_absen_perkampus_thl()
     {
         $get_data   = $this->db
-            ->select('count( no ) as total, bagian')
-            ->from('tbl_pns')
-            ->group_by("bagian")
+            ->select("count( id_thl ) as total, nama_satker")
+            ->from("tbl_thl")
+            ->group_by("nama_satker")
             ->get();
         if ($get_data->num_rows() > 0) {
             return $get_data->result();
@@ -491,114 +338,86 @@ class Dashboard_model extends CI_Model
         }
     }
 
-    public function get_absen_perkampus_pns_dosen()
+    public function count_get_absen_perkampus_thl_masuk()
     {
         $get_data = $this->db->query("SELECT
-            count( absensi.id_absen ) AS jumlah_hadir,
-        CASE
-                WHEN absensi.jns_user = 29 THEN
-                'PNS dan DOSEN' ELSE '' 
-            END AS role,
-            bagian
-        FROM
-            tbl_pns
-            JOIN tbl_login ON tbl_login.username = tbl_pns.nip
-            JOIN absensi ON absensi.username = tbl_pns.nip 
-        WHERE
-            tbl_login.role = '29' 
-            AND absensi.tgl = '" . date('Y-m-d') . "' 
-            AND absensi.STATUS = 'Pulang' 
-            AND absensi.waktu_pulang != '' 
-        GROUP BY
-        tbl_pns.bagian")->result();
-        return $get_data;
-    }
-
-    public function get_absen_perkampus_pns_dosen_masuk()
-    {
-        $get_data = $this->db->query("SELECT
-            count( absensi.id_absen ) AS jumlah_hadir,
-        CASE
-                WHEN absensi.jns_user = 29 THEN
-                'PNS dan DOSEN' ELSE '' 
-            END AS role,
-            bagian
-        FROM
-            tbl_pns
-            JOIN tbl_login ON tbl_login.username = tbl_pns.nip
-            JOIN absensi ON absensi.username = tbl_pns.nip 
-        WHERE
-            tbl_login.role = '29' 
-            AND absensi.tgl = '" . date('Y-m-d') . "' 
-            AND absensi.STATUS = 'Masuk' 
-        GROUP BY
-        tbl_pns.bagian")->result();
-        return $get_data;
-    }
-
-    public function get_absen_perkampus_pns_masuk()
-    {
-        $get_data = $this->db->query("SELECT
-            count( absensi.id_absen ) AS jumlah_hadir,
-        CASE
-                WHEN absensi.jns_user = 23 THEN
-                'PNS' ELSE '' 
-            END AS role,
-            bagian
-        FROM
-            tbl_pns
-            JOIN tbl_login ON tbl_login.username = tbl_pns.nip
-            JOIN absensi ON absensi.username = tbl_pns.nip 
-        WHERE
-            tbl_login.role = '23' 
-            AND absensi.tgl = '" . date('Y-m-d') . "' 
-            AND absensi.STATUS = 'Masuk' 
-        GROUP BY
-        tbl_pns.bagian")->result();
-        return $get_data;
-    }
-
-    public function get_absen_perkampus_dosen_masuk()
-    {
-        $get_data = $this->db->query("SELECT
-            count( absensi.id_absen ) AS jumlah_hadir,
-        CASE
-                WHEN absensi.jns_user = 22 THEN
-                'Dosen' ELSE '' 
-            END AS role,
-            CONCAT( 'IPDN KAMPUS ', tbl_dosen_pddikti.kampus ) AS kampus 
-        FROM
-            tbl_dosen_pddikti
-            JOIN tbl_login ON tbl_login.username = tbl_dosen_pddikti.nip
-            JOIN absensi ON absensi.username = tbl_dosen_pddikti.nip 
-        WHERE
-            tbl_login.role = '22' 
-            AND absensi.tgl = '" . date('Y-m-d') . "' 
-            AND absensi.STATUS = 'Masuk' 
-        GROUP BY
-            tbl_dosen_pddikti.kampus")->result();
-        return $get_data;
-    }
-
-    public function get_absen_perkampus_thl_ta_masuk()
-    {
-        $get_data = $this->db->query("SELECT
-            count( absensi.id_absen ) AS jumlah_hadir,
-        CASE
-                WHEN absensi.jns_user = 30 THEN
-                'THL dan TA' ELSE '' 
-            END AS role,
-            tbl_thl.nama_satker 
-        FROM
-            tbl_thl
-            JOIN tbl_login ON tbl_login.username = tbl_thl.username
-            JOIN absensi ON absensi.username = tbl_thl.username 
-        WHERE
-            tbl_login.role ='30' 
-            AND absensi.tgl = '" . date('Y-m-d') . "' 
-            AND absensi.STATUS = 'Masuk' 
-        GROUP BY
+            count( tbl_thl.id_thl ) AS total,
+            tbl_thl.nama_satker
+                FROM
+                    tbl_thl
+                JOIN absensi ON tbl_thl.username = absensi.username
+                WHERE
+                absensi.tgl = '" . date('Y-m-d') . "' 
+                AND absensi.STATUS = 'Masuk' 
+            GROUP BY
             tbl_thl.nama_satker")->result();
+        return $get_data;
+    }
+
+    public function count_get_absen_perkampus_thl_pulang()
+    {
+        $get_data = $this->db->query("SELECT
+            count( tbl_thl.id_thl ) AS total,
+            tbl_thl.nama_satker
+                FROM
+                    tbl_thl
+                JOIN absensi ON tbl_thl.username = absensi.username
+                WHERE
+                    absensi.tgl = '" . date('Y-m-d') . "' 
+                    AND absensi.STATUS = 'Pulang' 
+                    AND absensi.waktu_pulang != '' 
+            GROUP BY
+            tbl_thl.nama_satker")->result();
+        return $get_data;
+    }
+
+    public function count_get_absen_perkampus_ta()
+    {
+        $get_data   = $this->db
+            ->select("count( no ) as total, penugasan")
+            ->from("tbl_ta")
+            ->where("status", "Aktif")
+            ->group_by("penugasan")
+            ->get();
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function count_get_absen_perkampus_ta_masuk()
+    {
+        $get_data = $this->db->query("SELECT
+            count( tbl_ta.no ) AS total,
+            tbl_ta.penugasan
+                FROM
+                    tbl_ta
+                JOIN absensi ON tbl_ta.nik = absensi.username
+                WHERE
+                absensi.tgl = '" . date('Y-m-d') . "' 
+                AND absensi.STATUS = 'Masuk' 
+                AND tbl_ta.status = 'Aktif'
+            GROUP BY
+            tbl_ta.penugasan")->result();
+        return $get_data;
+    }
+
+    public function count_get_absen_perkampus_ta_pulang()
+    {
+        $get_data = $this->db->query("SELECT
+            count( tbl_ta.no ) AS total,
+            tbl_ta.penugasan
+                FROM
+                    tbl_ta
+                JOIN absensi ON tbl_ta.nik = absensi.username
+                WHERE
+                    absensi.tgl = '" . date('Y-m-d') . "' 
+                    AND absensi.STATUS = 'Pulang' 
+                    AND absensi.waktu_pulang != '' 
+                    AND tbl_ta.status = 'Aktif'
+            GROUP BY
+            tbl_ta.penugasan")->result();
         return $get_data;
     }
 
