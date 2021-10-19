@@ -541,7 +541,7 @@ class Presensi_model extends CI_Model
                     "status" => "Masuk",
                 ),
                 "1" => array(
-                    "username" => "12345678997311",
+                    "username" => "3209140904970009",
                     "jns_user" => "40",
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
@@ -550,7 +550,7 @@ class Presensi_model extends CI_Model
                     "status" => "Masuk",
                 ),
                 "2" => array(
-                    "username" => "1234567899794",
+                    "username" => "7314050409970001",
                     "jns_user" => "40",
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
@@ -559,8 +559,17 @@ class Presensi_model extends CI_Model
                     "status" => "Masuk",
                 ),
                 "3" => array(
-                    "username" => "123456789",
+                    "username" => "6106172907930001",
                     "jns_user" => "40",
+                    "tgl" => date("Y-m-d"),
+                    "waktu" => date("H:i:s"),
+                    "via" => "Work From Office",
+                    "kondisi" => "Sehat",
+                    "status" => "Masuk",
+                ),
+                "4" => array(
+                    "username" => "18121994470",
+                    "jns_user" => "39",
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
@@ -569,7 +578,7 @@ class Presensi_model extends CI_Model
                 )
             );
 
-            $usernamex = array('1105011207970006', '12345678997311', '1234567899794', '123456789');
+            $usernamex = array('1105011207970006', '3209140904970009', '7314050409970001', '6106172907930001', '18121994470');
             $get_data   = $this->db
                 ->select('*')
                 ->from('absensi')
@@ -593,26 +602,32 @@ class Presensi_model extends CI_Model
                     "status" => "Pulang",
                 ),
                 "1" => array(
-                    "username" => "12345678997311",
+                    "username" => "3209140904970009",
                     "jns_user" => "40",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
                 ),
                 "2" => array(
-                    "username" => "1234567899794",
+                    "username" => "7314050409970001",
                     "jns_user" => "40",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
                 ),
                 "3" => array(
-                    "username" => "123456789",
+                    "username" => "6106172907930001",
                     "jns_user" => "40",
+                    "waktu_pulang" => date("H:i:s"),
+                    "status" => "Pulang",
+                ),
+                "4" => array(
+                    "username" => "18121994470",
+                    "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
                 )
             );
 
-            $usernamex = array('1105011207970006', '12345678997311', '1234567899794', '123456789');
+            $usernamex = array('1105011207970006', '3209140904970009', '7314050409970001', '6106172907930001', '18121994470');
             $get_data   = $this->db
                 ->select('*')
                 ->from('absensi')

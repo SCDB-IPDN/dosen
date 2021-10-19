@@ -73,7 +73,7 @@
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <?php if ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29) { ?>
+                                    <?php if ($this->session->userdata('role') == 22) { ?>
                                         <a class="dropdown-item" href="<?php echo base_url('absen'); ?>">
                                             <i class="fa fa-file-import" aria-hidden="true"></i>
                                             Presensi Kehadiran
@@ -82,15 +82,20 @@
                                             <i class="fa fa-desktop" aria-hidden="true"></i>
                                             Monitoring Pembelajaran
                                         </a>
-                                    <?php } elseif ($this->session->userdata('role') == 23) { ?>
-                                        <a class="dropdown-item" href="<?php echo base_url('absen'); ?>">
-                                            <i class="fa fa-file-import" aria-hidden="true"></i>
-                                            Presensi Kehadiran
+                                    <?php } elseif ($this->session->userdata('role') == 29) { ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('monitoring'); ?>">
+                                            <i class="fa fa-desktop" aria-hidden="true"></i>
+                                            Monitoring Pembelajaran
                                         </a>
                                     <?php } elseif ($this->session->userdata('role') == 30 || $this->session->userdata('role') == 31 || $this->session->userdata('role') == 32 || $this->session->userdata('role') == 33 || $this->session->userdata('role') == 34 || $this->session->userdata('role') == 35 || $this->session->userdata('role') == 36 || $this->session->userdata('role') == 37 || $this->session->userdata('role') == 38) { ?>
                                         <a class="dropdown-item" href="<?php echo base_url('monitoring'); ?>">
                                             <i class="fa fa-desktop" aria-hidden="true"></i>
                                             Monitoring Pembelajaran
+                                        </a>
+                                    <?php } elseif ($this->session->userdata('role') == 39 || $this->session->userdata('role') == 40) { ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('absen'); ?>">
+                                            <i class="fa fa-file-import" aria-hidden="true"></i>
+                                            Presensi Kehadiran
                                         </a>
                                     <?php } ?>
 
