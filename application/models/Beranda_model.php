@@ -44,6 +44,14 @@
                             tbl_login
                             JOIN tbl_thl ON tbl_login.username = tbl_thl.username 
                         WHERE
+                            tbl_login.username = '$username' UNION
+                        SELECT
+                            tbl_login.image_url,
+                            tbl_ta.nama_lengkap 
+                        FROM
+                            tbl_login
+                            JOIN tbl_ta ON tbl_login.username = tbl_ta.nik 
+                        WHERE
                             tbl_login.username = '$username'")->result();
             return $get_user;
         }
