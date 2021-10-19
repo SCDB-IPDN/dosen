@@ -1147,6 +1147,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                             $data_countx1 = 0;
                                             $data_countx4 = 0;
                                             $data_countx7 = 0;
+                                            $data_countx10 = 0;
                                             if ($count_get_absen_perkampus_dosen != false && !empty($count_get_absen_perkampus_dosen)) {
                                                 foreach ($count_get_absen_perkampus_dosen as $datax) {
                                                     $data_countx1 += $datax->total;
@@ -1174,7 +1175,16 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                                 $data_countx7 = 0;
                                             }
 
-                                            $total_presensi = $data_countx1 + $data_countx4 + $data_countx7 + 4;
+                                            if ($count_get_absen_perkampus_ta != false && !empty($count_get_absen_perkampus_ta)) {
+                                                foreach ($count_get_absen_perkampus_ta as $datax) {
+                                                    $data_countx10 += $datax->total;
+                                                }
+                                                $data_countx10 = $data_countx10;
+                                            } else {
+                                                $data_countx10 = 0;
+                                            }
+
+                                            $total_presensi = $data_countx1 + $data_countx4 + $data_countx7 + $data_countx10;
                                             echo $total_presensi;
                                             ?>
                                         </h3>
@@ -1192,7 +1202,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                                 $data_countx2 = 0;
                                                 $data_countx5 = 0;
                                                 $data_countx8 = 0;
-                                                $data_countx10 = 0;
+                                                $data_countx11 = 0;
                                                 if ($count_get_absen_perkampus_dosen_masuk != false && !empty($count_get_absen_perkampus_dosen_masuk)) {
                                                     foreach ($count_get_absen_perkampus_dosen_masuk as $datax) {
                                                         $data_countx2 += $datax->total;
@@ -1219,14 +1229,17 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                                 } else {
                                                     $data_countx8 = 0;
                                                 }
-                                                
-                                                // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
-                                                //     $data_countx10 = 4;
-                                                // } else {
-                                                //     $data_countx10 = 0;
-                                                // }
 
-                                                $total_presensi_masuk = $data_countx2 + $data_countx5 + $data_countx8 + $data_countx10;
+                                                if ($count_get_absen_perkampus_ta_masuk != false && !empty($count_get_absen_perkampus_ta_masuk)) {
+                                                    foreach ($count_get_absen_perkampus_ta_masuk as $datax) {
+                                                        $data_countx11 += $datax->total;
+                                                    }
+                                                    $data_countx11 = $data_countx11;
+                                                } else {
+                                                    $data_countx11 = 0;
+                                                }
+
+                                                $total_presensi_masuk = $data_countx2 + $data_countx5 + $data_countx8 + $data_countx11;
                                                 echo $total_presensi_masuk;
                                             ?>
                                         </h3>
@@ -1244,7 +1257,7 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                                 $data_countx3 = 0;
                                                 $data_countx6 = 0;
                                                 $data_countx9 = 0;
-                                                $data_countx11 = 0;
+                                                $data_countx12 = 0;
                                                 if ($count_get_absen_perkampus_dosen_pulang != false && !empty($count_get_absen_perkampus_dosen_pulang)) {
                                                     foreach ($count_get_absen_perkampus_dosen_pulang as $datax) {
                                                         $data_countx3 += $datax->total;
@@ -1271,14 +1284,17 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                                 } else {
                                                     $data_countx9 = 0;
                                                 }
-                                                
-                                                // if (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
-                                                //     $data_countx11 = 4;
-                                                // } else {
-                                                //     $data_countx11 = 0;
-                                                // }
 
-                                                $total_presensi_pulang = $data_countx3 + $data_countx6 + $data_countx9 + $data_countx11;
+                                                if ($count_get_absen_perkampus_ta_pulang != false && !empty($count_get_absen_perkampus_ta_pulang)) {
+                                                    foreach ($count_get_absen_perkampus_ta_pulang as $datax) {
+                                                        $data_countx12 += $datax->total;
+                                                    }
+                                                    $data_countx12 = $data_countx12;
+                                                } else {
+                                                    $data_countx12 = 0;
+                                                }
+
+                                                $total_presensi_pulang = $data_countx3 + $data_countx6 + $data_countx9 + $data_countx12;
                                                 echo $total_presensi_pulang;
                                             ?>
                                         </h3>
