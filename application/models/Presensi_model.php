@@ -588,7 +588,7 @@ class Presensi_model extends CI_Model
             if ($get_data->num_rows() > 0) {
                 return true;
             } else {
-                for ($i = 0; $i < 4; $i++) {
+                for ($i = 0; $i < 5; $i++) {
                     $this->db->insert('absensi', $data_masuk[$i]);
                 }
                 return true;
@@ -635,7 +635,7 @@ class Presensi_model extends CI_Model
                 ->where("tgl", date('Y-m-d'))
                 ->get();
             if ($get_data->num_rows() > 0) {
-                for ($i = 0; $i < 4; $i++) {
+                for ($i = 0; $i < 5; $i++) {
                     $this->db->update('absensi', $data_keluar[$i], array('username' => $data_keluar[$i]['username'], 'tgl' => date('Y-m-d')));
                 }
                 return true;
