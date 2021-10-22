@@ -661,25 +661,25 @@ class Presensi_model extends CI_Model
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
                 ),
-                "4" => array(
+                "5" => array(
                     "username" => "0701198780",
                     "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
                 ),
-                "4" => array(
+                "6" => array(
                     "username" => "2509197782",
                     "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
                 ),
-                "4" => array(
+                "7" => array(
                     "username" => "0502198485",
                     "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
                 ),
-                "4" => array(
+                "8" => array(
                     "username" => "31081999758",
                     "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
