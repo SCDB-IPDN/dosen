@@ -429,6 +429,7 @@
     /* -------------------------------------------------------------------------- */
     $(document).on("click", "#add", function(e) {
         e.preventDefault();
+        document.getElementById("add").disabled = true;
 
         var username = $("#username").val();
         var jns_user = <?php echo $this->session->userdata('role') ?>;
@@ -445,6 +446,7 @@
                 title: 'Oops...',
                 text: 'Harap Untuk Mengisi Data Dengan Lengkap',
             })
+            document.getElementById("add").disabled = false;
         } else {
             $.ajax({
                 url: "<?php echo base_url(); ?>insert_absen",
@@ -473,6 +475,7 @@
                 }
             });
 
+            document.getElementById("add").disabled = false;
             $("#form")[0].reset();
         }
         setInterval('location.reload()', 1000)
@@ -483,6 +486,7 @@
     /* -------------------------------------------------------------------------- */
     $(document).on("click", "#updatex", function(e) {
         e.preventDefault();
+        document.getElementById("updatex").disabled = true;
 
         var username = $("#username").val();
         var jns_user = <?php echo $this->session->userdata('role') ?>;
@@ -498,6 +502,7 @@
                 title: 'Oops...',
                 text: 'Harap Untuk Mengisi Aktivitas',
             })
+            document.getElementById("updatex").disabled = false;
         } else {
             $.ajax({
                 url: "<?php echo base_url(); ?>absen_pulang",
@@ -523,6 +528,7 @@
                 }
             });
 
+            document.getElementById("updatex").disabled = false;
             $("#form")[0].reset();
             setInterval('location.reload()', 1000)
         }
