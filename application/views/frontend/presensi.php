@@ -1084,6 +1084,7 @@
   /* ---------------------------- Mulai Pemebelajaran Modal --------------------------- */
   $(document).on("click", "#mulai", function(e) {
     e.preventDefault();
+    document.getElementById("mulai").disabled = true;
     var edit_id = $(this).attr("value");
 
     $.ajax({
@@ -1095,6 +1096,7 @@
       },
       success: function(data) {
         if (data.responce == "success") {
+          document.getElementById("mulai").disabled = false;
           $('#edit_modal').modal('show');
           $("#edit_id").val(data.post.id_plot);
           // $("#edit_nip").val(data.post.nip);
@@ -1122,6 +1124,7 @@
 
   /* ---------------------------- Akhiri Pembelajaran Modal --------------------------- */
   $(document).on("click", "#akhiri", function(e) {
+    document.getElementById("akhiri").disabled = true;
     e.preventDefault();
     var akhiri_id = $(this).attr("value");
 
@@ -1134,6 +1137,7 @@
       },
       success: function(data) {
         if (data.responce == "success") {
+          document.getElementById("akhiri").disabled = false;
           $('#akhiri_modal').modal('show');
           $("#akhiri_id").val(data.post.id_plot);
           // $("#edit_nip").val(data.post.nip);
