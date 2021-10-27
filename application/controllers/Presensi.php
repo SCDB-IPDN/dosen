@@ -175,7 +175,7 @@ class Presensi extends CI_Controller
 			if ($this->form_validation->run() == FALSE && empty($_FILES['upload_img']['name'])) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
-				
+
 				if (isset($_FILES["upload_img"]["name"])) {
 					$config['upload_path'] = APPPATH . '../assets/upload/';
 					$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -194,7 +194,7 @@ class Presensi extends CI_Controller
 						}
 					}
 				}
-			
+
 				$id = $this->input->post('akhiri_id');
 				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu_akhiri');
 				$ajax_data['user_update'] = $this->session->userdata('username');
@@ -219,8 +219,14 @@ class Presensi extends CI_Controller
 	{
 		if ($this->session->userdata('role') == 1) {
 			$posts = $this->presensi_model->get_absen('admin');
+			$posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
 		} else {
-			$posts = $this->presensi_model->get_absen($this->session->userdata('username'));
+			$posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
+			if (!empty($posts_pamdal[0]->penugasan) && $posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam') {
+				$posts = $this->presensi_model->get_absen('pamdal');
+			} else {
+				$posts = $this->presensi_model->get_absen($this->session->userdata('username'));
+			}
 		}
 
 		$data = array(
@@ -228,6 +234,7 @@ class Presensi extends CI_Controller
 			'get_absen_masuk_chart'		=> $this->presensi_model->get_absen_masuk_chart(),
 			'get_absen_pulang_chart'	=> $this->presensi_model->get_absen_pulang_chart(),
 			'get_validate'				=> $posts,
+			'get_pamdal'				=> $posts_pamdal,
 			'profile'					=> 'active'
 		);
 		$this->load->view('page/header_frontend', $data);
@@ -240,7 +247,12 @@ class Presensi extends CI_Controller
 			if ($this->session->userdata('role') == 1) {
 				$posts = $this->presensi_model->get_absen('admin');
 			} else {
-				$posts = $this->presensi_model->get_absen(base64_decode($username));
+				$posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
+				if (!empty($posts_pamdal[0]->penugasan) && $posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam') {
+					$posts = $this->presensi_model->get_absen('pamdal');
+				} else {
+					$posts = $this->presensi_model->get_absen(base64_decode($username));
+				}
 			}
 			$data = array('responce' => 'success', 'posts' => $posts);
 			echo json_encode($data);
@@ -256,6 +268,8 @@ class Presensi extends CI_Controller
 			$this->form_validation->set_rules('waktu', 'Waktu', 'required');
 			$this->form_validation->set_rules('via', 'Via', 'required');
 			$this->form_validation->set_rules('kondisi', 'Kondisi', 'required');
+			$this->form_validation->set_rules('latitude_masuk', 'Lokasi Tidak Terdeteksi', 'required');
+			$this->form_validation->set_rules('longitude_masuk', 'Lokasi Tidak Terdeteksi', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
@@ -276,12 +290,14 @@ class Presensi extends CI_Controller
 	{
 		if ($this->input->is_ajax_request()) {
 			$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+			$this->form_validation->set_rules('latitude_pulang', 'Lokasi Tidak Terdeteksi', 'required');
+			$this->form_validation->set_rules('longitude_pulang', 'Lokasi Tidak Terdeteksi', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
-				$ajax_data = $this->input->post();
-
-				if ($this->presensi_model->update_entry_absen($this->session->userdata('username'), $ajax_data)) {
+				$ajax_data 	= $this->input->post();
+				$tgl    	= $this->input->post('tgl');
+				if ($this->presensi_model->update_entry_absen($this->session->userdata('username'), $tgl, $ajax_data)) {
 					$data = array('responce' => 'success', 'message' => 'Record Update Successfully');
 				} else {
 					$data = array('responce' => 'error', 'message' => 'Failed to Update record');

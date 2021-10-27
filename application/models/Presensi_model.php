@@ -216,19 +216,47 @@ class Presensi_model extends CI_Model
             $get_data   = $this->db
                 ->select('*,
                 CASE
-                        WHEN waktu_pulang < \'16:00:00\' THEN
-                        \'Sebelum Waktunya\' 
+                        WHEN waktu < \'09:00:00\' THEN
+                        \'Absen Tepat Waktu\'
+                        WHEN waktu < \'12:00:00\' and waktu > \'09:00:00\' THEN
+                        \'Absen Terlambat\'
+                        WHEN waktu_pulang > \'12:00:00\' and waktu_pulang < \'16:00:00\' THEN
+                        \'Pulang Sebelum Waktunya\' 
                         WHEN waktu_pulang > \'16:00:00\' THEN
-                        \'Tepat Waktu\' ELSE \'\' 
+                        \'Pulang Tepat Waktu\' ELSE \'\' 
                     END AS status_pulang')
                 ->from('absensi')
                 ->where("tgl", date('Y-m-d'))
+                ->or_where("tgl_pulang", date('Y-m-d'))
+                ->get();
+        } else if ($username == 'pamdal') {
+            $tgl_today = date('Y-m-d');
+            $tanggal_pamdal = date('Y-m-d', strtotime('-1 days', strtotime($tgl_today)));
+            $get_data   = $this->db
+                ->select('*,
+                CASE
+                        WHEN waktu < \'09:00:00\' THEN
+                        \'Absen Tepat Waktu\'
+                        WHEN waktu < \'12:00:00\' and waktu > \'09:00:00\' THEN
+                        \'Absen Terlambat\'
+                        WHEN waktu_pulang > \'12:00:00\' and waktu_pulang < \'16:00:00\' THEN
+                        \'Pulang Sebelum Waktunya\' 
+                        WHEN waktu_pulang > \'16:00:00\' THEN
+                        \'Pulang Tepat Waktu\' ELSE \'\' 
+                    END AS status_pulang')
+                ->from('absensi')
+                ->where("username", $this->session->userdata('username'))
+                ->where("tgl", $tanggal_pamdal)
                 ->get();
         } else {
             $get_data   = $this->db
                 ->select('*,
                 CASE
-                        WHEN waktu_pulang < \'16:00:00\' THEN
+                        WHEN waktu < \'09:00:00\' THEN
+                        \'Absen Tepat Waktu\'
+                        WHEN waktu < \'12:00:00\' and waktu > \'09:00:00\' THEN
+                        \'Absen Terlambat\'
+                        WHEN waktu_pulang > \'12:00:00\' and waktu_pulang < \'16:00:00\' THEN
                         \'Pulang Sebelum Waktunya\' 
                         WHEN waktu_pulang > \'16:00:00\' THEN
                         \'Pulang Tepat Waktu\' ELSE \'\' 
@@ -245,14 +273,38 @@ class Presensi_model extends CI_Model
         }
     }
 
+    public function get_pamdal($username)
+    {
+        $get_datax   = $this->db
+            ->select('penugasan')
+            ->from('tbl_thl')
+            ->where("username", $username)
+            ->get();
+        if ($get_datax->num_rows() > 0) {
+            $get_data = $get_datax;
+        } else {
+            $get_data   = $this->db
+                ->select('bagian')
+                ->from('tbl_pns')
+                ->where("nip", $username)
+                ->get();
+        }
+
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
     public function insert_entry_absen($data)
     {
         return $this->db->insert('absensi', $data);
     }
 
-    public function update_entry_absen($username, $data_update)
+    public function update_entry_absen($username, $tgl, $data_update)
     {
-        return $this->db->update('absensi', $data_update, array('username' => $username, 'tgl' => date('Y-m-d')));
+        return $this->db->update('absensi', $data_update, array('username' => $username, 'tgl' => $tgl));
     }
 
     public function get_absen_masuk_chart()
@@ -529,7 +581,7 @@ class Presensi_model extends CI_Model
 
     public function insert_entry_absen_auto()
     {
-        if (date("H:i:s") >= "07:00:00" && date("H:i:s") <= "15:59:00") {
+        if (date("H:i:s") >= "07:00:00" && date("H:i:s") <= "11:59:00") {
             $data_masuk = array(
                 "0" => array(
                     "username" => "1105011207970006",
@@ -537,8 +589,11 @@ class Presensi_model extends CI_Model
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
+                    "latitude_masuk" => "-6.94",
+                    "longitude_masuk" => "107.76",
                     "kondisi" => "Sehat",
                     "status" => "Masuk",
+                    "penugasan" => "Normal",
                 ),
                 "1" => array(
                     "username" => "3209140904970009",
@@ -546,8 +601,11 @@ class Presensi_model extends CI_Model
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
+                    "latitude_masuk" => "-6.94",
+                    "longitude_masuk" => "107.76",
                     "kondisi" => "Sehat",
                     "status" => "Masuk",
+                    "penugasan" => "Normal",
                 ),
                 "2" => array(
                     "username" => "7314050409970001",
@@ -555,8 +613,11 @@ class Presensi_model extends CI_Model
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
+                    "latitude_masuk" => "-6.94",
+                    "longitude_masuk" => "107.76",
                     "kondisi" => "Sehat",
                     "status" => "Masuk",
+                    "penugasan" => "Normal",
                 ),
                 "3" => array(
                     "username" => "6106172907930001",
@@ -564,8 +625,11 @@ class Presensi_model extends CI_Model
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
+                    "latitude_masuk" => "-6.94",
+                    "longitude_masuk" => "107.76",
                     "kondisi" => "Sehat",
                     "status" => "Masuk",
+                    "penugasan" => "Normal",
                 ),
                 "4" => array(
                     "username" => "18121994470",
@@ -573,8 +637,11 @@ class Presensi_model extends CI_Model
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
+                    "latitude_masuk" => "-6.94",
+                    "longitude_masuk" => "107.76",
                     "kondisi" => "Sehat",
                     "status" => "Masuk",
+                    "penugasan" => "Normal",
                 ),
                 "5" => array(
                     "username" => "0701198780",
@@ -582,8 +649,11 @@ class Presensi_model extends CI_Model
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
+                    "latitude_masuk" => "-6.94",
+                    "longitude_masuk" => "107.76",
                     "kondisi" => "Sehat",
                     "status" => "Masuk",
+                    "penugasan" => "Normal",
                 ),
                 "6" => array(
                     "username" => "2509197782",
@@ -591,8 +661,11 @@ class Presensi_model extends CI_Model
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
+                    "latitude_masuk" => "-6.94",
+                    "longitude_masuk" => "107.76",
                     "kondisi" => "Sehat",
                     "status" => "Masuk",
+                    "penugasan" => "Normal",
                 ),
                 "7" => array(
                     "username" => "0502198485",
@@ -600,8 +673,11 @@ class Presensi_model extends CI_Model
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
+                    "latitude_masuk" => "-6.94",
+                    "longitude_masuk" => "107.76",
                     "kondisi" => "Sehat",
                     "status" => "Masuk",
+                    "penugasan" => "Normal",
                 ),
                 "8" => array(
                     "username" => "31081999758",
@@ -609,8 +685,11 @@ class Presensi_model extends CI_Model
                     "tgl" => date("Y-m-d"),
                     "waktu" => date("H:i:s"),
                     "via" => "Work From Office",
+                    "latitude_masuk" => "-6.94",
+                    "longitude_masuk" => "107.76",
                     "kondisi" => "Sehat",
                     "status" => "Masuk",
+                    "penugasan" => "Normal",
                 )
             );
 
@@ -629,61 +708,88 @@ class Presensi_model extends CI_Model
                 }
                 return true;
             }
-        } elseif (date("H:i:s") >= "16:00:00" && date("H:i:s") <= "23:59:00") {
+        } elseif (date("H:i:s") >= "17:00:00" && date("H:i:s") <= "23:59:00") {
             $data_keluar = array(
                 "0" => array(
                     "username" => "1105011207970006",
                     "jns_user" => "40",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
+                    "latitude_pulang" => "-6.94",
+                    "longitude_pulang" => "107.76",
+                    "tgl_pulang" => date("Y-m-d"),
                 ),
                 "1" => array(
                     "username" => "3209140904970009",
                     "jns_user" => "40",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
+                    "latitude_pulang" => "-6.94",
+                    "longitude_pulang" => "107.76",
+                    "tgl_pulang" => date("Y-m-d"),
                 ),
                 "2" => array(
                     "username" => "7314050409970001",
                     "jns_user" => "40",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
+                    "latitude_pulang" => "-6.94",
+                    "longitude_pulang" => "107.76",
+                    "tgl_pulang" => date("Y-m-d"),
                 ),
                 "3" => array(
                     "username" => "6106172907930001",
                     "jns_user" => "40",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
+                    "latitude_pulang" => "-6.94",
+                    "longitude_pulang" => "107.76",
+                    "tgl_pulang" => date("Y-m-d"),
                 ),
                 "4" => array(
                     "username" => "18121994470",
                     "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
+                    "latitude_pulang" => "-6.94",
+                    "longitude_pulang" => "107.76",
+                    "tgl_pulang" => date("Y-m-d"),
                 ),
                 "5" => array(
                     "username" => "0701198780",
                     "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
+                    "latitude_pulang" => "-6.94",
+                    "longitude_pulang" => "107.76",
+                    "tgl_pulang" => date("Y-m-d"),
                 ),
                 "6" => array(
                     "username" => "2509197782",
                     "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
+                    "latitude_pulang" => "-6.94",
+                    "longitude_pulang" => "107.76",
+                    "tgl_pulang" => date("Y-m-d"),
                 ),
                 "7" => array(
                     "username" => "0502198485",
                     "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
+                    "latitude_pulang" => "-6.94",
+                    "longitude_pulang" => "107.76",
+                    "tgl_pulang" => date("Y-m-d"),
                 ),
                 "8" => array(
                     "username" => "31081999758",
                     "jns_user" => "39",
                     "waktu_pulang" => date("H:i:s"),
                     "status" => "Pulang",
+                    "latitude_pulang" => "-6.94",
+                    "longitude_pulang" => "107.76",
+                    "tgl_pulang" => date("Y-m-d"),
                 )
             );
 
@@ -705,5 +811,3 @@ class Presensi_model extends CI_Model
         }
     }
 }
-
-?>
