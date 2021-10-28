@@ -427,7 +427,7 @@
                         });
 
                         $("#form")[0].reset();
-                        // setInterval('location.reload()', 1000)
+                        setInterval('location.reload()', 1000);
                     } else {
                         Swal.fire({
                             icon: 'error',
@@ -493,6 +493,7 @@
                             text: data.message,
                         });
                         $("#form")[0].reset();
+                        setInterval('location.reload()', 1000);
                     } else {
                         Swal.fire({
                             icon: 'error',
