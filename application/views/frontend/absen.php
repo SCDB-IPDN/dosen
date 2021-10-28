@@ -419,18 +419,26 @@
                         $('#records').DataTable().destroy();
                         fetch();
                         $('#absenmasuk').modal('hide');
-                        toastr["success"](data.message);
-                    } else {
-                        toastr["error"](data.message);
-                    }
+                        // toastr["success"](data.message);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Yeay...',
+                            text: data.message,
+                        });
 
+                        $("#form")[0].reset();
+                        // setInterval('location.reload()', 1000)
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: data.message,
+                        })
+                        document.getElementById("add").disabled = false;
+                    }
                 }
             });
-
-            document.getElementById("add").disabled = false;
-            $("#form")[0].reset();
         }
-        setInterval('location.reload()', 1000)
     });
 
     /* -------------------------------------------------------------------------- */
@@ -478,17 +486,23 @@
                         $('#records').DataTable().destroy();
                         fetch();
                         $('#absenpulang').modal('hide');
-                        toastr["success"](data.message);
+                        // toastr["success"](data.message);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Yeay...',
+                            text: data.message,
+                        });
+                        $("#form")[0].reset();
                     } else {
-                        toastr["error"](data.message);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: data.message,
+                        });
+                        document.getElementById("updatex").disabled = false;
                     }
-
                 }
             });
-
-            document.getElementById("updatex").disabled = false;
-            // $("#form")[0].reset();
-            // setInterval('location.reload()', 1000)
         }
     });
 

@@ -274,10 +274,15 @@ class Presensi extends CI_Controller
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
 				$ajax_data = $this->input->post();
-				if ($this->presensi_model->insert_entry_absen($ajax_data)) {
-					$data = array('responce' => 'success', 'message' => 'Record added Successfully');
+				$cek_username = $this->input->post('username');
+				if ($this->presensi_model->cek_double_data($cek_username) == true) {
+					$data = array('responce' => 'error', 'message' => 'Sudah melakukan absen!!!');
 				} else {
-					$data = array('responce' => 'error', 'message' => 'Failed to add record');
+					if ($this->presensi_model->insert_entry_absen($ajax_data)) {
+						$data = array('responce' => 'success', 'message' => 'Berhasil melakukan absen');
+					} else {
+						$data = array('responce' => 'error', 'message' => 'Gagal menyimpan data');
+					}
 				}
 			}
 			echo json_encode($data);
@@ -298,9 +303,9 @@ class Presensi extends CI_Controller
 				$ajax_data 	= $this->input->post();
 				$tgl    	= $this->input->post('tgl');
 				if ($this->presensi_model->update_entry_absen($this->session->userdata('username'), $tgl, $ajax_data)) {
-					$data = array('responce' => 'success', 'message' => 'Record Update Successfully');
+					$data = array('responce' => 'success', 'message' => 'Berhasil melakukan absen');
 				} else {
-					$data = array('responce' => 'error', 'message' => 'Failed to Update record');
+					$data = array('responce' => 'error', 'message' => 'Gagal menyimpan data');
 				}
 			}
 			echo json_encode($data);
