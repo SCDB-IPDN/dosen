@@ -232,7 +232,7 @@ class Presensi_model extends CI_Model
         } else if ($username == 'pamdal') {
             $tgl_today = date('Y-m-d');
             $tanggal_pamdal = date('Y-m-d', strtotime('-1 days', strtotime($tgl_today)));
-            $get_data   = $this->db
+            $get_datax   = $this->db
                 ->select('*,
                 CASE
                         WHEN waktu < \'09:00:00\' THEN
@@ -248,6 +248,26 @@ class Presensi_model extends CI_Model
                 ->where("username", $this->session->userdata('username'))
                 ->where("tgl", $tanggal_pamdal)
                 ->get();
+            if ($get_datax->num_rows() > 0) {
+                $get_data = $get_datax;
+            } else {
+                $get_data   = $this->db
+                    ->select('*,
+                        CASE
+                                WHEN waktu < \'09:00:00\' THEN
+                                \'Absen Tepat Waktu\'
+                                WHEN waktu < \'12:00:00\' and waktu > \'09:00:00\' THEN
+                                \'Absen Terlambat\'
+                                WHEN waktu_pulang > \'12:00:00\' and waktu_pulang < \'16:00:00\' THEN
+                                \'Pulang Sebelum Waktunya\' 
+                                WHEN waktu_pulang > \'16:00:00\' THEN
+                                \'Pulang Tepat Waktu\' ELSE \'\' 
+                            END AS status_pulang')
+                    ->from('absensi')
+                    ->where("username", $this->session->userdata('username'))
+                    ->where("tgl", $tgl_today)
+                    ->get();
+            }
         } else {
             $get_data   = $this->db
                 ->select('*,

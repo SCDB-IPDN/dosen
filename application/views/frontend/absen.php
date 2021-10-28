@@ -1,83 +1,3 @@
-<!-- Maps -->
-<meta name="viewport" content="width = device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;">
-<script src="https://code.google.com/apis/gears/gears_init.js" type="text/javascript" charset="utf-8"></script>
-<script src="assets/frontend/js/geo.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
-
-<script>
-    function initialize_map() {
-        var myOptions = {
-            zoom: 4,
-            mapTypeControl: true,
-            mapTypeControlOptions: {
-                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-            },
-            navigationControl: true,
-            navigationControlOptions: {
-                style: google.maps.NavigationControlStyle.SMALL
-            },
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-    }
-
-    function initialize() {
-        if (geo_position_js.init()) {
-            document.getElementById('current').innerHTML = "Receiving...";
-            geo_position_js.getCurrentPosition(show_position, function() {
-                document.getElementById('current').innerHTML = "Couldn't get location"
-            }, {
-                enableHighAccuracy: true
-            });
-        } else {
-            document.getElementById('current').innerHTML = "Functionality not available";
-        }
-    }
-
-    function show_position(p) {
-        document.getElementById('current').innerHTML = "Latitude = " + p.coords.latitude.toFixed(2) + " Longitude = " + p.coords.longitude.toFixed(2);
-        document.getElementById('latitude_x').value = p.coords.latitude.toFixed(2);
-        document.getElementById('longitude_x').value = p.coords.longitude.toFixed(2);
-        var pos = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-        map.setCenter(pos);
-        map.setZoom(14);
-
-        var infowindow = new google.maps.InfoWindow({
-            content: "<strong>Saya Disini</strong>"
-        });
-
-        var marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-            title: "You are here"
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map, marker);
-        });
-
-    }
-</script>
-
-<style>
-    body {
-        font-family: Helvetica;
-        font-size: 11pt;
-        padding: 0px;
-        margin: 0px
-    }
-
-    #title {
-        background-color: #e22640;
-        padding: 5px;
-    }
-
-    #current {
-        font-size: 10pt;
-        padding: 5px;
-    }
-</style>
-
 <section id="home" class="w3l-banner py-5">
     <div class="banner-image">
     </div>
@@ -128,9 +48,16 @@
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasuk" disabled>
                                                 Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                             </button>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#absenpulang">
-                                                Absen Pulang <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
-                                            </button>
+
+                                            <?php if (empty($get_validate[0]->waktu_pulang)) { ?>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#absenpulang">
+                                                    Absen Pulang <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                                                </button>
+                                            <?php } else { ?>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#absenpulang" disabled>
+                                                    Absen Pulang <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                                                </button>
+                                            <?php } ?>
 
                                             <?php } else {
                                             if (empty($get_validate[0]->waktu_pulang)) { ?>
@@ -180,6 +107,13 @@
                                     <?php } ?>
                                 <?php } ?>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <div id="map"></div>
                         </div>
                     </div>
                 </div>
@@ -325,18 +259,10 @@
                                     <option value="Sakit">Sakit</option>
                                 </select>
                             </div>
-
-                            <!-- <body class="form-group" onload="initialize_map();initialize()">
+                            <div class="form-group">
                                 <input type="hidden" name="latitude_x" id="latitude_x" class="form-control" readonly>
                                 <input type="hidden" name="longitude_x" id="longitude_x" class="form-control" readonly>
-                                <div class="form-group" id="title">Lokasi Absen</div>
-                                <div class="form-group" id="current">Mencari Lokasi...</div>
-                                <div class="form-group" id="map_canvas" style="width:35; height:350px"></div>
-                            </body> -->
-                            <!-- <div class="form-group">
-                                <label for="">Keterangan</label>
-                                <textarea type="text" name="keterangan" id="keterangan" class="form-control"></textarea>
-                            </div> -->
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -361,10 +287,10 @@
                         <form action="" method="post" id="form">
                             <div class="form-group">
                                 <label for="">Tanggal Pulang</label>
-                                <input type="text" name="tgl1" id="tgl1" class="form-control" value="<?php echo $get_validate[0]->tgl; ?>" readonly>
+                                <input type="hidden" name="tgl1" id="tgl1" class="form-control" value="<?php echo $get_validate[0]->tgl; ?>" readonly>
                                 <input type="text" name="tgl_pulang1" id="tgl_pulang1" class="form-control" value="<?php echo date("Y-m-d") ?>" readonly>
-                                <input type="text" name="username1" id="username1" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
-                                <input type="text" name="waktu_pulang1" id="waktu_pulang1" class="form-control" value="<?php echo date("H:i:s") ?>" readonly>
+                                <input type="hidden" name="username1" id="username1" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
+                                <input type="hidden" name="waktu_pulang1" id="waktu_pulang1" class="form-control" value="<?php echo date("H:i:s") ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Aktivitas (*)</label>
@@ -385,6 +311,45 @@
 <input type="hidden" value="<?php echo base_url(); ?>" id="base_url">
 <?php $this->load->view('page/js_datatable_frontend'); ?>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Maps -->
+<script>
+    var map = L.map('map').fitWorld();
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(map);
+
+    function onLocationFound(e) {
+        var radius = e.accuracy / 2;
+
+        L.marker(e.latlng).addTo(map)
+            .bindPopup("Anda berada di dalam " + radius + " meter dari poin ini").openPopup();
+
+        L.circle(e.latlng, radius).addTo(map);
+
+        document.getElementById('latitude_x').value = e.latitude;
+        document.getElementById('longitude_x').value = e.longitude;
+    }
+
+    function onLocationError(e) {
+        alert(e.message);
+    }
+
+    map.on('locationfound', onLocationFound);
+    map.on('locationerror', onLocationError);
+
+    map.locate({
+        setView: true,
+        maxZoom: 16
+    });
+</script>
+<!-- // Maps -->
 
 <script>
     /* --------------------------------- Baseurl -------------------------------- */
@@ -420,12 +385,12 @@
         var via = $("#via").val();
         var kondisi = $("#kondisi").val();
         var penugasan = $("#penugasan").val();
-        // var latitude_masuk = $("#latitude_x").val();
-        // var longitude_masuk = $("#longitude_x").val();
+        var latitude_masuk = $("#latitude_x").val();
+        var longitude_masuk = $("#longitude_x").val();
         // var keterangan = $("#keterangan").val();
         var status = "Masuk";
 
-        if (tgl == "" || via == "" || kondisi == "" || waktu == "" || username == "" || jns_user == "") {
+        if (tgl == "" || via == "" || kondisi == "" || waktu == "" || username == "" || jns_user == "" || latitude_masuk == "" || longitude_masuk == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -445,8 +410,8 @@
                     via: via,
                     kondisi: kondisi,
                     penugasan: penugasan,
-                    // latitude_masuk: latitude_masuk,
-                    // longitude_masuk: longitude_masuk,
+                    latitude_masuk: latitude_masuk,
+                    longitude_masuk: longitude_masuk,
                     status: status
                 },
                 success: function(data) {
@@ -481,11 +446,11 @@
         var jns_user = <?php echo $this->session->userdata('role') ?>;
         var waktu_pulang = $("#waktu_pulang1").val();
         var keterangan = $("#keterangan").val();
-        // var latitude_pulang = $("#latitude_x").val();
-        // var longitude_pulang = $("#longitude_x").val();
+        var latitude_pulang = $("#latitude_x").val();
+        var longitude_pulang = $("#longitude_x").val();
         var status = "Pulang";
 
-        if (tgl == "" || tgl_pulang == "" || waktu_pulang == "" || keterangan == "" || status == "" || username == "" || jns_user == "") {
+        if (tgl == "" || tgl_pulang == "" || waktu_pulang == "" || keterangan == "" || status == "" || username == "" || jns_user == "" || latitude_pulang == "" || longitude_pulang == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -504,8 +469,8 @@
                     jns_user: jns_user,
                     waktu_pulang: waktu_pulang,
                     keterangan: keterangan,
-                    // latitude_pulang: latitude_pulang,
-                    // longitude_pulang: longitude_pulang,
+                    latitude_pulang: latitude_pulang,
+                    longitude_pulang: longitude_pulang,
                     status: status
                 },
                 success: function(data) {
