@@ -326,13 +326,13 @@
                                 </select>
                             </div>
 
-                            <body class="form-group" onload="initialize_map();initialize()">
+                            <!-- <body class="form-group" onload="initialize_map();initialize()">
                                 <input type="hidden" name="latitude_x" id="latitude_x" class="form-control" readonly>
                                 <input type="hidden" name="longitude_x" id="longitude_x" class="form-control" readonly>
                                 <div class="form-group" id="title">Lokasi Absen</div>
                                 <div class="form-group" id="current">Mencari Lokasi...</div>
                                 <div class="form-group" id="map_canvas" style="width:35; height:350px"></div>
-                            </body>
+                            </body> -->
                             <!-- <div class="form-group">
                                 <label for="">Keterangan</label>
                                 <textarea type="text" name="keterangan" id="keterangan" class="form-control"></textarea>
@@ -420,12 +420,12 @@
         var via = $("#via").val();
         var kondisi = $("#kondisi").val();
         var penugasan = $("#penugasan").val();
-        var latitude_masuk = $("#latitude_x").val();
-        var longitude_masuk = $("#longitude_x").val();
+        // var latitude_masuk = $("#latitude_x").val();
+        // var longitude_masuk = $("#longitude_x").val();
         // var keterangan = $("#keterangan").val();
         var status = "Masuk";
 
-        if (tgl == "" || via == "" || kondisi == "" || waktu == "" || username == "" || jns_user == "" || latitude_masuk == "" || longitude_masuk == "") {
+        if (tgl == "" || via == "" || kondisi == "" || waktu == "" || username == "" || jns_user == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -445,8 +445,8 @@
                     via: via,
                     kondisi: kondisi,
                     penugasan: penugasan,
-                    latitude_masuk: latitude_masuk,
-                    longitude_masuk: longitude_masuk,
+                    // latitude_masuk: latitude_masuk,
+                    // longitude_masuk: longitude_masuk,
                     status: status
                 },
                 success: function(data) {
@@ -481,11 +481,11 @@
         var jns_user = <?php echo $this->session->userdata('role') ?>;
         var waktu_pulang = $("#waktu_pulang1").val();
         var keterangan = $("#keterangan").val();
-        var latitude_pulang = $("#latitude_x").val();
-        var longitude_pulang = $("#longitude_x").val();
+        // var latitude_pulang = $("#latitude_x").val();
+        // var longitude_pulang = $("#longitude_x").val();
         var status = "Pulang";
 
-        if (tgl == "" || tgl_pulang == "" || waktu_pulang == "" || keterangan == "" || status == "" || username == "" || jns_user == "" || latitude_pulang == "" || longitude_pulang == "") {
+        if (tgl == "" || tgl_pulang == "" || waktu_pulang == "" || keterangan == "" || status == "" || username == "" || jns_user == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -504,8 +504,8 @@
                     jns_user: jns_user,
                     waktu_pulang: waktu_pulang,
                     keterangan: keterangan,
-                    latitude_pulang: latitude_pulang,
-                    longitude_pulang: longitude_pulang,
+                    // latitude_pulang: latitude_pulang,
+                    // longitude_pulang: longitude_pulang,
                     status: status
                 },
                 success: function(data) {
