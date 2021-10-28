@@ -317,6 +317,22 @@ class Presensi_model extends CI_Model
         }
     }
 
+    public function cek_double_data($username)
+    {
+        $get_data   = $this->db
+            ->select('*')
+            ->from('absensi')
+            ->where("username", $username)
+            ->where("tgl", date('Y-m-d'))
+            ->get();
+
+        if ($get_data->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function insert_entry_absen($data)
     {
         return $this->db->insert('absensi', $data);
