@@ -31,7 +31,6 @@
                     <div class="col-md-7">
                         <div class="card-body">
                             <h5 class="card-title">Profile</h5>
-
                             <div class="cont-right">
                                 <h6>NIK / NIP</h6>
                                 <p><?= count($get_profile) == 0 ? '-' : $this->session->userdata('username'); ?></p>
@@ -183,13 +182,14 @@
                         <form action="" method="post" id="form">
                             <div class="form-group">
                                 <label for="">Tanggal</label>
-                                <input type="text" name="tgl" id="tgl" class="form-control" value="<?php echo date("Y-m-d") ?>" readonly>
-                                <input type="hidden" name="username" id="username" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
-                                <input type="hidden" name="waktu" id="waktu" class="form-control" value="<?php echo date("H:i:s") ?>" readonly>
+                                <input type="text" name="tgl2" id="tgl2" class="form-control" value="<?php echo date("Y-m-d") ?>" readonly>
+                                <input type="hidden" name="username2" id="username2" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
+                                <input type="hidden" name="waktu2" id="waktu2" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Via</label>
-                                <select name="via" id="via" class="form-control">
+                                <select name="via2" id="via2" class="form-control">
+                                    <option value="">--- Pilih ---</option>
                                     <option value="Work From Office">Work From Office</option>
                                     <option value="Work From Home">Work From Home</option>
                                     <option value="Work From Site">Work From Site</option>
@@ -197,7 +197,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Kondisi</label>
-                                <select name="kondisi" id="kondisi" class="form-control">
+                                <select name="kondisi2" id="kondisi2" class="form-control">
+                                    <option value="">--- Pilih ---</option>
                                     <option value="Sehat">Sehat</option>
                                     <!-- <option value="Kurang Sehat/Fit">Kurang Sehat/Fit</option> -->
                                     <option value="Sakit">Sakit</option>
@@ -205,7 +206,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Penugasan</label>
-                                <select name="penugasan" id="penugasan" class="form-control">
+                                <select name="penugasan2" id="penugasan2" class="form-control">
+                                    <option value="">--- Pilih ---</option>
                                     <option value="Normal">Normal</option>
                                     <option value="24 Jam">24 Jam</option>
                                 </select>
@@ -218,7 +220,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="button" class="btn btn-primary" id="add">Simpan</button>
+                        <button type="button" class="btn btn-primary" id="add2">Simpan</button>
                     </div>
                 </div>
             </div>
@@ -240,12 +242,13 @@
                                 <label for="">Tanggal</label>
                                 <input type="text" name="tgl" id="tgl" class="form-control" value="<?php echo date("Y-m-d") ?>" readonly>
                                 <input type="hidden" name="username" id="username" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
-                                <input type="hidden" name="waktu" id="waktu" class="form-control" value="<?php echo date("H:i:s") ?>" readonly>
+                                <input type="hidden" name="waktu" id="waktu" class="form-control" readonly>
                                 <input type="hidden" name="penugasan" id="penugasan" class="form-control" value="Normal" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Via</label>
                                 <select name="via" id="via" class="form-control">
+                                    <option value="">--- Pilih ---</option>
                                     <option value="Work From Office">Work From Office</option>
                                     <option value="Work From Home">Work From Home</option>
                                     <option value="Work From Site">Work From Site</option>
@@ -254,6 +257,7 @@
                             <div class="form-group">
                                 <label for="">Kondisi</label>
                                 <select name="kondisi" id="kondisi" class="form-control">
+                                    <option value="">--- Pilih ---</option>
                                     <option value="Sehat">Sehat</option>
                                     <!-- <option value="Kurang Sehat/Fit">Kurang Sehat/Fit</option> -->
                                     <option value="Sakit">Sakit</option>
@@ -290,7 +294,7 @@
                                 <input type="hidden" name="tgl1" id="tgl1" class="form-control" value="<?php echo $get_validate[0]->tgl; ?>" readonly>
                                 <input type="text" name="tgl_pulang1" id="tgl_pulang1" class="form-control" value="<?php echo date("Y-m-d") ?>" readonly>
                                 <input type="hidden" name="username1" id="username1" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
-                                <input type="hidden" name="waktu_pulang1" id="waktu_pulang1" class="form-control" value="<?php echo date("H:i:s") ?>" readonly>
+                                <input type="hidden" name="waktu_pulang1" id="waktu_pulang1" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Aktivitas (*)</label>
@@ -335,6 +339,16 @@
 
         document.getElementById('latitude_x').value = e.latitude;
         document.getElementById('longitude_x').value = e.longitude;
+
+        var timestamp = e.timestamp;
+        var date = new Date(timestamp);
+        var hours = date.getHours();
+        var minutes = "0" + date.getMinutes();
+        var seconds = "0" + date.getSeconds();
+        var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+        document.getElementById('waktu2').value = formattedTime;
+        document.getElementById('waktu').value = formattedTime;
+        document.getElementById('waktu_pulang1').value = formattedTime;
     }
 
     function onLocationError(e) {
@@ -390,7 +404,7 @@
         // var keterangan = $("#keterangan").val();
         var status = "Masuk";
 
-        if (tgl == "" || via == "" || kondisi == "" || waktu == "" || username == "" || jns_user == "" || latitude_masuk == "" || longitude_masuk == "") {
+        if (tgl == "" || via == "" || kondisi == "" || waktu == "" || username == "" || jns_user == "" || latitude_masuk == "" || longitude_masuk == "" || penugasan == "") {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -435,6 +449,73 @@
                             text: data.message,
                         })
                         document.getElementById("add").disabled = false;
+                    }
+                }
+            });
+        }
+    });
+
+    $(document).on("click", "#add2", function(e) {
+        e.preventDefault();
+        document.getElementById("add2").disabled = true;
+
+        var username = $("#username2").val();
+        var jns_user = <?php echo $this->session->userdata('role') ?>;
+        var tgl = $("#tgl2").val();
+        var waktu = $("#waktu2").val();
+        var via = $("#via2").val();
+        var kondisi = $("#kondisi2").val();
+        var penugasan = $("#penugasan2").val();
+        var latitude_masuk = $("#latitude_x").val();
+        var longitude_masuk = $("#longitude_x").val();
+        // var keterangan = $("#keterangan").val();
+        var status = "Masuk";
+
+        if (tgl == "" || via == "" || kondisi == "" || waktu == "" || username == "" || jns_user == "" || latitude_masuk == "" || longitude_masuk == "" || penugasan == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Harap Untuk Mengisi Data Dengan Lengkap',
+            })
+            document.getElementById("add2").disabled = false;
+        } else {
+            $.ajax({
+                url: "<?php echo base_url(); ?>insert_absen",
+                type: "post",
+                dataType: "json",
+                data: {
+                    username: username,
+                    jns_user: jns_user,
+                    tgl: tgl,
+                    waktu: waktu,
+                    via: via,
+                    kondisi: kondisi,
+                    penugasan: penugasan,
+                    latitude_masuk: latitude_masuk,
+                    longitude_masuk: longitude_masuk,
+                    status: status
+                },
+                success: function(data) {
+                    if (data.responce == "success") {
+                        $('#records').DataTable().destroy();
+                        fetch();
+                        $('#absenmasukpamdal').modal('hide');
+                        // toastr["success"](data.message);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Yeay...',
+                            text: data.message,
+                        });
+
+                        $("#form")[0].reset();
+                        setInterval('location.reload()', 1000);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: data.message,
+                        })
+                        document.getElementById("add2").disabled = false;
                     }
                 }
             });
