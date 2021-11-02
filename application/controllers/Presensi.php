@@ -222,8 +222,7 @@ class Presensi extends CI_Controller
 			$posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
 		} else {
 			$posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
-			// if (!empty($posts_pamdal[0]->penugasan) && $posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Unit Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM (PAMDAL)' || $posts_pamdal[0]->penugasan == 'SUBBAGIAN PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Pramubakti Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Unit Poliklinik') {
-			if (!empty($posts_pamdal[0]->penugasan) && $posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam') {
+			if (!empty($posts_pamdal[0]->penugasan) && ($posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Unit Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM (PAMDAL)' || $posts_pamdal[0]->penugasan == 'SUBBAGIAN PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Pramubakti Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Unit Poliklinik')) {
 				$posts = $this->presensi_model->get_absen('pamdal');
 			} else {
 				$posts = $this->presensi_model->get_absen($this->session->userdata('username'));
@@ -249,8 +248,7 @@ class Presensi extends CI_Controller
 				$posts = $this->presensi_model->get_absen('admin');
 			} else {
 				$posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
-				// if (!empty($posts_pamdal[0]->penugasan) && $posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Unit Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM (PAMDAL)' || $posts_pamdal[0]->penugasan == 'SUBBAGIAN PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Pramubakti Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Unit Poliklinik') {
-				if (!empty($posts_pamdal[0]->penugasan) && $posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam') {
+				if (!empty($posts_pamdal[0]->penugasan) && ($posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Unit Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM (PAMDAL)' || $posts_pamdal[0]->penugasan == 'SUBBAGIAN PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Pramubakti Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Unit Poliklinik')) {
 					$posts = $this->presensi_model->get_absen('pamdal');
 				} else {
 					$posts = $this->presensi_model->get_absen(base64_decode($username));

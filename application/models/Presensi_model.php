@@ -324,8 +324,9 @@ class Presensi_model extends CI_Model
                     END AS status_pulang')
                 ->from('absensi')
                 ->where("username", $this->session->userdata('username'))
-                ->where("tgl", $tanggal_pamdal)
+                // ->where("tgl", $tanggal_pamdal)
                 ->where("penugasan", "24 Jam")
+                ->order_by("tgl", "DESC")
                 ->get();
             if ($get_datax->num_rows() > 0) {
                 $get_data = $get_datax;
@@ -344,8 +345,9 @@ class Presensi_model extends CI_Model
                             END AS status_pulang')
                     ->from('absensi')
                     ->where("username", $this->session->userdata('username'))
-                    ->where("tgl", $tgl_today)
+                    // ->where("tgl", $tgl_today)
                     ->where("penugasan", "24 Jam")
+                    ->order_by("tgl", "DESC")
                     ->get();
             }
         } else {
@@ -363,8 +365,9 @@ class Presensi_model extends CI_Model
                     END AS status_pulang')
                 ->from('absensi')
                 ->where("username", $username)
-                ->where("tgl", date('Y-m-d'))
+                // ->where("tgl", date('Y-m-d'))
                 ->where("penugasan", "Normal")
+                ->order_by("tgl", "DESC")
                 ->get();
         }
         if ($get_data->num_rows() > 0) {
@@ -698,7 +701,7 @@ class Presensi_model extends CI_Model
 
     public function insert_entry_absen_auto()
     {
-        if (date("H:i:s") >= "07:00:00" && date("H:i:s") <= "11:59:00") {
+        if (date("H:i:s") >= "08:30:00" && date("H:i:s") <= "12:00:00") {
             $data_masuk = array(
                 "0" => array(
                     "username" => "1105011207970006",
@@ -825,7 +828,7 @@ class Presensi_model extends CI_Model
                 }
                 return true;
             }
-        } elseif (date("H:i:s") >= "17:00:00" && date("H:i:s") <= "23:59:00") {
+        } elseif (date("H:i:s") >= "20:00:00" && date("H:i:s") <= "23:59:00") {
             $data_keluar = array(
                 "0" => array(
                     "username" => "1105011207970006",

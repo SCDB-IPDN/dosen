@@ -738,7 +738,7 @@
                                                 <div class="gmap_canvas">
                                                     <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                                     <a href="https://123movies-a.com"></a><br>
-                                                    <a href="https://www.embedgooglemap.net">google maps widget html</a>
+                                                    <a href="https://www.embedgooglemap.net">https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed</a>
                                                 </div>
                                             </div>`;
                                         }
@@ -775,7 +775,7 @@
                                                 <div class="gmap_canvas">
                                                     <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_pulang},${row.longitude_pulang}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                                     <a href="https://123movies-a.com"></a><br>
-                                                    <a href="https://www.embedgooglemap.net">google maps widget html</a>
+                                                    <a href="https://www.embedgooglemap.net">https://maps.google.com/maps?q=${row.latitude_pulang},${row.longitude_pulang}&t=&z=15&ie=UTF8&iwloc=&output=embed</a>
                                                 </div>
                                             </div>`;
                                         }
@@ -793,7 +793,8 @@
                                         if (`${row.keterangan}` == 'null') {
                                             var a = `-`;
                                         } else {
-                                            var a = `${row.keterangan}`;
+                                            var breakTag = (data || typeof data === 'undefined') ? '<br />' : '<br>';
+                                            var a = (`${row.keterangan}` + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
                                         }
                                         return a;
                                     }
@@ -852,7 +853,14 @@
                                             if (`${row.latitude_masuk}` == 'null' || `${row.longitude_masuk}` == 'null') {
                                                 var a = `Lokasi Belum Tersedia`;
                                             } else {
-                                                var a = `<a href="https://www.latlong.net/c/?lat=${row.latitude_masuk}&long=${row.longitude_masuk}" target="_blank">Cek Lokasi</a>`;
+                                                // var a = `<a href="https://www.latlong.net/c/?lat=${row.latitude_masuk}&long=${row.longitude_masuk}" target="_blank">Cek Lokasi</a>`;
+                                                var a = `<div class="mapouter">
+                                                <div class="gmap_canvas">
+                                                    <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                                    <a href="https://123movies-a.com"></a><br>
+                                                    <a href="https://www.embedgooglemap.net">https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed</a>
+                                                </div>
+                                            </div>`;
                                             }
                                             return a;
                                         }
@@ -882,7 +890,14 @@
                                             if (`${row.latitude_pulang}` == 'null' || `${row.longitude_pulang}` == 'null') {
                                                 var a = `Lokasi Belum Tersedia`;
                                             } else {
-                                                var a = `<a href="https://www.latlong.net/c/?lat=${row.latitude_pulang}&long=${row.longitude_pulang}" target="_blank">Cek Lokasi</a>`;
+                                                // var a = ` < a href = "https://www.latlong.net/c/?lat=${row.latitude_pulang}&long=${row.longitude_pulang}" target = "_blank" > Cek Lokasi < /a>`;
+                                                var a = `<div class="mapouter">
+                                                <div class="gmap_canvas">
+                                                    <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_pulang},${row.longitude_pulang}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                                    <a href="https://123movies-a.com"></a><br>
+                                                    <a href="https://www.embedgooglemap.net">https://maps.google.com/maps?q=${row.latitude_pulang},${row.longitude_pulang}&t=&z=15&ie=UTF8&iwloc=&output=embed</a>
+                                                </div>
+                                            </div>`;
                                             }
                                             return a;
                                         }
@@ -901,7 +916,8 @@
                                             if (`${row.keterangan}` == 'null') {
                                                 var a = `-`;
                                             } else {
-                                                var a = `${row.keterangan}`;
+                                                var breakTag = (data || typeof data === 'undefined') ? '<br />' : '<br>';
+                                                var a = (`${row.keterangan}` + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
                                             }
                                             return a;
                                         }
