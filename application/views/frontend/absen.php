@@ -738,7 +738,7 @@
                                                 <div class="gmap_canvas">
                                                     <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                                     <a href="https://123movies-a.com"></a><br>
-                                                    <a href="https://www.embedgooglemap.net">google maps widget html</a>
+                                                    <a href="https://www.embedgooglemap.net">https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed</a>
                                                 </div>
                                             </div>`;
                                         }
@@ -775,7 +775,7 @@
                                                 <div class="gmap_canvas">
                                                     <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_pulang},${row.longitude_pulang}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                                     <a href="https://123movies-a.com"></a><br>
-                                                    <a href="https://www.embedgooglemap.net">google maps widget html</a>
+                                                    <a href="https://www.embedgooglemap.net">https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed</a>
                                                 </div>
                                             </div>`;
                                         }
