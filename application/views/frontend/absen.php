@@ -1,3 +1,19 @@
+<style>
+    .mapouter {
+        position: relative;
+        text-align: right;
+        height: 300px;
+        width: 300px;
+    }
+
+    .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 300px;
+        width: 300px;
+    }
+</style>
+
 <section id="home" class="w3l-banner py-5">
     <div class="banner-image">
     </div>
@@ -44,7 +60,7 @@
                                 <?php if ($this->session->userdata('role') != 1) {
                                     if (!empty($get_validate[0]->id_absen)) {
                                         if ($get_validate[0]->penugasan == '24 Jam') { ?>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasuk" disabled>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasukpamdal" disabled>
                                                 Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                             </button>
 
@@ -60,7 +76,7 @@
 
                                             <?php } else {
                                             if (empty($get_validate[0]->waktu_pulang)) { ?>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasuk" disabled>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasukpamdal" disabled>
                                                     Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                                 </button>
                                                 <?php if (date("H:i:s") < "12:00:00") { ?>
@@ -82,21 +98,15 @@
                                         <?php }
                                         }
                                     } else { ?>
-                                        <?php if (date("H:i:s") < "12:00:00") {
-                                            if (!empty($get_pamdal[0]->penugasan) && $get_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam') { ?>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasukpamdal">
-                                                    Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
-                                                </button>
-                                            <?php } else { ?>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasuk">
-                                                    Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
-                                                </button>
-                                            <?php } ?>
+                                        <?php if (date("H:i:s") < "12:00:00") { ?>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasukpamdal">
+                                                Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                                            </button>
                                             <button type="button" class="btn btn-danger" disabled>
                                                 Absen Pulang <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                                             </button>
                                         <?php } else { ?>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasuk" disabled>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasukpamdal" disabled>
                                                 Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                             </button>
                                             <button type="button" class="btn btn-danger" disabled>
@@ -109,13 +119,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row no-gutters">
+                <!-- <div class="row no-gutters">
                     <div class="col-md-12">
                         <div class="card-body">
                             <div id="map"></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -127,14 +137,16 @@
                             <thead>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Username</th>
+                                    <th>Nama Pegawai</th>
                                     <th>Tanggal Masuk</th>
                                     <th>Jam Masuk</th>
+                                    <th>Lokasi Masuk</th>
                                     <th>Tanggal Pulang</th>
                                     <th>Jam Pulang</th>
+                                    <th>Lokasi Pulang</th>
                                     <th>Via</th>
                                     <th>Kondisi</th>
-                                    <th>Status</th>
+                                    <!-- <th>Status</th> -->
                                     <th>Aktivitas</th>
                                     <th>Keterangan</th>
                                 </tr>
@@ -153,8 +165,10 @@
                                     <th>NO</th>
                                     <th>Tanggal Masuk</th>
                                     <th>Jam Masuk</th>
+                                    <th>Lokasi Masuk</th>
                                     <th>Tanggal Pulang</th>
                                     <th>Jam Pulang</th>
+                                    <th>Lokasi Pulang</th>
                                     <th>Via</th>
                                     <th>Kondisi</th>
                                     <th>Status</th>
@@ -212,6 +226,13 @@
                                     <option value="24 Jam">24 Jam</option>
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label for="">Lokasi (*)</label>
+                                <div class="card-body">
+                                    <div id="map1" style='height:360px;'></div>
+                                </div>
+                            </div>
                             <!-- <div class="form-group">
                         <label for="">Keterangan</label>
                         <textarea type="text" name="keterangan" id="keterangan" class="form-control"></textarea>
@@ -263,6 +284,14 @@
                                     <option value="Sakit">Sakit</option>
                                 </select>
                             </div>
+
+                            <div class="form-group">
+                                <label for="">Lokasi (*)</label>
+                                <div class="card-body">
+                                    <div id="map" style='height:360px;'></div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <input type="hidden" name="latitude_x" id="latitude_x" class="form-control" readonly>
                                 <input type="hidden" name="longitude_x" id="longitude_x" class="form-control" readonly>
@@ -300,6 +329,13 @@
                                 <label for="">Aktivitas (*)</label>
                                 <textarea type="text" name="keterangan" id="keterangan" class="form-control" required></textarea>
                             </div>
+
+                            <div class="form-group">
+                                <label for="">Lokasi (*)</label>
+                                <div class="card-body">
+                                    <div id="map2" style='height:360px;'></div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -318,49 +354,99 @@
 
 <!-- Maps -->
 <script>
-    var map = L.map('map').fitWorld();
+    $(document).on('show.bs.modal', function() {
+        setTimeout(function() {
+            var map = L.map('map').fitWorld();
+            var map1 = L.map('map1').fitWorld();
+            var map2 = L.map('map2').fitWorld();
+            map.invalidateSize();
+            map1.invalidateSize();
+            map2.invalidateSize();
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1
-    }).addTo(map);
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1
+            }).addTo(map);
 
-    function onLocationFound(e) {
-        var radius = e.accuracy / 2;
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1
+            }).addTo(map1);
 
-        L.marker(e.latlng).addTo(map)
-            .bindPopup("Anda berada di dalam " + radius + " meter dari poin ini").openPopup();
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1
+            }).addTo(map2);
 
-        L.circle(e.latlng, radius).addTo(map);
+            function onLocationFound(e) {
+                var radius = e.accuracy / 2;
 
-        document.getElementById('latitude_x').value = e.latitude;
-        document.getElementById('longitude_x').value = e.longitude;
+                L.marker(e.latlng).addTo(map)
+                    .bindPopup("Anda berada di dalam " + radius + " meter dari poin ini").openPopup();
+                L.marker(e.latlng).addTo(map1)
+                    .bindPopup("Anda berada di dalam " + radius + " meter dari poin ini").openPopup();
+                L.marker(e.latlng).addTo(map2)
+                    .bindPopup("Anda berada di dalam " + radius + " meter dari poin ini").openPopup();
 
-        var timestamp = e.timestamp;
-        var date = new Date(timestamp);
-        var hours = date.getHours();
-        var minutes = "0" + date.getMinutes();
-        var seconds = "0" + date.getSeconds();
-        var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-        document.getElementById('waktu2').value = formattedTime;
-        document.getElementById('waktu').value = formattedTime;
-        document.getElementById('waktu_pulang1').value = formattedTime;
-    }
+                L.circle(e.latlng, radius).addTo(map);
+                L.circle(e.latlng, radius).addTo(map1);
+                L.circle(e.latlng, radius).addTo(map2);
 
-    function onLocationError(e) {
-        alert(e.message);
-    }
+                document.getElementById('latitude_x').value = e.latitude;
+                document.getElementById('longitude_x').value = e.longitude;
 
-    map.on('locationfound', onLocationFound);
-    map.on('locationerror', onLocationError);
+                var timestamp = e.timestamp;
+                var date = new Date(timestamp);
+                var hours = date.getHours();
+                var minutes = "0" + date.getMinutes();
+                var seconds = "0" + date.getSeconds();
+                var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+                document.getElementById('waktu2').value = formattedTime;
+                document.getElementById('waktu').value = formattedTime;
+                document.getElementById('waktu_pulang1').value = formattedTime;
 
-    map.locate({
-        setView: true,
-        maxZoom: 16
+                map.setView(new L.LatLng(e.latitude, e.longitude), 16);
+                map1.setView(new L.LatLng(e.latitude, e.longitude), 16);
+                map2.setView(new L.LatLng(e.latitude, e.longitude), 16);
+            }
+
+            function onLocationError(e) {
+                alert(e.message);
+            }
+
+            map.on('locationfound', onLocationFound);
+            map.on('locationerror', onLocationError);
+            map1.on('locationfound', onLocationFound);
+            map1.on('locationerror', onLocationError);
+            map2.on('locationfound', onLocationFound);
+            map2.on('locationerror', onLocationError);
+
+            map.locate({
+                setView: true,
+                maxZoom: 16
+            });
+            map1.locate({
+                setView: true,
+                maxZoom: 16
+            });
+            map2.locate({
+                setView: true,
+                maxZoom: 16
+            });
+
+        }, 1000);
     });
 </script>
 <!-- // Maps -->
@@ -616,19 +702,85 @@
                                     }
                                 },
                                 {
-                                    "data": "username"
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.username}` == 'null' || `${row.nama_pegawai}` == 'null') {
+                                            if (`${row.username}` == 'null') {
+                                                var a = `${row.nama_pegawai}`;
+                                            } else if (`${row.nama_pegawai}` == 'null') {
+                                                var a = `${row.username}`;
+                                            }
+                                        } else {
+                                            var a = `(${row.username}) <br>${row.nama_pegawai}`;
+                                        }
+                                        return a;
+                                    }
                                 },
                                 {
                                     "data": "tgl"
                                 },
                                 {
-                                    "data": "waktu"
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.waktu}` == 'null') {
+                                            var a = `-`;
+                                        } else {
+                                            var a = `${row.waktu} <br>(${row.status_masuk})`;
+                                        }
+                                        return a;
+                                    }
                                 },
                                 {
-                                    "data": "tgl_pulang"
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.latitude_masuk}` == 'null' || `${row.longitude_masuk}` == 'null') {
+                                            var a = `Lokasi Belum Tersedia`;
+                                        } else {
+                                            // var a = `<a href="https://www.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}" target="_blank">Cek Lokasi</a>`;
+                                            var a = `<div class="mapouter">
+                                                <div class="gmap_canvas">
+                                                    <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                                    <a href="https://123movies-a.com"></a><br>
+                                                    <a href="https://www.embedgooglemap.net">google maps widget html</a>
+                                                </div>
+                                            </div>`;
+                                        }
+                                        return a;
+                                    }
                                 },
                                 {
-                                    "data": "waktu_pulang"
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.tgl_pulang}` == 'null') {
+                                            var a = `-`;
+                                        } else {
+                                            var a = `${row.tgl_pulang}`;
+                                        }
+                                        return a;
+                                    }
+                                },
+                                {
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.waktu_pulang}` == 'null') {
+                                            var a = `-`;
+                                        } else {
+                                            var a = `${row.waktu_pulang} <br>(${row.status_pulang})`;
+                                        }
+                                        return a;
+                                    }
+                                },
+                                {
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.latitude_pulang}` == 'null' || `${row.longitude_pulang}` == 'null') {
+                                            var a = `Lokasi Belum Tersedia`;
+                                        } else {
+                                            // var a = `<a href="https://www.google.com/maps?q=${row.latitude_pulang},${row.longitude_pulang}" target="_blank">Cek Lokasi</a>`;
+                                            var a = `<div class="mapouter">
+                                                <div class="gmap_canvas">
+                                                    <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_pulang},${row.longitude_pulang}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                                    <a href="https://123movies-a.com"></a><br>
+                                                    <a href="https://www.embedgooglemap.net">google maps widget html</a>
+                                                </div>
+                                            </div>`;
+                                        }
+                                        return a;
+                                    }
                                 },
                                 {
                                     "data": "via"
@@ -637,10 +789,14 @@
                                     "data": "kondisi"
                                 },
                                 {
-                                    "data": "status_pulang"
-                                },
-                                {
-                                    "data": "keterangan"
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.keterangan}` == 'null') {
+                                            var a = `-`;
+                                        } else {
+                                            var a = `${row.keterangan}`;
+                                        }
+                                        return a;
+                                    }
                                 },
                                 {
                                     "render": function(data, type, row, meta) {
@@ -692,10 +848,44 @@
                                         "data": "waktu"
                                     },
                                     {
-                                        "data": "tgl_pulang"
+                                        "render": function(data, type, row, meta) {
+                                            if (`${row.latitude_masuk}` == 'null' || `${row.longitude_masuk}` == 'null') {
+                                                var a = `Lokasi Belum Tersedia`;
+                                            } else {
+                                                var a = `<a href="https://www.latlong.net/c/?lat=${row.latitude_masuk}&long=${row.longitude_masuk}" target="_blank">Cek Lokasi</a>`;
+                                            }
+                                            return a;
+                                        }
                                     },
                                     {
-                                        "data": "waktu_pulang"
+                                        "render": function(data, type, row, meta) {
+                                            if (`${row.tgl_pulang}` == 'null') {
+                                                var a = `-`;
+                                            } else {
+                                                var a = `${row.tgl_pulang}`;
+                                            }
+                                            return a;
+                                        }
+                                    },
+                                    {
+                                        "render": function(data, type, row, meta) {
+                                            if (`${row.waktu_pulang}` == 'null') {
+                                                var a = `-`;
+                                            } else {
+                                                var a = `${row.waktu_pulang}`;
+                                            }
+                                            return a;
+                                        }
+                                    },
+                                    {
+                                        "render": function(data, type, row, meta) {
+                                            if (`${row.latitude_pulang}` == 'null' || `${row.longitude_pulang}` == 'null') {
+                                                var a = `Lokasi Belum Tersedia`;
+                                            } else {
+                                                var a = `<a href="https://www.latlong.net/c/?lat=${row.latitude_pulang}&long=${row.longitude_pulang}" target="_blank">Cek Lokasi</a>`;
+                                            }
+                                            return a;
+                                        }
                                     },
                                     {
                                         "data": "via"
@@ -707,7 +897,14 @@
                                         "data": "status_pulang"
                                     },
                                     {
-                                        "data": "keterangan"
+                                        "render": function(data, type, row, meta) {
+                                            if (`${row.keterangan}` == 'null') {
+                                                var a = `-`;
+                                            } else {
+                                                var a = `${row.keterangan}`;
+                                            }
+                                            return a;
+                                        }
                                     },
                                     {
                                         "render": function(data, type, row, meta) {
