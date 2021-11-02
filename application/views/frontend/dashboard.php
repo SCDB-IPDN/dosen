@@ -1130,18 +1130,19 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
             </div>
         </div>
 
-        <div class="container">
-            <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardpresensiatas"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Kehadiran Tanggal <?= date('d-M-Y'); ?></a>
-                </div>
-                <div id="cardpresensiatas" class="card-body">
+        <?php if ($this->session->userdata('role') == 1) { ?>
+            <div class="container">
+                <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
+                    <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardpresensiatas"><i class="fa fa-expand"></i> Rekapitulasi Data Presensi Kehadiran Tanggal <?= date('d-M-Y'); ?></a>
+                    </div>
+                    <div id="cardpresensiatas" class="card-body">
 
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#7952B3;">
-                                <div class="inner">
-                                    <!-- <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total"> -->
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#7952B3;">
+                                    <div class="inner">
+                                        <!-- <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total"> -->
                                         <h3 class="text-light">
                                             <?php
                                             $data_countx1 = 0;
@@ -1188,413 +1189,414 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                             echo $total_presensi;
                                             ?>
                                         </h3>
-                                    <!-- </button> -->
-                                    <p class="text-light"> TOTAL </p>
+                                        <!-- </button> -->
+                                        <p class="text-light"> TOTAL </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#7952B3;">
-                                <div class="inner">
-                                    <!-- <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_masuk"> -->
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#7952B3;">
+                                    <div class="inner">
+                                        <!-- <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_masuk"> -->
                                         <h3 class="text-light">
                                             <?php
-                                                $data_countx2 = 0;
-                                                $data_countx5 = 0;
-                                                $data_countx8 = 0;
-                                                $data_countx11 = 0;
-                                                if ($count_get_absen_perkampus_dosen_masuk != false && !empty($count_get_absen_perkampus_dosen_masuk)) {
-                                                    foreach ($count_get_absen_perkampus_dosen_masuk as $datax) {
-                                                        $data_countx2 += $datax->total;
-                                                    }
-                                                    $data_countx2 = $data_countx2;
-                                                } else {
-                                                    $data_countx2 = 0;
-                                                }
-
-                                                if ($count_get_absen_perkampus_pns_masuk != false && !empty($count_get_absen_perkampus_pns_masuk)) {
-                                                    foreach ($count_get_absen_perkampus_pns_masuk as $datax) {
-                                                        $data_countx5 += $datax->total;
-                                                    }
-                                                    $data_countx5 = $data_countx5;
-                                                } else {
-                                                    $data_countx5 = 0;
-                                                }
-
-                                                if ($count_get_absen_perkampus_thl_masuk != false && !empty($count_get_absen_perkampus_thl_masuk)) {
-                                                    foreach ($count_get_absen_perkampus_thl_masuk as $datax) {
-                                                        $data_countx8 += $datax->total;
-                                                    }
-                                                    $data_countx8 = $data_countx8;
-                                                } else {
-                                                    $data_countx8 = 0;
-                                                }
-
-                                                if ($count_get_absen_perkampus_ta_masuk != false && !empty($count_get_absen_perkampus_ta_masuk)) {
-                                                    foreach ($count_get_absen_perkampus_ta_masuk as $datax) {
-                                                        $data_countx11 += $datax->total;
-                                                    }
-                                                    $data_countx11 = $data_countx11;
-                                                } else {
-                                                    $data_countx11 = 0;
-                                                }
-
-                                                $total_presensi_masuk = $data_countx2 + $data_countx5 + $data_countx8 + $data_countx11;
-                                                echo $total_presensi_masuk;
-                                            ?>
-                                        </h3>
-                                    <!-- </button> -->
-                                    <p class="text-light"> PRESENSI MASUK </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#7952B3;">
-                                <div class="inner">
-                                    <!-- <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_pulang"> -->
-                                        <h3 class="text-light">
-                                            <?php
-                                                $data_countx3 = 0;
-                                                $data_countx6 = 0;
-                                                $data_countx9 = 0;
-                                                $data_countx12 = 0;
-                                                if ($count_get_absen_perkampus_dosen_pulang != false && !empty($count_get_absen_perkampus_dosen_pulang)) {
-                                                    foreach ($count_get_absen_perkampus_dosen_pulang as $datax) {
-                                                        $data_countx3 += $datax->total;
-                                                    }
-                                                    $data_countx3 = $data_countx3;
-                                                } else {
-                                                    $data_countx3 = 0;
-                                                }
-
-                                                if ($count_get_absen_perkampus_pns_pulang != false && !empty($count_get_absen_perkampus_pns_pulang)) {
-                                                    foreach ($count_get_absen_perkampus_pns_pulang as $datax) {
-                                                        $data_countx6 += $datax->total;
-                                                    }
-                                                    $data_countx6 = $data_countx6;
-                                                } else {
-                                                    $data_countx6 = 0;
-                                                }
-
-                                                if ($count_get_absen_perkampus_thl_pulang != false && !empty($count_get_absen_perkampus_thl_pulang)) {
-                                                    foreach ($count_get_absen_perkampus_thl_pulang as $datax) {
-                                                        $data_countx9 += $datax->total;
-                                                    }
-                                                    $data_countx9 = $data_countx9;
-                                                } else {
-                                                    $data_countx9 = 0;
-                                                }
-
-                                                if ($count_get_absen_perkampus_ta_pulang != false && !empty($count_get_absen_perkampus_ta_pulang)) {
-                                                    foreach ($count_get_absen_perkampus_ta_pulang as $datax) {
-                                                        $data_countx12 += $datax->total;
-                                                    }
-                                                    $data_countx12 = $data_countx12;
-                                                } else {
-                                                    $data_countx12 = 0;
-                                                }
-
-                                                $total_presensi_pulang = $data_countx3 + $data_countx6 + $data_countx9 + $data_countx12;
-                                                echo $total_presensi_pulang;
-                                            ?>
-                                        </h3>
-                                    <!-- </button> -->
-                                    <p class="text-light"> PRESENSI PULANG </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#346751;" data-toggle="modal" data-target="#presensi_total_dosen">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count1 = 0;
-                                            if ($count_get_absen_perkampus_dosen != false && !empty($count_get_absen_perkampus_dosen)) {
-                                                foreach ($count_get_absen_perkampus_dosen as $datax) {
-                                                    $data_count1 += $datax->total; ?>
-                                            <?php }
-                                                echo $data_count1;
-                                            } else {
-                                                echo 0;
-                                            }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> DOSEN </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#346751;" data-toggle="modal" data-target="#presensi_total_dosen_masuk">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count2 = 0;
+                                            $data_countx2 = 0;
+                                            $data_countx5 = 0;
+                                            $data_countx8 = 0;
+                                            $data_countx11 = 0;
                                             if ($count_get_absen_perkampus_dosen_masuk != false && !empty($count_get_absen_perkampus_dosen_masuk)) {
                                                 foreach ($count_get_absen_perkampus_dosen_masuk as $datax) {
-                                                    $data_count2 += $datax->total; ?>
-                                            <?php }
-                                                echo $data_count2;
+                                                    $data_countx2 += $datax->total;
+                                                }
+                                                $data_countx2 = $data_countx2;
                                             } else {
-                                                echo 0;
+                                                $data_countx2 = 0;
                                             }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> PRESENSI MASUK </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#346751;" data-toggle="modal" data-target="#presensi_total_dosen_pulang">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count3 = 0;
-                                            if ($count_get_absen_perkampus_dosen_pulang != false && !empty($count_get_absen_perkampus_dosen_pulang)) {
-                                                foreach ($count_get_absen_perkampus_dosen_pulang as $datax) {
-                                                    $data_count3 += $datax->total; ?>
-                                            <?php }
-                                                echo $data_count3;
-                                            } else {
-                                                echo 0;
-                                            }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> PRESENSI PULANG </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#C84B31;" data-toggle="modal" data-target="#presensi_total_pns">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count4 = 0;
-                                            if ($count_get_absen_perkampus_pns != false && !empty($count_get_absen_perkampus_pns)) {
-                                                foreach ($count_get_absen_perkampus_pns as $datax) {
-                                                    $data_count4 += $datax->total; ?>
-                                            <?php }
-                                                echo $data_count4;
-                                            } else {
-                                                echo 0;
-                                            }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> PNS </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#C84B31;" data-toggle="modal" data-target="#presensi_total_pns_masuk">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count5 = 0;
                                             if ($count_get_absen_perkampus_pns_masuk != false && !empty($count_get_absen_perkampus_pns_masuk)) {
                                                 foreach ($count_get_absen_perkampus_pns_masuk as $datax) {
-                                                    $data_count5 += $datax->total; ?>
-                                            <?php }
-                                                echo $data_count5;
+                                                    $data_countx5 += $datax->total;
+                                                }
+                                                $data_countx5 = $data_countx5;
                                             } else {
-                                                echo 0;
+                                                $data_countx5 = 0;
                                             }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> PRESENSI MASUK </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#C84B31;" data-toggle="modal" data-target="#presensi_total_pns_pulang">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count6 = 0;
-                                            if ($count_get_absen_perkampus_pns_pulang != false && !empty($count_get_absen_perkampus_pns_pulang)) {
-                                                foreach ($count_get_absen_perkampus_pns_pulang as $datax) {
-                                                    $data_count6 += $datax->total; ?>
-                                            <?php }
-                                                echo $data_count6;
-                                            } else {
-                                                echo 0;
-                                            }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> PRESENSI PULANG </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#AF0069;" data-toggle="modal" data-target="#presensi_total_thl">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count7 = 0;
-                                            if ($count_get_absen_perkampus_thl != false && !empty($count_get_absen_perkampus_thl)) {
-                                                foreach ($count_get_absen_perkampus_thl as $datax) {
-                                                    $data_count7 += $datax->total; ?>
-                                            <?php }
-                                                echo $data_count7;
-                                            } else {
-                                                echo 0;
-                                            }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> THL </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#AF0069;" data-toggle="modal" data-target="#presensi_total_thl_masuk">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count8 = 0;
                                             if ($count_get_absen_perkampus_thl_masuk != false && !empty($count_get_absen_perkampus_thl_masuk)) {
                                                 foreach ($count_get_absen_perkampus_thl_masuk as $datax) {
-                                                    $data_count8 += $datax->total; ?>
-                                            <?php }
-                                                echo $data_count8;
-                                            } else {
-                                                echo 0;
-                                            }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> PRESENSI MASUK </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#AF0069;" data-toggle="modal" data-target="#presensi_total_thl_pulang">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count9 = 0;
-                                            if ($count_get_absen_perkampus_thl_pulang != false && !empty($count_get_absen_perkampus_thl_pulang)) {
-                                                foreach ($count_get_absen_perkampus_thl_pulang as $datax) {
-                                                    $data_count9 += $datax->total; ?>
-                                            <?php }
-                                                echo $data_count9;
-                                            } else {
-                                                echo 0;
-                                            }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> PRESENSI PULANG </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#035397;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#035397;" data-toggle="modal" data-target="#presensi_total_ta">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count10 = 0;
-                                            if ($count_get_absen_perkampus_ta != false && !empty($count_get_absen_perkampus_ta)) {
-                                                foreach ($count_get_absen_perkampus_ta as $datax) {
-                                                    $data_count10 += $datax->total;
+                                                    $data_countx8 += $datax->total;
                                                 }
-                                                echo $data_count10;
+                                                $data_countx8 = $data_countx8;
                                             } else {
-                                                echo 0;
+                                                $data_countx8 = 0;
                                             }
-                                            ?>
-                                        </h3>
-                                    </button>
-                                    <p class="text-light"> TA </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#035397;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#035397;" data-toggle="modal" data-target="#presensi_total_ta_masuk">
-                                        <h3 class="text-light">
-                                            <?php
-                                            $data_count11 = 0;
+
                                             if ($count_get_absen_perkampus_ta_masuk != false && !empty($count_get_absen_perkampus_ta_masuk)) {
                                                 foreach ($count_get_absen_perkampus_ta_masuk as $datax) {
-                                                    $data_count11 += $datax->total;
+                                                    $data_countx11 += $datax->total;
                                                 }
-                                                echo $data_count11;
+                                                $data_countx11 = $data_countx11;
                                             } else {
-                                                echo 0;
+                                                $data_countx11 = 0;
                                             }
-                                            // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
-                                            //     echo 4;
-                                            // } else {
-                                            //     echo 0;
-                                            // }
+
+                                            $total_presensi_masuk = $data_countx2 + $data_countx5 + $data_countx8 + $data_countx11;
+                                            echo $total_presensi_masuk;
                                             ?>
                                         </h3>
-                                    </button>
-                                    <p class="text-light"> PRESENSI MASUK </p>
+                                        <!-- </button> -->
+                                        <p class="text-light"> PRESENSI MASUK </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="card-box" style="background-color:#035397;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#035397;" data-toggle="modal" data-target="#presensi_total_ta_pulang">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#7952B3;">
+                                    <div class="inner">
+                                        <!-- <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#presensi_total_pulang"> -->
                                         <h3 class="text-light">
                                             <?php
-                                            $data_count12 = 0;
+                                            $data_countx3 = 0;
+                                            $data_countx6 = 0;
+                                            $data_countx9 = 0;
+                                            $data_countx12 = 0;
+                                            if ($count_get_absen_perkampus_dosen_pulang != false && !empty($count_get_absen_perkampus_dosen_pulang)) {
+                                                foreach ($count_get_absen_perkampus_dosen_pulang as $datax) {
+                                                    $data_countx3 += $datax->total;
+                                                }
+                                                $data_countx3 = $data_countx3;
+                                            } else {
+                                                $data_countx3 = 0;
+                                            }
+
+                                            if ($count_get_absen_perkampus_pns_pulang != false && !empty($count_get_absen_perkampus_pns_pulang)) {
+                                                foreach ($count_get_absen_perkampus_pns_pulang as $datax) {
+                                                    $data_countx6 += $datax->total;
+                                                }
+                                                $data_countx6 = $data_countx6;
+                                            } else {
+                                                $data_countx6 = 0;
+                                            }
+
+                                            if ($count_get_absen_perkampus_thl_pulang != false && !empty($count_get_absen_perkampus_thl_pulang)) {
+                                                foreach ($count_get_absen_perkampus_thl_pulang as $datax) {
+                                                    $data_countx9 += $datax->total;
+                                                }
+                                                $data_countx9 = $data_countx9;
+                                            } else {
+                                                $data_countx9 = 0;
+                                            }
+
                                             if ($count_get_absen_perkampus_ta_pulang != false && !empty($count_get_absen_perkampus_ta_pulang)) {
                                                 foreach ($count_get_absen_perkampus_ta_pulang as $datax) {
-                                                    $data_count12 += $datax->total;
+                                                    $data_countx12 += $datax->total;
                                                 }
-                                                echo $data_count12;
+                                                $data_countx12 = $data_countx12;
                                             } else {
-                                                echo 0;
+                                                $data_countx12 = 0;
                                             }
-                                            
-                                            // if (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
-                                            //     echo 4;
-                                            // } else {
-                                            //     echo 0;
-                                            // }
+
+                                            $total_presensi_pulang = $data_countx3 + $data_countx6 + $data_countx9 + $data_countx12;
+                                            echo $total_presensi_pulang;
                                             ?>
                                         </h3>
-                                    </button>
-                                    <p class="text-light"> PRESENSI PULANG </p>
+                                        <!-- </button> -->
+                                        <p class="text-light"> PRESENSI PULANG </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#346751;" data-toggle="modal" data-target="#presensi_total_dosen">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count1 = 0;
+                                                if ($count_get_absen_perkampus_dosen != false && !empty($count_get_absen_perkampus_dosen)) {
+                                                    foreach ($count_get_absen_perkampus_dosen as $datax) {
+                                                        $data_count1 += $datax->total; ?>
+                                                <?php }
+                                                    echo $data_count1;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> DOSEN </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#346751;" data-toggle="modal" data-target="#presensi_total_dosen_masuk">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count2 = 0;
+                                                if ($count_get_absen_perkampus_dosen_masuk != false && !empty($count_get_absen_perkampus_dosen_masuk)) {
+                                                    foreach ($count_get_absen_perkampus_dosen_masuk as $datax) {
+                                                        $data_count2 += $datax->total; ?>
+                                                <?php }
+                                                    echo $data_count2;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> PRESENSI MASUK </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#346751;" data-toggle="modal" data-target="#presensi_total_dosen_pulang">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count3 = 0;
+                                                if ($count_get_absen_perkampus_dosen_pulang != false && !empty($count_get_absen_perkampus_dosen_pulang)) {
+                                                    foreach ($count_get_absen_perkampus_dosen_pulang as $datax) {
+                                                        $data_count3 += $datax->total; ?>
+                                                <?php }
+                                                    echo $data_count3;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> PRESENSI PULANG </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#C84B31;" data-toggle="modal" data-target="#presensi_total_pns">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count4 = 0;
+                                                if ($count_get_absen_perkampus_pns != false && !empty($count_get_absen_perkampus_pns)) {
+                                                    foreach ($count_get_absen_perkampus_pns as $datax) {
+                                                        $data_count4 += $datax->total; ?>
+                                                <?php }
+                                                    echo $data_count4;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> PNS </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#C84B31;" data-toggle="modal" data-target="#presensi_total_pns_masuk">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count5 = 0;
+                                                if ($count_get_absen_perkampus_pns_masuk != false && !empty($count_get_absen_perkampus_pns_masuk)) {
+                                                    foreach ($count_get_absen_perkampus_pns_masuk as $datax) {
+                                                        $data_count5 += $datax->total; ?>
+                                                <?php }
+                                                    echo $data_count5;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> PRESENSI MASUK </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#C84B31;" data-toggle="modal" data-target="#presensi_total_pns_pulang">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count6 = 0;
+                                                if ($count_get_absen_perkampus_pns_pulang != false && !empty($count_get_absen_perkampus_pns_pulang)) {
+                                                    foreach ($count_get_absen_perkampus_pns_pulang as $datax) {
+                                                        $data_count6 += $datax->total; ?>
+                                                <?php }
+                                                    echo $data_count6;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> PRESENSI PULANG </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#AF0069;" data-toggle="modal" data-target="#presensi_total_thl">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count7 = 0;
+                                                if ($count_get_absen_perkampus_thl != false && !empty($count_get_absen_perkampus_thl)) {
+                                                    foreach ($count_get_absen_perkampus_thl as $datax) {
+                                                        $data_count7 += $datax->total; ?>
+                                                <?php }
+                                                    echo $data_count7;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> THL </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#AF0069;" data-toggle="modal" data-target="#presensi_total_thl_masuk">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count8 = 0;
+                                                if ($count_get_absen_perkampus_thl_masuk != false && !empty($count_get_absen_perkampus_thl_masuk)) {
+                                                    foreach ($count_get_absen_perkampus_thl_masuk as $datax) {
+                                                        $data_count8 += $datax->total; ?>
+                                                <?php }
+                                                    echo $data_count8;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> PRESENSI MASUK </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#AF0069;" data-toggle="modal" data-target="#presensi_total_thl_pulang">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count9 = 0;
+                                                if ($count_get_absen_perkampus_thl_pulang != false && !empty($count_get_absen_perkampus_thl_pulang)) {
+                                                    foreach ($count_get_absen_perkampus_thl_pulang as $datax) {
+                                                        $data_count9 += $datax->total; ?>
+                                                <?php }
+                                                    echo $data_count9;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> PRESENSI PULANG </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#035397;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#035397;" data-toggle="modal" data-target="#presensi_total_ta">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count10 = 0;
+                                                if ($count_get_absen_perkampus_ta != false && !empty($count_get_absen_perkampus_ta)) {
+                                                    foreach ($count_get_absen_perkampus_ta as $datax) {
+                                                        $data_count10 += $datax->total;
+                                                    }
+                                                    echo $data_count10;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> TA </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#035397;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#035397;" data-toggle="modal" data-target="#presensi_total_ta_masuk">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count11 = 0;
+                                                if ($count_get_absen_perkampus_ta_masuk != false && !empty($count_get_absen_perkampus_ta_masuk)) {
+                                                    foreach ($count_get_absen_perkampus_ta_masuk as $datax) {
+                                                        $data_count11 += $datax->total;
+                                                    }
+                                                    echo $data_count11;
+                                                } else {
+                                                    echo 0;
+                                                }
+                                                // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
+                                                //     echo 4;
+                                                // } else {
+                                                //     echo 0;
+                                                // }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> PRESENSI MASUK </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card-box" style="background-color:#035397;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#035397;" data-toggle="modal" data-target="#presensi_total_ta_pulang">
+                                            <h3 class="text-light">
+                                                <?php
+                                                $data_count12 = 0;
+                                                if ($count_get_absen_perkampus_ta_pulang != false && !empty($count_get_absen_perkampus_ta_pulang)) {
+                                                    foreach ($count_get_absen_perkampus_ta_pulang as $datax) {
+                                                        $data_count12 += $datax->total;
+                                                    }
+                                                    echo $data_count12;
+                                                } else {
+                                                    echo 0;
+                                                }
+
+                                                // if (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
+                                                //     echo 4;
+                                                // } else {
+                                                //     echo 0;
+                                                // }
+                                                ?>
+                                            </h3>
+                                        </button>
+                                        <p class="text-light"> PRESENSI PULANG </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php } ?>
 
         <!-- MODAL PRESENSI TOTAL DOSEN -->
         <div class="container">
@@ -2020,21 +2022,21 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                         <div class="table-responsive mx-2">
                                             <table class="table table-hover table-xl">
                                                 <thead>
-                                                    <?php 
-                                                        if ($count_get_absen_perkampus_ta != false && !empty($count_get_absen_perkampus_ta)) {
-                                                            foreach ($count_get_absen_perkampus_ta as $dataxxx) {
-                                                                echo "
+                                                    <?php
+                                                    if ($count_get_absen_perkampus_ta != false && !empty($count_get_absen_perkampus_ta)) {
+                                                        foreach ($count_get_absen_perkampus_ta as $dataxxx) {
+                                                            echo "
                                                                     <tr>
                                                                         <th>$dataxxx->penugasan</th>
                                                                         <th>$dataxxx->total Pegawai</th>
                                                                     </tr>";
-                                                            }
-                                                        } else {
-                                                            echo "
+                                                        }
+                                                    } else {
+                                                        echo "
                                                                 <tr>
                                                                     <th>Tidak Ada Presensi Pulang THL</th>
                                                                 </tr>";
-                                                        }
+                                                    }
                                                     ?>
                                                 </thead>
                                             </table>
@@ -2067,33 +2069,33 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                         <div class="table-responsive mx-2">
                                             <table class="table table-hover table-xl">
                                                 <thead>
-                                                    <?php 
-                                                        if ($count_get_absen_perkampus_ta_masuk != false && !empty($count_get_absen_perkampus_ta_masuk)) {
-                                                            foreach ($count_get_absen_perkampus_ta_masuk as $dataxxx) {
-                                                                echo "
+                                                    <?php
+                                                    if ($count_get_absen_perkampus_ta_masuk != false && !empty($count_get_absen_perkampus_ta_masuk)) {
+                                                        foreach ($count_get_absen_perkampus_ta_masuk as $dataxxx) {
+                                                            echo "
                                                                     <tr>
                                                                         <th>$dataxxx->penugasan</th>
                                                                         <th>$dataxxx->total Pegawai</th>
                                                                     </tr>";
-                                                            }
-                                                        } else {
-                                                            echo "
+                                                        }
+                                                    } else {
+                                                        echo "
                                                                 <tr>
                                                                     <th>Tidak Ada Presensi Masuk TA</th>
                                                                 </tr>";
-                                                        } 
-                                                        
-                                                        // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
-                                                        //     echo "
-                                                        //         <tr>
-                                                        //             <th>Staf Ahli IT</th>
-                                                        //             <th>4 Pegawai</th>
-                                                        //         </tr>";
-                                                        // } else {
-                                                        //     echo "<tr>
-                                                        //         <th>Tidak Ada Presensi Pulang THL</th>
-                                                        //     </tr>";
-                                                        // }
+                                                    }
+
+                                                    // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
+                                                    //     echo "
+                                                    //         <tr>
+                                                    //             <th>Staf Ahli IT</th>
+                                                    //             <th>4 Pegawai</th>
+                                                    //         </tr>";
+                                                    // } else {
+                                                    //     echo "<tr>
+                                                    //         <th>Tidak Ada Presensi Pulang THL</th>
+                                                    //     </tr>";
+                                                    // }
                                                     ?>
                                                 </thead>
                                             </table>
@@ -2126,37 +2128,37 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                                         <div class="table-responsive mx-2">
                                             <table class="table table-hover table-xl">
                                                 <thead>
-                                                    <?php 
-                                                        if ($count_get_absen_perkampus_ta_pulang != false && !empty($count_get_absen_perkampus_ta_pulang)) {
-                                                            foreach ($count_get_absen_perkampus_ta_pulang as $dataxxx) {
-                                                                echo "
+                                                    <?php
+                                                    if ($count_get_absen_perkampus_ta_pulang != false && !empty($count_get_absen_perkampus_ta_pulang)) {
+                                                        foreach ($count_get_absen_perkampus_ta_pulang as $dataxxx) {
+                                                            echo "
                                                                     <tr>
                                                                         <th>$dataxxx->penugasan</th>
                                                                         <th>$dataxxx->total Pegawai</th>
                                                                     </tr>";
-                                                            }
-                                                        } else {
-                                                            echo "
+                                                        }
+                                                    } else {
+                                                        echo "
                                                                 <tr>
                                                                     <th>Tidak Ada Presensi Pulang TA</th>
                                                                 </tr>";
-                                                        }
-                                                        
-                                                        // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
-                                                        //     echo "<tr>
-                                                        //         <th>Tidak Ada Presensi Pulang TA</th>
-                                                        //     </tr>";
-                                                        // } elseif (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
-                                                        //     echo "
-                                                        //         <tr>
-                                                        //             <th>Staf Ahli IT</th>
-                                                        //             <th>4 Pegawai</th>
-                                                        //         </tr>";
-                                                        // } else {
-                                                        //     echo "<tr>
-                                                        //         <th>Tidak Ada Presensi Pulang TA</th>
-                                                        //     </tr>";
-                                                        // }
+                                                    }
+
+                                                    // if (date("H:i:s") > "08:00:00" && date("H:i:s") < "17:00:00") {
+                                                    //     echo "<tr>
+                                                    //         <th>Tidak Ada Presensi Pulang TA</th>
+                                                    //     </tr>";
+                                                    // } elseif (date("H:i:s") > "17:00:00" && date("H:i:s") < "00:00:00") {
+                                                    //     echo "
+                                                    //         <tr>
+                                                    //             <th>Staf Ahli IT</th>
+                                                    //             <th>4 Pegawai</th>
+                                                    //         </tr>";
+                                                    // } else {
+                                                    //     echo "<tr>
+                                                    //         <th>Tidak Ada Presensi Pulang TA</th>
+                                                    //     </tr>";
+                                                    // }
                                                     ?>
                                                 </thead>
                                             </table>
