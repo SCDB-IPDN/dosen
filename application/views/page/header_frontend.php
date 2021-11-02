@@ -110,7 +110,15 @@
                                         </a>
                                     <?php } ?>
 
-                                    <hr>
+                                    <?php if ($this->session->userdata('role') == 1) { ?>
+                                        <a class="dropdown-item" href="<?php echo base_url('absen'); ?>">
+                                            <i class="fa fa-book" aria-hidden="true"></i>
+                                            Report
+                                        </a>
+                                        <hr>
+                                    <?php } else { ?>
+                                        <hr>
+                                    <?php } ?>
                                     <a class="dropdown-item" href="<?php echo base_url('profile/' . base64_encode($this->session->userdata('username'))); ?>">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         Profile
