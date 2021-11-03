@@ -188,7 +188,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="absenmasukpamdallabel">Absen Masuk</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="tutup">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -243,7 +243,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="tutup">Tutup</button>
                         <button type="button" class="btn btn-primary" id="add2">Simpan</button>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="absenmasuklabel">Absen Masuk</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="tutup">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -305,7 +305,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="tutup">Tutup</button>
                         <button type="button" class="btn btn-primary" id="add">Simpan</button>
                     </div>
                 </div>
@@ -318,18 +318,21 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="absenpulanglabel">Absen Pulang</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="tutup">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form action="" method="post" id="form">
                             <div class="form-group">
-                                <label for="">Tanggal Pulang</label>
+                                <label for="">Tanggal</label>
                                 <input type="hidden" name="tgl1" id="tgl1" class="form-control" value="<?php echo $get_validate[0]->tgl; ?>" readonly>
                                 <input type="text" name="tgl_pulang1" id="tgl_pulang1" class="form-control" value="<?php echo date("Y-m-d") ?>" readonly>
                                 <input type="hidden" name="username1" id="username1" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
-                                <input type="hidden" name="waktu_pulang1" id="waktu_pulang1" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Waktu</label>
+                                <input type="text" name="waktu_pulang1" id="waktu_pulang1" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Aktivitas (*)</label>
@@ -345,7 +348,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="tutup">Tutup</button>
                         <button type="button" class="btn btn-primary" id="updatex">Simpan</button>
                     </div>
                 </div>
@@ -480,6 +483,11 @@
     /* -------------------------------------------------------------------------- */
     /*                               Insert Records                               */
     /* -------------------------------------------------------------------------- */
+    $(document).on("click", "#tutup", function() {
+        $("#form")[0].reset();
+        setInterval('location.reload()', 1000);
+    });
+
     $(document).on("click", "#add", function(e) {
         e.preventDefault();
         document.getElementById("add").disabled = true;
