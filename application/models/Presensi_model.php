@@ -377,6 +377,31 @@ class Presensi_model extends CI_Model
         }
     }
 
+    public function get_absen1($username)
+    {
+        $get_data   = $this->db
+            ->select('*,
+                CASE
+                        WHEN waktu < \'09:00:00\' THEN
+                        \'Absen Tepat Waktu\'
+                        WHEN waktu < \'12:00:00\' and waktu > \'09:00:00\' THEN
+                        \'Absen Terlambat\'
+                        WHEN waktu_pulang > \'12:00:00\' and waktu_pulang < \'16:00:00\' THEN
+                        \'Pulang Sebelum Waktunya\' 
+                        WHEN waktu_pulang > \'16:00:00\' THEN
+                        \'Pulang Tepat Waktu\' ELSE \'\' 
+                    END AS status_pulang')
+            ->from('absensi')
+            ->where("username", $username)
+            ->order_by("tgl", "DESC")
+            ->get();
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
     public function get_pamdal($username)
     {
         $get_datax   = $this->db
