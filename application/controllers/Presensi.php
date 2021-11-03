@@ -247,12 +247,12 @@ class Presensi extends CI_Controller
 			if ($this->session->userdata('role') == 1) {
 				$posts = $this->presensi_model->get_absen('admin');
 			} else {
-				$posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
-				if (!empty($posts_pamdal[0]->penugasan) && ($posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Unit Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM (PAMDAL)' || $posts_pamdal[0]->penugasan == 'SUBBAGIAN PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Pramubakti Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Unit Poliklinik')) {
-					$posts = $this->presensi_model->get_absen1('pamdal');
-				} else {
+				// $posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
+				// if (!empty($posts_pamdal[0]->penugasan) && ($posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Unit Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM (PAMDAL)' || $posts_pamdal[0]->penugasan == 'SUBBAGIAN PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Pramubakti Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Unit Poliklinik')) {
+					// $posts = $this->presensi_model->get_absen1('pamdal');
+				// } else {
 					$posts = $this->presensi_model->get_absen1(base64_decode($username));
-				}
+				// }
 			}
 			$data = array('responce' => 'success', 'posts' => $posts);
 			echo json_encode($data);
