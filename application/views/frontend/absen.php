@@ -832,127 +832,124 @@
 
     <?php } else { ?>
 
-        <?php if (!empty($get_validate[0]->id_absen)) { ?>
-
-            function fetch() {
-                $.ajax({
-                    url: "<?php echo base_url('fetch_absen/' . base64_encode($this->session->userdata('username'))); ?>",
-                    type: "post",
-                    dataType: "json",
-                    success: function(data) {
-                        if (data.responce == "success") {
-                            var i = "1";
-                            $('#records').DataTable({
-                                "data": data.posts,
-                                "responsive": true,
-                                dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
-                                    "<'row'<'col-sm-12'tr>>" +
-                                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                                buttons: [
-                                    'copy', 'excel', 'pdf'
-                                ],
-                                "columns": [{
-                                        "render": function() {
-                                            return a = i++;
-                                        }
-                                    },
-                                    {
-                                        "data": "tgl"
-                                    },
-                                    {
-                                        "data": "waktu"
-                                    },
-                                    {
-                                        "render": function(data, type, row, meta) {
-                                            if (`${row.latitude_masuk}` == 'null' || `${row.longitude_masuk}` == 'null') {
-                                                var a = `Lokasi Belum Tersedia`;
-                                            } else {
-                                                // var a = `<a href="https://www.latlong.net/c/?lat=${row.latitude_masuk}&long=${row.longitude_masuk}" target="_blank">Cek Lokasi</a>`;
-                                                var a = `<div class="mapouter">
+        function fetch() {
+            $.ajax({
+                url: "<?php echo base_url('fetch_absen/' . base64_encode($this->session->userdata('username'))); ?>",
+                type: "post",
+                dataType: "json",
+                success: function(data) {
+                    if (data.responce == "success") {
+                        var i = "1";
+                        $('#records').DataTable({
+                            "data": data.posts,
+                            "responsive": true,
+                            dom: "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                                "<'row'<'col-sm-12'tr>>" +
+                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                            buttons: [
+                                'copy', 'excel', 'pdf'
+                            ],
+                            "columns": [{
+                                    "render": function() {
+                                        return a = i++;
+                                    }
+                                },
+                                {
+                                    "data": "tgl"
+                                },
+                                {
+                                    "data": "waktu"
+                                },
+                                {
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.latitude_masuk}` == 'null' || `${row.longitude_masuk}` == 'null') {
+                                            var a = `Lokasi Belum Tersedia`;
+                                        } else {
+                                            // var a = `<a href="https://www.latlong.net/c/?lat=${row.latitude_masuk}&long=${row.longitude_masuk}" target="_blank">Cek Lokasi</a>`;
+                                            var a = `<div class="mapouter">
                                                 <div class="gmap_canvas">
                                                     <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                                     <a href="https://123movies-a.com"></a><br>
                                                     <a href="https://www.embedgooglemap.net">https://maps.google.com/maps?q=${row.latitude_masuk},${row.longitude_masuk}&t=&z=15&ie=UTF8&iwloc=&output=embed</a>
                                                 </div>
                                             </div>`;
-                                            }
-                                            return a;
                                         }
-                                    },
-                                    {
-                                        "render": function(data, type, row, meta) {
-                                            if (`${row.tgl_pulang}` == 'null') {
-                                                var a = `-`;
-                                            } else {
-                                                var a = `${row.tgl_pulang}`;
-                                            }
-                                            return a;
+                                        return a;
+                                    }
+                                },
+                                {
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.tgl_pulang}` == 'null') {
+                                            var a = `-`;
+                                        } else {
+                                            var a = `${row.tgl_pulang}`;
                                         }
-                                    },
-                                    {
-                                        "render": function(data, type, row, meta) {
-                                            if (`${row.waktu_pulang}` == 'null') {
-                                                var a = `-`;
-                                            } else {
-                                                var a = `${row.waktu_pulang}`;
-                                            }
-                                            return a;
+                                        return a;
+                                    }
+                                },
+                                {
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.waktu_pulang}` == 'null') {
+                                            var a = `-`;
+                                        } else {
+                                            var a = `${row.waktu_pulang}`;
                                         }
-                                    },
-                                    {
-                                        "render": function(data, type, row, meta) {
-                                            if (`${row.latitude_pulang}` == 'null' || `${row.longitude_pulang}` == 'null') {
-                                                var a = `Lokasi Belum Tersedia`;
-                                            } else {
-                                                // var a = ` < a href = "https://www.latlong.net/c/?lat=${row.latitude_pulang}&long=${row.longitude_pulang}" target = "_blank" > Cek Lokasi < /a>`;
-                                                var a = `<div class="mapouter">
+                                        return a;
+                                    }
+                                },
+                                {
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.latitude_pulang}` == 'null' || `${row.longitude_pulang}` == 'null') {
+                                            var a = `Lokasi Belum Tersedia`;
+                                        } else {
+                                            // var a = ` < a href = "https://www.latlong.net/c/?lat=${row.latitude_pulang}&long=${row.longitude_pulang}" target = "_blank" > Cek Lokasi < /a>`;
+                                            var a = `<div class="mapouter">
                                                 <div class="gmap_canvas">
                                                     <iframe width="300" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${row.latitude_pulang},${row.longitude_pulang}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                                     <a href="https://123movies-a.com"></a><br>
                                                     <a href="https://www.embedgooglemap.net">https://maps.google.com/maps?q=${row.latitude_pulang},${row.longitude_pulang}&t=&z=15&ie=UTF8&iwloc=&output=embed</a>
                                                 </div>
                                             </div>`;
-                                            }
-                                            return a;
                                         }
-                                    },
-                                    {
-                                        "data": "via"
-                                    },
-                                    {
-                                        "data": "kondisi"
-                                    },
-                                    {
-                                        "data": "status_pulang"
-                                    },
-                                    {
-                                        "render": function(data, type, row, meta) {
-                                            if (`${row.keterangan}` == 'null') {
-                                                var a = `-`;
-                                            } else {
-                                                var breakTag = (data || typeof data === 'undefined') ? '<br />' : '<br>';
-                                                var a = (`${row.keterangan}` + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
-                                            }
-                                            return a;
-                                        }
-                                    },
-                                    {
-                                        "render": function(data, type, row, meta) {
-                                            var a = `Jam Masuk ${row.penugasan}`;
-                                            return a;
-                                        }
+                                        return a;
                                     }
-                                ]
-                            });
-                        } else {
-                            toastr["error"](data.message);
-                        }
-
+                                },
+                                {
+                                    "data": "via"
+                                },
+                                {
+                                    "data": "kondisi"
+                                },
+                                {
+                                    "data": "status_pulang"
+                                },
+                                {
+                                    "render": function(data, type, row, meta) {
+                                        if (`${row.keterangan}` == 'null') {
+                                            var a = `-`;
+                                        } else {
+                                            var breakTag = (data || typeof data === 'undefined') ? '<br />' : '<br>';
+                                            var a = (`${row.keterangan}` + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+                                        }
+                                        return a;
+                                    }
+                                },
+                                {
+                                    "render": function(data, type, row, meta) {
+                                        var a = `Jam Masuk ${row.penugasan}`;
+                                        return a;
+                                    }
+                                }
+                            ]
+                        });
+                    } else {
+                        toastr["error"](data.message);
                     }
-                });
-            }
-            fetch();
-        <?php } ?>
+
+                }
+            });
+        }
+        fetch();
 
     <?php } ?>
 </script>
