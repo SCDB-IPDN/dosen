@@ -213,22 +213,100 @@ class Presensi_model extends CI_Model
     public function get_absen($username)
     {
         if ($username == 'admin') {
-            $get_data   = $this->db
-                ->select('*,
+            $get_data = $this->db->query("SELECT
+                    absensi.*,
                 CASE
-                        WHEN waktu < \'09:00:00\' THEN
-                        \'Absen Tepat Waktu\'
-                        WHEN waktu < \'12:00:00\' and waktu > \'09:00:00\' THEN
-                        \'Absen Terlambat\'
-                        WHEN waktu_pulang > \'12:00:00\' and waktu_pulang < \'16:00:00\' THEN
-                        \'Pulang Sebelum Waktunya\' 
-                        WHEN waktu_pulang > \'16:00:00\' THEN
-                        \'Pulang Tepat Waktu\' ELSE \'\' 
-                    END AS status_pulang')
-                ->from('absensi')
-                ->where("tgl", date('Y-m-d'))
-                ->or_where("tgl_pulang", date('Y-m-d'))
-                ->get();
+                        
+                        WHEN absensi.waktu < '09:00:00' THEN
+                        'Absen Tepat Waktu' 
+                        WHEN absensi.waktu < '12:00:00' AND absensi.waktu > '09:00:00' THEN
+                        'Absen Terlambat' ELSE '' 
+                    END AS status_masuk,
+                CASE
+                        
+                        WHEN absensi.waktu_pulang > '12:00:00' 
+                        AND absensi.waktu_pulang < '16:00:00' THEN 'Pulang Sebelum Waktunya' WHEN absensi.waktu_pulang > '16:00:00' THEN
+                            'Pulang Tepat Waktu' ELSE '' 
+                            END AS status_pulang,
+                        tbl_thl.nama AS nama_pegawai 
+                    FROM
+                        absensi
+                        JOIN tbl_thl ON absensi.username = tbl_thl.username UNION
+                    SELECT
+                        absensi.*,
+                    CASE
+                            
+                            WHEN absensi.waktu < '09:00:00' THEN
+                            'Absen Tepat Waktu' 
+                            WHEN absensi.waktu < '12:00:00' AND absensi.waktu > '09:00:00' THEN
+                            'Absen Terlambat' ELSE '' 
+                        END AS status_masuk,
+                    CASE
+                            
+                            WHEN absensi.waktu_pulang > '12:00:00' 
+                            AND absensi.waktu_pulang < '16:00:00' THEN 'Pulang Sebelum Waktunya' WHEN absensi.waktu_pulang > '16:00:00' THEN
+                                'Pulang Tepat Waktu' ELSE '' 
+                                END AS status_pulang,
+                            tbl_ta.nama_lengkap AS nama_pegawai 
+                        FROM
+                            absensi
+                            JOIN tbl_ta ON absensi.username = tbl_ta.nik UNION
+                        SELECT
+                            absensi.*,
+                        CASE
+                                
+                                WHEN absensi.waktu < '09:00:00' THEN
+                                'Absen Tepat Waktu' 
+                                WHEN absensi.waktu < '12:00:00' AND absensi.waktu > '09:00:00' THEN
+                                'Absen Terlambat' ELSE '' 
+                            END AS status_masuk,
+                        CASE
+                                
+                                WHEN absensi.waktu_pulang > '12:00:00' 
+                                AND absensi.waktu_pulang < '16:00:00' THEN 'Pulang Sebelum Waktunya' WHEN absensi.waktu_pulang > '16:00:00' THEN
+                                    'Pulang Tepat Waktu' ELSE '' 
+                                    END AS status_pulang,
+                                tbl_pns.nama_lengkap AS nama_pegawai 
+                            FROM
+                                absensi
+                                JOIN tbl_pns ON absensi.username = tbl_pns.nip UNION
+                            SELECT
+                                absensi.*,
+                            CASE
+                                    
+                                    WHEN absensi.waktu < '09:00:00' THEN
+                                    'Absen Tepat Waktu' 
+                                    WHEN absensi.waktu < '12:00:00' AND absensi.waktu > '09:00:00' THEN
+                                    'Absen Terlambat' ELSE '' 
+                                END AS status_masuk,
+                            CASE
+                                    
+                                    WHEN absensi.waktu_pulang > '12:00:00' 
+                                    AND absensi.waktu_pulang < '16:00:00' THEN 'Pulang Sebelum Waktunya' WHEN absensi.waktu_pulang > '16:00:00' THEN
+                                        'Pulang Tepat Waktu' ELSE '' 
+                                        END AS status_pulang,
+                                    tbl_dosen_pddikti.nama AS nama_pegawai 
+                                FROM
+                                absensi
+                    JOIN tbl_dosen_pddikti ON absensi.username = tbl_dosen_pddikti.nip");
+            // $get_data   = $this->db
+            //     ->select('*,
+            //     CASE
+            //             WHEN waktu < \'09:00:00\' THEN
+            //             \'Absen Tepat Waktu\'
+            //             WHEN waktu < \'12:00:00\' and waktu > \'09:00:00\' THEN
+            //             \'Absen Terlambat\' ELSE \'\' 
+            //         END AS status_masuk,
+            //     CASE
+            //             WHEN waktu_pulang > \'12:00:00\' and waktu_pulang < \'16:00:00\' THEN
+            //             \'Pulang Sebelum Waktunya\' 
+            //             WHEN waktu_pulang > \'16:00:00\' THEN
+            //             \'Pulang Tepat Waktu\' ELSE \'\' 
+            //         END AS status_pulang')
+            //     ->from('absensi')
+            //     // ->where("tgl", date('Y-m-d'))
+            //     // ->or_where("tgl_pulang", date('Y-m-d'))
+            //     ->get();
         } else if ($username == 'pamdal') {
             $tgl_today = date('Y-m-d');
             $tanggal_pamdal = date('Y-m-d', strtotime('-1 days', strtotime($tgl_today)));
@@ -247,6 +325,8 @@ class Presensi_model extends CI_Model
                 ->from('absensi')
                 ->where("username", $this->session->userdata('username'))
                 ->where("tgl", $tanggal_pamdal)
+                // ->where("penugasan", "24 Jam")
+                ->order_by("tgl", "DESC")
                 ->get();
             if ($get_datax->num_rows() > 0) {
                 $get_data = $get_datax;
@@ -266,6 +346,8 @@ class Presensi_model extends CI_Model
                     ->from('absensi')
                     ->where("username", $this->session->userdata('username'))
                     ->where("tgl", $tgl_today)
+                    // ->where("penugasan", "24 Jam")
+                    ->order_by("tgl", "DESC")
                     ->get();
             }
         } else {
@@ -284,8 +366,35 @@ class Presensi_model extends CI_Model
                 ->from('absensi')
                 ->where("username", $username)
                 ->where("tgl", date('Y-m-d'))
+                // ->where("penugasan", "Normal")
+                ->order_by("tgl", "DESC")
                 ->get();
         }
+        if ($get_data->num_rows() > 0) {
+            return $get_data->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function get_absen1($username)
+    {
+        $get_data   = $this->db
+            ->select('*,
+                CASE
+                        WHEN waktu < \'09:00:00\' THEN
+                        \'Absen Tepat Waktu\'
+                        WHEN waktu < \'12:00:00\' and waktu > \'09:00:00\' THEN
+                        \'Absen Terlambat\'
+                        WHEN waktu_pulang > \'12:00:00\' and waktu_pulang < \'16:00:00\' THEN
+                        \'Pulang Sebelum Waktunya\' 
+                        WHEN waktu_pulang > \'16:00:00\' THEN
+                        \'Pulang Tepat Waktu\' ELSE \'\' 
+                    END AS status_pulang')
+            ->from('absensi')
+            ->where("username", $username)
+            ->order_by("tgl", "DESC")
+            ->get();
         if ($get_data->num_rows() > 0) {
             return $get_data->result();
         } else {
@@ -304,7 +413,7 @@ class Presensi_model extends CI_Model
             $get_data = $get_datax;
         } else {
             $get_data   = $this->db
-                ->select('bagian')
+                ->select('bagian as penugasan')
                 ->from('tbl_pns')
                 ->where("nip", $username)
                 ->get();
@@ -617,7 +726,7 @@ class Presensi_model extends CI_Model
 
     public function insert_entry_absen_auto()
     {
-        if (date("H:i:s") >= "07:00:00" && date("H:i:s") <= "11:59:00") {
+        if (date("H:i:s") >= "08:30:00" && date("H:i:s") <= "12:00:00") {
             $data_masuk = array(
                 "0" => array(
                     "username" => "1105011207970006",
@@ -744,7 +853,7 @@ class Presensi_model extends CI_Model
                 }
                 return true;
             }
-        } elseif (date("H:i:s") >= "17:00:00" && date("H:i:s") <= "23:59:00") {
+        } elseif (date("H:i:s") >= "20:00:00" && date("H:i:s") <= "23:59:00") {
             $data_keluar = array(
                 "0" => array(
                     "username" => "1105011207970006",
