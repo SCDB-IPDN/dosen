@@ -198,7 +198,10 @@
                                 <label for="">Tanggal</label>
                                 <input type="text" name="tgl2" id="tgl2" class="form-control" value="<?php echo date("Y-m-d") ?>" readonly>
                                 <input type="hidden" name="username2" id="username2" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
-                                <input type="hidden" name="waktu2" id="waktu2" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Waktu</label>
+                                <input type="text" name="waktu2" id="waktu2" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Via</label>
@@ -263,8 +266,11 @@
                                 <label for="">Tanggal</label>
                                 <input type="text" name="tgl" id="tgl" class="form-control" value="<?php echo date("Y-m-d") ?>" readonly>
                                 <input type="hidden" name="username" id="username" class="form-control" value="<?php echo $this->session->userdata('username') ?>" readonly>
-                                <input type="hidden" name="waktu" id="waktu" class="form-control" readonly>
                                 <input type="hidden" name="penugasan" id="penugasan" class="form-control" value="Normal" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Waktu</label>
+                                <input type="text" name="waktu" id="waktu" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Via</label>
