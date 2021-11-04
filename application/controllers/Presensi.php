@@ -269,7 +269,7 @@ class Presensi extends CI_Controller
 			$this->form_validation->set_rules('via', 'Via', 'required');
 			$this->form_validation->set_rules('kondisi', 'Kondisi', 'required');
 			$this->form_validation->set_rules('latitude_masuk', 'Lokasi Tidak Terdeteksi', 'required');
-			// $this->form_validation->set_rules('longitude_masuk', 'Lokasi Tidak Terdeteksi', 'required');
+			$this->form_validation->set_rules('longitude_masuk', 'Lokasi Tidak Terdeteksi', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
@@ -296,7 +296,7 @@ class Presensi extends CI_Controller
 		if ($this->input->is_ajax_request()) {
 			$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 			$this->form_validation->set_rules('latitude_pulang', 'Lokasi Tidak Terdeteksi', 'required');
-			// $this->form_validation->set_rules('longitude_pulang', 'Lokasi Tidak Terdeteksi', 'required');
+			$this->form_validation->set_rules('longitude_pulang', 'Lokasi Tidak Terdeteksi', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
