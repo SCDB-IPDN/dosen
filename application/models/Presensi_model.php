@@ -325,6 +325,7 @@ class Presensi_model extends CI_Model
                 ->from('absensi')
                 ->where("username", $this->session->userdata('username'))
                 ->where("tgl", $tanggal_pamdal)
+                ->where("tgl_pulang != ''")
                 // ->where("penugasan", "24 Jam")
                 ->order_by("tgl", "DESC")
                 ->get();
@@ -346,7 +347,7 @@ class Presensi_model extends CI_Model
                     ->from('absensi')
                     ->where("username", $this->session->userdata('username'))
                     ->where("tgl", $tgl_today)
-                    // ->where("penugasan", "24 Jam")
+                    ->where("tgl_pulang != ''")
                     ->order_by("tgl", "DESC")
                     ->get();
             }
