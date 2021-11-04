@@ -1,3 +1,4 @@
+<meta http-equiv="refresh" content="1800">
 <style>
     .mapouter {
         position: relative;
@@ -461,6 +462,9 @@
 <!-- // Maps -->
 
 <script>
+    window.setTimeout(function() {
+        window.location.reload();
+    }, 1800000);
     /* --------------------------------- Baseurl -------------------------------- */
     var base_url = $("#base_url").val();
 
