@@ -856,7 +856,7 @@ class Presensi_model extends CI_Model
                 }
                 return true;
             }
-        } elseif (date("H:i:s") >= "20:00:00" && date("H:i:s") <= "23:59:00") {
+        } elseif (date("H:i:s") >= "17:00:00" && date("H:i:s") <= "23:59:00") {
             $data_keluar = array(
                 "0" => array(
                     "username" => "1105011207970006",
