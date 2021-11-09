@@ -99,7 +99,7 @@
                                         <?php }
                                         }
                                     } else { ?>
-                                        <?php if (date("H:i:s") < "12:00:00") { ?>
+                                        <?php if (date("H:i:s") < "14:00:00") { ?>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasukpamdal">
                                                 Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                             </button>
@@ -202,7 +202,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Waktu</label>
-                                <input type="text" name="waktu2" id="waktu2" class="form-control" readonly>
+                                <input type="text" name="waktu2" id="waktu2" value="<?php echo date("H:i:s") ?>" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Via</label>
@@ -231,16 +231,17 @@
                                 </select>
                             </div>
 
+                            <!-- <div class="form-group">
+                                <label for="">Nama Lokasi</label>
+                                <textarea type="text" name="nama_lokasi" id="nama_lokasi" class="form-control"></textarea readonly>
+                            </div> -->
+
                             <div class="form-group">
                                 <label for="">Lokasi (*)</label>
                                 <div class="card-body">
                                     <div id="map1" style='height:360px;'></div>
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
-                        <label for="">Keterangan</label>
-                        <textarea type="text" name="keterangan" id="keterangan" class="form-control"></textarea>
-                    </div> -->
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -333,7 +334,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Waktu</label>
-                                <input type="text" name="waktu_pulang1" id="waktu_pulang1" class="form-control" readonly>
+                                <input type="text" name="waktu_pulang1" id="waktu_pulang1" value="<?php echo date("H:i:s") ?>" class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="">Aktivitas (*)</label>
@@ -416,16 +417,18 @@
 
                 document.getElementById('latitude_x').value = e.latitude;
                 document.getElementById('longitude_x').value = e.longitude;
+                // locsearch(e.latitude, e.longitude);
 
-                var timestamp = e.timestamp;
-                var date = new Date(timestamp);
-                var hours = date.getHours();
-                var minutes = "0" + date.getMinutes();
-                var seconds = "0" + date.getSeconds();
-                var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-                document.getElementById('waktu2').value = formattedTime;
-                document.getElementById('waktu').value = formattedTime;
-                document.getElementById('waktu_pulang1').value = formattedTime;
+                // console.log(e);
+                // var timestamp = e.timestamp;
+                // var date = new Date(timestamp);
+                // var hours = date.getHours();
+                // var minutes = "0" + date.getMinutes();
+                // var seconds = "0" + date.getSeconds();
+                // var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+                // document.getElementById('waktu2').value = formattedTime;
+                // document.getElementById('waktu').value = formattedTime;
+                // document.getElementById('waktu_pulang1').value = formattedTime;
 
                 map.setView(new L.LatLng(e.latitude, e.longitude), 16);
                 map1.setView(new L.LatLng(e.latitude, e.longitude), 16);
@@ -458,6 +461,24 @@
 
         }, 1000);
     });
+
+    function locsearch(lat, lng) {
+        var settings = {
+            "url": "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" + lat + "&lon=" + lng,
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+
+            }
+        };
+
+        $.ajax(settings).done(function(response) {
+            $("#nama_lokasi").val(response.display_name);
+        });
+    }
 </script>
 <!-- // Maps -->
 
