@@ -99,7 +99,7 @@
                                         <?php }
                                         }
                                     } else { ?>
-                                        <?php if (date("H:i:s") < "14:00:00") { ?>
+                                        <?php if (date("H:i:s") < "12:00:00") { ?>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasukpamdal">
                                                 Absen Masuk <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                                             </button>
