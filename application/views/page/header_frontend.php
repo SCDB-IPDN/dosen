@@ -110,10 +110,10 @@
                                         </a>
                                     <?php } ?>
 
-                                    <?php if ($this->session->userdata('role') == 1) { ?>
+                                    <?php if ($this->session->userdata('role') == 1 || $this->session->userdata('role') == 24) { ?>
                                         <a class="dropdown-item" href="<?php echo base_url('absen'); ?>">
                                             <i class="fa fa-book" aria-hidden="true"></i>
-                                            Report
+                                            Report Presensi
                                         </a>
                                         <hr>
                                     <?php } else { ?>
