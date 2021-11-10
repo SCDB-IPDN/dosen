@@ -311,714 +311,428 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
     <script src="<?php echo base_url('assets/frontend/js/particles.min.js'); ?>"></script>
 
     <div class="banner-content">
-        <div class="container mt-5">
-            <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardchart"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
+
+        <?php if ($this->session->userdata('role') == 1 || $this->session->userdata('role') == 22 || $this->session->userdata('role') == 29 || $this->session->userdata('role') == 30 || $this->session->userdata('role') == 31 || $this->session->userdata('role') == 32 || $this->session->userdata('role') == 33 || $this->session->userdata('role') == 34 || $this->session->userdata('role') == 35 || $this->session->userdata('role') == 36 || $this->session->userdata('role') == 37 || $this->session->userdata('role') == 38) { ?>
+            <div class="container mt-5">
+                <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
+                    <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardchart"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
+                    </div>
+                    <div id="cardchart" class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-lg-8">
+                                <p>*Chart jumlah status monitoring pembelajaran daring</p>
+                                <canvas id="myChart3"></canvas>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-block btn-danger btn-lg mt-5 mx-auto" data-toggle="modal" data-target="#modal_mulai"><b><?= $get_pembelajaran_belum_mulai; ?></b> Belum Dimulai</button>
+                                <button type="button" class="btn btn-block btn-warning btn-lg mt-2" data-toggle="modal" data-target="#modal_berlangsung"><b><?= $get_pembelajaran_berlangsung; ?></b> Berlangsung</button>
+                                <button type="button" class="btn btn-block btn-primary btn-lg mt-2" data-toggle="modal" data-target="#modal_selesai"><b><?= $get_pembelajaran_selesai; ?></b> Selesai</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="cardchart" class="card-body">
-                    <div class="row mb-3">
-                        <div class="col-lg-8">
-                            <p>*Chart jumlah status monitoring pembelajaran daring</p>
-                            <canvas id="myChart3"></canvas>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-block btn-danger btn-lg mt-5 mx-auto" data-toggle="modal" data-target="#modal_mulai"><b><?= $get_pembelajaran_belum_mulai; ?></b> Belum Dimulai</button>
-                            <button type="button" class="btn btn-block btn-warning btn-lg mt-2" data-toggle="modal" data-target="#modal_berlangsung"><b><?= $get_pembelajaran_berlangsung; ?></b> Berlangsung</button>
-                            <button type="button" class="btn btn-block btn-primary btn-lg mt-2" data-toggle="modal" data-target="#modal_selesai"><b><?= $get_pembelajaran_selesai; ?></b> Selesai</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
-                <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
-                    <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardatas"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
-                </div>
-                <div id="cardatas" class="card-body">
+                <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
+                    <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">
+                        <a href="javascript:;" class=" btn btn-xs btn-icon btn-circle btn-outline-dark" data-toggle="collapse" data-target="#cardatas"><i class="fa fa-expand"></i> Monitoring Pembelajaran (<?= date('d-M-Y'); ?>)</a>
+                    </div>
+                    <div id="cardatas" class="card-body">
 
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#7952B3;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#kelas_total">
-                                        <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
-                                    </button>
-                                    <p class="text-light"> KELAS </p>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#7952B3;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#kelas_total">
+                                            <h3 class="text-light"> <?= $get_total_kelas; ?> </h3>
+                                        </button>
+                                        <p class="text-light"> KELAS </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#7952B3;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#kelas_belum_mulai">
+                                            <h3 class="text-light"> <?= $get_kelas_belum_mulai; ?> </h3>
+                                        </button>
+                                        <p class="text-light"> BELUM MULAI </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#7952B3;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#kelas_berlangsung">
+                                            <h3 class="text-light"> <?= $get_kelas_berlangsung; ?> </h3>
+                                        </button>
+                                        <p class="text-light"> BERLANGSUNG </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#7952B3;">
+                                    <div class="inner">
+                                        <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#kelas_selesai">
+                                            <h3 class="text-light"> <?= $get_kelas_selesai; ?> </h3>
+                                        </button>
+                                        <p class="text-light"> SELESAI </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#7952B3;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#kelas_belum_mulai">
-                                        <h3 class="text-light"> <?= $get_kelas_belum_mulai; ?> </h3>
-                                    </button>
-                                    <p class="text-light"> BELUM MULAI </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#7952B3;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#kelas_berlangsung">
-                                        <h3 class="text-light"> <?= $get_kelas_berlangsung; ?> </h3>
-                                    </button>
-                                    <p class="text-light"> BERLANGSUNG </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#7952B3;">
-                                <div class="inner">
-                                    <button type="button" class="btn btn-block btn-lg mt-2" style="background-color:#7952B3;" data-toggle="modal" data-target="#kelas_selesai">
-                                        <h3 class="text-light"> <?= $get_kelas_selesai; ?> </h3>
-                                    </button>
-                                    <p class="text-light"> SELESAI </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
-                                    <p class="text-light"> DOSEN </p>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_total_dosen; ?> </h3>
+                                        <p class="text-light"> DOSEN </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosen">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosen">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_dosen_belum_mulai; ?> </h3>
-                                    <p class="text-light"> BELUM MULAI </p>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_total_dosen_belum_mulai; ?> </h3>
+                                        <p class="text-light"> BELUM MULAI </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosenBelumMulai">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosenBelumMulai">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_dosen_berlangsung; ?> </h3>
-                                    <p class="text-light"> BERLANGSUNG </p>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_total_dosen_berlangsung; ?> </h3>
+                                        <p class="text-light"> BERLANGSUNG </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosenBerlangsung">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosenBerlangsung">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_dosen_done; ?> </h3>
-                                    <p class="text-light"> SELESAI </p>
-                                </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosenSelesai">View More <i class="fa fa-arrow-circle-down"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseDosen" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Dosen </p>
-                                    <p class="text-light"> FHTP : <?= $get_total_dosen_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_dosen_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_dosen_fpp; ?> </p>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_total_dosen_done; ?> </h3>
+                                        <p class="text-light"> SELESAI </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseDosenSelesai">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseDosenBelumMulai" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Dosen Belum Mulai </p>
-                                    <p class="text-light"> FHTP : <?= $get_total_dosen_belum_mulai_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_dosen_belum_mulai_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_dosen_belum_mulai_fpp; ?> </p>
+                        <div class="row">
+                            <div id="collapseDosen" class="col-lg-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Dosen </p>
+                                        <p class="text-light"> FHTP : <?= $get_total_dosen_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_dosen_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_dosen_fpp; ?> </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseDosenBerlangsung" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Dosen Sedang Berlangsung </p>
-                                    <p class="text-light"> FHTP : <?= $get_total_dosen_berlangsung_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_dosen_berlangsung_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_dosen_berlangsung_fpp; ?> </p>
+                        <div class="row">
+                            <div id="collapseDosenBelumMulai" class="col-lg-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Dosen Belum Mulai </p>
+                                        <p class="text-light"> FHTP : <?= $get_total_dosen_belum_mulai_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_dosen_belum_mulai_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_dosen_belum_mulai_fpp; ?> </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseDosenSelesai" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#346751;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Dosen Selesai </p>
-                                    <p class="text-light"> FHTP : <?= $get_total_dosen_selesai_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_dosen_selesai_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_dosen_selesai_fpp; ?> </p>
+                        <div class="row">
+                            <div id="collapseDosenBerlangsung" class="col-lg-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Dosen Sedang Berlangsung </p>
+                                        <p class="text-light"> FHTP : <?= $get_total_dosen_berlangsung_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_dosen_berlangsung_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_dosen_berlangsung_fpp; ?> </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div id="collapseDosenSelesai" class="col-lg-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#346751;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Dosen Selesai </p>
+                                        <p class="text-light"> FHTP : <?= $get_total_dosen_selesai_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_dosen_selesai_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_dosen_selesai_fpp; ?> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
-                                    <p class="text-light"> MATAKULIAH </p>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_total_matkul; ?> </h3>
+                                        <p class="text-light"> MATAKULIAH </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkul">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkul">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul_belum_mulai; ?> </h3>
-                                    <p class="text-light"> BELUM MULAI </p>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_total_matkul_belum_mulai; ?> </h3>
+                                        <p class="text-light"> BELUM MULAI </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkulBelumMulai">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkulBelumMulai">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul_berlangsung; ?> </h3>
-                                    <p class="text-light"> BERLANGSUNG </p>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_total_matkul_berlangsung; ?> </h3>
+                                        <p class="text-light"> BERLANGSUNG </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkulBerlangsung">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkulBerlangsung">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_matkul_done; ?> </h3>
-                                    <p class="text-light"> SELESAI </p>
-                                </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkulSelesai">View More <i class="fa fa-arrow-circle-down"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseMatkul" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Matakuliah </p>
-                                    <p class="text-light"> FHTP : <?= $get_total_matkul_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_matkul_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_matkul_fpp; ?> </p>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_total_matkul_done; ?> </h3>
+                                        <p class="text-light"> SELESAI </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseMatkulSelesai">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseMatkulBelumMulai" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Matakuliah Belum Mulai</p>
-                                    <p class="text-light"> FHTP : <?= $get_total_matkul_belum_mulai_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_matkul_belum_mulai_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_matkul_belum_mulai_fpp; ?> </p>
+                        <div class="row">
+                            <div id="collapseMatkul" class="col-lg-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Matakuliah </p>
+                                        <p class="text-light"> FHTP : <?= $get_total_matkul_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_matkul_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_matkul_fpp; ?> </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseMatkulBerlangsung" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Matakuliah Berlangsung</p>
-                                    <p class="text-light"> FHTP : <?= $get_total_matkul_berlangsung_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_matkul_berlangsung_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_matkul_berlangsung_fpp; ?> </p>
+                        <div class="row">
+                            <div id="collapseMatkulBelumMulai" class="col-lg-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Matakuliah Belum Mulai</p>
+                                        <p class="text-light"> FHTP : <?= $get_total_matkul_belum_mulai_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_matkul_belum_mulai_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_matkul_belum_mulai_fpp; ?> </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseMatkulSelesai" class="col-lg-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#C84B31;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Matakuliah Selesai</p>
-                                    <p class="text-light"> FHTP : <?= $get_total_matkul_selesai_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_matkul_selesai_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_matkul_selesai_fpp; ?> </p>
+                        <div class="row">
+                            <div id="collapseMatkulBerlangsung" class="col-lg-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Matakuliah Berlangsung</p>
+                                        <p class="text-light"> FHTP : <?= $get_total_matkul_berlangsung_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_matkul_berlangsung_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_matkul_berlangsung_fpp; ?> </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div id="collapseMatkulSelesai" class="col-lg-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#C84B31;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Matakuliah Selesai</p>
+                                        <p class="text-light"> FHTP : <?= $get_total_matkul_selesai_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_matkul_selesai_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_matkul_selesai_fpp; ?> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_total_prodi; ?> </h3>
-                                    <p class="text-light"> PRODI </p>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_total_prodi; ?> </h3>
+                                        <p class="text-light"> PRODI </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdi">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdi">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_prodi_belum_mulai; ?> </h3>
-                                    <p class="text-light"> BELUM MULAI </p>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_prodi_belum_mulai; ?> </h3>
+                                        <p class="text-light"> BELUM MULAI </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdiBelumMulai">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdiBelumMulai">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_prodi_berlangsung; ?> </h3>
-                                    <p class="text-light"> BERLANGSUNG </p>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_prodi_berlangsung; ?> </h3>
+                                        <p class="text-light"> BERLANGSUNG </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdiBerlangsung">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdiBerlangsung">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <h3 class="text-light"> <?= $get_prodi_selesai; ?> </h3>
-                                    <p class="text-light"> SELESAI </p>
-                                </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdiSelesai">View More <i class="fa fa-arrow-circle-down"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseProdi" class="col-md-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Prodi </p>
-                                    <p class="text-light"> FHTP : <?= $get_total_prodi_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_prodi_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_prodi_fpp; ?> </p>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <h3 class="text-light"> <?= $get_prodi_selesai; ?> </h3>
+                                        <p class="text-light"> SELESAI </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseProdiSelesai">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseProdiBelumMulai" class="col-md-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Prodi Belum Mulai</p>
-                                    <p class="text-light"> FHTP : <?= $get_total_prodi_belum_mulai_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_prodi_belum_mulai_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_prodi_belum_mulai_fpp; ?> </p>
+                        <div class="row">
+                            <div id="collapseProdi" class="col-md-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Prodi </p>
+                                        <p class="text-light"> FHTP : <?= $get_total_prodi_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_prodi_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_prodi_fpp; ?> </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseProdiBerlangsung" class="col-md-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Prodi Berlangsung</p>
-                                    <p class="text-light"> FHTP : <?= $get_total_prodi_berlangsung_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_prodi_berlangsung_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_prodi_berlangsung_fpp; ?> </p>
+                        <div class="row">
+                            <div id="collapseProdiBelumMulai" class="col-md-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Prodi Belum Mulai</p>
+                                        <p class="text-light"> FHTP : <?= $get_total_prodi_belum_mulai_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_prodi_belum_mulai_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_prodi_belum_mulai_fpp; ?> </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseProdiSelesai" class="col-md-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#AF0069;">
-                                <div class="inner">
-                                    <p class="text-light"> Total Prodi Selesai</p>
-                                    <p class="text-light"> FHTP : <?= $get_total_prodi_selesai_fhtp; ?> </p>
-                                    <p class="text-light"> FMP : <?= $get_total_prodi_selesai_fmp; ?> </p>
-                                    <p class="text-light"> FPP : <?= $get_total_prodi_selesai_fpp; ?> </p>
+                        <div class="row">
+                            <div id="collapseProdiBerlangsung" class="col-md-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Prodi Berlangsung</p>
+                                        <p class="text-light"> FHTP : <?= $get_total_prodi_berlangsung_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_prodi_berlangsung_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_prodi_berlangsung_fpp; ?> </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div id="collapseProdiSelesai" class="col-md-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#AF0069;">
+                                    <div class="inner">
+                                        <p class="text-light"> Total Prodi Selesai</p>
+                                        <p class="text-light"> FHTP : <?= $get_total_prodi_selesai_fhtp; ?> </p>
+                                        <p class="text-light"> FMP : <?= $get_total_prodi_selesai_fmp; ?> </p>
+                                        <p class="text-light"> FPP : <?= $get_total_prodi_selesai_fpp; ?> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                    <!-- FAKULTAS -->
-                    <div class="row">
-                        <div class="col-md-12 col-sm-6">
-                            <div class="card-box" style="background-color:#035397;">
-                                <div class="inner">
+                        <!-- FAKULTAS -->
+                        <div class="row">
+                            <div class="col-md-12 col-sm-6">
+                                <div class="card-box" style="background-color:#035397;">
+                                    <div class="inner">
 
-                                    <h3 class="text-light"> <?= $get_total_fakultas; ?> </h3>
-                                    <p class="text-light"> FAKULTAS </p>
+                                        <h3 class="text-light"> <?= $get_total_fakultas; ?> </h3>
+                                        <p class="text-light"> FAKULTAS </p>
+                                    </div>
+                                    <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseFakultas">View More <i class="fa fa-arrow-circle-down"></i></a>
                                 </div>
-                                <a href="javascript:;" class="card-box-footer" data-toggle="collapse" data-target="#collapseFakultas">View More <i class="fa fa-arrow-circle-down"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div id="collapseFakultas" class="col-md-12 col-sm-6 collapse In">
-                            <div class="card-box" style="background-color:#035397;">
-                                <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
-                                    foreach ($get_summary_fakultas as $data) { ?>
-                                        <p class="text-light"> <?= $data->id_fakultas; ?> </p>
-                                <?php
-                                    }
-                                } ?>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- // FAKULTAS -->
-
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL TOTAL KELAS -->
-        <div class="container">
-            <div class="col-md-12">
-                <!-- Modal -->
-                <div class="modal fade" id="kelas_total" tabindex="-1" role="dialog" aria-labelledby="detailmodalkelastotal" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title text-light" id="detailmodalkelastotal">Kelas</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-dark">Daftar pembelajaran</p>
-
-                                <div class="card shadow" style="width: 18rem;">
+                        <div class="row">
+                            <div id="collapseFakultas" class="col-md-12 col-sm-6 collapse In">
+                                <div class="card-box" style="background-color:#035397;">
                                     <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
-                                        $get_total_kelas1 = 0;
-                                        $get_total_kelas2 = 0;
-                                        $get_total_kelas3 = 0;
+                                        foreach ($get_summary_fakultas as $data) { ?>
+                                            <p class="text-light"> <?= $data->id_fakultas; ?> </p>
+                                    <?php
+                                        }
+                                    } ?>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- // FAKULTAS -->
 
-                                        if ($get_all_total_kelas != false && !empty($get_all_total_kelas)) {
-                                            foreach ($get_all_total_kelas as $dataxxx) {
-                                                if ($dataxxx->id_fakultas == 'FHTP') {
-                                                    $data_kelas_ex_det1 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas1 += count($data_kelas_ex_det1);
-                                                }
-                                                if ($dataxxx->id_fakultas == 'FMP') {
-                                                    $data_kelas_ex_det2 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas2 += count($data_kelas_ex_det2);
-                                                }
-                                                if ($dataxxx->id_fakultas == 'FPP') {
-                                                    $data_kelas_ex_det3 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas3 += count($data_kelas_ex_det3);
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL TOTAL KELAS -->
+            <div class="container">
+                <div class="col-md-12">
+                    <!-- Modal -->
+                    <div class="modal fade" id="kelas_total" tabindex="-1" role="dialog" aria-labelledby="detailmodalkelastotal" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-light" id="detailmodalkelastotal">Kelas</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-dark">Daftar pembelajaran</p>
+
+                                    <div class="card shadow" style="width: 18rem;">
+                                        <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+                                            $get_total_kelas1 = 0;
+                                            $get_total_kelas2 = 0;
+                                            $get_total_kelas3 = 0;
+
+                                            if ($get_all_total_kelas != false && !empty($get_all_total_kelas)) {
+                                                foreach ($get_all_total_kelas as $dataxxx) {
+                                                    if ($dataxxx->id_fakultas == 'FHTP') {
+                                                        $data_kelas_ex_det1 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas1 += count($data_kelas_ex_det1);
+                                                    }
+                                                    if ($dataxxx->id_fakultas == 'FMP') {
+                                                        $data_kelas_ex_det2 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas2 += count($data_kelas_ex_det2);
+                                                    }
+                                                    if ($dataxxx->id_fakultas == 'FPP') {
+                                                        $data_kelas_ex_det3 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas3 += count($data_kelas_ex_det3);
+                                                    }
                                                 }
                                             }
-                                        }
-                                        foreach ($get_summary_fakultas as $data) {
-                                            if ($data->id_fakultas == 'FHTP') {
-                                                echo "
+                                            foreach ($get_summary_fakultas as $data) {
+                                                if ($data->id_fakultas == 'FHTP') {
+                                                    echo "
                                                 <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas1 Kelas</li>";
-                                            }
-                                            if ($data->id_fakultas == 'FMP') {
-                                                echo "
+                                                }
+                                                if ($data->id_fakultas == 'FMP') {
+                                                    echo "
                                                 <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas2 Kelas</li>";
-                                            }
-                                            if ($data->id_fakultas == 'FPP') {
-                                                echo "
+                                                }
+                                                if ($data->id_fakultas == 'FPP') {
+                                                    echo "
                                                 <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas3 Kelas</li>";
+                                                }
                                             }
-                                        }
-                                    } ?>
-                                </div>
-
-                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
-                                    <div class="col-md-12 my-5">
-                                        <div class="table-responsive mx-2">
-                                            <table class="table table-hover table-xl" id="tabel_kelas_total">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Dosen</th>
-                                                        <th>Matakuliah</th>
-                                                        <th>Jam</th>
-                                                        <th>Kelas</th>
-                                                        <th>Prodi</th>
-                                                        <th>Fakultas</th>
-                                                        <th>Angkatan</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
+                                        } ?>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- MODAL TOTAL KELAS BELUM MULAI -->
-        <div class="container">
-            <div class="col-md-12">
-                <!-- Modal -->
-                <div class="modal fade" id="kelas_belum_mulai" tabindex="-1" role="dialog" aria-labelledby="detailmodalkelas_belum_mulai" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title text-light" id="detailmodalkelas_belum_mulai">Kelas Belum Mulai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-dark">Daftar pembelajaran</p>
-
-                                <div class="card shadow" style="width: 18rem;">
-                                    <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
-                                        $get_total_kelas1 = 0;
-                                        $get_total_kelas2 = 0;
-                                        $get_total_kelas3 = 0;
-                                        if ($get_all_kelas_belum_mulai != false && !empty($get_all_kelas_belum_mulai)) {
-                                            foreach ($get_all_kelas_belum_mulai as $dataxxx) {
-                                                if ($dataxxx->id_fakultas == 'FHTP') {
-                                                    $data_kelas_ex_det1 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas1 += count($data_kelas_ex_det1);
-                                                }
-                                                if ($dataxxx->id_fakultas == 'FMP') {
-                                                    $data_kelas_ex_det2 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas2 += count($data_kelas_ex_det2);
-                                                }
-                                                if ($dataxxx->id_fakultas == 'FPP') {
-                                                    $data_kelas_ex_det3 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas3 += count($data_kelas_ex_det3);
-                                                }
-                                            }
-                                        }
-                                        foreach ($get_summary_fakultas as $data) {
-                                            if ($data->id_fakultas == 'FHTP') {
-                                                echo "
-                                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas1 Kelas</li>";
-                                            }
-                                            if ($data->id_fakultas == 'FMP') {
-                                                echo "
-                                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas2 Kelas</li>";
-                                            }
-                                            if ($data->id_fakultas == 'FPP') {
-                                                echo "
-                                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas3 Kelas</li>";
-                                            }
-                                        }
-                                    } ?>
-                                </div>
-
-                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
-                                    <div class="col-md-12 my-5">
-                                        <div class="table-responsive mx-2">
-                                            <table class="table table-hover table-xl" id="tabel_kelas_belum_mulai">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Dosen</th>
-                                                        <th>Matakuliah</th>
-                                                        <th>Jam</th>
-                                                        <th>Kelas</th>
-                                                        <th>Prodi</th>
-                                                        <th>Fakultas</th>
-                                                        <th>Angkatan</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL TOTAL KELAS BERLANGSUNG -->
-        <div class="container">
-            <div class="col-md-12">
-                <!-- Modal -->
-                <div class="modal fade" id="kelas_berlangsung" tabindex="-1" role="dialog" aria-labelledby="detailmodalkelas_berlangsung" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title text-light" id="detailmodalkelas_berlangsung">Kelas Berlangsung</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-dark">Daftar pembelajaran</p>
-
-                                <div class="card shadow" style="width: 18rem;">
-                                    <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
-                                        $get_total_kelas1 = 0;
-                                        $get_total_kelas2 = 0;
-                                        $get_total_kelas3 = 0;
-                                        if ($get_all_kelas_berlangsung != false && !empty($get_all_kelas_berlangsung)) {
-                                            foreach ($get_all_kelas_berlangsung as $dataxxx) {
-                                                if ($dataxxx->id_fakultas == 'FHTP') {
-                                                    $data_kelas_ex_det1 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas1 += count($data_kelas_ex_det1);
-                                                }
-                                                if ($dataxxx->id_fakultas == 'FMP') {
-                                                    $data_kelas_ex_det2 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas2 += count($data_kelas_ex_det2);
-                                                }
-                                                if ($dataxxx->id_fakultas == 'FPP') {
-                                                    $data_kelas_ex_det3 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas3 += count($data_kelas_ex_det3);
-                                                }
-                                            }
-                                        }
-                                        foreach ($get_summary_fakultas as $data) {
-                                            if ($data->id_fakultas == 'FHTP') {
-                                                echo "
-                                <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas1 Kelas</li>";
-                                            }
-                                            if ($data->id_fakultas == 'FMP') {
-                                                echo "
-                                <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas2 Kelas</li>";
-                                            }
-                                            if ($data->id_fakultas == 'FPP') {
-                                                echo "
-                                <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas3 Kelas</li>";
-                                            }
-                                        }
-                                    } ?>
-                                </div>
-
-                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
-                                    <div class="col-md-12 my-5">
-                                        <div class="table-responsive mx-2">
-                                            <table class="table table-hover table-xl" id="tabel_kelas_berlangsung">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Dosen</th>
-                                                        <th>Matakuliah</th>
-                                                        <th>Jam</th>
-                                                        <th>Kelas</th>
-                                                        <th>Prodi</th>
-                                                        <th>Fakultas</th>
-                                                        <th>Angkatan</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL TOTAL KELAS SELESAI -->
-        <div class="container">
-            <div class="col-md-12">
-                <!-- Modal -->
-                <div class="modal fade" id="kelas_selesai" tabindex="-1" role="dialog" aria-labelledby="detailmodalkelas_selesai" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title text-light" id="detailmodalkelas_selesai">Kelas Selesai</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-dark">Daftar pembelajaran</p>
-
-                                <div class="card shadow" style="width: 18rem;">
-                                    <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
-                                        $get_total_kelas1 = 0;
-                                        $get_total_kelas2 = 0;
-                                        $get_total_kelas3 = 0;
-                                        if ($get_all_kelas_selesai != false && !empty($get_all_kelas_selesai)) {
-                                            foreach ($get_all_kelas_selesai as $dataxxx) {
-                                                if ($dataxxx->id_fakultas == 'FHTP') {
-                                                    $data_kelas_ex_det1 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas1 += count($data_kelas_ex_det1);
-                                                }
-                                                if ($dataxxx->id_fakultas == 'FMP') {
-                                                    $data_kelas_ex_det2 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas2 += count($data_kelas_ex_det2);
-                                                }
-                                                if ($dataxxx->id_fakultas == 'FPP') {
-                                                    $data_kelas_ex_det3 = explode(',', $dataxxx->kelas);
-                                                    $get_total_kelas3 += count($data_kelas_ex_det3);
-                                                }
-                                            }
-                                        }
-                                        foreach ($get_summary_fakultas as $data) {
-                                            if ($data->id_fakultas == 'FHTP') {
-                                                echo "
-                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas1 Kelas</li>";
-                                            }
-                                            if ($data->id_fakultas == 'FMP') {
-                                                echo "
-                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas2 Kelas</li>";
-                                            }
-                                            if ($data->id_fakultas == 'FPP') {
-                                                echo "
-                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas3 Kelas</li>";
-                                            }
-                                        }
-                                    } ?>
-                                </div>
-
-                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
-                                    <div class="col-md-12 my-5">
-                                        <div class="table-responsive mx-2">
-                                            <table class="table table-hover table-xl" id="tabel_kelas_selesai">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Dosen</th>
-                                                        <th>Matakuliah</th>
-                                                        <th>Jam</th>
-                                                        <th>Kelas</th>
-                                                        <th>Prodi</th>
-                                                        <th>Fakultas</th>
-                                                        <th>Angkatan</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- modal belum dimulai -->
-        <div class="container">
-            <div class="col-md-12">
-                <!-- Modal -->
-                <div class="modal fade" id="modal_mulai" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title text-light" id="detailModalLabel">Status Monitoring Pembelajaran</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <center>
-                                    <p>Daftar Pembelajaran <b>Belum dimulai</b></p>
-                                </center>
-                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
-                                    <div class="col-md-12 my-5">
-                                        <div class="table-responsive mx-2">
-                                            <div class="container">
-                                                <table class="table table-hover table-xl" id="belum_dimulai">
+                                    <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                        <div class="col-md-12 my-5">
+                                            <div class="table-responsive mx-2">
+                                                <table class="table table-hover table-xl" id="tabel_kelas_total">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
@@ -1041,41 +755,79 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- modal sedang berlangsung -->
-        <div class="container">
-            <div class="col-md-12">
-                <!-- Modal -->
-                <div class="modal fade" id="modal_berlangsung" tabindex="-1" role="dialog" aria-labelledby="detailModalLabelBerlangsung" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title text-light" id="detailModalLabelBerlangsung">Status Monitoring Pembelajaran</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-light">Daftar pembelajaran <b>Sedang Berlangsung</b></p>
-                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
-                                    <div class="col-md-12 my-5">
-                                        <div class="table-responsive mx-2">
-                                            <table class="table table-hover table-xl" id="sedang_berlangsung">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Dosen</th>
-                                                        <th>Matakuliah</th>
-                                                        <th>Jam</th>
-                                                        <th>Kelas</th>
-                                                        <th>Prodi</th>
-                                                        <th>Fakultas</th>
-                                                        <th>Angkatan</th>
-                                                        <th>Link</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
+            <!-- MODAL TOTAL KELAS BELUM MULAI -->
+            <div class="container">
+                <div class="col-md-12">
+                    <!-- Modal -->
+                    <div class="modal fade" id="kelas_belum_mulai" tabindex="-1" role="dialog" aria-labelledby="detailmodalkelas_belum_mulai" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-light" id="detailmodalkelas_belum_mulai">Kelas Belum Mulai</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-dark">Daftar pembelajaran</p>
+
+                                    <div class="card shadow" style="width: 18rem;">
+                                        <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+                                            $get_total_kelas1 = 0;
+                                            $get_total_kelas2 = 0;
+                                            $get_total_kelas3 = 0;
+                                            if ($get_all_kelas_belum_mulai != false && !empty($get_all_kelas_belum_mulai)) {
+                                                foreach ($get_all_kelas_belum_mulai as $dataxxx) {
+                                                    if ($dataxxx->id_fakultas == 'FHTP') {
+                                                        $data_kelas_ex_det1 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas1 += count($data_kelas_ex_det1);
+                                                    }
+                                                    if ($dataxxx->id_fakultas == 'FMP') {
+                                                        $data_kelas_ex_det2 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas2 += count($data_kelas_ex_det2);
+                                                    }
+                                                    if ($dataxxx->id_fakultas == 'FPP') {
+                                                        $data_kelas_ex_det3 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas3 += count($data_kelas_ex_det3);
+                                                    }
+                                                }
+                                            }
+                                            foreach ($get_summary_fakultas as $data) {
+                                                if ($data->id_fakultas == 'FHTP') {
+                                                    echo "
+                                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas1 Kelas</li>";
+                                                }
+                                                if ($data->id_fakultas == 'FMP') {
+                                                    echo "
+                                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas2 Kelas</li>";
+                                                }
+                                                if ($data->id_fakultas == 'FPP') {
+                                                    echo "
+                                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas3 Kelas</li>";
+                                                }
+                                            }
+                                        } ?>
+                                    </div>
+
+                                    <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                        <div class="col-md-12 my-5">
+                                            <div class="table-responsive mx-2">
+                                                <table class="table table-hover table-xl" id="tabel_kelas_belum_mulai">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Dosen</th>
+                                                            <th>Matakuliah</th>
+                                                            <th>Jam</th>
+                                                            <th>Kelas</th>
+                                                            <th>Prodi</th>
+                                                            <th>Fakultas</th>
+                                                            <th>Angkatan</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1084,42 +836,79 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- modal telah selesai -->
-        <div class="container">
-            <div class="col-md-12">
-                <!-- Modal -->
-                <div class="modal fade" id="modal_selesai" tabindex="-1" role="dialog" aria-labelledby="detailModalLabelSelesai" aria-hidden="true">
-                    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-primary">
-                                <h5 class="modal-title text-light" id="detailModalLabelSelesai">Status Monitoring Pembelajaran</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p class="text-light">Daftar pembelajaran <b>Telah Selesai</b></p>
-                                <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
-                                    <div class="col-md-12 my-5">
-                                        <div class="table-responsive mx-2">
-                                            <table class="table table-hover table-xl" id="telah_selesai">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Dosen</th>
-                                                        <th>Matakuliah</th>
-                                                        <th>Jam</th>
-                                                        <th>Kelas</th>
-                                                        <th>Prodi</th>
-                                                        <th>Fakultas</th>
-                                                        <th>Link</th>
-                                                        <th>Angkatan</th>
-                                                        <th>Gambar</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
+            <!-- MODAL TOTAL KELAS BERLANGSUNG -->
+            <div class="container">
+                <div class="col-md-12">
+                    <!-- Modal -->
+                    <div class="modal fade" id="kelas_berlangsung" tabindex="-1" role="dialog" aria-labelledby="detailmodalkelas_berlangsung" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-light" id="detailmodalkelas_berlangsung">Kelas Berlangsung</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-dark">Daftar pembelajaran</p>
+
+                                    <div class="card shadow" style="width: 18rem;">
+                                        <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+                                            $get_total_kelas1 = 0;
+                                            $get_total_kelas2 = 0;
+                                            $get_total_kelas3 = 0;
+                                            if ($get_all_kelas_berlangsung != false && !empty($get_all_kelas_berlangsung)) {
+                                                foreach ($get_all_kelas_berlangsung as $dataxxx) {
+                                                    if ($dataxxx->id_fakultas == 'FHTP') {
+                                                        $data_kelas_ex_det1 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas1 += count($data_kelas_ex_det1);
+                                                    }
+                                                    if ($dataxxx->id_fakultas == 'FMP') {
+                                                        $data_kelas_ex_det2 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas2 += count($data_kelas_ex_det2);
+                                                    }
+                                                    if ($dataxxx->id_fakultas == 'FPP') {
+                                                        $data_kelas_ex_det3 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas3 += count($data_kelas_ex_det3);
+                                                    }
+                                                }
+                                            }
+                                            foreach ($get_summary_fakultas as $data) {
+                                                if ($data->id_fakultas == 'FHTP') {
+                                                    echo "
+                                <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas1 Kelas</li>";
+                                                }
+                                                if ($data->id_fakultas == 'FMP') {
+                                                    echo "
+                                <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas2 Kelas</li>";
+                                                }
+                                                if ($data->id_fakultas == 'FPP') {
+                                                    echo "
+                                <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas3 Kelas</li>";
+                                                }
+                                            }
+                                        } ?>
+                                    </div>
+
+                                    <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                        <div class="col-md-12 my-5">
+                                            <div class="table-responsive mx-2">
+                                                <table class="table table-hover table-xl" id="tabel_kelas_berlangsung">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Dosen</th>
+                                                            <th>Matakuliah</th>
+                                                            <th>Jam</th>
+                                                            <th>Kelas</th>
+                                                            <th>Prodi</th>
+                                                            <th>Fakultas</th>
+                                                            <th>Angkatan</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1128,9 +917,223 @@ if ($get_count_status_prodi != false && !empty($get_count_status_prodi)) {
                     </div>
                 </div>
             </div>
-        </div>
 
-        <?php if ($this->session->userdata('role') == 1) { ?>
+            <!-- MODAL TOTAL KELAS SELESAI -->
+            <div class="container">
+                <div class="col-md-12">
+                    <!-- Modal -->
+                    <div class="modal fade" id="kelas_selesai" tabindex="-1" role="dialog" aria-labelledby="detailmodalkelas_selesai" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-light" id="detailmodalkelas_selesai">Kelas Selesai</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-dark">Daftar pembelajaran</p>
+
+                                    <div class="card shadow" style="width: 18rem;">
+                                        <?php if ($get_summary_fakultas != false && !empty($get_summary_fakultas)) {
+                                            $get_total_kelas1 = 0;
+                                            $get_total_kelas2 = 0;
+                                            $get_total_kelas3 = 0;
+                                            if ($get_all_kelas_selesai != false && !empty($get_all_kelas_selesai)) {
+                                                foreach ($get_all_kelas_selesai as $dataxxx) {
+                                                    if ($dataxxx->id_fakultas == 'FHTP') {
+                                                        $data_kelas_ex_det1 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas1 += count($data_kelas_ex_det1);
+                                                    }
+                                                    if ($dataxxx->id_fakultas == 'FMP') {
+                                                        $data_kelas_ex_det2 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas2 += count($data_kelas_ex_det2);
+                                                    }
+                                                    if ($dataxxx->id_fakultas == 'FPP') {
+                                                        $data_kelas_ex_det3 = explode(',', $dataxxx->kelas);
+                                                        $get_total_kelas3 += count($data_kelas_ex_det3);
+                                                    }
+                                                }
+                                            }
+                                            foreach ($get_summary_fakultas as $data) {
+                                                if ($data->id_fakultas == 'FHTP') {
+                                                    echo "
+                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas1 Kelas</li>";
+                                                }
+                                                if ($data->id_fakultas == 'FMP') {
+                                                    echo "
+                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas2 Kelas</li>";
+                                                }
+                                                if ($data->id_fakultas == 'FPP') {
+                                                    echo "
+                        <li class=\"list-group-item\">$data->id_fakultas : $get_total_kelas3 Kelas</li>";
+                                                }
+                                            }
+                                        } ?>
+                                    </div>
+
+                                    <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                        <div class="col-md-12 my-5">
+                                            <div class="table-responsive mx-2">
+                                                <table class="table table-hover table-xl" id="tabel_kelas_selesai">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Dosen</th>
+                                                            <th>Matakuliah</th>
+                                                            <th>Jam</th>
+                                                            <th>Kelas</th>
+                                                            <th>Prodi</th>
+                                                            <th>Fakultas</th>
+                                                            <th>Angkatan</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- modal belum dimulai -->
+            <div class="container">
+                <div class="col-md-12">
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal_mulai" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-light" id="detailModalLabel">Status Monitoring Pembelajaran</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <center>
+                                        <p>Daftar Pembelajaran <b>Belum dimulai</b></p>
+                                    </center>
+                                    <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                        <div class="col-md-12 my-5">
+                                            <div class="table-responsive mx-2">
+                                                <div class="container">
+                                                    <table class="table table-hover table-xl" id="belum_dimulai">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Dosen</th>
+                                                                <th>Matakuliah</th>
+                                                                <th>Jam</th>
+                                                                <th>Kelas</th>
+                                                                <th>Prodi</th>
+                                                                <th>Fakultas</th>
+                                                                <th>Angkatan</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- modal sedang berlangsung -->
+            <div class="container">
+                <div class="col-md-12">
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal_berlangsung" tabindex="-1" role="dialog" aria-labelledby="detailModalLabelBerlangsung" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-light" id="detailModalLabelBerlangsung">Status Monitoring Pembelajaran</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-light">Daftar pembelajaran <b>Sedang Berlangsung</b></p>
+                                    <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                        <div class="col-md-12 my-5">
+                                            <div class="table-responsive mx-2">
+                                                <table class="table table-hover table-xl" id="sedang_berlangsung">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Dosen</th>
+                                                            <th>Matakuliah</th>
+                                                            <th>Jam</th>
+                                                            <th>Kelas</th>
+                                                            <th>Prodi</th>
+                                                            <th>Fakultas</th>
+                                                            <th>Angkatan</th>
+                                                            <th>Link</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- modal telah selesai -->
+            <div class="container">
+                <div class="col-md-12">
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal_selesai" tabindex="-1" role="dialog" aria-labelledby="detailModalLabelSelesai" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-light" id="detailModalLabelSelesai">Status Monitoring Pembelajaran</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-light">Daftar pembelajaran <b>Telah Selesai</b></p>
+                                    <div class="row card shadow my-3 mx-2" style="border-radius: 2rem !important;">
+                                        <div class="col-md-12 my-5">
+                                            <div class="table-responsive mx-2">
+                                                <table class="table table-hover table-xl" id="telah_selesai">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th>Dosen</th>
+                                                            <th>Matakuliah</th>
+                                                            <th>Jam</th>
+                                                            <th>Kelas</th>
+                                                            <th>Prodi</th>
+                                                            <th>Fakultas</th>
+                                                            <th>Link</th>
+                                                            <th>Angkatan</th>
+                                                            <th>Gambar</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+
+        <?php if ($this->session->userdata('role') == 1 || $this->session->userdata('role') == 24 || $this->session->userdata('role') == 39 || $this->session->userdata('role') == 40) { ?>
             <div class="container">
                 <div class="card shadow text-center mb-3 mt-5 border-0 animated fadeInDown" style="border-radius: 1rem !important;">
                     <div class="card-header" style="background-color:#D3E0EA; border-radius: 1rem !important;">

@@ -244,7 +244,7 @@ class Presensi extends CI_Controller
 	public function fetch_absen($username)
 	{
 		if ($this->input->is_ajax_request()) {
-			if ($this->session->userdata('role') == 1) {
+			if ($this->session->userdata('role') == 1 || $this->session->userdata('role') == 24) {
 				$posts = $this->presensi_model->get_absen('admin');
 			} else {
 				// $posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));

@@ -58,7 +58,7 @@
                             </div>
 
                             <div class="cont-right">
-                                <?php if ($this->session->userdata('role') != 1) {
+                                <?php if ($this->session->userdata('role') != 1 && $this->session->userdata('role') != 24) {
                                     if (!empty($get_validate[0]->id_absen)) {
                                         if ($get_validate[0]->penugasan == '24 Jam') { ?>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#absenmasukpamdal" disabled>
@@ -130,7 +130,7 @@
             </div>
         </div>
 
-        <?php if ($this->session->userdata('role') == 1) { ?>
+        <?php if ($this->session->userdata('role') == 1 && $this->session->userdata('role') == 24) { ?>
             <div class="row card shadow mt-3 mx-0">
                 <div class="col-md-12 mt-4 mb-2">
                     <div class="table-responsive-xl">
@@ -716,7 +716,7 @@
     /* -------------------------------------------------------------------------- */
     /*                                Fetch Records                               */
     /* -------------------------------------------------------------------------- */
-    <?php if ($this->session->userdata('role') == 1) { ?>
+    <?php if ($this->session->userdata('role') == 1 && $this->session->userdata('role') == 24) { ?>
 
         function fetch() {
             $.ajax({
