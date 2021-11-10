@@ -219,14 +219,14 @@ class Presensi extends CI_Controller
 	{
 		if ($this->session->userdata('role') == 1) {
 			$posts = $this->presensi_model->get_absen('admin');
-			$posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
+			// $posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
 		} else {
-			$posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
-			if (!empty($posts_pamdal[0]->penugasan) && ($posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Unit Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM (PAMDAL)' || $posts_pamdal[0]->penugasan == 'SUBBAGIAN PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'Pramubakti Pamdal' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Pamdal' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Pramubakti Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Unit Poliklinik')) {
-				$posts = $this->presensi_model->get_absen('pamdal');
-			} else {
+			// $posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
+			// if (!empty($posts_pamdal[0]->penugasan) && ($posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Unit Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM (PAMDAL)' || $posts_pamdal[0]->penugasan == 'SUBBAGIAN PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'Pramubakti Pamdal' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Pamdal' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Pramubakti Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Subbag Menza dan Laundry')) {
+			// 	$posts = $this->presensi_model->get_absen('pamdal');
+			// } else {
 				$posts = $this->presensi_model->get_absen($this->session->userdata('username'));
-			}
+			// }
 		}
 
 		$data = array(
@@ -234,7 +234,7 @@ class Presensi extends CI_Controller
 			'get_absen_masuk_chart'		=> $this->presensi_model->get_absen_masuk_chart(),
 			'get_absen_pulang_chart'	=> $this->presensi_model->get_absen_pulang_chart(),
 			'get_validate'				=> $posts,
-			'get_pamdal'				=> $posts_pamdal,
+			// 'get_pamdal'				=> $posts_pamdal,
 			'profile'					=> 'active'
 		);
 		$this->load->view('page/header_frontend', $data);
