@@ -23,40 +23,50 @@ class Beranda_model extends CI_Model
 
     public function get_profile($username)
     {
-        $get_user = $this->db->query("SELECT
-                            -- tbl_login.username,
-                            -- tbl_login.PASSWORD,
-                            tbl_login.image_url,
-                            tbl_dosen_pddikti.nama 
+        if ($username == 'admin' || $username == 'kepegawaian') {
+            $get_user = $this->db->query("SELECT
+                            image_url,
+                            username AS nama
                         FROM
                             tbl_login
-                            JOIN tbl_dosen_pddikti ON tbl_login.username = tbl_dosen_pddikti.nip 
                         WHERE
-                            tbl_login.username = '$username' UNION
-                        SELECT
-                            tbl_login.image_url,
-                            tbl_pns.nama_lengkap AS nama 
-                        FROM
-                            tbl_login
-                            JOIN tbl_pns ON tbl_login.username = tbl_pns.nip 
-                        WHERE
-                            tbl_login.username = '$username' UNION
-                        SELECT
-                            tbl_login.image_url,
-                            tbl_thl.nama 
-                        FROM
-                            tbl_login
-                            JOIN tbl_thl ON tbl_login.username = tbl_thl.username 
-                        WHERE
-                            tbl_login.username = '$username' UNION
-                        SELECT
-                            tbl_login.image_url,
-                            tbl_ta.nama_lengkap 
-                        FROM
-                            tbl_login
-                            JOIN tbl_ta ON tbl_login.username = tbl_ta.nik 
-                        WHERE
-                            tbl_login.username = '$username'")->result();
+                            username = '$username'")->result();
+        } else {
+            $get_user = $this->db->query("SELECT
+                                -- tbl_login.username,
+                                -- tbl_login.PASSWORD,
+                                tbl_login.image_url,
+                                tbl_dosen_pddikti.nama 
+                            FROM
+                                tbl_login
+                                JOIN tbl_dosen_pddikti ON tbl_login.username = tbl_dosen_pddikti.nip 
+                            WHERE
+                                tbl_login.username = '$username' UNION
+                            SELECT
+                                tbl_login.image_url,
+                                tbl_pns.nama_lengkap AS nama 
+                            FROM
+                                tbl_login
+                                JOIN tbl_pns ON tbl_login.username = tbl_pns.nip 
+                            WHERE
+                                tbl_login.username = '$username' UNION
+                            SELECT
+                                tbl_login.image_url,
+                                tbl_thl.nama 
+                            FROM
+                                tbl_login
+                                JOIN tbl_thl ON tbl_login.username = tbl_thl.username 
+                            WHERE
+                                tbl_login.username = '$username' UNION
+                            SELECT
+                                tbl_login.image_url,
+                                tbl_ta.nama_lengkap 
+                            FROM
+                                tbl_login
+                                JOIN tbl_ta ON tbl_login.username = tbl_ta.nik 
+                            WHERE
+                                tbl_login.username = '$username'")->result();
+        }
         return $get_user;
     }
 
