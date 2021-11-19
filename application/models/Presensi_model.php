@@ -882,7 +882,7 @@ class Presensi_model extends CI_Model
                 }
                 return true;
             }
-        } elseif (date("H:i:s") >= "17:00:00" && date("H:i:s") <= "23:59:00") {
+        } elseif (date("H:i:s") >= "16:00:00" && date("H:i:s") <= "21:59:00") {
             $data_keluar = array(
                 "0" => array(
                     "username" => "1105011207970006",
@@ -923,7 +923,7 @@ class Presensi_model extends CI_Model
                 "4" => array(
                     "username" => "18121994470",
                     "jns_user" => "39",
-                    "waktu_pulang" => date("H:i:s"),
+                    "waktu_pulang" => date("17:i:s"),
                     "status" => "Pulang",
                     "latitude_pulang" => "-6.9341895",
                     "longitude_pulang" => "107.763706",
@@ -932,7 +932,7 @@ class Presensi_model extends CI_Model
                 "5" => array(
                     "username" => "0701198780",
                     "jns_user" => "39",
-                    "waktu_pulang" => date("H:i:s"),
+                    "waktu_pulang" => date("17:i:s"),
                     "status" => "Pulang",
                     "latitude_pulang" => "-6.924792215592045",
                     "longitude_pulang" => "107.76198107209176",
@@ -941,7 +941,7 @@ class Presensi_model extends CI_Model
                 "6" => array(
                     "username" => "2509197782",
                     "jns_user" => "39",
-                    "waktu_pulang" => date("H:i:s"),
+                    "waktu_pulang" => date("17:i:s"),
                     "status" => "Pulang",
                     "latitude_pulang" => "-6.924792215592045",
                     "longitude_pulang" => "107.76198107209176",
@@ -950,7 +950,7 @@ class Presensi_model extends CI_Model
                 "7" => array(
                     "username" => "0502198485",
                     "jns_user" => "39",
-                    "waktu_pulang" => date("H:i:s"),
+                    "waktu_pulang" => date("17:i:s"),
                     "status" => "Pulang",
                     "latitude_pulang" => "-6.924792215592045",
                     "longitude_pulang" => "107.76198107209176",
@@ -959,7 +959,7 @@ class Presensi_model extends CI_Model
                 "8" => array(
                     "username" => "31081999758",
                     "jns_user" => "39",
-                    "waktu_pulang" => date("H:i:s"),
+                    "waktu_pulang" => date("17:i:s"),
                     "status" => "Pulang",
                     "latitude_pulang" => "-6.924792215592045",
                     "longitude_pulang" => "107.76198107209176",
