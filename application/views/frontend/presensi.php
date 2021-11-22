@@ -413,7 +413,7 @@
             </div>
           </div>
         </div> -->
-        
+
       </div>
       <!-- end of container -->
 
@@ -442,6 +442,7 @@
                     <option value="">--Pilih Media--</option>
                     <option value="Zoom">Zoom</option>
                     <option value="Google Meet">Google Meet</option>
+                    <option value="Google Classroom">Google Classroom</option>
                     <option value="Lainnya">Lainnya</option>
                   </select>
                 </div>
@@ -452,7 +453,7 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" id="close_mulai" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary" id="update">Mulai Pembelajaran</button>
             </div>
           </div>
@@ -478,6 +479,7 @@
               <!-- mulai Record Form -->
               <form action="" method="post" id="akhir_form">
                 <input type="hidden" id="akhiri_id" name="akhiri_id" value="">
+                <input type="hidden" id="akhiri_media" name="akhiri_media" value="">
 
                 <div class="form-group">
                   <label for="">Upload Bukti</label>
@@ -491,13 +493,13 @@
                   <input type="number" id="jumlah_praja" class="form-control" onkeypress="return isNumberKey(event)">
                 </div>
                 <div class="form-group">
-                  <label for="">Keterangan Tidak Hadir</label>
+                  <label for="">Keterangan</label>
                   <textarea type="text" id="keterangan_praja" class="form-control"></textarea>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" id="close_akhiri" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary" id="akhiri_pembelajaran">Akhiri Pembelajaran</button>
             </div>
           </div>
@@ -845,7 +847,7 @@
   //                     var ax = `
   //                               <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
   //                               <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
-                      
+
   //                              `;
   //                   }
   //                 <?php } elseif ($this->session->userdata('role') == 22 || $this->session->userdata('role') == 29 || $this->session->userdata('role') == 30 || $this->session->userdata('role') == 31 || $this->session->userdata('role') == 32 || $this->session->userdata('role') == 33 || $this->session->userdata('role') == 34 || $this->session->userdata('role') == 35 || $this->session->userdata('role') == 36 || $this->session->userdata('role') == 37 || $this->session->userdata('role') == 38) { ?>
@@ -871,7 +873,7 @@
   //                     var ax = `
   //                               <a href="#" value="${row.id_plot}" id="mulai" class="btn btn-light btn-disabled disabledxxx"><i class="fas fa-file-upload"></i> Mulai Pembelajaran</a><br>
   //                               <a href="#" value="${row.id_plot}" id="akhiri" class="btn btn-light btn-disabled mt-1 disabledxxx"><i class="fas fa-file-upload"></i> Akhiri Pembelajaran</a>
-                      
+
   //                              `;
   //                   }
   //                 <?php } ?>
@@ -1122,6 +1124,14 @@
     });
   });
 
+  $(document).on("click", "#close_mulai", function() {
+    location.reload();
+  });
+
+  $(document).on("click", "#close_akhiri", function() {
+    location.reload();
+  });
+
   /* ---------------------------- Akhiri Pembelajaran Modal --------------------------- */
   $(document).on("click", "#akhiri", function(e) {
     document.getElementById("akhiri").disabled = true;
@@ -1150,7 +1160,7 @@
           // $("#edit_fakultas").val(data.post.nama_fakultas);
           // $("#edit_prodi").val(data.post.nama_prodi);
           // $("#edit_sks").val(data.post.sks);
-          // $("#edit_media").val(data.post.media_pembelajaran);
+          $("#akhiri_media").val(data.post.media_pembelajaran);
           // $("#show_img").html(`
           //           <img src="${base_url}assets/upload/${data.post.upload}" width="300" height="250" class="rounded img-thumbnail">
           //       `);
@@ -1206,7 +1216,7 @@
     e.preventDefault();
     var today = new Date();
     var date = today.getFullYear() + '-' + adjust(today.getMonth() + 1) + '-' + adjust(today.getDate());
-    var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
+    var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes()) + ":" + adjust(today.getSeconds());
 
     var edit_id = $("#edit_id").val();
     var edit_keterangan = $("#edit_keterangan").val();
@@ -1214,9 +1224,13 @@
     var edit_media = $("#edit_media").val();
 
 
-    if (edit_keterangan == "" || edit_media == "") {
-      alert("All field is required");
-    } else {
+    if ((edit_media != "Lainnya" && edit_keterangan == "") || (edit_media == "" && edit_keterangan == "")) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Harap Untuk Mengisi Data Dengan Lengkap',
+      })
+    } else if ((edit_media == "Lainnya" && edit_keterangan == "") || (edit_media != "" && edit_keterangan != "")) {
       var fd = new FormData();
 
       fd.append("edit_id", edit_id);
@@ -1251,9 +1265,10 @@
     e.preventDefault();
     var today = new Date();
     var date = today.getFullYear() + '-' + adjust(today.getMonth() + 1) + '-' + adjust(today.getDate());
-    var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes());
+    var time = adjust(today.getHours()) + ":" + adjust(today.getMinutes()) + ":" + adjust(today.getSeconds());
 
     var akhiri_id = $("#akhiri_id").val();
+    var akhiri_media = $("#akhiri_media").val();
     var jumlah_praja = $("#jumlah_praja").val();
     var keterangan_praja = $("#keterangan_praja").val();
 
@@ -1263,38 +1278,43 @@
     var upload_img = $("#upload_img")[0].files[0];
 
 
-    if (edit_id == "" || jumlah_praja == "") {
-      alert("All field is required");
-    } else {
-      var fd = new FormData();
+    // if (edit_id == "" || jumlah_praja == "") {
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'Oops...',
+    //     text: 'Harap Untuk Mengisi Data Dengan Lengkap',
+    //   })
+    // } else {
+    var fd = new FormData();
 
-      fd.append("akhiri_id", akhiri_id);
-      fd.append("jumlah_praja", jumlah_praja);
-      fd.append("keterangan_praja", keterangan_praja);
+    fd.append("akhiri_id", akhiri_id);
+    fd.append("akhiri_media", akhiri_media);
+    fd.append("jumlah_praja", jumlah_praja);
+    fd.append("keterangan_praja", keterangan_praja);
 
-      // fd.append("edit_keterangan", edit_keterangan);
-      fd.append("edit_waktu_akhiri", edit_waktu_akhiri);
-      if ($("#upload_img")[0].files.length > 0) {
-        fd.append("upload_img", upload_img);
-      }
-      $.ajax({
-        url: "<?php echo base_url(); ?>akhiri_update",
-        type: "post",
-        dataType: "json",
-        data: fd,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-          if (data.responce == "success") {
-            $('#records').DataTable().destroy();
-            fetch();
-            $('#akhiri_modal').modal('hide');
-            toastr["success"](data.message);
-          } else {
-            toastr["error"](data.message);
-          }
-        }
-      });
+    // fd.append("edit_keterangan", edit_keterangan);
+    fd.append("edit_waktu_akhiri", edit_waktu_akhiri);
+    if ($("#upload_img")[0].files.length > 0) {
+      fd.append("upload_img", upload_img);
     }
+    $.ajax({
+      url: "<?php echo base_url(); ?>akhiri_update",
+      type: "post",
+      dataType: "json",
+      data: fd,
+      processData: false,
+      contentType: false,
+      success: function(data) {
+        if (data.responce == "success") {
+          $('#records').DataTable().destroy();
+          fetch();
+          $('#akhiri_modal').modal('hide');
+          toastr["success"](data.message);
+        } else {
+          toastr["error"](data.message);
+        }
+      }
+    });
+    // }
   });
 </script>

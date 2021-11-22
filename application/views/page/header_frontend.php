@@ -34,11 +34,10 @@
         #map {
             /* height: 100%; */
             height: 300px;
+
         }
     </style>
-</head>
 
-<body>
 
     <!-- Header-->
     <?php if (!empty($this->session->userdata('username'))) { ?>
@@ -150,5 +149,8 @@
                 </nav>
             </div>
         </header>
-    <?php } ?>
-    <!-- //Header-->
+</head>
+
+<body>
+<?php } ?>
+<!-- //Header-->

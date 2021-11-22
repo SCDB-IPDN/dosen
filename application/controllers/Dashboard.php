@@ -50,6 +50,12 @@ class Dashboard extends CI_Controller
 		$this->load->view('frontend/dashboard');
 	}
 
+	public function new_dashboard()
+	{
+		$this->load->view('page/header_frontend');
+		$this->load->view('frontend/new_dashboard');
+	}
+
 	// public function fetch_detail_monitoring()
 	// {
 	// 	if ($this->input->is_ajax_request()) {
