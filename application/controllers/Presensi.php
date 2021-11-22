@@ -134,29 +134,26 @@ class Presensi extends CI_Controller
 		}
 	}
 
-
-
 	public function mulai_update()
 	{
-
 		if ($this->input->is_ajax_request()) {
-			$this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
-			$this->form_validation->set_rules('edit_media', 'Media', 'required');
-			if ($this->form_validation->run() == FALSE) {
-				$data = array('responce' => 'error', 'message' => validation_errors());
-			} else {
-				$id = $this->input->post('edit_id');
-				$ajax_data['media_pembelajaran'] = $this->input->post('edit_media');
-				$ajax_data['keterangan'] = $this->input->post('edit_keterangan');
-				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu');
-				$ajax_data['user_update'] = $this->session->userdata('username');
+			// $this->form_validation->set_rules('edit_keterangan', 'Keterangan', 'required');
+			// $this->form_validation->set_rules('edit_media', 'Media', 'required');
+			// if ($this->form_validation->run() == FALSE) {
+			// 	$data = array('responce' => 'error', 'message' => validation_errors());
+			// } else {
+			$id = $this->input->post('edit_id');
+			$ajax_data['media_pembelajaran'] = $this->input->post('edit_media');
+			$ajax_data['keterangan'] = $this->input->post('edit_keterangan');
+			$ajax_data['waktu_upload'] = $this->input->post('edit_waktu');
+			$ajax_data['user_update'] = $this->session->userdata('username');
 
-				if ($this->presensi_model->update_entry($id, $ajax_data)) {
-					$data = array('responce' => 'success', 'message' => 'Pembelajaran telah berlangsung');
-				} else {
-					$data = array('responce' => 'error', 'message' => 'Gagal memulai pembelajaran');
-				}
+			if ($this->presensi_model->update_entry($id, $ajax_data)) {
+				$data = array('responce' => 'success', 'message' => 'Pembelajaran telah berlangsung');
+			} else {
+				$data = array('responce' => 'error', 'message' => 'Gagal memulai pembelajaran');
 			}
+			// }
 
 			echo json_encode($data);
 		} else {
@@ -167,11 +164,14 @@ class Presensi extends CI_Controller
 	public function akhiri_update()
 	{
 		if ($this->input->is_ajax_request()) {
-			if (empty($_FILES['upload_img']['name'])) {
-				$this->form_validation->set_rules('upload_img', 'Gambar', 'required');
+			if ($this->input->post('akhiri_media') == 'Lainnya') {
+				$this->form_validation->set_rules('keterangan_praja', 'Keterangan', 'required');
+			} else {
+				if (empty($_FILES['upload_img']['name'])) {
+					$this->form_validation->set_rules('upload_img', 'Gambar', 'required');
+				}
+				$this->form_validation->set_rules('jumlah_praja', 'Jumlah Praja', 'required');
 			}
-			$this->form_validation->set_rules('jumlah_praja', 'Jumlah Praja', 'required');
-
 			if ($this->form_validation->run() == FALSE && empty($_FILES['upload_img']['name'])) {
 				$data = array('responce' => 'error', 'message' => validation_errors());
 			} else {
@@ -194,13 +194,20 @@ class Presensi extends CI_Controller
 						}
 					}
 				}
-
-				$id = $this->input->post('akhiri_id');
-				$ajax_data['waktu_upload'] = $this->input->post('edit_waktu_akhiri');
-				$ajax_data['user_update'] = $this->session->userdata('username');
-				$ajax_data['jumlah_praja'] = $this->input->post('jumlah_praja');
-				$ajax_data['keterangan_praja'] = $this->input->post('keterangan_praja');
-
+				if ($this->input->post('akhiri_media') == 'Lainnya') {
+					$id = $this->input->post('akhiri_id');
+					$ajax_data['waktu_akhiri'] = $this->input->post('edit_waktu_akhiri');
+					$ajax_data['user_update'] = $this->session->userdata('username');
+					$ajax_data['jumlah_praja'] = '0';
+					$ajax_data['keterangan_praja'] = $this->input->post('keterangan_praja');
+					$ajax_data['upload'] = 'Tidak ada Foto';
+				} else {
+					$id = $this->input->post('akhiri_id');
+					$ajax_data['waktu_akhiri'] = $this->input->post('edit_waktu_akhiri');
+					$ajax_data['user_update'] = $this->session->userdata('username');
+					$ajax_data['jumlah_praja'] = $this->input->post('jumlah_praja');
+					$ajax_data['keterangan_praja'] = $this->input->post('keterangan_praja');
+				}
 				if ($this->presensi_model->update_entry($id, $ajax_data)) {
 					$data = array('responce' => 'success', 'message' => 'Pembelajaran telah berakhir');
 				} else {
@@ -249,9 +256,9 @@ class Presensi extends CI_Controller
 			} else {
 				// $posts_pamdal = $this->presensi_model->get_pamdal($this->session->userdata('username'));
 				// if (!empty($posts_pamdal[0]->penugasan) && ($posts_pamdal[0]->penugasan == 'Tenaga Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'Unit Pengamanan Dalam' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM (PAMDAL)' || $posts_pamdal[0]->penugasan == 'SUBBAGIAN PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT PENGAMANAN DALAM' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Pramubakti Poliklinik' || $posts_pamdal[0]->penugasan == 'Pramubakti Unit Poliklinik' || $posts_pamdal[0]->penugasan == 'UNIT POLIKLINIK' || $posts_pamdal[0]->penugasan == 'Unit Poliklinik')) {
-					// $posts = $this->presensi_model->get_absen1('pamdal');
+				// $posts = $this->presensi_model->get_absen1('pamdal');
 				// } else {
-					$posts = $this->presensi_model->get_absen1(base64_decode($username));
+				$posts = $this->presensi_model->get_absen1(base64_decode($username));
 				// }
 			}
 			$data = array('responce' => 'success', 'posts' => $posts);
