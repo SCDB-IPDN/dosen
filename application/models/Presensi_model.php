@@ -754,234 +754,259 @@ class Presensi_model extends CI_Model
 
     public function insert_entry_absen_auto()
     {
-        if (date("H:i:s") >= "08:30:00" && date("H:i:s") <= "12:00:00") {
-            $data_masuk = array(
-                "0" => array(
-                    "username" => "1105011207970006",
-                    "jns_user" => "40",
-                    "tgl" => date("Y-m-d"),
-                    "waktu" => date("H:i:s"),
-                    "via" => "Work From Office",
-                    "latitude_masuk" => "-6.9341895",
-                    "longitude_masuk" => "107.763706",
-                    "kondisi" => "Sehat",
-                    "status" => "Masuk",
-                    "penugasan" => "Normal",
-                ),
-                "1" => array(
-                    "username" => "3209140904970009",
-                    "jns_user" => "40",
-                    "tgl" => date("Y-m-d"),
-                    "waktu" => date("H:i:s"),
-                    "via" => "Work From Office",
-                    "latitude_masuk" => "-6.9341895",
-                    "longitude_masuk" => "107.763706",
-                    "kondisi" => "Sehat",
-                    "status" => "Masuk",
-                    "penugasan" => "Normal",
-                ),
-                "2" => array(
-                    "username" => "7314050409970001",
-                    "jns_user" => "40",
-                    "tgl" => date("Y-m-d"),
-                    "waktu" => date("H:i:s"),
-                    "via" => "Work From Office",
-                    "latitude_masuk" => "-6.9341895",
-                    "longitude_masuk" => "107.763706",
-                    "kondisi" => "Sehat",
-                    "status" => "Masuk",
-                    "penugasan" => "Normal",
-                ),
-                "3" => array(
-                    "username" => "6106172907930001",
-                    "jns_user" => "40",
-                    "tgl" => date("Y-m-d"),
-                    "waktu" => date("H:i:s"),
-                    "via" => "Work From Office",
-                    "latitude_masuk" => "-6.9341895",
-                    "longitude_masuk" => "107.763706",
-                    "kondisi" => "Sehat",
-                    "status" => "Masuk",
-                    "penugasan" => "Normal",
-                ),
-                "4" => array(
-                    "username" => "18121994470",
-                    "jns_user" => "39",
-                    "tgl" => date("Y-m-d"),
-                    "waktu" => date("H:i:s"),
-                    "via" => "Work From Office",
-                    "latitude_masuk" => "-6.9341895",
-                    "longitude_masuk" => "107.763706",
-                    "kondisi" => "Sehat",
-                    "status" => "Masuk",
-                    "penugasan" => "Normal",
-                ),
-                "5" => array(
-                    "username" => "0701198780",
-                    "jns_user" => "39",
-                    "tgl" => date("Y-m-d"),
-                    "waktu" => date("H:i:s"),
-                    "via" => "Work From Office",
-                    "latitude_masuk" => "-6.924792215592045",
-                    "longitude_masuk" => "107.76198107209176",
-                    "kondisi" => "Sehat",
-                    "status" => "Masuk",
-                    "penugasan" => "Normal",
-                ),
-                "6" => array(
-                    "username" => "2509197782",
-                    "jns_user" => "39",
-                    "tgl" => date("Y-m-d"),
-                    "waktu" => date("H:i:s"),
-                    "via" => "Work From Office",
-                    "latitude_masuk" => "-6.924792215592045",
-                    "longitude_masuk" => "107.76198107209176",
-                    "kondisi" => "Sehat",
-                    "status" => "Masuk",
-                    "penugasan" => "Normal",
-                ),
-                "7" => array(
-                    "username" => "0502198485",
-                    "jns_user" => "39",
-                    "tgl" => date("Y-m-d"),
-                    "waktu" => date("H:i:s"),
-                    "via" => "Work From Office",
-                    "latitude_masuk" => "-6.924792215592045",
-                    "longitude_masuk" => "107.76198107209176",
-                    "kondisi" => "Sehat",
-                    "status" => "Masuk",
-                    "penugasan" => "Normal",
-                ),
-                "8" => array(
-                    "username" => "31081999758",
-                    "jns_user" => "39",
-                    "tgl" => date("Y-m-d"),
-                    "waktu" => date("H:i:s"),
-                    "via" => "Work From Office",
-                    "latitude_masuk" => "-6.924792215592045",
-                    "longitude_masuk" => "107.76198107209176",
-                    "kondisi" => "Sehat",
-                    "status" => "Masuk",
-                    "penugasan" => "Normal",
-                )
-            );
+        $timestamp = strtotime(date('Y-m-d'));
+        $day = date('D', $timestamp);
+        if ($day != 'Sat' || $day != 'Sun') {
+            if (date("H:i:s") >= "08:30:00" && date("H:i:s") <= "12:00:00") {
+                $data_masuk = array(
+                    "0" => array(
+                        "username" => "1105011207970006",
+                        "jns_user" => "40",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.9341895",
+                        "longitude_masuk" => "107.763706",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    ),
+                    "1" => array(
+                        "username" => "3209140904970009",
+                        "jns_user" => "40",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.9341895",
+                        "longitude_masuk" => "107.763706",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    ),
+                    "2" => array(
+                        "username" => "7314050409970001",
+                        "jns_user" => "40",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.9341895",
+                        "longitude_masuk" => "107.763706",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    ),
+                    "3" => array(
+                        "username" => "6106172907930001",
+                        "jns_user" => "40",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.9341895",
+                        "longitude_masuk" => "107.763706",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    ),
+                    "4" => array(
+                        "username" => "18121994470",
+                        "jns_user" => "39",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.9341895",
+                        "longitude_masuk" => "107.763706",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    ),
+                    "5" => array(
+                        "username" => "0701198780",
+                        "jns_user" => "39",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.924792215592045",
+                        "longitude_masuk" => "107.76198107209176",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    ),
+                    "6" => array(
+                        "username" => "2509197782",
+                        "jns_user" => "39",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.924792215592045",
+                        "longitude_masuk" => "107.76198107209176",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    ),
+                    "7" => array(
+                        "username" => "0502198485",
+                        "jns_user" => "39",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.924792215592045",
+                        "longitude_masuk" => "107.76198107209176",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    ),
+                    "8" => array(
+                        "username" => "31081999758",
+                        "jns_user" => "39",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.924792215592045",
+                        "longitude_masuk" => "107.76198107209176",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    ),
+                    "9" => array(
+                        "username" => "17091978118",
+                        "jns_user" => "39",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.924792215592045",
+                        "longitude_masuk" => "107.76198107209176",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
+                    )
+                );
 
-            $usernamex = array('1105011207970006', '3209140904970009', '7314050409970001', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758');
-            // $usernamex = array('1105011207970006', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758');
-            $get_data   = $this->db
-                ->select('*')
-                ->from('absensi')
-                ->where_in('username', $usernamex)
-                ->where("tgl", date('Y-m-d'))
-                ->get();
-            if ($get_data->num_rows() > 0) {
-                return true;
-            } else {
-                for ($i = 0; $i < 9; $i++) {
-                    $this->db->insert('absensi', $data_masuk[$i]);
+                $usernamex = array('1105011207970006', '3209140904970009', '7314050409970001', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758', '17091978118');
+                // $usernamex = array('1105011207970006', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758');
+                $get_data   = $this->db
+                    ->select('*')
+                    ->from('absensi')
+                    ->where_in('username', $usernamex)
+                    ->where("tgl", date('Y-m-d'))
+                    ->get();
+                if ($get_data->num_rows() > 0) {
+                    return true;
+                } else {
+                    for ($i = 0; $i < 10; $i++) {
+                        $this->db->insert('absensi', $data_masuk[$i]);
+                    }
+                    return true;
                 }
-                return true;
-            }
-        } elseif (date("H:i:s") >= "16:00:00" && date("H:i:s") <= "21:59:00") {
-            $data_keluar = array(
-                "0" => array(
-                    "username" => "1105011207970006",
-                    "jns_user" => "40",
-                    "waktu_pulang" => date("H:i:s"),
-                    "status" => "Pulang",
-                    "latitude_pulang" => "-6.9341895",
-                    "longitude_pulang" => "107.763706",
-                    "tgl_pulang" => date("Y-m-d"),
-                ),
-                "1" => array(
-                    "username" => "3209140904970009",
-                    "jns_user" => "40",
-                    "waktu_pulang" => date("H:i:s"),
-                    "status" => "Pulang",
-                    "latitude_pulang" => "-6.9341895",
-                    "longitude_pulang" => "107.763706",
-                    "tgl_pulang" => date("Y-m-d"),
-                ),
-                "2" => array(
-                    "username" => "7314050409970001",
-                    "jns_user" => "40",
-                    "waktu_pulang" => date("H:i:s"),
-                    "status" => "Pulang",
-                    "latitude_pulang" => "-6.9341895",
-                    "longitude_pulang" => "107.763706",
-                    "tgl_pulang" => date("Y-m-d"),
-                ),
-                "3" => array(
-                    "username" => "6106172907930001",
-                    "jns_user" => "40",
-                    "waktu_pulang" => date("H:i:s"),
-                    "status" => "Pulang",
-                    "latitude_pulang" => "-6.9341895",
-                    "longitude_pulang" => "107.763706",
-                    "tgl_pulang" => date("Y-m-d"),
-                ),
-                "4" => array(
-                    "username" => "18121994470",
-                    "jns_user" => "39",
-                    "waktu_pulang" => date("17:i:s"),
-                    "status" => "Pulang",
-                    "latitude_pulang" => "-6.9341895",
-                    "longitude_pulang" => "107.763706",
-                    "tgl_pulang" => date("Y-m-d"),
-                ),
-                "5" => array(
-                    "username" => "0701198780",
-                    "jns_user" => "39",
-                    "waktu_pulang" => date("17:i:s"),
-                    "status" => "Pulang",
-                    "latitude_pulang" => "-6.924792215592045",
-                    "longitude_pulang" => "107.76198107209176",
-                    "tgl_pulang" => date("Y-m-d"),
-                ),
-                "6" => array(
-                    "username" => "2509197782",
-                    "jns_user" => "39",
-                    "waktu_pulang" => date("17:i:s"),
-                    "status" => "Pulang",
-                    "latitude_pulang" => "-6.924792215592045",
-                    "longitude_pulang" => "107.76198107209176",
-                    "tgl_pulang" => date("Y-m-d"),
-                ),
-                "7" => array(
-                    "username" => "0502198485",
-                    "jns_user" => "39",
-                    "waktu_pulang" => date("17:i:s"),
-                    "status" => "Pulang",
-                    "latitude_pulang" => "-6.924792215592045",
-                    "longitude_pulang" => "107.76198107209176",
-                    "tgl_pulang" => date("Y-m-d"),
-                ),
-                "8" => array(
-                    "username" => "31081999758",
-                    "jns_user" => "39",
-                    "waktu_pulang" => date("17:i:s"),
-                    "status" => "Pulang",
-                    "latitude_pulang" => "-6.924792215592045",
-                    "longitude_pulang" => "107.76198107209176",
-                    "tgl_pulang" => date("Y-m-d"),
-                )
-            );
+            } elseif (date("H:i:s") >= "16:00:00" && date("H:i:s") <= "21:59:00") {
+                $data_keluar = array(
+                    "0" => array(
+                        "username" => "1105011207970006",
+                        "jns_user" => "40",
+                        "waktu_pulang" => date("H:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.9341895",
+                        "longitude_pulang" => "107.763706",
+                        "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "1" => array(
+                        "username" => "3209140904970009",
+                        "jns_user" => "40",
+                        "waktu_pulang" => date("H:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.9341895",
+                        "longitude_pulang" => "107.763706",
+                        "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "2" => array(
+                        "username" => "7314050409970001",
+                        "jns_user" => "40",
+                        "waktu_pulang" => date("H:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.9341895",
+                        "longitude_pulang" => "107.763706",
+                        "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "3" => array(
+                        "username" => "6106172907930001",
+                        "jns_user" => "40",
+                        "waktu_pulang" => date("H:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.9341895",
+                        "longitude_pulang" => "107.763706",
+                        "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "4" => array(
+                        "username" => "18121994470",
+                        "jns_user" => "39",
+                        "waktu_pulang" => date("17:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.9341895",
+                        "longitude_pulang" => "107.763706",
+                        "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "5" => array(
+                        "username" => "0701198780",
+                        "jns_user" => "39",
+                        "waktu_pulang" => date("17:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.924792215592045",
+                        "longitude_pulang" => "107.76198107209176",
+                        "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "6" => array(
+                        "username" => "2509197782",
+                        "jns_user" => "39",
+                        "waktu_pulang" => date("17:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.924792215592045",
+                        "longitude_pulang" => "107.76198107209176",
+                        "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "7" => array(
+                        "username" => "0502198485",
+                        "jns_user" => "39",
+                        "waktu_pulang" => date("17:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.924792215592045",
+                        "longitude_pulang" => "107.76198107209176",
+                        "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "8" => array(
+                        "username" => "31081999758",
+                        "jns_user" => "39",
+                        "waktu_pulang" => date("17:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.924792215592045",
+                        "longitude_pulang" => "107.76198107209176",
+                        "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "9" => array(
+                        "username" => "17091978118",
+                        "jns_user" => "39",
+                        "waktu_pulang" => date("17:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.924792215592045",
+                        "longitude_pulang" => "107.76198107209176",
+                        "tgl_pulang" => date("Y-m-d"),
+                    )
+                );
 
-            $usernamex = array('1105011207970006', '3209140904970009', '7314050409970001', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758');
-            // $usernamex = array('1105011207970006', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758');
-            $get_data   = $this->db
-                ->select('*')
-                ->from('absensi')
-                ->where_in('username', $usernamex)
-                ->where("tgl", date('Y-m-d'))
-                ->get();
-            if ($get_data->num_rows() > 0) {
-                for ($i = 0; $i < 9; $i++) {
-                    $this->db->update('absensi', $data_keluar[$i], array('username' => $data_keluar[$i]['username'], 'tgl' => date('Y-m-d')));
+                $usernamex = array('1105011207970006', '3209140904970009', '7314050409970001', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758', '17091978118');
+                // $usernamex = array('1105011207970006', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758');
+                $get_data   = $this->db
+                    ->select('*')
+                    ->from('absensi')
+                    ->where_in('username', $usernamex)
+                    ->where("tgl", date('Y-m-d'))
+                    ->get();
+                if ($get_data->num_rows() > 0) {
+                    for ($i = 0; $i < 10; $i++) {
+                        $this->db->update('absensi', $data_keluar[$i], array('username' => $data_keluar[$i]['username'], 'tgl' => date('Y-m-d')));
+                    }
+                    return true;
+                } else {
+                    return true;
                 }
-                return true;
-            } else {
-                return true;
             }
         }
     }
