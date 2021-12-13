@@ -878,10 +878,22 @@ class Presensi_model extends CI_Model
                         "kondisi" => "Sehat",
                         "status" => "Masuk",
                         "penugasan" => "Normal",
+                    ),
+                    "10" => array(
+                        "username" => "3277022706990001",
+                        "jns_user" => "40",
+                        "tgl" => date("Y-m-d"),
+                        "waktu" => date("H:i:s"),
+                        "via" => "Work From Office",
+                        "latitude_masuk" => "-6.9341895",
+                        "longitude_masuk" => "107.763706",
+                        "kondisi" => "Sehat",
+                        "status" => "Masuk",
+                        "penugasan" => "Normal",
                     )
                 );
 
-                $usernamex = array('1105011207970006', '3209140903970009', '7314050409970001', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758', '17091978118');
+                $usernamex = array('1105011207970006', '3209140903970009', '7314050409970001', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758', '17091978118', '3277022706990001');
                 // $usernamex = array('1105011207970006', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758');
                 $get_data   = $this->db
                     ->select('*')
@@ -892,7 +904,7 @@ class Presensi_model extends CI_Model
                 if ($get_data->num_rows() > 0) {
                     return true;
                 } else {
-                    for ($i = 0; $i < 10; $i++) {
+                    for ($i = 0; $i < 11; $i++) {
                         $this->db->insert('absensi', $data_masuk[$i]);
                     }
                     return true;
@@ -988,10 +1000,19 @@ class Presensi_model extends CI_Model
                         "latitude_pulang" => "-6.924792215592045",
                         "longitude_pulang" => "107.76198107209176",
                         "tgl_pulang" => date("Y-m-d"),
+                    ),
+                    "10" => array(
+                        "username" => "3277022706990001",
+                        "jns_user" => "40",
+                        "waktu_pulang" => date("17:i:s"),
+                        "status" => "Pulang",
+                        "latitude_pulang" => "-6.9341895",
+                        "longitude_pulang" => "107.763706",
+                        "tgl_pulang" => date("Y-m-d"),
                     )
                 );
 
-                $usernamex = array('1105011207970006', '3209140903970009', '7314050409970001', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758', '17091978118');
+                $usernamex = array('1105011207970006', '3209140903970009', '7314050409970001', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758', '17091978118', '3277022706990001');
                 // $usernamex = array('1105011207970006', '6106172907930001', '18121994470', '0701198780', '2509197782', '0502198485', '31081999758');
                 $get_data   = $this->db
                     ->select('*')
@@ -1000,7 +1021,7 @@ class Presensi_model extends CI_Model
                     ->where("tgl", date('Y-m-d'))
                     ->get();
                 if ($get_data->num_rows() > 0) {
-                    for ($i = 0; $i < 10; $i++) {
+                    for ($i = 0; $i < 11; $i++) {
                         $this->db->update('absensi', $data_keluar[$i], array('username' => $data_keluar[$i]['username'], 'tgl' => date('Y-m-d')));
                     }
                     return true;
